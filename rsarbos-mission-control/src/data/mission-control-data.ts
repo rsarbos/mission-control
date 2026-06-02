@@ -69,4 +69,13 @@ export const TABS: TabState[] = [
     activeFiles: ['axiom/AXIOM_CONSTITUTION.md', 'ops/axiom/CONSTITUTION.md'],
     metrics: { highestLeverageTask: 'Website launch' },
   },
+  {
+    id: 'dataroom',
+    title: 'DATA ROOM',
+    currentState: 'Skeleton created',
+    nextRecommendedTask: 'Populate with investor-ready documents and metrics',
+    founderTasks: [],
+    activeFiles: [],
+    metrics: {},
+  },
 ];

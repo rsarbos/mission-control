@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 :root {
   --rsarbos-navy: #0A0F1C;
   --rsarbos-blue: #1E5BFF;
@@ -29,6 +31,10 @@ body {
     radial-gradient(circle at bottom right, rgba(255, 59, 56, 0.12), transparent 20%),
     var(--rsarbos-navy);
   color: #F8FAFC;
+}
+
+h1, h2, h3, .eyebrow {
+  font-family: 'Orbitron', sans-serif;
 }
 
 button,
@@ -276,11 +282,12 @@ select {
 }
 
 .tab-button:hover,
-.tab-button[aria-pressed='true'],
+.tab-button[aria-selected='true'],
 .tab-button:focus-visible {
   transform: translateY(-1px);
   background: rgba(30, 91, 255, 0.14);
   border-color: rgba(30, 91, 255, 0.36);
+  font-weight: 700;
 }
 
 .mc-main {
@@ -684,3 +691,4 @@ button {
     gap: 14px;
   }
 }
+

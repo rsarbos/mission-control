@@ -122,9 +122,9 @@ export default function App() {
               <div>
                 <p className="eyebrow">Mission overview</p>
                 <h2>{currentTab?.title}</h2>
-                <p className="section-subtitle">{currentTab?.currentState}</p>
+                <p className="section-subtitle">Active operations for {currentTab?.title}</p>
               </div>
-              <div className="overview-pill">{currentTab?.title} status</div>
+              <div className="overview-pill">STAGE: {currentTab?.currentState}</div>
             </div>
             <div className="overview-grid">
               <div className="status-panel">
@@ -139,6 +139,16 @@ export default function App() {
                 <p className="small-label">What should happen next?</p>
                 <strong>{currentTab?.nextRecommendedTask}</strong>
               </div>
+              {currentTab?.metrics &&
+                Object.entries(currentTab.metrics).map(([key, value]) => (
+                  <div className="status-panel" key={key}>
+                    <p className="small-label">{key.replace(/([A-Z])/g, ' $1').trim().toUpperCase()}</p>
+                    <strong>
+                      {typeof value === 'number' && key.includes('revenue') ? `$${value}` : value}
+                      {typeof value === 'number' && key.includes('readiness') ? `${value}%` : ''}
+                    </strong>
+                  </div>
+                ))}
             </div>
           </section>
 
@@ -154,6 +164,15 @@ export default function App() {
               <OrgMap />
               <DepartmentGrid departments={DEPARTMENTS} />
             </>
+          )}
+
+          {activeTab === 'dataroom' && (
+            <section className="card section-card">
+              <h3>Investor Data Room</h3>
+              <p className="muted">This section is under construction. It will contain investor-ready documents, financial projections, and key metrics.</p>
+              <p className="muted">Current state: {currentTab?.currentState}</p>
+              <p className="muted">Next step: {currentTab?.nextRecommendedTask}</p>
+            </section>
           )}
         </div>
         <aside className="side-column">
