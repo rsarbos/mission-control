@@ -1,0 +1,24 @@
+# WEBSITE READINESS
+
+Goal: make the RSARBOS manual underwriting website ready for staging/live verification.
+
+## Readiness Result
+- Status: ready for staging verification.
+- Build check: passing with `npm run build` in `rsarbos-mission-control`.
+- Primary workflow: visitor submits a manual underwriting request, receives confirmation, and the request routes to operations.
+- Intake route: `uw.requests@rsarbos.com`
+- Support route: `support@rsarbos.com`
+- Payment confirmation route: manual settlement / payment-status ledger confirmation.
+
+## Fulfilled Scope
+- Website mission-control tab now carries explicit readiness metrics for intake routing, support routing, payment confirmation copy, and funnel tracking.
+- Website founder tasks now reflect the live verification work instead of a vague copy audit.
+- Website operations files now identify the staging/live verification state and the next action.
+- UI now shows a website readiness checklist when the Website tab is selected.
+- Production build was verified.
+
+## Remaining Live Checks
+- Submit a real staging intake request and confirm it appears in the underwriting inbox.
+- Send a support test message and confirm response ownership.
+- Run one payment confirmation dry run against the settlement ledger.
+- Confirm analytics events are arriving for intake start, intake submit, and confirmation view.

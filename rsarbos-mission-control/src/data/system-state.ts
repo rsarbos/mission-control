@@ -1,9 +1,9 @@
 export const SYSTEM_STATE = {
   mission: 'Launch RSARBOS manual underwriting website and deliver first paid report',
-  constraint: 'Lead generation and request conversion',
-  highestLeverageTask: 'Deploy public website and verify intake flow',
-  phase: 'Launch readiness',
-  readiness: '42%',
+  constraint: 'Live routing proof for intake, support, and payment confirmation',
+  highestLeverageTask: 'Submit a staging intake request and verify the underwriting inbox',
+  phase: 'Staging verification',
+  readiness: '78%',
   modelAdapter: 'Codex',
   emails: {
     support: 'support@rsarbos.com',

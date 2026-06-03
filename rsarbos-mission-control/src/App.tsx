@@ -14,6 +14,29 @@ import DepartmentGrid from './components/DepartmentGrid'
 import OperationsSnapshot from './components/OperationsSnapshot'
 import OrgMap from './components/OrgMap'
 
+const WEBSITE_READINESS_ITEMS = [
+  {
+    label: 'Intake routing',
+    value: SYSTEM_STATE.emails.uwRequests,
+    status: 'Ready for staging submit',
+  },
+  {
+    label: 'Support routing',
+    value: SYSTEM_STATE.emails.support,
+    status: 'Ownership check pending',
+  },
+  {
+    label: 'Payment confirmation',
+    value: 'Manual settlement ledger',
+    status: 'Dry run pending',
+  },
+  {
+    label: 'Funnel tracking',
+    value: 'start / submit / confirmation',
+    status: 'Events specified',
+  },
+]
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>(() => localStorage.getItem('mc_activeTab') || TABS[0].id)
   const [model, setModel] = useState<string>(() => localStorage.getItem('mc_model') || SYSTEM_STATE.modelAdapter || 'Codex')
@@ -158,6 +181,29 @@ export default function App() {
           </div>
 
           {activeTab === 'operations' && <OperationsSnapshot departments={operationsDepartments} />}
+
+          {activeTab === 'website' && (
+            <section className="website-readiness">
+              <div className="section-heading">
+                <div>
+                  <p className="eyebrow">Website Readiness</p>
+                  <h3>Staging verification checklist</h3>
+                </div>
+                <span className="readiness-score">{SYSTEM_STATE.readiness}</span>
+              </div>
+              <div className="readiness-checklist">
+                {WEBSITE_READINESS_ITEMS.map((item) => (
+                  <article className="readiness-check" key={item.label}>
+                    <div>
+                      <p className="small-label">{item.label}</p>
+                      <strong>{item.value}</strong>
+                    </div>
+                    <span>{item.status}</span>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
 
           {activeTab === 'axiom' && (
             <>

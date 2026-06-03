@@ -36,14 +36,22 @@ export const TABS: TabState[] = [
   {
     id: 'website',
     title: 'WEBSITE',
-    currentState: 'Public site live (staging)',
+    currentState: 'Ready for staging verification',
     nextRecommendedTask:
-      'Confirm intake form, support email, and payment confirmation copy align with UW workflow',
+      'Submit a staging intake request, verify inbox routing, confirm support ownership, and dry-run payment confirmation copy',
     founderTasks: [
-      { id: 'w1', title: 'Audit intake copy', owner: 'Yael Axel', status: 'open' },
+      { id: 'w1', title: 'Submit staging intake request', owner: 'Yael Axel', status: 'open' },
+      { id: 'w2', title: 'Confirm support email ownership', owner: 'Yael Axel', status: 'open' },
+      { id: 'w3', title: 'Dry-run payment confirmation copy', owner: 'Yael Axel', status: 'open' },
     ],
     activeFiles: ['ops/website/CONSTITUTION.md', 'ops/website/STATE.md'],
-    metrics: { visitorsToday: 42 },
+    metrics: {
+      visitorsToday: 42,
+      launchReadiness: 78,
+      intakeRoute: 'uw.requests@rsarbos.com',
+      supportRoute: 'support@rsarbos.com',
+      confirmation: 'Manual settlement ledger',
+    },
   },
   {
     id: 'revenue',
