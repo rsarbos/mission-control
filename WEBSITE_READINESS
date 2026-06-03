@@ -11,11 +11,18 @@ Goal: make the RSARBOS manual underwriting website ready for staging/live verifi
 - Payment confirmation route: manual settlement / payment-status ledger confirmation.
 
 ## Fulfilled Scope
+- Public domain now serves the RSARBOS manual underwriting website instead of the internal founder dashboard.
+- Mission Control is routed to `/mission-control` behind a password gate.
 - Website mission-control tab now carries explicit readiness metrics for intake routing, support routing, payment confirmation copy, and funnel tracking.
 - Website founder tasks now reflect the live verification work instead of a vague copy audit.
 - Website operations files now identify the staging/live verification state and the next action.
 - UI now shows a website readiness checklist when the Website tab is selected.
 - Production build was verified.
+
+## Public / Private Boundary
+- `/` is public and must sell the manual underwriting service.
+- `/mission-control` is private and must remain an internal founder operations tool.
+- Set `VITE_MISSION_CONTROL_PASSWORD` in Vercel to control the Mission Control gate password.
 
 ## Remaining Live Checks
 - Submit a real staging intake request and confirm it appears in the underwriting inbox.
