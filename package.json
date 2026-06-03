@@ -1,0 +1,13 @@
+{
+  "name": "mission-control",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "rsarbos-mission-control"
+  ],
+  "scripts": {
+    "build": "npm --workspace rsarbos-mission-control run build",
+    "typecheck": "npm --workspace rsarbos-mission-control run typecheck",
+    "lint": "npm run typecheck"
+  }
+}
