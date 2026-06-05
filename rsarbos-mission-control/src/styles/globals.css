@@ -1395,6 +1395,55 @@ code {
   font-weight: 300;
 }
 
+.source-flow {
+  width: min(680px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 26px auto 0;
+  color: var(--rsarbos-silver);
+}
+
+.source-flow span,
+.source-flow strong {
+  min-width: 86px;
+  padding: 9px 12px;
+  border: 1px solid rgba(199, 204, 214, 0.16);
+  border-radius: 999px;
+  background: rgba(13, 17, 23, 0.72);
+  font-size: 0.82rem;
+  font-weight: 800;
+  opacity: 0.48;
+  animation: source-pulse 7.2s ease-in-out infinite;
+}
+
+.source-flow span:nth-child(2) {
+  animation-delay: 1.05s;
+}
+
+.source-flow span:nth-child(3) {
+  animation-delay: 2.1s;
+}
+
+.source-flow span:nth-child(4) {
+  animation-delay: 3.15s;
+}
+
+.source-flow span:nth-child(5) {
+  animation-delay: 4.2s;
+}
+
+.source-flow strong {
+  min-width: 142px;
+  color: white;
+  border-color: rgba(255, 56, 56, 0.5);
+  background: rgba(255, 56, 56, 0.12);
+  opacity: 1;
+  animation-delay: 5.25s;
+}
+
 .blue-glow {
   color: var(--rsarbos-blue);
   text-shadow: 0 0 20px rgba(30, 88, 255, 0.5);
@@ -1625,6 +1674,44 @@ code {
 .deliverable-list li span:last-child {
   color: var(--rsarbos-silver);
   font-size: 0.92rem;
+}
+
+.report-section-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.report-section-card {
+  min-height: 190px;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 8px;
+}
+
+.report-section-card span {
+  width: max-content;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(30, 88, 255, 0.12);
+  color: var(--rsarbos-blue);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.report-section-card h3 {
+  color: var(--rsarbos-red);
+  font-size: 1rem;
+}
+
+.report-section-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--rsarbos-silver);
+  line-height: 1.6;
 }
 
 .check-icon,
@@ -1974,6 +2061,10 @@ code {
   margin: 0 auto;
 }
 
+.request-section-early {
+  padding-top: 0;
+}
+
 .neo-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2003,7 +2094,6 @@ code {
 }
 
 .neo-form select {
-  color: #FFFFFF;
   background:
     linear-gradient(45deg, transparent 50%, var(--rsarbos-blue) 50%) calc(100% - 18px) 50% / 7px 7px no-repeat,
     linear-gradient(135deg, var(--rsarbos-blue) 50%, transparent 50%) calc(100% - 13px) 50% / 7px 7px no-repeat,
@@ -2024,6 +2114,13 @@ code {
 .neo-form option {
   background: #F6F8FA;
   color: var(--rsarbos-carbon);
+}
+
+.form-error {
+  margin: 0;
+  color: #FFB4AD;
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .form-footnote {
@@ -2097,6 +2194,40 @@ code {
 .payment-placeholder {
   color: rgba(156, 163, 175, 1);
   font-size: 0.76rem;
+}
+
+.payment-result-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    var(--rsarbos-navy);
+  background-size: 40px 40px;
+}
+
+.payment-result-panel {
+  width: min(620px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 34px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.payment-result-panel h1 {
+  margin: 0;
+  color: white;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.payment-result-panel p {
+  margin: 0;
+  color: var(--rsarbos-silver);
+  line-height: 1.7;
 }
 
 .public-footer {
@@ -2173,6 +2304,19 @@ code {
   }
 }
 
+@keyframes source-pulse {
+  0%, 100% {
+    opacity: 0.42;
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  10%, 20% {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(30, 88, 255, 0.22);
+  }
+}
+
 @media (max-width: 980px) {
   .desktop-menu {
     display: none;
@@ -2195,6 +2339,10 @@ code {
 
   .pillar-grid {
     gap: 16px;
+  }
+
+  .report-section-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .pricing-column {
@@ -2243,6 +2391,10 @@ code {
 
   .neo-form {
     padding: 24px;
+  }
+
+  .report-section-grid {
+    grid-template-columns: 1fr;
   }
 
   .mobile-dossier-frame {

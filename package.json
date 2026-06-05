@@ -9,5 +9,10 @@
     "build": "npm --workspace rsarbos-mission-control run build",
     "typecheck": "npm --workspace rsarbos-mission-control run typecheck",
     "lint": "npm run typecheck"
+  },
+  "dependencies": {
+    "pg": "^8.21.0",
+    "resend": "^6.12.4",
+    "stripe": "^22.2.0"
   }
 }

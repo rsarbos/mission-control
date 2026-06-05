@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TABS } from './data/mission-control-data'
 import { FOUNDER_TASKS, FounderTask } from './data/founder-tasks'
 import { AXIOM_AGENTS } from './data/axiom-agents'
@@ -13,6 +13,7 @@ import SystemRuntime from './components/SystemRuntime'
 import DepartmentGrid from './components/DepartmentGrid'
 import OperationsSnapshot from './components/OperationsSnapshot'
 import OrgMap from './components/OrgMap'
+import ManualReportForm from './components/ManualReportForm'
 import rsarbosLogo from './assets/logo.png'
 
 const WEBSITE_READINESS_ITEMS = [
@@ -40,7 +41,6 @@ const WEBSITE_READINESS_ITEMS = [
 
 const REQUEST_EMAIL = 'uw.requests@rsarbos.com'
 const SUPPORT_EMAIL = 'uw.support@rsarbos.com'
-const PAYMENT_LINK = '[PAYMENT_LINK_PENDING]'
 const MISSION_CONTROL_PASSWORD = import.meta.env.VITE_MISSION_CONTROL_PASSWORD || 'rsarbos-founder'
 const DOSSIER_PREVIEW_URL = '/dossier/RSARBOS_Investment_Dossier_1314_Shawn_Dr.html'
 
@@ -49,6 +49,17 @@ const DELIVERABLES = [
   ['Comparable Analysis', 'Granular assessment of hyper-local recent sales and active competition.', false],
   ['ARV Thesis', 'Defensible After Repair Value projection based on market reality.', false],
   ['Risk Notes & Pricing Context', 'Identification of potential pitfalls and strategic entry pricing analysis.', true],
+] as const
+
+const REPORT_SECTIONS = [
+  ['02', 'Executive Decision', 'Verdict, best-fit buyer profile, and the one question that decides the deal.'],
+  ['03', 'Asset + Market Context', 'Property profile, neighborhood scores, school ratings, crime data, and buyer pool.'],
+  ['04', 'Rental Thesis', 'Rent estimate, nearby rental comps, rent realism test, and cash-flow calculator.'],
+  ['05', 'Value + ARV', 'Current value, light-renovation ARV, moderate upside, and flip caution.'],
+  ['06', 'Strategy + Risk', 'Best buyer profiles, risk register, walkaway triggers, and diligence checklist.'],
+  ['07', 'Neighborhood Intelligence', 'Walk Score, school ratings, crime index, and market velocity.'],
+  ['08', 'Cash-Flow Calculator', 'Interactive model: input your down payment, rate, rent, and see monthly cash flow instantly.'],
+  ['09', 'Source Appendix', 'RentCast, Redfin, AVM/ARV notes, and due diligence action items.'],
 ] as const
 
 const PILLARS = [
@@ -60,46 +71,6 @@ const PILLARS = [
 
 function PublicWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isProcessing, setIsProcessing] = useState(false)
-  const modalRef = useRef<HTMLDialogElement | null>(null)
-  const [form, setForm] = useState({
-    clientName: '',
-    email: '',
-    propertyAddress: '',
-    propertyUrl: '',
-    investmentIntent: '',
-    urgency: 'standard',
-    notes: '',
-  })
-
-  function updateField(field: keyof typeof form, value: string) {
-    setForm((prev) => ({ ...prev, [field]: value }))
-  }
-
-  function submitRequest(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setIsProcessing(true)
-
-    window.setTimeout(() => {
-      setIsProcessing(false)
-      setForm({
-        clientName: '',
-        email: '',
-        propertyAddress: '',
-        propertyUrl: '',
-        investmentIntent: '',
-        urgency: 'standard',
-        notes: '',
-      })
-      modalRef.current?.showModal()
-    }, 800)
-  }
-
-  function closeModalOnBackdrop(event: React.MouseEvent<HTMLDialogElement>) {
-    if (event.target === modalRef.current) {
-      modalRef.current?.close()
-    }
-  }
 
   return (
     <div className="public-site">
@@ -140,10 +111,18 @@ function PublicWebsite() {
           <div className="hero-content">
             <div className="hero-chip"><span></span>Building the New Era of Real Estate Tech</div>
             <h1>
-              VALUATION. <span className="blue-glow">SIMPLIFIED.</span>
+              FROM LINK TO
               <br />
-              DECISIONS. <span className="red-glow">EMPOWERED.</span>
+              <span className="red-glow">INVESTOR-READY DECISION.</span>
             </h1>
+            <div className="source-flow" aria-label="Supported property link sources">
+              <span>Zillow</span>
+              <span>Redfin</span>
+              <span>Realtor.com</span>
+              <span>Homes.com</span>
+              <span>MLS</span>
+              <strong>RSARBOS Dossier</strong>
+            </div>
             <p>
               RSARBOS transforms complex property data into clear, decision-grade underwriting intelligence. Built for founders,
               investors, and institutions who demand truth first.
@@ -161,10 +140,68 @@ function PublicWebsite() {
           </div>
         </section>
 
+        <section className="sample-section" id="sample">
+          <div className="content-wrap sample-grid">
+            <div className="pricing-column" id="pricing">
+              <p className="red-kicker"><span></span>Launch Offer</p>
+              <h2>CLEAR PRICING</h2>
+              <p>No hidden fees. Flat rate intelligence for actionable decisions.</p>
+              <article className="pricing-card glass-panel">
+                <div className="pricing-rule"></div>
+                <h3>MANUAL UNDERWRITING</h3>
+                <p className="price">$100 <span>/ report</span></p>
+                <ul>
+                  <li>Complete Final Underwriting Dossier</li>
+                  <li>Deal Confidence Summary</li>
+                  <li>Delivered within 24 hours of payment</li>
+                  <li>Secure private delivery link</li>
+                </ul>
+                <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
+              </article>
+            </div>
+            <div className="mobile-dossier-frame" aria-label="Mobile preview of RSARBOS investment dossier">
+              <div className="phone-speaker" aria-hidden="true"></div>
+              <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy"></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section className="request-section request-section-early" id="request">
+          <div className="form-wrap">
+            <div className="section-intro centered-copy">
+              <h2>REQUEST UNDERWRITING</h2>
+              <p>Submit the property link and context. Your request is saved before checkout, then Stripe handles secure payment.</p>
+            </div>
+            <ManualReportForm />
+          </div>
+        </section>
+
+        <section className="services-section" id="services">
+          <div className="content-wrap">
+            <div className="section-intro centered-copy">
+              <p className="red-kicker"><span></span>Deliverables</p>
+              <h2>WHAT YOUR REPORT INCLUDES</h2>
+              <p>
+                Each dossier is structured like a decision map: conclusion first, then the market context, rental logic,
+                value thesis, risk register, and source trail needed to defend the call.
+              </p>
+            </div>
+            <div className="report-section-grid">
+              {REPORT_SECTIONS.map(([number, title, copy]) => (
+                <article className="report-section-card glass-panel" key={title}>
+                  <span>{number}</span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="about-band" id="about">
           <div className="content-wrap">
             <div className="section-intro centered-copy">
-              <h2>THE INTELLIGENCE LAYER</h2>
+              <h2>BUILT FOR DEAL DECISIONS</h2>
               <p>
                 RSARBOS turns property information into decision leverage for first-time investors, flippers,
                 acquisition teams, and any group that needs a clearer underwriting document before committing capital.
@@ -206,49 +243,6 @@ function PublicWebsite() {
           </div>
         </section>
 
-        <section className="services-section" id="services">
-          <div className="content-wrap split-feature">
-            <div>
-              <p className="red-kicker"><span></span>Deliverables</p>
-              <h2>MANUAL UNDERWRITING</h2>
-              <p>
-                We don't just aggregate data; we synthesize it. Our manual underwriting process provides a comprehensive
-                dossier designed to give you absolute confidence in your real estate investment decisions.
-              </p>
-              <ul className="deliverable-list">
-                {DELIVERABLES.map(([title, copy, alert]) => (
-                  <li key={title}>
-                    <span className={alert ? 'alert-check' : 'check-icon'}>{alert ? '!' : '✓'}</span>
-                    <div>
-                      <strong>{title}</strong>
-                      <span>{copy}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="dossier-preview glass-panel">
-              <div className="browser-bar"><i></i><i></i><i></i><span>RSARBOS_DOSSIER_V1.2</span></div>
-              <div className="dashboard-mock">
-                <div className="score-row">
-                  <div><span>DEAL CONFIDENCE SCORE</span><strong className="score">97.6<small>%</small></strong></div>
-                  <div><span>PROJECTED ARV</span><strong>$1.24M</strong></div>
-                </div>
-                <div className="mock-graph">
-                  <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <polyline points="0,80 20,70 40,85 60,40 80,50 100,20" />
-                    <circle cx="100" cy="20" r="3" />
-                  </svg>
-                  <div></div>
-                </div>
-                <span className="mock-line short"></span>
-                <span className="mock-line"></span>
-                <span className="mock-line medium"></span>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <div className="content-wrap"><div className="section-divider"></div></div>
 
         <section className="core-section">
@@ -270,85 +264,6 @@ function PublicWebsite() {
           </div>
         </section>
 
-        <section className="sample-section" id="sample">
-          <div className="content-wrap sample-grid">
-            <div className="pricing-column" id="pricing">
-              <p className="red-kicker"><span></span>Launch Offer</p>
-              <h2>CLEAR PRICING</h2>
-              <p>No hidden fees. Flat rate intelligence for actionable decisions.</p>
-              <article className="pricing-card glass-panel">
-                <div className="pricing-rule"></div>
-                <h3>MANUAL UNDERWRITING</h3>
-                <p className="price">$100 <span>/ report</span></p>
-                <ul>
-                  <li>Complete Final Underwriting Dossier</li>
-                  <li>Deal Confidence Summary</li>
-                  <li>Delivered within 24 hours of payment</li>
-                  <li>Secure private delivery link</li>
-                </ul>
-                <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
-              </article>
-            </div>
-            <div className="mobile-dossier-frame" aria-label="Mobile preview of RSARBOS investment dossier">
-              <div className="phone-speaker" aria-hidden="true"></div>
-              <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy"></iframe>
-            </div>
-          </div>
-        </section>
-
-        <section className="request-section" id="request">
-          <div className="form-wrap">
-            <div className="section-intro centered-copy">
-              <h2>REQUEST UNDERWRITING</h2>
-              <p>Submit your property details to intake. Our analysts will begin formulation.</p>
-            </div>
-            <form className="neo-form glass-panel" onSubmit={submitRequest}>
-              <label>CLIENT NAME *<input value={form.clientName} onChange={(event) => updateField('clientName', event.target.value)} placeholder="Jane Doe / Acme Corp" required /></label>
-              <label>EMAIL ADDRESS *<input type="email" value={form.email} onChange={(event) => updateField('email', event.target.value)} placeholder="jane@example.com" required /></label>
-              <label className="full-field">PROPERTY ADDRESS *<input value={form.propertyAddress} onChange={(event) => updateField('propertyAddress', event.target.value)} placeholder="1234 Main St, City, State, ZIP" required /></label>
-              <label className="full-field">PROPERTY URL (Zillow, Redfin, MLS, etc.) *<input type="url" value={form.propertyUrl} onChange={(event) => updateField('propertyUrl', event.target.value)} placeholder="https://..." required /></label>
-              <label>
-                INVESTMENT INTENT *
-                <select value={form.investmentIntent} onChange={(event) => updateField('investmentIntent', event.target.value)} required>
-                  <option value="" disabled>Select strategy...</option>
-                  <option value="fix_flip">Fix & Flip</option>
-                  <option value="buy_hold">Buy & Hold (Rental)</option>
-                  <option value="wholesale">Wholesale</option>
-                  <option value="brrrr">BRRRR</option>
-                  <option value="other">Other</option>
-                </select>
-              </label>
-              <label>
-                URGENCY LEVEL
-                <select value={form.urgency} onChange={(event) => updateField('urgency', event.target.value)}>
-                  <option value="standard">Standard (24hr post-payment)</option>
-                  <option value="high">High (Offer pending)</option>
-                </select>
-              </label>
-              <label className="full-field">NOTES / SPECIFIC QUESTIONS<textarea value={form.notes} onChange={(event) => updateField('notes', event.target.value)} rows={3} placeholder="Any specific concerns regarding zoning, rehab scope, or market conditions?"></textarea></label>
-              <button className="primary-action shine-action full-field" type="submit" disabled={isProcessing}>
-                {isProcessing ? 'PROCESSING...' : 'SUBMIT TO INTAKE QUEUE'}
-              </button>
-            </form>
-          </div>
-        </section>
-
-        <dialog className="payment-modal" ref={modalRef} onClick={closeModalOnBackdrop}>
-          <div className="modal-panel glass-panel">
-            <button className="modal-close" type="button" onClick={() => modalRef.current?.close()} aria-label="Close payment confirmation">×</button>
-            <div className="modal-icon">✓</div>
-            <h3>REQUEST RECEIVED</h3>
-            <div className="modal-copy">
-              <p>Your property details have been prepared for intake.</p>
-              <p><strong>Payment confirmation is required to begin the manual underwriting report.</strong></p>
-              <p>Once payment is confirmed, RSARBOS begins review and delivers the completed package by private link.</p>
-            </div>
-            <button className="primary-action light-action" type="button" onClick={() => window.alert(`Proceeding to payment gateway...\n\nPlaceholder: ${PAYMENT_LINK}`)}>
-              PROCEED TO SECURE PAYMENT
-            </button>
-            <p className="payment-placeholder">{PAYMENT_LINK}</p>
-          </div>
-        </dialog>
       </main>
 
       <footer className="public-footer">
@@ -370,6 +285,43 @@ function PublicWebsite() {
         </div>
       </footer>
     </div>
+  )
+}
+
+function PaymentSuccessPage() {
+  return (
+    <main className="payment-result-shell">
+      <section className="payment-result-panel glass-panel">
+        <div className="modal-icon">✓</div>
+        <p className="red-kicker"><span></span>Payment Received</p>
+        <h1>RSARBOS received your underwriting request.</h1>
+        <p>
+          Your payment confirmation is being processed by Stripe. Once confirmed, RSARBOS will review your submitted property
+          details and deliver the completed manual underwriting report privately by email.
+        </p>
+        <a className="primary-action red-action" href="/">
+          Return Home
+        </a>
+      </section>
+    </main>
+  )
+}
+
+function PaymentCancelPage() {
+  return (
+    <main className="payment-result-shell">
+      <section className="payment-result-panel glass-panel">
+        <p className="red-kicker"><span></span>Checkout Not Completed</p>
+        <h1>Your request was saved, but payment was not completed.</h1>
+        <p>
+          RSARBOS keeps pending requests so we can help customers recover abandoned checkouts or complete payment manually.
+          You can return to the request form whenever you are ready.
+        </p>
+        <a className="primary-action red-action" href="/#request">
+          Return To Request Form
+        </a>
+      </section>
+    </main>
   )
 }
 
@@ -643,6 +595,14 @@ export default function App() {
 
   if (path === '/mission-control') {
     return <MissionControlGate />
+  }
+
+  if (path === '/payment-success') {
+    return <PaymentSuccessPage />
+  }
+
+  if (path === '/payment-cancel') {
+    return <PaymentCancelPage />
   }
 
   return <PublicWebsite />
