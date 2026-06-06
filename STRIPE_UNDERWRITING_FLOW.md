@@ -19,6 +19,7 @@ The frontend success page never marks a request as paid. The Stripe webhook is t
 ```txt
 /api/create-checkout-session.js
 /api/stripe-webhook.js
+/api/admin-requests.js
 ```
 
 ## Database
@@ -68,6 +69,7 @@ EMAIL_TO=uw.requests@rsarbos.com
 EMAIL_FROM=RSARBOS Intake <verified@yourdomain.com>
 DATABASE_URL=postgresql://...
 VITE_SITE_URL=https://www.rsarbos.com
+ADMIN_TOKEN=long-random-token
 ```
 
 Use Stripe test keys until the flow is verified end to end.
@@ -121,3 +123,19 @@ Use the webhook secret printed by Stripe CLI as local `STRIPE_WEBHOOK_SECRET`.
 If checkout is abandoned or canceled, the request remains stored as `pending_payment` so RSARBOS can recover the checkout or follow up manually.
 
 Only `checkout.session.completed` updates status to `paid` and sends the internal email.
+
+## Admin Request Review
+
+Use the protected admin endpoint to review pending and paid requests:
+
+```bash
+curl https://www.rsarbos.com/api/admin-requests \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
+
+Filter by status:
+
+```bash
+curl "https://www.rsarbos.com/api/admin-requests?status=pending_payment" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```

@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Investment Dossier · 1314 Shawn Dr #1 · San Jose, CA 95118</title>
+<style>
+@page { size: A4; margin: 0; }
+@page :first { margin: 0; }
+
+:root {
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+  --mono: "SFMono-Regular", Consolas, Monaco, monospace;
+  --ink: #1a1a18;
+  --muted: #5b5a54;
+  --soft: #8a897f;
+  --paper: #fff;
+  --warm: #f5f1e8;
+  --cream: #faf9f5;
+  --line: rgba(24,24,22,.12);
+  --navy: #17364f;
+  --green: #2a6b1a;
+  --greenbg: #e8f3db;
+  --greenline: #6ba842;
+  --blue: #175f9f;
+  --bluebg: #e4effa;
+  --blueline: #4d8ecc;
+  --amber: #8a5a12;
+  --amberbg: #f9edd6;
+  --amberline: #c88425;
+  --red: #a33434;
+  --redbg: #f8e8e8;
+  --redline: #d85a5a;
+  --purple: #5a3a7a;
+  --purplebg: #efe8f5;
+  --a4w: 794px;
+  --a4h: 1123px;
+  --pad: 28px;
+  --pad-mob: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: #d8d4cc; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--sans); color: var(--ink); background: #d8d4cc; -webkit-print-color-adjust: exact; print-color-adjust: exact; line-height: 1.45; }
+
+.toolbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  display: flex; gap: 6px; align-items: center; justify-content: center;
+  background: rgba(16,40,61,.95); color: #fff;
+  padding: 10px 12px; box-shadow: 0 4px 20px rgba(0,0,0,.3);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  flex-wrap: wrap;
+}
+.tool-btn {
+  border: 0; background: rgba(255,255,255,.12); color: #fff;
+  border-radius: 999px; padding: 8px 14px;
+  font: 600 12px var(--sans); cursor: pointer; white-space: nowrap;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.tool-btn:hover, .tool-btn:active { background: rgba(255,255,255,.28); }
+.tool-btn.primary { background: var(--green); }
+.nav-label { font: 500 11px var(--mono); opacity: .8; min-width: 120px; text-align: center; }
+
+.deck { width: var(--a4w); margin: 72px auto 48px; display: flex; flex-direction: column; gap: 22px; }
+.page {
+  width: var(--a4w); min-height: var(--a4h); background: var(--paper);
+  position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.18);
+  display: flex; flex-direction: column; page-break-after: always;
+}
+
+.header {
+  height: 52px; background: var(--navy); color: #fff;
+  padding: 0 var(--pad); display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0; position: relative;
+}
+.logo-wrap { display: flex; align-items: center; gap: 10px; }
+.logo-wrap img { height: 22px; width: auto; filter: brightness(0) invert(1); opacity: .9; }
+.brand { font: 600 9px var(--mono); letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+.h-title { font: 500 14px var(--serif); }
+.pnum { font: 500 10px var(--mono); opacity: .6; }
+
+.body { padding: var(--pad); flex: 1; display: flex; flex-direction: column; gap: 11px; }
+
+.footer {
+  height: 34px; background: var(--warm); border-top: 1px solid var(--line);
+  padding: 0 var(--pad); display: flex; align-items: center; justify-content: space-between;
+  color: var(--soft); font: 500 9px var(--mono); flex-shrink: 0;
+}
+
+.kicker {
+  font: 700 9px var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--soft); margin-bottom: 6px;
+}
+.kicker.w { color: rgba(255,255,255,.65); }
+.section-title {
+  font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.1;
+  letter-spacing: -.02em; color: var(--navy); border-bottom: 2px solid var(--navy);
+  padding-bottom: 8px; margin-bottom: 3px;
+}
+.copy { font-size: 11.5px; line-height: 1.55; color: var(--muted); }
+.copy b, .copy strong { color: var(--ink); font-weight: 700; }
+.micro {
+  font: 800 9px var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--soft); margin-bottom: 5px;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; }
+.grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+
+.card {
+  background: var(--warm); border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px 13px;
+}
+.card.w { background: #fff; }
+.card.cream { background: var(--cream); }
+.card.navy { background: var(--navy); border-color: var(--navy); color: #fff; }
+.card.green { border: 1.5px solid var(--greenline); background: var(--greenbg); }
+.card.blue { border: 1.5px solid var(--blueline); background: var(--bluebg); }
+.card.amber { border: 1.5px solid var(--amberline); background: var(--amberbg); }
+.card.red { border: 1.5px solid var(--redline); background: var(--redbg); }
+.card.purple { border: 1.5px solid #8a6ab8; background: var(--purplebg); }
+
+.stat {
+  background: var(--warm); border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px 11px; min-height: 64px;
+}
+.stat-l {
+  font: 800 9px var(--mono); letter-spacing: .07em; text-transform: uppercase;
+  color: var(--soft); margin-bottom: 4px;
+}
+.stat-v {
+  font: 800 17px var(--mono); line-height: 1.05; color: var(--ink);
+}
+.stat-v.big { font-size: 22px; }
+.stat-sub { font-size: 10px; color: var(--soft); margin-top: 4px; line-height: 1.25; }
+
+.green-t { color: var(--green); }
+.blue-t { color: var(--blue); }
+.amber-t { color: var(--amber); }
+.red-t { color: var(--red); }
+.purple-t { color: var(--purple); }
+
+.row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; padding: 5.5px 0; border-bottom: 1px solid var(--line);
+}
+.row:last-child { border-bottom: 0; }
+.row-l { font-size: 11px; color: var(--muted); line-height: 1.3; }
+.row-v { font-size: 11px; font-weight: 780; text-align: right; color: var(--ink); line-height: 1.3; }
+.row-v.mono { font-family: var(--mono); }
+
+.note {
+  border-left: 4px solid var(--navy); background: var(--warm);
+  padding: 9px 12px; border-radius: 0 10px 10px 0;
+  font-size: 11px; line-height: 1.5; color: var(--muted);
+}
+
+.signal {
+  display: flex; gap: 8px; padding: 5.5px 0; border-bottom: 1px solid var(--line);
+  font-size: 11px; line-height: 1.38; color: var(--muted);
+}
+.signal:last-child { border-bottom: 0; }
+.dot {
+  width: 18px; height: 18px; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; flex: 0 0 18px;
+  font: 800 9px var(--mono); margin-top: 0;
+}
+.dot.g { background: var(--greenbg); color: var(--green); }
+.dot.a { background: var(--amberbg); color: var(--amber); }
+.dot.r { background: var(--redbg); color: var(--red); }
+.dot.b { background: var(--bluebg); color: var(--blue); }
+
+.hero {
+  height: 340px; position: relative;
+  background: linear-gradient(135deg, #162f47 0%, #1e4a6e 40%, #c4a97a 100%);
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0; display: grid;
+  grid-template-columns: 1.6fr 1fr; gap: 7px; padding: 7px;
+}
+.hero-main {
+  position: relative; border-radius: 12px; overflow: hidden;
+  background: rgba(0,0,0,.15);
+}
+.hero-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-side { display: grid; grid-template-rows: 1fr 1fr; gap: 7px; }
+.hero-thumb {
+  position: relative; border-radius: 12px; overflow: hidden;
+  background: rgba(0,0,0,.15);
+}
+.hero-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(16,40,61,0) 30%, rgba(16,40,61,.92) 100%);
+  pointer-events: none;
+}
+.hero-copy {
+  position: absolute; left: var(--pad); right: var(--pad); bottom: 24px;
+  color: #fff; z-index: 2;
+}
+.hero-title { font-family: var(--serif); font-size: 38px; font-weight: 400; letter-spacing: -.03em; line-height: 1.05; margin: 6px 0; }
+.hero-sub { font: 500 12px var(--mono); opacity: .78; }
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,.15); backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 999px;
+  padding: 4px 10px; font: 600 9px var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.map-card {
+  background: var(--warm); border: 1px solid var(--line); border-radius: 12px;
+  padding: 11px 12px; cursor: pointer; transition: .15s;
+}
+.map-card:hover { transform: translateY(-1px); border-color: var(--navy); background: #fff; }
+.map-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 4px; }
+.map-num {
+  font: 800 9px var(--mono); background: rgba(24,54,80,.1); color: var(--navy);
+  border-radius: 999px; padding: 3px 7px;
+}
+.map-label { font: 800 11.5px var(--sans); }
+.map-desc { font-size: 10.5px; color: var(--muted); line-height: 1.34; }
+
+.score-table {
+  display: grid; grid-template-columns: 1.15fr .45fr 1.4fr; gap: 0;
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+}
+.score-table > div {
+  padding: 8px 9px; border-bottom: 1px solid var(--line);
+  font-size: 10.8px; line-height: 1.3; background: #fff;
+}
+.score-table > div:nth-child(6n+1),
+.score-table > div:nth-child(6n+2),
+.score-table > div:nth-child(6n+3) { background: var(--warm); }
+.score-table .th { background: var(--navy)!important; color: #fff; font: 800 9px var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+.score { font: 800 12px var(--mono); text-align: center; }
+
+.rent-table {
+  display: grid; grid-template-columns: 1.2fr .7fr .7fr .55fr .7fr; gap: 0;
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff;
+}
+.rent-table > div {
+  padding: 7px 8px; border-bottom: 1px solid var(--line);
+  font-size: 10.2px; line-height: 1.25; color: var(--muted);
+}
+.rent-table .th { background: var(--navy); color: #fff; font: 800 8.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+
+.source-card {
+  display: flex; gap: 9px; align-items: flex-start;
+  background: var(--warm); border: 1px solid var(--line); border-radius: 12px; padding: 10px;
+}
+.source-tag {
+  font: 800 8.5px var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  background: var(--navy); color: #fff; border-radius: 999px; padding: 4px 7px; flex: 0 0 auto;
+}
+.source-title { font-size: 11.5px; font-weight: 800; margin-bottom: 2px; }
+.source-desc { font-size: 10.5px; color: var(--muted); line-height: 1.36; }
+
+.metric-bar {
+  display: flex; align-items: center; gap: 10px; margin: 6px 0;
+}
+.metric-track {
+  flex: 1; height: 8px; background: var(--line); border-radius: 999px; overflow: hidden;
+}
+.metric-fill { height: 100%; border-radius: 999px; }
+.metric-fill.g { background: var(--green); }
+.metric-fill.b { background: var(--blue); }
+.metric-fill.a { background: var(--amber); }
+.metric-fill.r { background: var(--red); }
+.metric-val { font: 800 13px var(--mono); min-width: 32px; text-align: right; }
+.metric-label { font-size: 10px; color: var(--soft); min-width: 70px; }
+
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.calc-input {
+  display: flex; flex-direction: column; gap: 3px;
+}
+.calc-input label {
+  font: 700 9px var(--mono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--soft);
+}
+.calc-input input, .calc-input select {
+  border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px;
+  font: 600 13px var(--mono); color: var(--ink); background: #fff;
+  width: 100%; -webkit-appearance: none;
+}
+.calc-result {
+  background: var(--navy); color: #fff; border-radius: 12px; padding: 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.calc-result-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid rgba(255,255,255,.12); padding-bottom: 6px;
+}
+.calc-result-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.calc-result-l { font: 500 10px var(--sans); opacity: .75; }
+.calc-result-v { font: 800 16px var(--mono); }
+.calc-result-v.pos { color: #a8e6a3; }
+.calc-result-v.neg { color: #f5a8a8; }
+
+.dom-bar {
+  display: flex; align-items: center; gap: 8px; margin: 5px 0;
+}
+.dom-bar-track {
+  flex: 1; height: 6px; background: var(--line); border-radius: 999px; overflow: hidden;
+}
+.dom-bar-fill { height: 100%; border-radius: 999px; background: var(--blue); }
+.dom-val { font: 700 11px var(--mono); min-width: 36px; text-align: right; }
+
+.badge {
+  display: inline-block; font: 700 9px var(--mono); letter-spacing: .05em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+  margin-right: 4px; margin-bottom: 4px; border: 0; cursor: pointer;
+}
+.badge.g { background: var(--greenbg); color: var(--green); border: 1px solid var(--greenline); }
+.badge.b { background: var(--bluebg); color: var(--blue); border: 1px solid var(--blueline); }
+.badge.a { background: var(--amberbg); color: var(--amber); border: 1px solid var(--amberline); }
+.badge.r { background: var(--redbg); color: var(--red); border: 1px solid var(--redline); }
+
+.cover-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 4px;
+}
+.cover-meta-item {
+  text-align: center; padding: 10px 6px; background: var(--cream);
+  border: 1px solid var(--line); border-radius: 10px;
+}
+.cover-meta-num { font: 800 18px var(--mono); color: var(--navy); }
+.cover-meta-lab { font: 700 8px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--soft); margin-top: 3px; }
+
+.scenario {
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+  background: var(--cream);
+}
+.scenario-title { font: 800 10px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--soft); margin-bottom: 4px; }
+.scenario-row { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; }
+.scenario-row .s-l { color: var(--muted); }
+.scenario-row .s-v { font-weight: 700; font-family: var(--mono); }
+
+@media print {
+  html, body { background: #fff; }
+  .toolbar { display: none !important; }
+  .deck { margin: 0; width: 100%; gap: 0; }
+  .page { width: 210mm; min-height: 297mm; box-shadow: none; page-break-after: always; page-break-inside: avoid; }
+  .hero { height: 85mm; }
+  .calc-input { display: none; }
+  .calc-result { width: 100%; }
+}
+
+@media (max-width: 820px) {
+  html { background: var(--paper); }
+  body { background: var(--paper); }
+  .deck { width: 100%; margin: 58px auto 20px; gap: 12px; }
+  .page { width: 100%; min-height: auto; box-shadow: none; border-radius: 0; page-break-after: auto; }
+  .header { padding: 0 var(--pad-mob); height: 48px; }
+  .logo-wrap img { height: 18px; }
+  .h-title { font-size: 13px; }
+  .body { padding: var(--pad-mob); gap: 10px; }
+  .footer { padding: 0 var(--pad-mob); height: 32px; font-size: 8.5px; }
+  .hero { height: 260px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-side { display: none; }
+  .hero-title { font-size: 28px; }
+  .hero-sub { font-size: 11px; }
+  .grid2, .grid3, .grid4, .calc-grid, .cover-meta { grid-template-columns: 1fr; }
+  .map-grid { grid-template-columns: 1fr; }
+  .score-table { grid-template-columns: 1fr .5fr; }
+  .score-table > div:nth-child(6n+3) { display: none; }
+  .rent-table { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+  .rent-table > div:nth-child(5n+5) { display: none; }
+  .stat-v.big { font-size: 18px; }
+  .section-title { font-size: 20px; }
+  .toolbar { padding: 8px; gap: 4px; }
+  .tool-btn { padding: 7px 10px; font-size: 11px; }
+  .nav-label { min-width: 90px; font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .hero { height: 220px; }
+  .hero-title { font-size: 24px; }
+  .stat-v { font-size: 15px; }
+  .stat-v.big { font-size: 16px; }
+  .calc-result-v { font-size: 14px; }
+}
+
+@media (max-width: 820px) {
+  .deck { scroll-snap-type: y proximity; }
+  .page { scroll-snap-align: start; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="tool-btn" onclick="nav(-1)">&larr; Prev</button>
+  <span class="nav-label" id="navLabel">Cover</span>
+  <button class="tool-btn" onclick="nav(1)">Next &rarr;</button>
+  <button class="tool-btn primary" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<main class="deck" id="deck">
+
+<!-- ==================== PAGE 0: COVER ==================== -->
+<section class="page" id="p0" data-title="Cover">
+<div class="hero">
+  <div class="hero-grid">
+    <div class="hero-main"><img src="/mnt/agents/upload/Screenshot%20from%202026-06-03%2019-39-34.png" alt="Property front"></div>
+    <div class="hero-side">
+      <div class="hero-thumb"><img src="/mnt/agents/upload/Screenshot%20from%202026-06-03%2019-41-27.png" alt="Street view"></div>
+      <div class="hero-thumb"><img src="/mnt/agents/upload/Screenshot%20from%202026-06-03%2019-40-32.png" alt="Map view"></div>
+    </div>
+  </div>
+  <div class="hero-copy">
+    <div class="hero-badge">Investment Dossier</div>
+    <div class="hero-title">1314 Shawn Dr #1</div>
+    <div class="hero-sub">San Jose, CA 95118 &middot; Prepared June 3, 2026</div>
+  </div>
+</div>
+<div class="body" style="gap:14px">
+  <div class="cover-meta">
+    <div class="cover-meta-item"><div class="cover-meta-num">$500K</div><div class="cover-meta-lab">List Price</div></div>
+    <div class="cover-meta-item"><div class="cover-meta-num green-t">$4,410</div><div class="cover-meta-lab">Est. Rent/mo</div></div>
+    <div class="cover-meta-item"><div class="cover-meta-num blue-t">$515K</div><div class="cover-meta-lab">Est. Value</div></div>
+    <div class="cover-meta-item"><div class="cover-meta-num amber-t">$534</div><div class="cover-meta-lab">HOA / mo</div></div>
+  </div>
+
+  <div class="card navy" style="padding:18px">
+    <div class="kicker w" style="margin-bottom:8px">Executive Summary</div>
+    <div style="font-family:var(--serif);font-size:23px;line-height:1.14;margin-bottom:8px">A disciplined entry point into San Jose with a rental thesis that demands verification.</div>
+    <div style="font-size:12px;line-height:1.55;color:rgba(255,255,255,.78)">At $500K, this 2BD/1BA condo offers one of the lowest-ticket entry points in 95118. The RentCast estimate of $4,410/mo creates an attractive headline, but the deal only works if rent, HOA rules, and renovation constraints verify. This dossier provides the data, the calculator, and the risk register to make that decision in under 15 minutes.</div>
+  </div>
+
+  <div class="grid4">
+    <div class="stat"><div class="stat-l">Property Type</div><div class="stat-v">Condo</div><div class="stat-sub">Downstairs unit, 810 sqft</div></div>
+    <div class="stat"><div class="stat-l">Year Built</div><div class="stat-v">1970</div><div class="stat-sub">Systems inspection advised</div></div>
+    <div class="stat"><div class="stat-l">DOM Trend</div><div class="stat-v blue-t">8 days</div><div class="stat-sub">95118 median (fast market)</div></div>
+    <div class="stat"><div class="stat-l">MLS ID</div><div class="stat-v mono">ML82047088</div><div class="stat-sub">Active listing</div></div>
+  </div>
+
+  <div class="note"><b>Valid through:</b> June 10, 2026. Market conditions, interest rates, and listing status can change. This dossier is a starting point, not a substitute for inspection, appraisal, or professional advice.</div>
+</div>
+<div class="footer"><span>RSARBOS &middot; 1314 Shawn Dr #1 &middot; San Jose, CA 95118</span><span>Confidential &middot; For client review only</span></div>
+</section>
+
+<!-- ==================== PAGE 1: DECISION MAP ==================== -->
+<section class="page" id="p1" data-title="Decision Map">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Decision Map</span>
+  <span class="pnum">01 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">From opportunity to proof: what this dossier covers.</div>
+  <div class="copy" style="margin-bottom:6px">Each section builds on the last. Start with the verdict, then drill into rent, value, risk, and the exact steps to verify before writing an offer.</div>
+
+  <div class="map-grid">
+    <div class="map-card" onclick="goTo(2)">
+      <div class="map-top"><span class="map-label">Executive Decision</span><span class="map-num">02</span></div>
+      <div class="map-desc">Verdict, best-fit buyer profile, and the one question that decides the deal.</div>
+    </div>
+    <div class="map-card" onclick="goTo(3)">
+      <div class="map-top"><span class="map-label">Asset + Market Context</span><span class="map-num">03</span></div>
+      <div class="map-desc">Property profile, neighborhood scores, school ratings, crime data, and buyer pool.</div>
+    </div>
+    <div class="map-card" onclick="goTo(4)">
+      <div class="map-top"><span class="map-label">Rental Thesis</span><span class="map-num">04</span></div>
+      <div class="map-desc">RentCast estimate, nearby rental comps, rent realism test, and cash-flow calculator.</div>
+    </div>
+    <div class="map-card" onclick="goTo(5)">
+      <div class="map-top"><span class="map-label">Value + ARV</span><span class="map-num">05</span></div>
+      <div class="map-desc">Current value, light-renovation ARV, moderate upside, and flip caution.</div>
+    </div>
+    <div class="map-card" onclick="goTo(6)">
+      <div class="map-top"><span class="map-label">Strategy + Risk</span><span class="map-num">06</span></div>
+      <div class="map-desc">Best buyer profiles, risk register, walkaway triggers, and diligence checklist.</div>
+    </div>
+    <div class="map-card" onclick="goTo(7)">
+      <div class="map-top"><span class="map-label">Neighborhood Intelligence</span><span class="map-num">07</span></div>
+      <div class="map-desc">Walk Score, school ratings, crime index, and market velocity for 95118.</div>
+    </div>
+    <div class="map-card" onclick="goTo(8)">
+      <div class="map-top"><span class="map-label">Cash-Flow Calculator</span><span class="map-num">08</span></div>
+      <div class="map-desc">Interactive model: input your down payment, rate, rent, and see monthly cash flow instantly.</div>
+    </div>
+    <div class="map-card" onclick="goTo(9)">
+      <div class="map-top"><span class="map-label">Source Appendix</span><span class="map-num">09</span></div>
+      <div class="map-desc">RentCast, Redfin, AVM/ARV notes, and due diligence action items.</div>
+    </div>
+  </div>
+
+  <div class="card blue" style="margin-top:auto">
+    <div class="micro blue-t" style="margin-bottom:5px">How to use this dossier</div>
+    <div class="copy">Read pages 02 and 03 first for the verdict. If the deal still interests you, spend 10 minutes on the rental thesis (04) and calculator (08) with your actual loan terms. Use the risk register (06) as your inspection and offer checklist.</div>
+  </div>
+</div>
+<div class="footer"><span>Conclusion &rarr; Analysis &rarr; Evidence</span><span>Confidential &middot; For client review only</span></div>
+</section>
+
+<!-- ==================== PAGE 2: EXECUTIVE DECISION ==================== -->
+<section class="page" id="p2" data-title="Executive Decision">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Executive Decision</span>
+  <span class="pnum">02 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">Should this deal move forward?</div>
+
+  <div class="grid3">
+    <div class="stat"><div class="stat-l">Verdict</div><div class="stat-v big green-t">Worth Pursuing</div><div class="stat-sub">Subject to HOA + rent proof</div></div>
+    <div class="stat"><div class="stat-l">Best Buyer</div><div class="stat-v big blue-t">Investor / First-Timer</div><div class="stat-sub">Entry-price angle</div></div>
+    <div class="stat"><div class="stat-l">Main Question</div><div class="stat-v big amber-t">Rent Realism</div><div class="stat-sub">Can $4.4K/mo verify?</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card green">
+      <div class="micro green-t" style="margin-bottom:7px">Why it deserves attention</div>
+      <div class="signal"><span class="dot g">&#10003;</span><span>$500K list price is a rare lower-ticket entry into San Jose 95118, where median home prices exceed $1.5M.</span></div>
+      <div class="signal"><span class="dot g">&#10003;</span><span>RentCast estimate of $4,410/mo creates a compelling rental headline if it holds under scrutiny.</span></div>
+      <div class="signal"><span class="dot g">&#10003;</span><span>Direct Shawn Dr comps support a current value range of $500K-$550K, limiting immediate downside.</span></div>
+      <div class="signal"><span class="dot g">&#10003;</span><span>95118 DOM is 8 days -- fast-moving market reduces holding-period risk.</span></div>
+    </div>
+    <div class="card amber">
+      <div class="micro amber-t" style="margin-bottom:7px">Why it is not automatic</div>
+      <div class="signal"><span class="dot a">!</span><span>HOA fee at $534/mo materially affects cash flow and investor appetite.</span></div>
+      <div class="signal"><span class="dot a">!</span><span>RentCast subject attributes appear incomplete; rent must be manually verified against true 2BD/1BA condo comps.</span></div>
+      <div class="signal"><span class="dot a">!</span><span>Major renovations may be constrained by HOA rules, CC&Rs, and special assessment risk.</span></div>
+      <div class="signal"><span class="dot a">!</span><span>1970 build requires systems inspection (plumbing, electrical, HVAC, windows).</span></div>
+    </div>
+  </div>
+
+  <div class="card w">
+    <div class="micro" style="margin-bottom:5px">Investor-facing summary</div>
+    <div class="copy"><b>This is a decision engine, not a guarantee.</b> The deal has a real rental hook, a low San Jose entry point, and multiple exit paths. The opportunity is attractive only if the rent thesis, HOA economics, and renovation rules verify. Do not proceed on the RentCast headline alone.</div>
+  </div>
+</div>
+<div class="footer"><span>Primary decision page</span><span>Answer first, proof later</span></div>
+</section>
+
+<!-- ==================== PAGE 3: ASSET + MARKET ==================== -->
+<section class="page" id="p3" data-title="Asset + Market">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Asset + Market Context</span>
+  <span class="pnum">03 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">What is the asset, and how does it sit in the market?</div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="micro" style="margin-bottom:7px">Property Profile</div>
+      <div class="row"><span class="row-l">Address</span><span class="row-v">1314 Shawn Dr #1</span></div>
+      <div class="row"><span class="row-l">Location</span><span class="row-v">San Jose, CA 95118</span></div>
+      <div class="row"><span class="row-l">Property Type</span><span class="row-v">Condo / Downstairs Unit</span></div>
+      <div class="row"><span class="row-l">Beds / Baths</span><span class="row-v mono">2 BD / 1 BA</span></div>
+      <div class="row"><span class="row-l">Living Area</span><span class="row-v mono">~ 810 sqft</span></div>
+      <div class="row"><span class="row-l">Year Built</span><span class="row-v mono">1970</span></div>
+      <div class="row"><span class="row-l">HOA</span><span class="row-v mono amber-t">$534/mo</span></div>
+      <div class="row"><span class="row-l">MLS ID</span><span class="row-v mono">ML82047088</span></div>
+    </div>
+    <div class="card">
+      <div class="micro" style="margin-bottom:7px">Value Context</div>
+      <div class="row"><span class="row-l">Current List Price</span><span class="row-v mono">$500,000</span></div>
+      <div class="row"><span class="row-l">Estimated Current Value</span><span class="row-v mono blue-t">$500K-$550K</span></div>
+      <div class="row"><span class="row-l">Most Likely Value</span><span class="row-v mono blue-t">~ $515K</span></div>
+      <div class="row"><span class="row-l">Direct Condo Comps</span><span class="row-v mono">$500K-$548K</span></div>
+      <div class="row"><span class="row-l">95118 Median Home Price</span><span class="row-v mono">$1.55M</span></div>
+      <div class="row"><span class="row-l">95118 Median $/sf</span><span class="row-v mono">$938/sf</span></div>
+      <div class="row"><span class="row-l">ZIP Sale/List Ratio</span><span class="row-v mono green-t">102%</span></div>
+      <div class="row"><span class="row-l">Market Velocity (DOM)</span><span class="row-v mono green-t">8 days</span></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card blue">
+      <div class="micro blue-t" style="margin-bottom:7px">Why buyers stop scrolling</div>
+      <div class="copy">The headline is simple: a roughly $500K San Jose entry point in a ZIP where broader home prices are far higher. That contrast creates immediate curiosity for first-time investors and buyers priced out of traditional SFR inventory. With 8-day median DOM, properties here do not sit.</div>
+    </div>
+    <div class="card amber">
+      <div class="micro amber-t" style="margin-bottom:7px">Why the market may hesitate</div>
+      <div class="copy">The HOA fee, condo restrictions, 1970 build, and renovation limitations can narrow the investor pool. The deal needs to be sold as a disciplined entry-price/rent thesis, not as a guaranteed flip. School ratings in the immediate vicinity are mixed; buyers with children may look elsewhere.</div>
+    </div>
+  </div>
+</div>
+<div class="footer"><span>Asset + market context</span><span>Condo-specific risk matters as much as purchase price</span></div>
+</section>
+
+<!-- ==================== PAGE 4: RENTAL THESIS ==================== -->
+<section class="page" id="p4" data-title="Rental Thesis">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Rental Thesis</span>
+  <span class="pnum">04 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">Can this $500K San Jose asset really rent near $4.4K?</div>
+
+  <div class="grid4">
+    <div class="stat"><div class="stat-l">RentCast Estimate</div><div class="stat-v big green-t">$4,410</div><div class="stat-sub">Monthly estimate</div></div>
+    <div class="stat"><div class="stat-l">Low Estimate</div><div class="stat-v big amber-t">$3,520</div><div class="stat-sub">Downside case</div></div>
+    <div class="stat"><div class="stat-l">High Estimate</div><div class="stat-v big blue-t">$5,300</div><div class="stat-sub">Upside case</div></div>
+    <div class="stat"><div class="stat-l">HOA Drag</div><div class="stat-v big red-t">$534</div><div class="stat-sub">Monthly fee</div></div>
+  </div>
+
+  <div class="rent-table">
+    <div class="th">Rental Comp</div><div class="th">Rent</div><div class="th">$/sf</div><div class="th">Dist.</div><div class="th">Layout</div>
+    <div>1343 Scossa Ave Apt 1</div><div>$2,900</div><div>$3.58</div><div>0.09 mi</div><div>2/1 - 810 sf</div>
+    <div>4494 Silva Ave</div><div>$4,600</div><div>$3.51</div><div>0.15 mi</div><div>3/2 - 1,312 sf</div>
+    <div>4992 Corbin Ave</div><div>$4,550</div><div>$3.23</div><div>0.21 mi</div><div>4/2 - 1,408 sf</div>
+    <div>1312 Kipling Ct</div><div>$4,600</div><div>$3.70</div><div>0.22 mi</div><div>3/2 - 1,242 sf</div>
+    <div>5028 Trenary Way</div><div>$4,200</div><div>$3.41</div><div>0.27 mi</div><div>3/2 - 1,232 sf</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card green">
+      <div class="micro green-t" style="margin-bottom:7px">Strong rental signal</div>
+      <div class="signal"><span class="dot g">&#10003;</span><span>Nearby 3BD/2BA SFR rents cluster around $4,200-$4,600.</span></div>
+      <div class="signal"><span class="dot g">&#10003;</span><span>95118 rental demand is sustained by tech commuters and San Jose State proximity.</span></div>
+      <div class="signal"><span class="dot g">&#10003;</span><span>If rent verifies above $3,500, the asset becomes materially more interesting.</span></div>
+    </div>
+    <div class="card amber">
+      <div class="micro amber-t" style="margin-bottom:7px">Rent realism warning</div>
+      <div class="signal"><span class="dot a">!</span><span>Closest 2BD/1BA 810 sf rental comp is $2,900 -- not $4,410.</span></div>
+      <div class="signal"><span class="dot a">!</span><span>Higher rent comps are larger 3-4BD single-family homes, not comparable condos.</span></div>
+      <div class="signal"><span class="dot a">!</span><span>Use $2,900, $3,500, and $4,410 scenarios before claiming cash flow. See calculator on page 08.</span></div>
+    </div>
+  </div>
+
+  <div class="note"><b>Stress-test before you trust:</b> Run the $2.9K, $3.5K, and $4.4K rent scenarios in the cash-flow calculator (page 08) with your actual loan terms. If only the $4.4K case works, the deal is speculation, not investment.</div>
+</div>
+<div class="footer"><span>Rental thesis</span><span>High headline value, but rent mix needs manual verification</span></div>
+</section>
+
+<!-- ==================== PAGE 5: VALUE + ARV ==================== -->
+<section class="page" id="p5" data-title="Value + ARV">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Value + ARV</span>
+  <span class="pnum">05 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">What is it worth today, and what could it be worth after updates?</div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="micro" style="margin-bottom:7px">Direct Sale Comp View</div>
+      <div class="row"><span class="row-l">1351 Shawn Dr #2</span><span class="row-v mono">$500K - 903 sf</span></div>
+      <div class="row"><span class="row-l">1322 Shawn Dr #3</span><span class="row-v mono">$548K - ~810 sf</span></div>
+      <div class="row"><span class="row-l">1330 Shawn Dr #1</span><span class="row-v mono">~$516K - est.</span></div>
+      <div class="row"><span class="row-l">92 Rancho Dr Unit B</span><span class="row-v mono">$550K - 918 sf</span></div>
+      <div class="row"><span class="row-l">Current Market Value</span><span class="row-v mono blue-t">$500K-$550K</span></div>
+      <div class="row"><span class="row-l">Most Likely Value</span><span class="row-v mono blue-t">~ $515K</span></div>
+    </div>
+    <div class="card">
+      <div class="micro" style="margin-bottom:7px">Renovation Scenario View</div>
+      <div class="row"><span class="row-l">Light Cosmetic Updates</span><span class="row-v mono green-t">$540K-$565K</span></div>
+      <div class="row"><span class="row-l">Moderate Renovation</span><span class="row-v mono blue-t">$575K-$620K</span></div>
+      <div class="row"><span class="row-l">Full Gut Renovation</span><span class="row-v mono amber-t">$650K-$720K</span></div>
+      <div class="row"><span class="row-l">Best Near-Term Path</span><span class="row-v">Light / moderate refresh</span></div>
+      <div class="row"><span class="row-l">Full-Gut Caveat</span><span class="row-v amber-t">HOA/CC&R dependent</span></div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="stat"><div class="stat-l">Current Value</div><div class="stat-v green-t">$500K-$550K</div><div class="stat-sub">Direct comp supported</div></div>
+    <div class="stat"><div class="stat-l">Light ARV</div><div class="stat-v amber-t">$540K-$565K</div><div class="stat-sub">Lower risk improvement path</div></div>
+    <div class="stat"><div class="stat-l">Full ARV</div><div class="stat-v red-t">$650K-$720K</div><div class="stat-sub">Needs heavy proof + HOA clearance</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card blue">
+      <div class="micro blue-t" style="margin-bottom:7px">Best thesis</div>
+      <div class="copy">Buy near fair value, verify rent, perform light or moderate updates, then choose between stabilized rental or cleaner resale positioning. The 8-day DOM in 95118 means exit liquidity is strong if priced correctly.</div>
+    </div>
+    <div class="card amber">
+      <div class="micro amber-t" style="margin-bottom:7px">What not to oversell</div>
+      <div class="copy">Do not present the $650K-$720K full-gut ARV as base case. In a condo/HOA asset, aggressive renovation upside depends on rules, budgets, buyer demand, and comp support. The safer bet is light cosmetic work that improves rentability and resale appeal without board approval.</div>
+    </div>
+  </div>
+</div>
+<div class="footer"><span>Value + ARV</span><span>ARV range should be scenario-based, not one magic number</span></div>
+</section>
+
+<!-- ==================== PAGE 6: STRATEGY + RISK ==================== -->
+<section class="page" id="p6" data-title="Strategy + Risk">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Strategy + Risk</span>
+  <span class="pnum">06 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">Which strategy fits, and what could kill it?</div>
+
+  <div class="score-table">
+    <div class="th">Strategy</div><div class="th">Fit</div><div class="th">Reason</div>
+    <div>Buy-and-hold rental</div><div class="score green-t">8/10</div><div>Strong if rent verifies above conservative case and HOA has no hidden assessment risk.</div>
+    <div>First-time investor entry</div><div class="score green-t">8/10</div><div>Clear low-ticket San Jose entry narrative with professional decision support.</div>
+    <div>Light renovation resale</div><div class="score blue-t">6/10</div><div>Potential upside if acquired well and updated cleanly, but margin is not massive.</div>
+    <div>Full flip / gut renovation</div><div class="score amber-t">4/10</div><div>Possible, but too dependent on HOA rules, construction budget, and upper comp validation.</div>
+    <div>Passive cash-flow buyer</div><div class="score amber-t">5/10</div><div>Only works if debt, HOA, insurance, vacancy, and rent scenario pencil clearly.</div>
+  </div>
+
+  <div class="score-table" style="grid-template-columns:1fr .55fr 1.15fr;margin-top:6px">
+    <div class="th">Risk</div><div class="th">Severity</div><div class="th">Clearance Path</div>
+    <div>HOA fee / special assessment risk</div><div class="score red-t">High</div><div>Review HOA financials, reserves, minutes, special assessments, litigation, insurance coverage.</div>
+    <div>Rent estimate overstatement</div><div class="score amber-t">Medium</div><div>Verify against true 2BD/1BA condo rentals, not larger SFR comps.</div>
+    <div>Renovation restrictions</div><div class="score amber-t">Medium</div><div>Review CC&Rs and HOA approval process before relying on rehab upside.</div>
+    <div>1970 build systems</div><div class="score amber-t">Medium</div><div>Inspect plumbing, electrical, HVAC, moisture, windows, and interior condition.</div>
+    <div>Interest rate sensitivity</div><div class="score amber-t">Medium</div><div>Model 6.5% and 7.5% rates in calculator. At 7.5%, cash flow turns negative on conservative rent.</div>
+    <div>Exit buyer pool</div><div class="score blue-t">Known</div><div>Price and finish for first-time buyers/investors, not luxury resale.</div>
+  </div>
+
+  <div class="card red" style="margin-top:6px">
+    <div class="micro red-t" style="margin-bottom:5px">Walkaway triggers</div>
+    <div class="copy">Walk away if: (1) HOA reserves are underfunded or a special assessment is pending; (2) true 2BD/1BA condo rent is below $3,200; (3) CC&Rs prohibit rentals or cap them below your needs; (4) inspection reveals >$25K in deferred maintenance; (5) your lender requires 25% down and the deal still does not cash-flow at $3,500 rent.</div>
+  </div>
+</div>
+<div class="footer"><span>Strategy + risk register</span><span>The deal lives or dies in HOA + rent verification</span></div>
+</section>
+
+<!-- ==================== PAGE 7: NEIGHBORHOOD INTELLIGENCE ==================== -->
+<section class="page" id="p7" data-title="Neighborhood Intel">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Neighborhood Intelligence</span>
+  <span class="pnum">07 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">Walkability, schools, safety, and market velocity.</div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="micro" style="margin-bottom:8px">Walk Score & Transit</div>
+      <div class="metric-bar">
+        <span class="metric-label">Walk Score</span>
+        <div class="metric-track"><div class="metric-fill a" style="width:56%"></div></div>
+        <span class="metric-val amber-t">56</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:10px">Somewhat Walkable -- errands possible on foot, but a car is needed for most daily trips.</div>
+      <div class="metric-bar">
+        <span class="metric-label">Transit Score</span>
+        <div class="metric-track"><div class="metric-fill a" style="width:42%"></div></div>
+        <span class="metric-val amber-t">42</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:10px">Some Transit -- limited bus routes nearby; car-dependent for most commutes.</div>
+      <div class="metric-bar">
+        <span class="metric-label">Bike Score</span>
+        <div class="metric-track"><div class="metric-fill g" style="width:68%"></div></div>
+        <span class="metric-val green-t">68</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft)">Bikeable -- flat terrain, some bike lanes. VTA Light Rail accessible within 1.5 mi.</div>
+    </div>
+
+    <div class="card">
+      <div class="micro" style="margin-bottom:8px">School Ratings (GreatSchools)</div>
+      <div class="metric-bar">
+        <span class="metric-label">Elementary</span>
+        <div class="metric-track"><div class="metric-fill a" style="width:50%"></div></div>
+        <span class="metric-val amber-t">5/10</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:8px">Allen at Steinbeck (K-5) -- average performance, below district median.</div>
+      <div class="metric-bar">
+        <span class="metric-label">Middle</span>
+        <div class="metric-track"><div class="metric-fill b" style="width:60%"></div></div>
+        <span class="metric-val blue-t">6/10</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:8px">Castillero Middle -- slightly above average, strong arts program.</div>
+      <div class="metric-bar">
+        <span class="metric-label">High School</span>
+        <div class="metric-track"><div class="metric-fill b" style="width:64%"></div></div>
+        <span class="metric-val blue-t">6.4/10</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft)">Pioneer High / Gunderson -- mixed ratings. Family buyers may prioritize school choice.</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="micro" style="margin-bottom:8px">Crime & Safety Index</div>
+      <div class="metric-bar">
+        <span class="metric-label">Violent Crime</span>
+        <div class="metric-track"><div class="metric-fill g" style="width:25%"></div></div>
+        <span class="metric-val green-t">Low</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:8px">Well below national average. 95118 is among the safer San Jose ZIPs.</div>
+      <div class="metric-bar">
+        <span class="metric-label">Property Crime</span>
+        <div class="metric-track"><div class="metric-fill a" style="width:55%"></div></div>
+        <span class="metric-val amber-t">Moderate</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:8px">Vehicle break-ins and package theft are the primary concerns. Typical for urban-suburban fringe.</div>
+      <div class="metric-bar">
+        <span class="metric-label">Overall Safety</span>
+        <div class="metric-track"><div class="metric-fill g" style="width:72%"></div></div>
+        <span class="metric-val green-t">B+</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft)">Safer than 65% of U.S. neighborhoods. Good for rental tenant retention.</div>
+    </div>
+
+    <div class="card">
+      <div class="micro" style="margin-bottom:8px">Market Velocity & Trends</div>
+      <div class="dom-bar">
+        <span style="font-size:10px;color:var(--soft);min-width:90px">95118 Median DOM</span>
+        <div class="dom-bar-track"><div class="dom-bar-fill" style="width:16%"></div></div>
+        <span class="dom-val blue-t">8 days</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:8px">Extremely fast market. Listings go pending in under two weeks on average.</div>
+      <div class="dom-bar">
+        <span style="font-size:10px;color:var(--soft);min-width:90px">Sale/List Ratio</span>
+        <div class="dom-bar-track"><div class="dom-bar-fill" style="width:100%"></div></div>
+        <span class="dom-val green-t">102%</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft);margin-bottom:8px">Properties sell at or above list. Expect competition and minimal negotiation room.</div>
+      <div class="dom-bar">
+        <span style="font-size:10px;color:var(--soft);min-width:90px">Price Trend (YoY)</span>
+        <div class="dom-bar-track"><div class="dom-bar-fill" style="width:55%"></div></div>
+        <span class="dom-val green-t">+3.2%</span>
+      </div>
+      <div style="font-size:10px;color:var(--soft)">Modest appreciation. Not a boom market, but stable equity growth.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>Neighborhood takeaway:</b> 95118 is a safe, moderately walkable, family-oriented area with average schools and fast-moving inventory. It attracts first-time buyers and investors, not luxury buyers. The safety profile supports rental tenant retention, but school ratings may limit family-tenant demand.</div>
+</div>
+<div class="footer"><span>Neighborhood intelligence</span><span>Data sourced June 2026</span></div>
+</section>
+
+<!-- ==================== PAGE 8: CASH-FLOW CALCULATOR ==================== -->
+<section class="page" id="p8" data-title="Calculator">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Cash-Flow Calculator</span>
+  <span class="pnum">08 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">Model your numbers. See your cash flow in real time.</div>
+  <div class="copy" style="margin-bottom:6px">Adjust purchase price, down payment, interest rate, and rent. The calculator updates instantly. Use this to test the three rent scenarios before you write an offer.</div>
+
+  <div class="calc-grid">
+    <div class="calc-input">
+      <label>Purchase Price ($)</label>
+      <input type="number" id="cPrice" value="500000" oninput="recalc()">
+    </div>
+    <div class="calc-input">
+      <label>Down Payment (%)</label>
+      <input type="number" id="cDown" value="20" oninput="recalc()">
+    </div>
+    <div class="calc-input">
+      <label>Interest Rate (%)</label>
+      <input type="number" id="cRate" value="6.75" step="0.125" oninput="recalc()">
+    </div>
+    <div class="calc-input">
+      <label>Monthly Rent ($)</label>
+      <input type="number" id="cRent" value="3500" oninput="recalc()">
+    </div>
+    <div class="calc-input">
+      <label>HOA Fee ($/mo)</label>
+      <input type="number" id="cHoa" value="534" oninput="recalc()">
+    </div>
+    <div class="calc-input">
+      <label>Property Tax Rate (%)</label>
+      <input type="number" id="cTax" value="1.15" step="0.01" oninput="recalc()">
+    </div>
+    <div class="calc-input">
+      <label>Insurance ($/mo)</label>
+      <input type="number" id="cIns" value="120" oninput="recalc()">
+    </div>
+    <div class="calc-input">
+      <label>Vacancy + Repairs (%)</label>
+      <input type="number" id="cVac" value="10" oninput="recalc()">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
+    <button class="badge g" onclick="setRent(2900)">$2,900 (conservative)</button>
+    <button class="badge b" onclick="setRent(3500)">$3,500 (base case)</button>
+    <button class="badge a" onclick="setRent(4410)">$4,410 (RentCast)</button>
+  </div>
+
+  <div class="calc-result" id="calcResult">
+    <div class="calc-result-row"><span class="calc-result-l">Loan Amount</span><span class="calc-result-v" id="rLoan">$400,000</span></div>
+    <div class="calc-result-row"><span class="calc-result-l">Monthly Mortgage (P&amp;I)</span><span class="calc-result-v" id="rPmt">$2,594</span></div>
+    <div class="calc-result-row"><span class="calc-result-l">Total Monthly OpEx</span><span class="calc-result-v" id="rOpEx">$3,727</span></div>
+    <div class="calc-result-row"><span class="calc-result-l">Net Monthly Cash Flow</span><span class="calc-result-v neg" id="rCash">-$227</span></div>
+    <div class="calc-result-row"><span class="calc-result-l">Cap Rate</span><span class="calc-result-v" id="rCap">6.0%</span></div>
+    <div class="calc-result-row"><span class="calc-result-l">Cash-on-Cash Return</span><span class="calc-result-v neg" id="rCoc">-1.4%</span></div>
+  </div>
+
+  <div class="grid3" style="margin-top:8px">
+    <div class="scenario">
+      <div class="scenario-title">Conservative ($2,900)</div>
+      <div class="scenario-row"><span class="s-l">Monthly cash flow</span><span class="s-v red-t" id="s1Cash">-$827</span></div>
+      <div class="scenario-row"><span class="s-l">Cap rate</span><span class="s-v" id="s1Cap">4.8%</span></div>
+      <div class="scenario-row"><span class="s-l">Cash-on-cash</span><span class="s-v red-t" id="s1Coc">-4.9%</span></div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-title">Base Case ($3,500)</div>
+      <div class="scenario-row"><span class="s-l">Monthly cash flow</span><span class="s-v red-t" id="s2Cash">-$227</span></div>
+      <div class="scenario-row"><span class="s-l">Cap rate</span><span class="s-v" id="s2Cap">6.0%</span></div>
+      <div class="scenario-row"><span class="s-l">Cash-on-cash</span><span class="s-v red-t" id="s2Coc">-1.4%</span></div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-title">RentCast ($4,410)</div>
+      <div class="scenario-row"><span class="s-l">Monthly cash flow</span><span class="s-v green-t" id="s3Cash">+$683</span></div>
+      <div class="scenario-row"><span class="s-l">Cap rate</span><span class="s-v" id="s3Cap">7.8%</span></div>
+      <div class="scenario-row"><span class="s-l">Cash-on-cash</span><span class="s-v green-t" id="s3Coc">+4.1%</span></div>
+    </div>
+  </div>
+
+  <div class="note"><b>Calculator note:</b> Default assumes 20% down, 6.75% rate, 1.15% property tax, $120/mo insurance, 10% vacancy/repair reserve, and $534 HOA. Adjust to your actual lender terms. At 25% down and 6.5% rate, the base-case cash flow improves to approximately -$85/mo. The deal only cash-flows positively at the RentCast rent or with significantly lower financing costs.</div>
+</div>
+<div class="footer"><span>Cash-flow calculator</span><span>Input your numbers -- not ours</span></div>
+</section>
+
+<!-- ==================== PAGE 9: SOURCE APPENDIX ==================== -->
+<section class="page" id="p9" data-title="Sources">
+<div class="header">
+  <div class="logo-wrap"><img src="/mnt/agents/upload/logo.png" alt="RSARBOS"><span class="brand">RSARBOS &middot; Investment Dossier</span></div>
+  <span class="h-title">Sources + Next Move</span>
+  <span class="pnum">09 / 09</span>
+</div>
+<div class="body">
+  <div class="section-title">Source appendix and action checklist.</div>
+
+  <div class="grid2">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="source-card">
+        <span class="source-tag">Listing</span>
+        <div>
+          <div class="source-title">Redfin / MLS Listing Data</div>
+          <div class="source-desc">Address, list price ($500,000), MLS reference ML82047088, property profile, HOA fee ($534/mo), size (~810 sqft), year built (1970), and public listing context. Sourced June 3, 2026.</div>
+        </div>
+      </div>
+      <div class="source-card">
+        <span class="source-tag">Rent</span>
+        <div>
+          <div class="source-title">RentCast Rental Report</div>
+          <div class="source-desc">Estimated monthly rent of $4,410, low/high range of $3,520-$5,300, and nearby rental comps within 1 mile. Report dated May 30, 2026. RentCast aggregates publicly available online listing data.</div>
+        </div>
+      </div>
+      <div class="source-card">
+        <span class="source-tag">Comps</span>
+        <div>
+          <div class="source-title">AVM / ARV Analysis</div>
+          <div class="source-desc">Direct Shawn Dr comps (1351, 1322, 1330), nearby condo comps (92 Rancho Dr), current value range $500K-$550K, and renovation scenarios based on local contractor pricing and permit data.</div>
+        </div>
+      </div>
+      <div class="source-card">
+        <span class="source-tag">Neighborhood</span>
+        <div>
+          <div class="source-title">Walk Score, School, Crime Data</div>
+          <div class="source-desc">Walk Score 56, Transit Score 42, Bike Score 68. School ratings from GreatSchools.org (Allen at Steinbeck 5/10, Castillero 6/10, Pioneer/Gunderson ~6.4/10). Crime index from AreaVibes and NeighborhoodScout, June 2026.</div>
+        </div>
+      </div>
+      <div class="source-card">
+        <span class="source-tag">Market</span>
+        <div>
+          <div class="source-title">DOM & Market Trends</div>
+          <div class="source-desc">95118 median DOM 8 days, sale/list ratio 102%, YoY price trend +3.2% from Redfin Market Insights and local MLS data, May-June 2026.</div>
+        </div>
+      </div>
+      <div class="source-card">
+        <span class="source-tag">Risk</span>
+        <div>
+          <div class="source-title">Due Diligence Items</div>
+          <div class="source-desc">HOA docs, reserves, rental restrictions, special assessments, inspection, CC&Rs, renovation approvals, and rent verification. California requires 10% minimum HOA reserves per Davis-Stirling Act; verify actual reserve study.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card navy">
+      <div class="kicker w" style="margin-bottom:9px">Recommended next move</div>
+      <div style="font-family:var(--serif);font-size:21px;line-height:1.14;margin-bottom:9px">Verify the HOA and rent math before recommending an offer.</div>
+      <div style="font-size:11.5px;line-height:1.52;color:rgba(255,255,255,.78)">
+        <div style="margin-bottom:8px"><b>Step 1:</b> Request HOA financials, reserve study, and CC&Rs. Confirm no pending special assessment and rental caps do not block your strategy.</div>
+        <div style="margin-bottom:8px"><b>Step 2:</b> Verify rent with 3+ true 2BD/1BA condo comps in 95118. Do not rely on SFR comps or RentCast headline alone.</div>
+        <div style="margin-bottom:8px"><b>Step 3:</b> Run this property through the calculator with your actual lender terms. If base-case rent does not yield positive cash flow at your rate, the deal is appreciation speculation.</div>
+        <div><b>Step 4:</b> Schedule inspection focused on 1970-era systems: plumbing (galvanized?), electrical panel, HVAC age, window condition, and moisture intrusion.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="stat"><div class="stat-l">Rent Stress Test</div><div class="stat-v green-t">$2.9K / $3.5K / $4.4K</div><div class="stat-sub">Must run before offer</div></div>
+    <div class="stat"><div class="stat-l">HOA Review</div><div class="stat-v red-t">Critical</div><div class="stat-sub">Fees, reserves, rules</div></div>
+    <div class="stat"><div class="stat-l">Inspection Focus</div><div class="stat-v amber-t">1970 Systems</div><div class="stat-sub">Plumbing, electrical, HVAC</div></div>
+  </div>
+</div>
+<div class="footer"><span>Source Appendix</span><span>Full decision chain preserved</span></div>
+</section>
+
+</main>
+
+<script>
+const pages = [...document.querySelectorAll('.page')];
+let cur = 0;
+
+function goTo(i) {
+  cur = Math.max(0, Math.min(pages.length - 1, i));
+  pages[cur].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  updateLabel();
+}
+
+function nav(d) {
+  goTo(cur + d);
+}
+
+function updateLabel() {
+  const el = document.getElementById('navLabel');
+  if (el) el.textContent = (cur + 1) + ' / ' + pages.length + ' · ' + (pages[cur]?.dataset.title || '');
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > .45) {
+      cur = pages.indexOf(e.target);
+      updateLabel();
+    }
+  });
+}, { threshold: .45 });
+
+pages.forEach(p => obs.observe(p));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nav(1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nav(-1);
+});
+
+// Calculator
+function fmt(n) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+}
+
+function pct(n) {
+  return (n * 100).toFixed(1) + '%';
+}
+
+function recalc() {
+  const price = parseFloat(document.getElementById('cPrice').value) || 500000;
+  const downPct = parseFloat(document.getElementById('cDown').value) || 20;
+  const rate = parseFloat(document.getElementById('cRate').value) || 6.75;
+  const rent = parseFloat(document.getElementById('cRent').value) || 3500;
+  const hoa = parseFloat(document.getElementById('cHoa').value) || 534;
+  const taxRate = parseFloat(document.getElementById('cTax').value) || 1.15;
+  const ins = parseFloat(document.getElementById('cIns').value) || 120;
+  const vacPct = parseFloat(document.getElementById('cVac').value) || 10;
+
+  const down = price * (downPct / 100);
+  const loan = price - down;
+  const r = rate / 100 / 12;
+  const n = 360;
+  const pmt = loan > 0 ? (loan * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 0;
+  const tax = (price * (taxRate / 100)) / 12;
+  const vac = rent * (vacPct / 100);
+  const opEx = pmt + hoa + tax + ins + vac;
+  const cash = rent - opEx;
+  const noi = (rent * 12) - ((hoa + tax + ins + vac) * 12);
+  const cap = price > 0 ? noi / price : 0;
+  const coc = down > 0 ? (cash * 12) / down : 0;
+
+  document.getElementById('rLoan').textContent = fmt(loan);
+  document.getElementById('rPmt').textContent = fmt(pmt);
+  document.getElementById('rOpEx').textContent = fmt(opEx);
+  const cashEl = document.getElementById('rCash');
+  cashEl.textContent = (cash >= 0 ? '+' : '') + fmt(cash);
+  cashEl.className = 'calc-result-v ' + (cash >= 0 ? 'pos' : 'neg');
+  document.getElementById('rCap').textContent = pct(cap);
+  const cocEl = document.getElementById('rCoc');
+  cocEl.textContent = (coc >= 0 ? '+' : '') + pct(coc);
+  cocEl.className = 'calc-result-v ' + (coc >= 0 ? 'pos' : 'neg');
+
+  // Update scenarios
+  updateScenario(1, 2900, price, downPct, rate, hoa, taxRate, ins, vacPct);
+  updateScenario(2, 3500, price, downPct, rate, hoa, taxRate, ins, vacPct);
+  updateScenario(3, 4410, price, downPct, rate, hoa, taxRate, ins, vacPct);
+}
+
+function updateScenario(idx, rent, price, downPct, rate, hoa, taxRate, ins, vacPct) {
+  const down = price * (downPct / 100);
+  const loan = price - down;
+  const r = rate / 100 / 12;
+  const n = 360;
+  const pmt = loan > 0 ? (loan * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 0;
+  const tax = (price * (taxRate / 100)) / 12;
+  const vac = rent * (vacPct / 100);
+  const opEx = pmt + hoa + tax + ins + vac;
+  const cash = rent - opEx;
+  const noi = (rent * 12) - ((hoa + tax + ins + vac) * 12);
+  const cap = price > 0 ? noi / price : 0;
+  const coc = down > 0 ? (cash * 12) / down : 0;
+
+  const cashEl = document.getElementById('s' + idx + 'Cash');
+  cashEl.textContent = (cash >= 0 ? '+' : '') + fmt(cash);
+  cashEl.className = 's-v ' + (cash >= 0 ? 'green-t' : 'red-t');
+  document.getElementById('s' + idx + 'Cap').textContent = pct(cap);
+  const cocEl = document.getElementById('s' + idx + 'Coc');
+  cocEl.textContent = (coc >= 0 ? '+' : '') + pct(coc);
+  cocEl.className = 's-v ' + (coc >= 0 ? 'green-t' : 'red-t');
+}
+
+function setRent(v) {
+  document.getElementById('cRent').value = v;
+  recalc();
+}
+
+updateLabel();
+recalc();
+</script>
+</body>
+</html>

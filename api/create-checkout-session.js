@@ -39,7 +39,7 @@ module.exports = async function handler(req, res) {
     const customerEmail = requireString(body.customerEmail, 'Customer email')
     const propertyAddress = requireString(body.propertyAddress, 'Property address')
     const propertyUrl = requireString(body.propertyUrl, 'Property URL')
-    const siteUrl = process.env.VITE_SITE_URL || 'http://localhost:5173'
+    const siteUrl = process.env.SITE_URL || 'http://localhost:5173'
 
     await query(
       `

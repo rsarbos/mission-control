@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { trackEvent } from '../utils/analytics'
 
 const INITIAL_FORM = {
   clientName: '',
@@ -24,6 +25,11 @@ export default function ManualReportForm() {
     event.preventDefault()
     setIsProcessing(true)
     setFormError('')
+    trackEvent('checkout_start', {
+      source: 'manual_report_form',
+      investmentIntent: form.investmentIntent,
+      urgency: form.urgency,
+    })
 
     try {
       const response = await fetch('/api/create-checkout-session', {
@@ -60,7 +66,7 @@ export default function ManualReportForm() {
     <form className="neo-form glass-panel" onSubmit={submitRequest}>
       <label>
         CLIENT NAME *
-        <input value={form.clientName} onChange={(event) => updateField('clientName', event.target.value)} placeholder="Jane Doe / Acme Corp" required />
+        <input value={form.clientName} onFocus={() => trackEvent('request_form_start')} onChange={(event) => updateField('clientName', event.target.value)} placeholder="Jane Doe / Acme Corp" required />
       </label>
       <label>
         EMAIL ADDRESS *
@@ -72,7 +78,7 @@ export default function ManualReportForm() {
       </label>
       <label className="full-field">
         PROPERTY ADDRESS *
-        <input value={form.propertyAddress} onChange={(event) => updateField('propertyAddress', event.target.value)} placeholder="1234 Main St, City, State, ZIP" required />
+        <input value={form.propertyAddress} onChange={(event) => updateField('propertyAddress', event.target.value)} required />
       </label>
       <label className="full-field">
         PROPERTY URL (Zillow, Redfin, MLS, etc.) *

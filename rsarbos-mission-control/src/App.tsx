@@ -15,6 +15,7 @@ import OperationsSnapshot from './components/OperationsSnapshot'
 import OrgMap from './components/OrgMap'
 import ManualReportForm from './components/ManualReportForm'
 import rsarbosLogo from './assets/logo.png'
+import { trackEvent } from './utils/analytics'
 
 const WEBSITE_READINESS_ITEMS = [
   {
@@ -128,8 +129,8 @@ function PublicWebsite() {
               investors, and institutions who demand truth first.
             </p>
             <div className="hero-actions centered">
-              <a className="primary-action shine-action" href="#request">START UNDERWRITING</a>
-              <a className="secondary-action glass-action" href="#services">VIEW DELIVERABLES</a>
+              <a className="primary-action shine-action" href="#request" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
+              <a className="secondary-action glass-action" href="#services" onClick={() => trackEvent('hero_cta_click', { cta: 'view_deliverables' })}>VIEW DELIVERABLES</a>
             </div>
           </div>
           <div className="hero-lines" aria-hidden="true">
@@ -280,7 +281,13 @@ function PublicWebsite() {
           </div>
           <div className="footer-bottom">
             <p>© 2026 RSARBOS Next-Gen Business Technology. All rights reserved.</p>
-            <div><span>SYSTEM: ONLINE</span><span className="online-dot">■</span></div>
+            <div className="footer-links">
+              <a href="/terms">Terms</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/refund-policy">Refunds</a>
+              <span>SYSTEM: ONLINE</span>
+              <span className="online-dot">■</span>
+            </div>
           </div>
         </div>
       </footer>
@@ -289,6 +296,10 @@ function PublicWebsite() {
 }
 
 function PaymentSuccessPage() {
+  useEffect(() => {
+    trackEvent('checkout_success_page_view')
+  }, [])
+
   return (
     <main className="payment-result-shell">
       <section className="payment-result-panel glass-panel">
@@ -308,6 +319,10 @@ function PaymentSuccessPage() {
 }
 
 function PaymentCancelPage() {
+  useEffect(() => {
+    trackEvent('checkout_cancel_page_view')
+  }, [])
+
   return (
     <main className="payment-result-shell">
       <section className="payment-result-panel glass-panel">
@@ -320,6 +335,60 @@ function PaymentCancelPage() {
         <a className="primary-action red-action" href="/#request">
           Return To Request Form
         </a>
+      </section>
+    </main>
+  )
+}
+
+function LegalPage({ type }: { type: 'terms' | 'privacy' | 'refund' }) {
+  const content = {
+    terms: {
+      eyebrow: 'Terms',
+      title: 'Terms of Service',
+      sections: [
+        ['Manual service', 'RSARBOS provides manual underwriting reports for decision support. Reports are prepared from submitted property information, public data, third-party sources, and analyst review.'],
+        ['No professional advice', 'Reports are not legal, tax, financial, appraisal, inspection, or lending advice. Customers should verify all assumptions with qualified professionals before committing capital.'],
+        ['Customer responsibility', 'Customers are responsible for submitting accurate property links, context, and questions. Incomplete or incorrect information can affect report quality and turnaround time.'],
+        ['Delivery', 'Completed reports are delivered privately by email or private link after payment confirmation and review.'],
+      ],
+    },
+    privacy: {
+      eyebrow: 'Privacy',
+      title: 'Privacy Policy',
+      sections: [
+        ['Information collected', 'RSARBOS collects submitted contact details, property details, links, notes, payment status, and operational metadata needed to complete underwriting requests.'],
+        ['How information is used', 'Information is used to process payment, prepare the report, contact the customer, recover abandoned checkouts, and improve underwriting workflows.'],
+        ['Service providers', 'RSARBOS may use providers such as Stripe, Neon, Resend, hosting providers, and analytics tools to operate the service.'],
+        ['Data requests', 'Customers may contact RSARBOS to request corrections or deletion where legally and operationally possible.'],
+      ],
+    },
+    refund: {
+      eyebrow: 'Payments',
+      title: 'Payment & Refund Policy',
+      sections: [
+        ['Payment timing', 'Payment is required before RSARBOS begins the manual underwriting report.'],
+        ['Manual work', 'Because each report involves analyst review and custom work, refunds may be limited once work has started.'],
+        ['Failed or abandoned checkout', 'If checkout is canceled or abandoned, the request remains pending and unpaid so RSARBOS can help complete payment if needed.'],
+        ['Support', 'For payment questions, contact RSARBOS support with the email used on the request.'],
+      ],
+    },
+  }[type]
+
+  return (
+    <main className="legal-shell">
+      <section className="legal-panel glass-panel">
+        <p className="red-kicker"><span></span>{content.eyebrow}</p>
+        <h1>{content.title}</h1>
+        <p className="legal-updated">Starter policy for launch readiness. Review before public marketing.</p>
+        <div className="legal-sections">
+          {content.sections.map(([heading, copy]) => (
+            <article key={heading}>
+              <h2>{heading}</h2>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+        <a className="primary-action red-action" href="/">Return Home</a>
       </section>
     </main>
   )
@@ -603,6 +672,18 @@ export default function App() {
 
   if (path === '/payment-cancel') {
     return <PaymentCancelPage />
+  }
+
+  if (path === '/terms') {
+    return <LegalPage type="terms" />
+  }
+
+  if (path === '/privacy') {
+    return <LegalPage type="privacy" />
+  }
+
+  if (path === '/refund-policy') {
+    return <LegalPage type="refund" />
   }
 
   return <PublicWebsite />
