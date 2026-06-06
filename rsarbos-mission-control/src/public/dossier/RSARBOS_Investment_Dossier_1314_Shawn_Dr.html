@@ -83,15 +83,15 @@ body::-webkit-scrollbar {
 }
 
 .header {
-  height: 52px; background: var(--navy); color: #fff;
-  padding: 0 var(--pad); display: flex; align-items: center; justify-content: space-between;
+  height: 38px; background: var(--navy); color: #fff;
+  padding: 0 18px; display: flex; align-items: center; justify-content: space-between;
   flex-shrink: 0; position: relative;
 }
-.logo-wrap { display: flex; align-items: center; gap: 10px; }
-.logo-wrap img { height: 22px; width: auto; filter: brightness(0) invert(1); opacity: .9; }
-.brand { font: 600 9px var(--mono); letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
-.h-title { font: 500 14px var(--serif); }
-.pnum { font: 500 10px var(--mono); opacity: .6; }
+.logo-wrap { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.logo-wrap img { height: 14px; width: auto; filter: brightness(0) invert(1); opacity: .9; }
+.brand { font: 600 7px var(--mono); letter-spacing: .1em; text-transform: uppercase; opacity: .62; white-space: nowrap; }
+.h-title { font: 600 11px var(--serif); white-space: nowrap; }
+.pnum { font: 600 8px var(--mono); opacity: .58; white-space: nowrap; }
 
 .body { padding: var(--pad); flex: 1; display: flex; flex-direction: column; gap: 11px; }
 
@@ -369,9 +369,12 @@ body::-webkit-scrollbar {
   body { background: var(--paper); }
   .deck { width: 100%; margin: 66px auto 20px; gap: 12px; }
   .page { width: 100%; min-height: auto; box-shadow: none; border-radius: 0; page-break-after: auto; }
-  .header { padding: 0 var(--pad-mob); height: 48px; }
-  .logo-wrap img { height: 18px; }
-  .h-title { font-size: 13px; }
+  .header { padding: 0 12px; height: 32px; }
+  .logo-wrap { gap: 5px; }
+  .logo-wrap img { height: 11px; }
+  .brand { display: none; }
+  .h-title { font-size: 10px; }
+  .pnum { font-size: 7px; }
   .body { padding: var(--pad-mob); gap: 10px; }
   .footer { padding: 0 var(--pad-mob); height: 32px; font-size: 8.5px; }
   .hero { height: 260px; }
