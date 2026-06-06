@@ -1379,7 +1379,6 @@ code {
 
 .rs-hero p,
 .section-intro p,
-.services-section p,
 .pricing-section p,
 .sample-section p,
 .demo-dossier p,
@@ -1398,47 +1397,9 @@ code {
 
 .rs-hero .hero-subtitle {
   max-width: 820px;
-  font-size: clamp(1.28rem, 2vw, 1.6rem);
+  font-size: clamp(1.2rem, 1.75vw, 1.42rem);
   font-weight: 500;
   color: rgba(246, 248, 250, 0.88);
-}
-
-.audience-rotator {
-  --audience-row-height: 1.45em;
-  position: relative;
-  min-width: 11.2em;
-  height: var(--audience-row-height);
-  display: inline-grid;
-  vertical-align: -0.31em;
-  overflow: hidden;
-  color: white;
-  font-weight: 900;
-  text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(255, 59, 56, 0.78);
-}
-
-.audience-rotator::before,
-.audience-rotator::after {
-  content: '';
-  position: absolute;
-}
-
-.audience-track {
-  display: grid;
-  animation: audience-roll 10s steps(8) infinite;
-}
-
-.audience-track span {
-  height: var(--audience-row-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.72em;
-  border: 1px solid rgba(255, 59, 56, 0.5);
-  background:
-    linear-gradient(90deg, rgba(255, 59, 56, 0.05), rgba(255, 59, 56, 0.34), rgba(255, 59, 56, 0.05)),
-    rgba(13, 17, 23, 0.72);
-  box-shadow: inset 0 0 22px rgba(255, 59, 56, 0.18);
 }
 
 .source-flow {
@@ -1599,7 +1560,6 @@ code {
   opacity: 0.5;
 }
 
-.about-band,
 .sample-section {
   background: rgba(13, 17, 23, 0.48);
   border-block: 1px solid rgba(199, 204, 214, 0.1);
@@ -1623,9 +1583,8 @@ code {
   font-weight: 800;
 }
 
-.pillar-carousel {
+.audience-banner {
   width: 100%;
-  margin-top: 44px;
   overflow: hidden;
   border-block: 1px solid rgba(255, 255, 255, 0.24);
   background:
@@ -1633,44 +1592,44 @@ code {
   box-shadow: 0 24px 80px rgba(255, 59, 56, 0.18);
 }
 
-.pillar-carousel-track {
+.audience-banner-track {
   width: max-content;
   display: flex;
-  gap: 18px;
-  padding: 22px 18px;
-  animation: pillar-marquee 28s linear infinite;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 16px;
+  animation: audience-marquee 32s linear infinite;
 }
 
-.pillar-carousel:hover .pillar-carousel-track {
+.audience-banner:hover .audience-banner-track {
   animation-play-state: paused;
 }
 
-.pillar-slide {
-  width: min(390px, 82vw);
-  display: grid;
-  align-content: center;
-  gap: 8px;
-  min-height: 146px;
-  padding: 20px 24px;
+.audience-banner span {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 10px 18px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 6px;
   background: rgba(5, 8, 16, 0.42);
   color: white;
+  font-family: var(--title-font);
+  font-size: clamp(0.92rem, 1.3vw, 1.12rem);
+  font-weight: 900;
+  letter-spacing: 0;
   box-shadow: inset 0 0 28px rgba(255, 255, 255, 0.06);
 }
 
-.pillar-slide h3 {
-  color: white;
-  font-size: 1rem;
+.audience-banner .audience-banner-label {
+  color: var(--rsarbos-red);
+  background: white;
+  border-color: white;
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.34);
 }
 
-.pillar-slide p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.86);
-  line-height: 1.55;
-}
-
-.services-section,
 .core-section,
 .request-section {
   padding: 92px 0;
@@ -2447,16 +2406,7 @@ code {
   }
 }
 
-@keyframes audience-roll {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(calc(var(--audience-row-height) * -8));
-  }
-}
-
-@keyframes pillar-marquee {
+@keyframes audience-marquee {
   from {
     transform: translateX(0);
   }

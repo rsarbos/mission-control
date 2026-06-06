@@ -45,45 +45,22 @@ const SUPPORT_EMAIL = 'uw.support@rsarbos.com'
 const MISSION_CONTROL_PASSWORD = import.meta.env.VITE_MISSION_CONTROL_PASSWORD || 'rsarbos-founder'
 const DOSSIER_PREVIEW_URL = '/dossier/RSARBOS_Investment_Dossier_1314_Shawn_Dr.html'
 
-const DELIVERABLES = [
-  ['Property Review', 'Deep dive into physical characteristics and zoning constraints.', false],
-  ['Comparable Analysis', 'Granular assessment of hyper-local recent sales and active competition.', false],
-  ['ARV Thesis', 'Defensible After Repair Value projection based on market reality.', false],
-  ['Risk Notes & Pricing Context', 'Identification of potential pitfalls and strategic entry pricing analysis.', true],
-] as const
-
-const REPORT_SECTIONS = [
-  ['02', 'Executive Decision', 'Verdict, best-fit buyer profile, and the one question that decides the deal.'],
-  ['03', 'Asset + Market Context', 'Property profile, neighborhood scores, school ratings, crime data, and buyer pool.'],
-  ['04', 'Rental Thesis', 'Rent estimate, nearby rental comps, rent realism test, and cash-flow calculator.'],
-  ['05', 'Value + ARV', 'Current value, light-renovation ARV, moderate upside, and flip caution.'],
-  ['06', 'Strategy + Risk', 'Best buyer profiles, risk register, walkaway triggers, and diligence checklist.'],
-  ['07', 'Neighborhood Intelligence', 'Walk Score, school ratings, crime index, and market velocity.'],
-  ['08', 'Cash-Flow Calculator', 'Interactive model: input your down payment, rate, rent, and see monthly cash flow instantly.'],
-  ['09', 'Source Appendix', 'RentCast, Redfin, AVM/ARV notes, and due diligence action items.'],
-] as const
-
-const PILLARS = [
-  ['FIRST-TIME INVESTORS', 'Understand the numbers, risks, rent thesis, and next diligence steps before writing an offer.'],
-  ['FLIPPERS & OPERATORS', 'Pressure-test ARV, rehab assumptions, comps, exit strategy, and deal-killing constraints.'],
-  ['ACQUISITION TEAMS', 'Give sourcing teams a consistent decision layer for comparing opportunities quickly.'],
-  ['CAPITAL PARTNERS', 'Package property logic into a clean dossier that lenders, partners, and stakeholders can review.'],
-] as const
-
-const HERO_AUDIENCES = [
-  'investors',
-  'flippers',
-  'wholesalers',
-  'agents',
-  'operators',
-  'acquisition teams',
-  'capital partners',
-  'deal sponsors',
+const AUDIENCE_BANNER_ITEMS = [
+  'INVESTORS',
+  'FLIPPERS',
+  'OPERATORS',
+  'WHOLESALERS',
+  'AGENTS',
+  'ACQUISITION TEAMS',
+  'CAPITAL PARTNERS',
+  'DEAL SPONSORS',
+  'BUYER REPS',
+  'LENDERS',
 ] as const
 
 function PublicWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const carouselPillars = [...PILLARS, ...PILLARS]
+  const audienceBannerItems = ['BUILT FOR:', ...AUDIENCE_BANNER_ITEMS, 'BUILT FOR:', ...AUDIENCE_BANNER_ITEMS]
 
   return (
     <div className="public-site">
@@ -94,8 +71,7 @@ function PublicWebsite() {
             <img src={rsarbosLogo} alt="RSARBOS" />
           </a>
           <div className="desktop-menu">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
+            <a href="#built-for">Built For</a>
             <a href="#pricing">Pricing</a>
             <a href="#sample">Sample Reports</a>
             <a className="nav-cta" href="#request">REQUEST REPORT</a>
@@ -109,8 +85,7 @@ function PublicWebsite() {
         </div>
         {isMenuOpen && (
           <div className="mobile-menu">
-            <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
-            <a href="#services" onClick={() => setIsMenuOpen(false)}>Services</a>
+            <a href="#built-for" onClick={() => setIsMenuOpen(false)}>Built For</a>
             <a href="#pricing" onClick={() => setIsMenuOpen(false)}>Pricing</a>
             <a href="#sample" onClick={() => setIsMenuOpen(false)}>Sample Reports</a>
             <a href="#request" onClick={() => setIsMenuOpen(false)}>Request Report</a>
@@ -124,9 +99,9 @@ function PublicWebsite() {
           <div className="hero-content">
             <div className="hero-chip"><span></span>Building the New Era of Real Estate Tech</div>
             <h1>
-              FROM LINK TO
+              FROM PROPERTY LINK
               <br />
-              <span className="red-glow">INVESTOR-READY DECISION.</span>
+              <span className="red-glow">TO DECISION-READY DOSSIER.</span>
             </h1>
             <div className="source-flow" aria-label="Supported property link sources">
               <span>Zillow</span>
@@ -137,20 +112,11 @@ function PublicWebsite() {
               <strong>RSARBOS Dossier</strong>
             </div>
             <p className="hero-subtitle">
-              RSARBOS transforms complex property data into clear, decision-grade underwriting intelligence. Built for{' '}
-              <span className="audience-rotator" aria-label="investors, flippers, wholesalers, agents, operators, acquisition teams, capital partners, and deal sponsors">
-                <span className="audience-track">
-                  {HERO_AUDIENCES.map((audience) => (
-                    <span key={audience}>{audience}</span>
-                  ))}
-                  <span>{HERO_AUDIENCES[0]}</span>
-                </span>
-              </span>{' '}
-              who demand truth first.
+              A decision-ready underwriting dossier anyone can read — built to make the numbers, risks, and next move obvious.
             </p>
             <div className="hero-actions centered">
               <a className="primary-action shine-action" href="#request" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
-              <a className="secondary-action glass-action" href="#services" onClick={() => trackEvent('hero_cta_click', { cta: 'view_deliverables' })}>VIEW DELIVERABLES</a>
+              <a className="secondary-action glass-action" href="#sample" onClick={() => trackEvent('hero_cta_click', { cta: 'view_template' })}>VIEW TEMPLATE</a>
             </div>
           </div>
           <div className="hero-lines" aria-hidden="true">
@@ -158,6 +124,16 @@ function PublicWebsite() {
               <path d="M0,150 C200,50 300,250 500,150 C700,50 800,250 1000,150" />
               <path className="red-line" d="M0,150 C250,250 350,50 500,150 C650,250 750,50 1000,150" />
             </svg>
+          </div>
+        </section>
+
+        <section className="audience-banner" id="built-for" aria-label="Audience segments RSARBOS supports">
+          <div className="audience-banner-track">
+            {audienceBannerItems.map((title, index) => (
+              <span className={title === 'BUILT FOR:' ? 'audience-banner-label' : undefined} key={`${title}-${index}`}>
+                {title}
+              </span>
+            ))}
           </div>
         </section>
 
@@ -194,50 +170,6 @@ function PublicWebsite() {
               <p>Submit the property link and context. Your request is saved before checkout, then Stripe handles secure payment.</p>
             </div>
             <ManualReportForm />
-          </div>
-        </section>
-
-        <section className="services-section" id="services">
-          <div className="content-wrap">
-            <div className="section-intro centered-copy">
-              <p className="red-kicker"><span></span>Deliverables</p>
-              <h2>WHAT YOUR REPORT INCLUDES</h2>
-              <p>
-                Each dossier is structured like a decision map: conclusion first, then the market context, rental logic,
-                value thesis, risk register, and source trail needed to defend the call.
-              </p>
-            </div>
-            <div className="report-section-grid">
-              {REPORT_SECTIONS.map(([number, title, copy]) => (
-                <article className="report-section-card glass-panel" key={title}>
-                  <span>{number}</span>
-                  <h3>{title}</h3>
-                  <p>{copy}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="about-band" id="about">
-          <div className="content-wrap">
-            <div className="section-intro centered-copy">
-              <h2>BUILT FOR DEAL DECISIONS</h2>
-              <p>
-                RSARBOS turns property information into decision leverage for first-time investors, flippers,
-                acquisition teams, and any group that needs a clearer underwriting document before committing capital.
-              </p>
-            </div>
-            <div className="pillar-carousel" aria-label="Audience segments RSARBOS supports">
-              <div className="pillar-carousel-track">
-                {carouselPillars.map(([title, copy], index) => (
-                  <article className="pillar-slide" key={`${title}-${index}`} aria-hidden={index >= PILLARS.length}>
-                    <h3>{title}</h3>
-                    <p>{copy}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
