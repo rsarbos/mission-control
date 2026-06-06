@@ -40,8 +40,6 @@ const WEBSITE_READINESS_ITEMS = [
   },
 ]
 
-const REQUEST_EMAIL = 'uw.requests@rsarbos.com'
-const SUPPORT_EMAIL = 'uw.support@rsarbos.com'
 const MISSION_CONTROL_PASSWORD = import.meta.env.VITE_MISSION_CONTROL_PASSWORD || 'rsarbos-founder'
 const DOSSIER_PREVIEW_URL = '/dossier/RSARBOS_Investment_Dossier_1314_Shawn_Dr.html'
 
@@ -60,22 +58,34 @@ const AUDIENCE_BANNER_ITEMS = [
 
 function PublicWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [logoLeftClicks, setLogoLeftClicks] = useState(0)
   const audienceBannerItems = ['BUILT FOR:', ...AUDIENCE_BANNER_ITEMS, 'BUILT FOR:', ...AUDIENCE_BANNER_ITEMS]
+
+  function handleLogoClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault()
+    setIsMenuOpen(false)
+    setLogoLeftClicks((count) => Math.min(count + 1, 3))
+    window.location.hash = 'home'
+  }
+
+  function handleLogoContextMenu(event: React.MouseEvent<HTMLAnchorElement>) {
+    if (logoLeftClicks >= 3) {
+      event.preventDefault()
+      window.location.assign('/mission-control')
+    }
+  }
 
   return (
     <div className="public-site">
       <div className="ambient-glow" aria-hidden="true"></div>
       <nav className="public-nav" aria-label="Primary navigation">
         <div className="nav-inner">
-          <a className="logo-wordmark" href="#home" onClick={() => setIsMenuOpen(false)}>
+          <a className="logo-wordmark" href="#home" onClick={handleLogoClick} onContextMenu={handleLogoContextMenu}>
             <img src={rsarbosLogo} alt="RSARBOS" />
           </a>
           <div className="desktop-menu">
-            <a href="#built-for">Built For</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#sample">Sample Reports</a>
             <a className="nav-cta" href="#request">REQUEST REPORT</a>
-            <a href="/mission-control">Mission Control</a>
+            <a className="nav-contact" href="/contact">CONTACT</a>
           </div>
           <button className="mobile-menu-button" type="button" aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((open) => !open)}>
             <span></span>
@@ -85,11 +95,8 @@ function PublicWebsite() {
         </div>
         {isMenuOpen && (
           <div className="mobile-menu">
-            <a href="#built-for" onClick={() => setIsMenuOpen(false)}>Built For</a>
-            <a href="#pricing" onClick={() => setIsMenuOpen(false)}>Pricing</a>
-            <a href="#sample" onClick={() => setIsMenuOpen(false)}>Sample Reports</a>
             <a href="#request" onClick={() => setIsMenuOpen(false)}>Request Report</a>
-            <a href="/mission-control">Mission Control</a>
+            <a href="/contact">Contact</a>
           </div>
         )}
       </nav>
@@ -99,7 +106,7 @@ function PublicWebsite() {
           <div className="hero-content">
             <div className="hero-chip"><span></span>Building the New Era of Real Estate Tech</div>
             <h1>
-              FROM PROPERTY LINK
+              <span className="hero-title-line">FROM PROPERTY LINK</span>
               <br />
               <span className="red-glow">TO DECISION-READY DOSSIER.</span>
             </h1>
@@ -116,7 +123,7 @@ function PublicWebsite() {
             </p>
             <div className="hero-actions centered">
               <a className="primary-action shine-action" href="#request" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
-              <a className="secondary-action glass-action" href="#sample" onClick={() => trackEvent('hero_cta_click', { cta: 'view_template' })}>VIEW TEMPLATE</a>
+              <a className="secondary-action glass-action" href="/contact" onClick={() => trackEvent('hero_cta_click', { cta: 'contact' })}>CONTACT</a>
             </div>
           </div>
           <div className="hero-lines" aria-hidden="true">
@@ -199,14 +206,8 @@ function PublicWebsite() {
       <footer className="public-footer">
         <div className="content-wrap">
           <div className="footer-top">
-            <div>
-              <a className="logo-wordmark footer-logo" href="#home"><img src={rsarbosLogo} alt="RSARBOS" /></a>
-              <p>BUILDING THE INTELLIGENCE LAYER FOR THE NEXT ECONOMY.</p>
-            </div>
-            <div className="footer-contact">
-              <div><span>CONTACT / INTAKE:</span><a href={`mailto:${REQUEST_EMAIL}`}>{REQUEST_EMAIL}</a></div>
-              <div><span>SUPPORT:</span><a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></div>
-            </div>
+            <a className="logo-wordmark footer-logo" href="#home" onClick={handleLogoClick} onContextMenu={handleLogoContextMenu}><img src={rsarbosLogo} alt="RSARBOS" /></a>
+            <p>BUILDING THE INTELLIGENCE LAYER FOR THE NEXT ECONOMY.</p>
           </div>
           <div className="footer-bottom">
             <p>© 2026 RSARBOS Next-Gen Business Technology. All rights reserved.</p>
@@ -214,6 +215,7 @@ function PublicWebsite() {
               <a href="/terms">Terms</a>
               <a href="/privacy">Privacy</a>
               <a href="/refund-policy">Refunds</a>
+              <a href="/contact">Contact</a>
               <span>SYSTEM: ONLINE</span>
               <span className="online-dot">■</span>
             </div>
@@ -318,6 +320,105 @@ function LegalPage({ type }: { type: 'terms' | 'privacy' | 'refund' }) {
           ))}
         </div>
         <a className="primary-action red-action" href="/">Return Home</a>
+      </section>
+    </main>
+  )
+}
+
+const INITIAL_CONTACT_FORM = {
+  type: 'contact',
+  name: '',
+  email: '',
+  phone: '',
+  subject: '',
+  message: '',
+}
+
+function ContactPage() {
+  const [form, setForm] = useState(INITIAL_CONTACT_FORM)
+  const [isSending, setIsSending] = useState(false)
+  const [status, setStatus] = useState('')
+  const [error, setError] = useState('')
+
+  function updateField(field: keyof typeof form, value: string) {
+    setForm((prev) => ({ ...prev, [field]: value }))
+  }
+
+  async function submitContact(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setIsSending(true)
+    setStatus('')
+    setError('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      })
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Unable to send message.')
+      }
+
+      setStatus('Message sent. RSARBOS will reply by email.')
+      setForm(INITIAL_CONTACT_FORM)
+    } catch (sendError) {
+      setError(sendError instanceof Error ? sendError.message : 'Unable to send message.')
+    } finally {
+      setIsSending(false)
+    }
+  }
+
+  return (
+    <main className="contact-shell">
+      <section className="contact-panel glass-panel">
+        <div className="contact-copy">
+          <a className="logo-wordmark contact-logo" href="/"><img src={rsarbosLogo} alt="RSARBOS" /></a>
+          <p className="red-kicker"><span></span>Contact</p>
+          <h1>Talk to RSARBOS.</h1>
+          <p>
+            Use this page for general questions, report help, payment support, or delivery follow-up. The message routes
+            directly to the RSARBOS support inbox.
+          </p>
+        </div>
+        <form className="contact-form" onSubmit={submitContact}>
+          <label>
+            MESSAGE TYPE
+            <select value={form.type} onChange={(event) => updateField('type', event.target.value)}>
+              <option value="contact">General contact</option>
+              <option value="support">Support request</option>
+            </select>
+          </label>
+          <label>
+            NAME *
+            <input value={form.name} onChange={(event) => updateField('name', event.target.value)} required />
+          </label>
+          <label>
+            EMAIL *
+            <input type="email" value={form.email} onChange={(event) => updateField('email', event.target.value)} required />
+          </label>
+          <label>
+            PHONE
+            <input value={form.phone} onChange={(event) => updateField('phone', event.target.value)} />
+          </label>
+          <label className="full-field">
+            SUBJECT *
+            <input value={form.subject} onChange={(event) => updateField('subject', event.target.value)} required />
+          </label>
+          <label className="full-field">
+            MESSAGE *
+            <textarea value={form.message} onChange={(event) => updateField('message', event.target.value)} rows={5} required />
+          </label>
+          {status && <p className="form-success full-field">{status}</p>}
+          {error && <p className="form-error full-field">{error}</p>}
+          <button className="primary-action red-action full-field" type="submit" disabled={isSending}>
+            {isSending ? 'SENDING...' : 'SEND MESSAGE'}
+          </button>
+        </form>
       </section>
     </main>
   )
@@ -613,6 +714,10 @@ export default function App() {
 
   if (path === '/refund-policy') {
     return <LegalPage type="refund" />
+  }
+
+  if (path === '/contact') {
+    return <ContactPage />
   }
 
   return <PublicWebsite />

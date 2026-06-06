@@ -45,6 +45,36 @@ function requestEmailHtml(request) {
   `
 }
 
+function contactEmailHtml(message) {
+  const rows = [
+    ['Type', message.type],
+    ['Name', message.name],
+    ['Email', message.email],
+    ['Phone', message.phone || 'Not provided'],
+    ['Subject', message.subject],
+  ]
+
+  return `
+    <div style="font-family:Arial,sans-serif;color:#111827;line-height:1.5">
+      <h1 style="margin:0 0 16px;color:#0A0F1C">RSARBOS Contact / Support Message</h1>
+      <table style="border-collapse:collapse;width:100%;max-width:760px">
+        ${rows
+          .map(
+            ([label, value]) => `
+              <tr>
+                <td style="border:1px solid #E5E7EB;background:#F9FAFB;padding:10px;font-weight:700;width:160px">${escapeHtml(label)}</td>
+                <td style="border:1px solid #E5E7EB;padding:10px">${escapeHtml(value)}</td>
+              </tr>
+            `,
+          )
+          .join('')}
+      </table>
+      <h2 style="margin:22px 0 8px;color:#0A0F1C;font-size:18px">Message</h2>
+      <div style="white-space:pre-wrap;border:1px solid #E5E7EB;background:#F9FAFB;padding:12px;max-width:760px">${escapeHtml(message.message || 'None provided')}</div>
+    </div>
+  `
+}
+
 async function sendRequestEmail(request) {
   if (!process.env.RESEND_API_KEY) {
     throw new Error('RESEND_API_KEY is required')
@@ -70,6 +100,33 @@ async function sendRequestEmail(request) {
   return data
 }
 
+async function sendContactEmail(message) {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY is required')
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY)
+  const to = process.env.SUPPORT_EMAIL || 'uw.support@rsarbos.com'
+  const from = process.env.EMAIL_FROM || 'RSARBOS Contact <onboarding@resend.dev>'
+  const subjectPrefix = message.type === 'support' ? 'Support' : 'Contact'
+  const subject = `RSARBOS ${subjectPrefix}: ${message.subject}`
+
+  const { data, error } = await resend.emails.send({
+    from,
+    to,
+    subject,
+    html: contactEmailHtml(message),
+    replyTo: message.email,
+  })
+
+  if (error) {
+    throw new Error(`Resend email failed: ${error.message}`)
+  }
+
+  return data
+}
+
 module.exports = {
+  sendContactEmail,
   sendRequestEmail,
 }
