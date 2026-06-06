@@ -5,7 +5,6 @@ const INITIAL_FORM = {
   clientName: '',
   email: '',
   phone: '',
-  propertyAddress: '',
   propertyUrl: '',
   investmentIntent: '',
   urgency: 'standard',
@@ -41,7 +40,6 @@ export default function ManualReportForm() {
           customerName: form.clientName,
           customerEmail: form.email,
           customerPhone: form.phone,
-          propertyAddress: form.propertyAddress,
           propertyUrl: form.propertyUrl,
           investmentIntent: form.investmentIntent,
           urgency: form.urgency,
@@ -75,10 +73,6 @@ export default function ManualReportForm() {
       <label>
         PHONE NUMBER
         <input value={form.phone} onChange={(event) => updateField('phone', event.target.value)} placeholder="(555) 123-4567" />
-      </label>
-      <label className="full-field">
-        PROPERTY ADDRESS *
-        <input value={form.propertyAddress} onChange={(event) => updateField('propertyAddress', event.target.value)} required />
       </label>
       <label className="full-field">
         PROPERTY URL (Zillow, Redfin, MLS, etc.) *

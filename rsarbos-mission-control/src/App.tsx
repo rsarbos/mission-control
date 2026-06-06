@@ -64,14 +64,26 @@ const REPORT_SECTIONS = [
 ] as const
 
 const PILLARS = [
-  ['FIRST-TIME INVESTORS', 'key', 'Understand the numbers, risks, rent thesis, and next diligence steps before writing an offer.'],
-  ['FLIPPERS & OPERATORS', 'hammer', 'Pressure-test ARV, rehab assumptions, comps, exit strategy, and deal-killing constraints.'],
-  ['ACQUISITION TEAMS', 'target', 'Give sourcing teams a consistent decision layer for comparing opportunities quickly.'],
-  ['CAPITAL PARTNERS', 'capital', 'Package property logic into a clean dossier that lenders, partners, and stakeholders can review.'],
+  ['FIRST-TIME INVESTORS', 'Understand the numbers, risks, rent thesis, and next diligence steps before writing an offer.'],
+  ['FLIPPERS & OPERATORS', 'Pressure-test ARV, rehab assumptions, comps, exit strategy, and deal-killing constraints.'],
+  ['ACQUISITION TEAMS', 'Give sourcing teams a consistent decision layer for comparing opportunities quickly.'],
+  ['CAPITAL PARTNERS', 'Package property logic into a clean dossier that lenders, partners, and stakeholders can review.'],
+] as const
+
+const HERO_AUDIENCES = [
+  'investors',
+  'flippers',
+  'wholesalers',
+  'agents',
+  'operators',
+  'acquisition teams',
+  'capital partners',
+  'deal sponsors',
 ] as const
 
 function PublicWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const carouselPillars = [...PILLARS, ...PILLARS]
 
   return (
     <div className="public-site">
@@ -124,9 +136,17 @@ function PublicWebsite() {
               <span>MLS</span>
               <strong>RSARBOS Dossier</strong>
             </div>
-            <p>
-              RSARBOS transforms complex property data into clear, decision-grade underwriting intelligence. Built for founders,
-              investors, and institutions who demand truth first.
+            <p className="hero-subtitle">
+              RSARBOS transforms complex property data into clear, decision-grade underwriting intelligence. Built for{' '}
+              <span className="audience-rotator" aria-label="investors, flippers, wholesalers, agents, operators, acquisition teams, capital partners, and deal sponsors">
+                <span className="audience-track">
+                  {HERO_AUDIENCES.map((audience) => (
+                    <span key={audience}>{audience}</span>
+                  ))}
+                  <span>{HERO_AUDIENCES[0]}</span>
+                </span>
+              </span>{' '}
+              who demand truth first.
             </p>
             <div className="hero-actions centered">
               <a className="primary-action shine-action" href="#request" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
@@ -208,38 +228,15 @@ function PublicWebsite() {
                 acquisition teams, and any group that needs a clearer underwriting document before committing capital.
               </p>
             </div>
-            <div className="pillar-grid">
-              {PILLARS.map(([title, icon, copy]) => (
-                <article className="glass-panel pillar-card" key={title}>
-                  <div className="pillar-icon" aria-hidden="true">
-                    {icon === 'key' && (
-                      <svg viewBox="0 0 24 24">
-                        <circle cx="8" cy="8" r="3.2" />
-                        <path d="M10.4 10.4 21 21M15 15l2.6-2.6M17.5 17.5l2.4-2.4" />
-                      </svg>
-                    )}
-                    {icon === 'hammer' && (
-                      <svg viewBox="0 0 24 24">
-                        <path d="M14 5 19 10M12 7l5 5M4 20l8.5-8.5M13 4l7 7-2 2-7-7z" />
-                      </svg>
-                    )}
-                    {icon === 'target' && (
-                      <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="8" />
-                        <circle cx="12" cy="12" r="4" />
-                        <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-                      </svg>
-                    )}
-                    {icon === 'capital' && (
-                      <svg viewBox="0 0 24 24">
-                        <path d="M4 19h16M6 19V9l6-4 6 4v10M9 19v-6M15 19v-6M5 9h14" />
-                      </svg>
-                    )}
-                  </div>
-                  <h3>{title}</h3>
-                  <p>{copy}</p>
-                </article>
-              ))}
+            <div className="pillar-carousel" aria-label="Audience segments RSARBOS supports">
+              <div className="pillar-carousel-track">
+                {carouselPillars.map(([title, copy], index) => (
+                  <article className="pillar-slide" key={`${title}-${index}`} aria-hidden={index >= PILLARS.length}>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>

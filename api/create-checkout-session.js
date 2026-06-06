@@ -37,8 +37,10 @@ module.exports = async function handler(req, res) {
     const requestId = crypto.randomUUID()
     const customerName = requireString(body.customerName, 'Customer name')
     const customerEmail = requireString(body.customerEmail, 'Customer email')
-    const propertyAddress = requireString(body.propertyAddress, 'Property address')
     const propertyUrl = requireString(body.propertyUrl, 'Property URL')
+    const propertyAddress = typeof body.propertyAddress === 'string' && body.propertyAddress.trim()
+      ? body.propertyAddress.trim()
+      : propertyUrl
     const siteUrl = process.env.SITE_URL || 'http://localhost:5173'
 
     await query(
