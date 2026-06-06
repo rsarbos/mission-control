@@ -1190,6 +1190,7 @@ code {
 /* Public RSARBOS website handoff */
 .public-site {
   --title-font: var(--google-sans-stack);
+  --section-gutter: clamp(20px, 5vw, 42px);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -1224,7 +1225,7 @@ code {
 }
 
 .content-wrap {
-  width: min(1180px, calc(100% - 40px));
+  width: min(1180px, calc(100% - (var(--section-gutter) * 2)));
   margin: 0 auto;
 }
 
@@ -1245,7 +1246,7 @@ code {
 }
 
 .nav-inner {
-  width: min(1180px, calc(100% - 40px));
+  width: min(1180px, calc(100% - (var(--section-gutter) * 2)));
   height: 80px;
   display: flex;
   align-items: center;
@@ -1325,7 +1326,7 @@ code {
 .mobile-menu {
   display: grid;
   gap: 4px;
-  width: min(1180px, calc(100% - 40px));
+  width: min(1180px, calc(100% - (var(--section-gutter) * 2)));
   margin: 0 auto;
   padding: 10px 0 16px;
 }
@@ -1342,12 +1343,13 @@ code {
   display: grid;
   place-items: center;
   position: relative;
-  padding: 172px 20px 112px;
+  padding: 172px var(--section-gutter) 112px;
   text-align: center;
   overflow: hidden;
 }
 
 .hero-content {
+  width: min(960px, 100%);
   max-width: 960px;
   position: relative;
   z-index: 2;
@@ -1378,7 +1380,7 @@ code {
 
 .rs-hero h1 {
   margin: 0;
-  font-size: clamp(2.3rem, 5.85vw, 6.1rem);
+  font-size: clamp(2.9rem, 6.8vw, 6.75rem);
   line-height: 0.96;
   font-weight: 800;
 }
@@ -2554,19 +2556,23 @@ code {
 }
 
 @media (max-width: 720px) {
+  .public-site {
+    --section-gutter: 18px;
+  }
+
   .content-wrap,
   .nav-inner,
   .mobile-menu,
   .form-wrap {
-    width: min(100% - 28px, 1180px);
+    width: min(100% - (var(--section-gutter) * 2), 1180px);
   }
 
   .rs-hero {
-    padding: 142px 14px 82px;
+    padding: 142px var(--section-gutter) 82px;
   }
 
   .rs-hero h1 {
-    font-size: clamp(1.72rem, 8.45vw, 3.2rem);
+    font-size: clamp(2.25rem, 10.9vw, 4rem);
   }
 
   .hero-actions,
