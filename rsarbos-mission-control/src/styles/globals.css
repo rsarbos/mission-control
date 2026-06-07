@@ -3095,16 +3095,16 @@ code {
   align-items: center;
   gap: 8px;
   padding: 7px 12px;
-  border: 1px solid rgba(255, 59, 56, 0.38);
+  border: 1px solid rgba(16, 185, 129, 0.38);
   border-radius: 999px;
-  background: rgba(255, 59, 56, 0.1);
+  background: rgba(16, 185, 129, 0.1);
   color: white;
   font-weight: 900;
-  box-shadow: 0 0 20px rgba(255, 59, 56, 0.12);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.12);
 }
 
 .online-dot {
-  color: var(--rsarbos-red);
+  color: #10b981;
 }
 
 @keyframes pulse-dot {
