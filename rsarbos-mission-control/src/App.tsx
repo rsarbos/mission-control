@@ -194,7 +194,8 @@ function PublicWebsite() {
       if (event.data?.type !== 'rsarbos:dossier-nav') return
 
       window.setTimeout(() => {
-        const frame = document.querySelector<HTMLElement>('.mobile-dossier-frame')
+        const frame = Array.from(document.querySelectorAll<HTMLElement>('.a4-dossier-frame, .mobile-dossier-frame'))
+          .find((candidate) => candidate.getBoundingClientRect().height > 0)
         const nav = document.querySelector<HTMLElement>('.public-nav')
         if (!frame || !nav) return
 
@@ -296,35 +297,43 @@ function PublicWebsite() {
         </section>
 
         <section className="sample-section" id="sample">
-          <div className="content-wrap sample-grid">
-            <div className="pricing-column" id="pricing">
-              <p className="red-kicker"><span></span>Launch Offer</p>
-              <h2>CLEAR PRICING</h2>
-              <p>No hidden fees. Flat rate intelligence for actionable decisions.</p>
-              <article className="pricing-card glass-panel">
-                <div className="pricing-rule"></div>
-                <h3>MANUAL UNDERWRITING</h3>
-                <p className="price">$100 <span>/ report</span></p>
-                <ul>
-                  <li>Complete Final Underwriting Dossier</li>
-                  <li>Deal Confidence Summary</li>
-                  <li>Delivered within 24 hours of payment</li>
-                  <li>Secure private delivery link</li>
-                </ul>
-                <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
-              </article>
+          <div className="content-wrap sample-preview-column">
+            <div className="sample-preview-copy centered-copy">
+              <p className="red-kicker"><span></span>Example Report</p>
+              <h2>SAMPLE DOSSIER</h2>
+              <p>See the exact decision format before you request underwriting.</p>
+            </div>
+            <div className="a4-dossier-frame" aria-label="A4 preview of RSARBOS investment dossier">
+              <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier A4 preview" loading="lazy" tabIndex={-1}></iframe>
             </div>
             <div className="sample-preview-column">
-              <div className="sample-preview-copy">
-                <p className="red-kicker"><span></span>Example Report</p>
-                <h2>SAMPLE DOSSIER</h2>
-                <p>See the exact decision format before you request underwriting.</p>
-              </div>
               <div className="mobile-dossier-frame" aria-label="Mobile preview of RSARBOS investment dossier">
                 <div className="phone-speaker" aria-hidden="true"></div>
                 <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy" tabIndex={-1}></iframe>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="pricing-section" id="pricing">
+          <div className="content-wrap pricing-layout">
+            <div className="pricing-column">
+              <p className="red-kicker"><span></span>Launch Offer</p>
+              <h2>CLEAR PRICING</h2>
+              <p>No hidden fees. Flat rate intelligence for actionable decisions.</p>
+            </div>
+            <article className="pricing-card glass-panel">
+              <div className="pricing-rule"></div>
+              <h3>MANUAL UNDERWRITING</h3>
+              <p className="price">$100 <span>/ report</span></p>
+              <ul>
+                <li>Complete Final Underwriting Dossier</li>
+                <li>Deal Confidence Summary</li>
+                <li>Delivered within 24 hours of payment</li>
+                <li>Secure private delivery link</li>
+              </ul>
+              <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
+            </article>
           </div>
         </section>
 

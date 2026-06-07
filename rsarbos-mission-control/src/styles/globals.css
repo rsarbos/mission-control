@@ -2169,7 +2169,7 @@ code {
 .sample-section {
   background: rgba(13, 17, 23, 0.48);
   border-block: 1px solid rgba(199, 204, 214, 0.1);
-  padding: 84px 0;
+  padding: 84px 0 96px;
   scroll-margin-top: 104px;
 }
 
@@ -2519,7 +2519,7 @@ code {
 .pricing-card {
   position: relative;
   width: min(420px, 100%);
-  margin: 28px 0 0;
+  margin: 0;
   padding: 32px;
   border-radius: 10px;
   overflow: hidden;
@@ -2589,12 +2589,12 @@ code {
 
 .sample-preview-column {
   display: grid;
-  gap: 24px;
+  gap: 28px;
   justify-items: center;
 }
 
 .sample-preview-copy {
-  width: min(520px, 100%);
+  width: min(680px, 100%);
   justify-self: stretch;
 }
 
@@ -2610,6 +2610,49 @@ code {
 .pricing-column > p:not(.red-kicker) {
   color: var(--rsarbos-silver);
   line-height: 1.7;
+}
+
+.pricing-section {
+  padding: 86px 0;
+  background: rgba(5, 8, 16, 0.76);
+  border-bottom: 1px solid rgba(199, 204, 214, 0.1);
+}
+
+.pricing-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: 56px;
+  align-items: center;
+}
+
+.pricing-layout .pricing-column {
+  max-width: 620px;
+}
+
+.a4-dossier-frame {
+  position: relative;
+  width: min(860px, 100%);
+  aspect-ratio: 794 / 1123;
+  max-height: min(1120px, 86vh);
+  padding: 18px;
+  border: 1px solid rgba(255, 56, 56, 0.42);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.98), rgba(2, 6, 23, 0.98));
+  box-shadow:
+    0 0 26px rgba(255, 56, 56, 0.34),
+    0 0 68px rgba(255, 56, 56, 0.18),
+    0 34px 100px rgba(0, 0, 0, 0.52);
+  overflow: hidden;
+  scroll-margin-top: 104px;
+}
+
+.a4-dossier-frame iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  border-radius: 10px;
+  background: white;
 }
 
 .sample-note {
@@ -2640,6 +2683,7 @@ code {
 
 .mobile-dossier-frame {
   position: relative;
+  display: none;
   width: min(390px, 100%);
   height: 760px;
   aspect-ratio: 390 / 760;
@@ -3162,7 +3206,8 @@ code {
 
   .split-feature,
   .core-grid,
-  .sample-grid {
+  .sample-grid,
+  .pricing-layout {
     grid-template-columns: 1fr;
   }
 
@@ -3176,10 +3221,6 @@ code {
 
   .pricing-column {
     max-width: 100%;
-  }
-
-  .sample-preview-column {
-    order: -1;
   }
 
   .sample-preview-copy {
@@ -3252,6 +3293,7 @@ code {
   }
 
   .mobile-dossier-frame {
+    display: block;
     width: min(390px, calc(100vw - (var(--section-gutter) * 2)));
     height: auto;
     min-height: 0;
@@ -3260,6 +3302,10 @@ code {
 
   .mobile-dossier-frame iframe {
     min-height: 0;
+  }
+
+  .a4-dossier-frame {
+    display: none;
   }
 
   .footer-bottom {
