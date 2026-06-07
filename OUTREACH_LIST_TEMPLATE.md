@@ -1,25 +1,24 @@
-# RSARBOS First Outreach List
+# RSARBOS Elite Outreach List (War Room)
 
-Use this to build the first 25-50 launch prospects before marketing begins.
+High-probability prospects identified for the Manual Underwriting service launch. These leads prioritize "Red Pill" data (Rent gaps, hidden risks) over general tool marketing.
 
-| Name | Segment | Contact | Channel | Reason They Fit | First Message Sent | Follow-Up Date | Status |
-|---|---|---|---|---|---:|---|---|
-|  | First-time investor |  |  |  | No |  | Not contacted |
-|  | Flipper/operator |  |  |  | No |  | Not contacted |
-|  | Acquisition team |  |  |  | No |  | Not contacted |
-|  | Agent |  |  |  | No |  | Not contacted |
-|  | Wholesaler |  |  |  | No |  | Not contacted |
+| Name | Role | Organization | Core Motivation | Hook Angle |
+|---|---|---|---|---|
+| **Pace Morby** | Creative Finance | SubTo Community | Entry fee verification. | Rent vs. SubTo payment stress-test. |
+| **Brandon Turner** | Investor/Mentor | Open Door Capital | Deal speed & confidence. | "Red Pill" rent reality on Scale deals. |
+| **Rob Beardsley** | MF Underwriter | Lone Star Capital | Accuracy & Institutional audit. | High-fidelity risk register vs. pro-forma. |
+| **InvestorLift Platinum** | Wholesaler | High Volume Dispo | Moving stale deals faster. | Differentiating deal blasts with dossiers. |
+| **BP Pro Members** | New Investors | BiggerPockets | Fear of overpaying. | Final "Confidence Check" audit. |
 
-## Suggested First Segments
+## The "Red Pill" Hook Formula
 
-- Local investors who recently asked about deals.
-- Agents who work with investor buyers.
-- Flippers who post before/after projects.
-- Wholesalers sending property links by text/email.
-- Small acquisition teams comparing off-market opportunities.
+To make these prospects click inevitably, lead with the **Discrepancy**:
 
-## Follow-Up Rule
+> "Underwrote **[Address]** and found a **$[Gap]** gap between the listing rent and the actual comp-ceiling. I packaged the full risk-register and ARV thesis here: **[RSARBOS Link]**. No strings, just thought you'd want to see the spread before your team spends time on it."
 
-If someone asks for a sample, send the Shawn Dr preview first.
-
-If someone submits but does not pay, follow the `Payment Recovery` saved response in `REPORT_OPERATIONS.md`.
+## Success Workflow
+1. Select property from **Asset War Room**.
+2. Identify the **Rent Discrepancy**.
+3. Copy the **Ready-to-Send Script**.
+4. Click **Trigger Outreach** (Mail/Social) and paste.
+5. Proof competence with the **Sample Dossier** in the first touch.

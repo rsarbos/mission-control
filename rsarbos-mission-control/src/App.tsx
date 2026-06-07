@@ -19,7 +19,7 @@ const AUDIENCE_BANNER_ITEMS = [
   'LENDERS',
 ] as const
 
-type ChannelTag = 'YouTube Creator' | 'BiggerPockets' | 'FB Wholesaler' | 'InvestorLift' | 'Privy'
+type ChannelTag = 'YouTube Creator' | 'BiggerPockets' | 'LinkedIn' | 'InvestorLift' | 'Privy'
 
 type OutreachContact = {
   uuid: string
@@ -39,6 +39,8 @@ type UnderwrittenAsset = {
   address: string
   sourcedByContactUuid: string
   listPrice: number
+  headlineRent: number
+  actualCompRent: number
   yearBuilt: number
   squareFeet: number
   maximumAllowableOffer: number
@@ -47,13 +49,14 @@ type UnderwrittenAsset = {
   compileStatus: string
   paymentStatus: 'PAID' | 'PENDING' | 'UNPAID'
   assetRiskRegister: string[]
+  dossierUrl: string
 }
 
 type OutreachTemplate = {
   id: string
   title: string
   target: string
-  body: string
+  generateBody: (asset: UnderwrittenAsset) => string
 }
 
 type DailyChecklistItem = {
@@ -76,58 +79,78 @@ const VALIDATION_TARGET = 3
 
 const OUTREACH_CONTACTS: OutreachContact[] = [
   {
-    uuid: 'contact-yt-acq-001',
-    name: 'Acquisition Lead',
-    company: 'YouTube Fund Operator',
+    uuid: 'contact-pace-subto-004',
+    name: 'Pace Morby (SubTo)',
+    company: 'Creative Finance Community',
     channelTag: 'YouTube Creator',
-    phone: '+15550101001',
-    email: 'acquisitions@example.com',
-    socialHandle: '@fundoperator',
-    socialUrl: 'https://www.youtube.com/',
+    phone: '+15550201004',
+    email: 'acquisitions@subto.com',
+    socialHandle: '@pacemorby',
+    socialUrl: 'https://www.instagram.com/pacemorby/',
   },
   {
-    uuid: 'contact-bp-analyst-002',
-    name: 'First-Time Investor',
-    company: 'BiggerPockets Lead Analysis',
+    uuid: 'contact-turner-005',
+    name: 'Brandon Turner',
+    company: 'A Better Life / Open Door Capital',
+    channelTag: 'YouTube Creator',
+    phone: '+15550201005',
+    email: 'deals@abetterlife.com',
+    socialHandle: '@beardybrandon',
+    socialUrl: 'https://www.biggerpockets.com/users/brandonatbp',
+  },
+  {
+    uuid: 'contact-beardsley-006',
+    name: 'Rob Beardsley',
+    company: 'Lone Star Capital',
+    channelTag: 'LinkedIn',
+    phone: '+15550201006',
+    email: 'rob@lscre.com',
+    socialHandle: 'rob-beardsley',
+    socialUrl: 'https://www.linkedin.com/in/rob-beardsley/',
+  },
+  {
+    uuid: 'contact-bp-power-007',
+    name: 'BP Power Member',
+    company: 'Deal Analysis Forum',
     channelTag: 'BiggerPockets',
-    phone: '+15550101002',
-    email: 'bp.investor@example.com',
-    socialHandle: 'BP profile',
-    socialUrl: 'https://www.biggerpockets.com/',
+    phone: '+15550201007',
+    email: 'investor.pro@example.com',
+    socialHandle: 'Pro User',
+    socialUrl: 'https://www.biggerpockets.com/forums/52',
   },
   {
-    uuid: 'contact-wholesale-003',
-    name: 'High-Volume Wholesaler',
-    company: 'InvestorLift / Privy Network',
+    uuid: 'contact-lift-wholesale-008',
+    name: 'InvestorLift Platinum',
+    company: 'Dispo Desk',
     channelTag: 'InvestorLift',
-    phone: '+15550101003',
-    email: 'deals@example.com',
-    socialHandle: '@dealflowdesk',
+    phone: '+15550201008',
+    email: 'dispo.king@example.com',
+    socialHandle: '@dispokings',
     socialUrl: 'https://www.investorlift.com/',
   },
 ]
 
 const OUTREACH_TEMPLATES: OutreachTemplate[] = [
   {
-    id: 'deal-filter',
-    title: 'Deal Filter Angle',
-    target: 'YouTube funds / acquisition leads',
-    body:
-      'I built a compact underwriting dossier that pressure-tests the rent story, comps, MAO, and walkaway risks before your team spends time on the deal. Send me one property link and I will return a decision-ready verdict your acquisition team can audit.',
+    id: 'red-pill-rent',
+    title: 'The "Red Pill" Rent Hook',
+    target: 'High-Volume Wholesalers / Acquisition',
+    generateBody: (asset) => 
+      `The listing for ${asset.address} claims $${asset.headlineRent.toLocaleString()} in rent. My report found the actual comp-ceiling is $${asset.actualCompRent.toLocaleString()}. I packaged the full risk-register and ARV thesis here: https://rsarbos.com${asset.dossierUrl}. No strings, just wanted to show you the spread before your team spends time on it.`,
   },
   {
-    id: 'first-timer',
-    title: 'Nervous First-Timer Safeguard',
-    target: 'BiggerPockets lead analysis forums',
-    body:
-      'Before you submit an offer, I can turn the listing into a plain-English underwriting verdict: what works, what breaks, what rent assumptions are risky, and what questions to ask before money moves.',
+    id: 'risk-first',
+    title: 'Risk Register Angle',
+    target: 'Institutional / Skeptical Buyers',
+    generateBody: (asset) => 
+      `Underwrote ${asset.address} and found a specific risk ([${asset.assetRiskRegister[0]}]) that doesn't show up on Zillow. Full dossier with comps and walkaway triggers here: https://rsarbos.com${asset.dossierUrl}. Worth a look before you run numbers.`,
   },
   {
-    id: 'wholesaler',
-    title: 'Lazy High-Volume Wholesaler Pipeline',
-    target: 'InvestorLift / Privy communities',
-    body:
-      'If your buyer list is asking for cleaner numbers, send the property link and I will package the rent reality, risk register, MAO, and verdict into a shareable dossier. It gives serious buyers a faster reason to reply.',
+    id: 'creative-subto',
+    title: 'SubTo Entry Fee Stress-Test',
+    target: 'Pace Morby / SubTo Community',
+    generateBody: (asset) => 
+      `Saw the SubTo deal at ${asset.address}. Entry fee looks high when you stress-test the rent reality ($${asset.headlineRent.toLocaleString()} vs $${asset.actualCompRent.toLocaleString()}). Here's the decision-ready dossier: https://rsarbos.com${asset.dossierUrl}`,
   },
 ]
 
@@ -135,8 +158,10 @@ const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
   {
     uuid: 'asset-1314-shawn-dr',
     address: '1314 Shawn Dr #1, San Jose, CA 95118',
-    sourcedByContactUuid: 'contact-wholesale-003',
+    sourcedByContactUuid: 'contact-lift-wholesale-008',
     listPrice: 500000,
+    headlineRent: 4410,
+    actualCompRent: 2900,
     yearBuilt: 1970,
     squareFeet: 810,
     maximumAllowableOffer: 455000,
@@ -149,12 +174,15 @@ const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
       'RentCast attributes require manual 2BD/1BA comp validation.',
       '1970 systems inspection required before offer confidence.',
     ],
+    dossierUrl: DOSSIER_PREVIEW_URL,
   },
   {
     uuid: 'asset-seed-002',
     address: 'Inbound property link pending',
-    sourcedByContactUuid: 'contact-yt-acq-001',
+    sourcedByContactUuid: 'contact-turner-005',
     listPrice: 0,
+    headlineRent: 0,
+    actualCompRent: 0,
     yearBuilt: 0,
     squareFeet: 0,
     maximumAllowableOffer: 0,
@@ -163,6 +191,7 @@ const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
     compileStatus: 'Intake slot open',
     paymentStatus: 'PENDING',
     assetRiskRegister: ['Asset data not hydrated.', 'Comp set not assigned.', 'Risk register awaiting first pass.'],
+    dossierUrl: '#',
   },
 ]
 
@@ -650,7 +679,7 @@ function MissionControlApp() {
       id: 'boot',
       timestamp: formatUtcTimestamp(),
       mode: 'ghost',
-      text: 'Context terminal ready. Select persona, asset row, and helper pack before copying payload.',
+      text: 'War Room active. Asset-driven outreach ready.',
     },
   ])
   const [completedChecklist, setCompletedChecklist] = useState<Record<string, boolean>>(() => {
@@ -668,9 +697,6 @@ function MissionControlApp() {
 
   const paidDossierCount = UNDERWRITTEN_ASSETS.filter((asset) => asset.paymentStatus === 'PAID').length
   const bridgeProgress = Math.min((paidDossierCount / VALIDATION_TARGET) * 100, 100)
-  const selectedContactAssets = selectedContact
-    ? UNDERWRITTEN_ASSETS.filter((asset) => asset.sourcedByContactUuid === selectedContact.uuid)
-    : []
   const selectedAsset = UNDERWRITTEN_ASSETS.find((asset) => asset.uuid === selectedAssetUuid) || UNDERWRITTEN_ASSETS[0]
   const selectedAssetContact = selectedAsset
     ? OUTREACH_CONTACTS.find((contact) => contact.uuid === selectedAsset.sourcedByContactUuid)
@@ -687,10 +713,12 @@ function MissionControlApp() {
     setSelectedHelper(mode === 'ghost' ? GHOST_HELPERS[0] : CODEX_HELPERS[0])
   }
 
-  async function copyTemplate(template: OutreachTemplate) {
-    const payload = selectedContact
-      ? `${selectedContact.name} / ${selectedContact.company}\n\n${template.body}`
-      : template.body
+  async function copyScript(template: OutreachTemplate) {
+    if (!selectedAsset) return
+    const body = template.generateBody(selectedAsset)
+    const payload = selectedAssetContact
+      ? `TO: ${selectedAssetContact.name} (${selectedAssetContact.company})\n\n${body}`
+      : body
 
     try {
       await navigator.clipboard.writeText(payload)
@@ -753,7 +781,7 @@ function MissionControlApp() {
         </div>
         <div className="mc-admin-status">
           <span className="mc-live-dot" aria-hidden="true"></span>
-          SYSTEM ONLINE
+          WAR ROOM ACTIVE
         </div>
       </header>
 
@@ -761,10 +789,10 @@ function MissionControlApp() {
         <section className="mc-ops-zone">
           <div className="mc-admin-tabs" role="tablist" aria-label="Mission Control modules">
             <button type="button" className={activeAdminTab === 'pipeline' ? 'active' : ''} onClick={() => setActiveAdminTab('pipeline')}>
-              Validation Bridge
+              ASSET WAR ROOM
             </button>
             <button type="button" className={activeAdminTab === 'content' ? 'active' : ''} onClick={() => setActiveAdminTab('content')}>
-              Content Desk
+              CONTENT DESK
             </button>
           </div>
 
@@ -774,67 +802,17 @@ function MissionControlApp() {
                 <div className="bridge-marquee">SYSTEM STATUS: REVENUE EXECUTION MODE -- IMMUTABLE ENGINE PAUSED AT PHASE 2AH</div>
                 <div className="bridge-metrics">
                   <article>
-                    <p>Validation Bridge Progress</p>
-                    <strong>Current: {paidDossierCount} / Target: {VALIDATION_TARGET} Paid Dossiers</strong>
-                    <div className="bridge-meter" aria-label={`Validation bridge progress ${paidDossierCount} of ${VALIDATION_TARGET}`}>
+                    <p>Validation Progress</p>
+                    <strong>{paidDossierCount} / {VALIDATION_TARGET} Paid Reports</strong>
+                    <div className="bridge-meter" aria-label={`Validation progress ${paidDossierCount} of ${VALIDATION_TARGET}`}>
                       <span style={{ width: `${bridgeProgress}%` }}></span>
                     </div>
                   </article>
                   <article>
-                    <p>Mode</p>
-                    <strong>Revenue Execution</strong>
-                    <span className="status-tag status-green">ACTIVE PIPELINE</span>
+                    <p>Current Objective</p>
+                    <strong>"Red Pill" Prospecting</strong>
+                    <span className="status-tag status-green">REVENUE LIVE</span>
                   </article>
-                  <article>
-                    <p>Boundary</p>
-                    <strong>Backend held at Phase 2AH</strong>
-                    <span className="status-tag status-red">NO CORE MUTATION</span>
-                  </article>
-                </div>
-              </section>
-
-              <section className="mc-admin-card contacts-card">
-                <div className="mc-section-head">
-                  <div>
-                    <p className="mc-admin-kicker">Relational Database A</p>
-                    <h2>Contacts Directory</h2>
-                  </div>
-                  <span>Native action links enabled</span>
-                </div>
-                <div className="mc-table-wrap">
-                  <table className="mc-table">
-                    <thead>
-                      <tr>
-                        <th>Contact Name</th>
-                        <th>Organization / Firm</th>
-                        <th>Source Tag</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Social</th>
-                        <th>Scripts</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {OUTREACH_CONTACTS.map((contact) => (
-                        <tr key={contact.uuid}>
-                          <td>
-                            <strong>{contact.name}</strong>
-                            <span>{contact.uuid}</span>
-                          </td>
-                          <td>{contact.company}</td>
-                          <td><span className="channel-tag">{contact.channelTag}</span></td>
-                          <td><a href={`tel:${contact.phone}`}>{contact.phone}</a></td>
-                          <td><a href={`mailto:${contact.email}`}>{contact.email}</a></td>
-                          <td><a href={contact.socialUrl} target="_blank" rel="noreferrer">{contact.socialHandle}</a></td>
-                          <td>
-                            <button className="mc-mini-action" type="button" onClick={() => setSelectedContact(contact)}>
-                              Open
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
               </section>
 
@@ -844,7 +822,7 @@ function MissionControlApp() {
                     <p className="mc-admin-kicker">Relational Database B</p>
                     <h2>Active Asset Ledger</h2>
                   </div>
-                  <span>Assets map back to contact UUIDs</span>
+                  <span>Click to build attack plan</span>
                 </div>
                 <div className="mc-table-wrap">
                   <table className="mc-table asset-table">
@@ -852,10 +830,8 @@ function MissionControlApp() {
                       <tr>
                         <th>Property Address</th>
                         <th>Sourced From</th>
-                        <th>List Price</th>
-                        <th>Rental Thesis Delta</th>
-                        <th>Verdict Tag</th>
-                        <th>Dossier Compile Check</th>
+                        <th>Rent Discrepancy</th>
+                        <th>Verdict</th>
                         <th>Schema Fields</th>
                         <th>Risk Register</th>
                       </tr>
@@ -874,30 +850,69 @@ function MissionControlApp() {
                               <span>{asset.uuid}</span>
                             </td>
                             <td>
+                              <strong>{contact?.name || 'Unmapped'}</strong>
                               <span>{asset.sourcedByContactUuid}</span>
-                              <strong>{contact?.name || 'Unmapped contact'}</strong>
                             </td>
-                            <td>{asset.listPrice > 0 ? `$${asset.listPrice.toLocaleString()}` : 'Pending'}</td>
-                            <td>{asset.rentcastDiscrepancyFlag}</td>
+                            <td className="red-text">-${(asset.headlineRent - asset.actualCompRent).toLocaleString()} gap</td>
                             <td><VerdictBadge status={asset.verdictStatus} /></td>
-                            <td>{asset.compileStatus}</td>
                             <td>
                               <div className="schema-stack">
-                                <span>Year Built: {asset.yearBuilt || 'TBD'}</span>
-                                <span>Sq Ft: {asset.squareFeet || 'TBD'}</span>
-                                <span>MAO: {asset.maximumAllowableOffer ? `$${asset.maximumAllowableOffer.toLocaleString()}` : 'TBD'}</span>
+                                <span>MAO: ${asset.maximumAllowableOffer.toLocaleString()}</span>
+                                <span>Year: {asset.yearBuilt || 'TBD'}</span>
                               </div>
                             </td>
                             <td>
-                              <textarea
-                                value={asset.assetRiskRegister.join('\n')}
-                                aria-label={`${asset.address} asset risk register`}
-                                readOnly
-                              />
+                              <div className="risk-pill-list">
+                                {asset.assetRiskRegister.slice(0, 2).map((risk, i) => (
+                                  <span key={i} className="risk-pill">{risk.slice(0, 20)}...</span>
+                                ))}
+                              </div>
                             </td>
                           </tr>
                         )
                       })}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className="mc-admin-card contacts-card">
+                <div className="mc-section-head">
+                  <div>
+                    <p className="mc-admin-kicker">Relational Database A</p>
+                    <h2>Contacts Directory</h2>
+                  </div>
+                </div>
+                <div className="mc-table-wrap">
+                  <table className="mc-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Firm</th>
+                        <th>Channel</th>
+                        <th>Social</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {OUTREACH_CONTACTS.map((contact) => (
+                        <tr key={contact.uuid} className={selectedAssetContact?.uuid === contact.uuid ? 'highlight-row' : ''}>
+                          <td><strong>{contact.name}</strong></td>
+                          <td>{contact.company}</td>
+                          <td><span className="channel-tag">{contact.channelTag}</span></td>
+                          <td><a href={contact.socialUrl} target="_blank" rel="noreferrer">{contact.socialHandle}</a></td>
+                          <td>
+                            <div className="action-button-group">
+                              <button className="mc-mini-action" type="button" onClick={() => setSelectedContact(contact)}>
+                                Profile
+                              </button>
+                              <a href={`mailto:${contact.email}?subject=Underwriting Discrepancy: ${selectedAsset?.address}`} className="mc-mini-action red-action">
+                                Email
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -912,7 +927,6 @@ function MissionControlApp() {
                   <p className="mc-admin-kicker">Quick-Launch Content Asset Desk</p>
                   <h2>HOT DEAL IN 10 MIN</h2>
                 </div>
-                <span>Daily waitlist fuel</span>
               </div>
               <div className="content-desk-grid">
                 <div className="daily-checklist">
@@ -945,60 +959,71 @@ function MissionControlApp() {
         </section>
 
         <aside className={`mc-context-zone ${contextMode}`}>
-          <section className="mc-context-card">
+          <section className="mc-context-card attack-plan-card">
             <div className="mc-context-head">
               <div>
-                <p className="mc-admin-kicker">Integrated Context Command Box</p>
-                <h2>Context Terminal</h2>
+                <p className="mc-admin-kicker">Active Asset War Room</p>
+                <h2>OUTREACH ATTACK PLAN</h2>
               </div>
-              <span>{contextBadge}</span>
+              <span className="red-pill-badge">RED PILL READY</span>
             </div>
 
-            <div className="context-toggle" role="tablist" aria-label="Execution persona">
-              <button type="button" className={contextMode === 'ghost' ? 'active' : ''} onClick={() => setMode('ghost')}>
-                GHOST / AXIOM
-              </button>
-              <button type="button" className={contextMode === 'codex' ? 'active' : ''} onClick={() => setMode('codex')}>
-                CODEX
-              </button>
+            <div className="asset-summary-box glass-panel">
+              <p>Targeting Property:</p>
+              <h3>{selectedAsset?.address}</h3>
+              <div className="discrepancy-callout">
+                <span className="label">Rent Gap:</span>
+                <span className="value red-text">-${(selectedAsset.headlineRent - selectedAsset.actualCompRent).toLocaleString()} vs Listing</span>
+              </div>
+              <div className="war-room-actions">
+                <a href={selectedAsset.dossierUrl} target="_blank" rel="noreferrer" className="dossier-preview-link">VIEW DOSSIER</a>
+                {selectedAssetContact && (
+                   <a href={`mailto:${selectedAssetContact.email}?subject=Rent Reality: ${selectedAsset.address}`} className="primary-action red-action">
+                     TRIGGER OUTREACH
+                   </a>
+                )}
+              </div>
             </div>
 
-            <label className="context-helper">
-              Workspace Helper
-              <select value={selectedHelper} onChange={(event) => setSelectedHelper(event.target.value)}>
-                {contextHelpers.map((helper) => (
-                  <option key={helper} value={helper}>{helper}</option>
+            <div className="script-builder">
+              <p className="section-label">"Red Pill" Outreach Scripts</p>
+              <div className="script-list-vertical">
+                {OUTREACH_TEMPLATES.map((template) => (
+                  <article key={template.id} className="script-item glass-panel">
+                    <div className="script-header">
+                      <strong>{template.title}</strong>
+                      <span>{template.target}</span>
+                    </div>
+                    <p className="script-preview">{template.generateBody(selectedAsset).slice(0, 100)}...</p>
+                    <button className="mc-mini-action red-action" onClick={() => copyScript(template)}>
+                      {copiedTemplateId === template.id ? 'COPIED TO CLIPBOARD' : 'COPY FULL SCRIPT'}
+                    </button>
+                  </article>
                 ))}
-              </select>
-            </label>
-
-            <div className="context-selected-row">
-              <p>Active database row</p>
-              <strong>{selectedAsset?.address || 'No asset selected'}</strong>
-              <span>{selectedAssetContact?.name || 'No source contact'} / {selectedAsset?.verdictStatus || 'NO_STATUS'}</span>
+              </div>
             </div>
 
-            <div className="terminal-thread" aria-label="Context command message thread">
-              {terminalMessages.map((message) => (
-                <article key={message.id}>
-                  <span>[{message.timestamp} UTC] {message.mode.toUpperCase()}</span>
-                  <p>{message.text}</p>
-                </article>
-              ))}
+            <div className="terminal-mini">
+              <div className="context-toggle">
+                <button type="button" className={contextMode === 'ghost' ? 'active' : ''} onClick={() => setMode('ghost')}>GHOST</button>
+                <button type="button" className={contextMode === 'codex' ? 'active' : ''} onClick={() => setMode('codex')}>CODEX</button>
+              </div>
+              <div className="terminal-thread-mini">
+                {terminalMessages.slice(-2).map((message) => (
+                  <p key={message.id}><span>[{message.timestamp}]</span> {message.text}</p>
+                ))}
+              </div>
+              <form className="terminal-input-mini" onSubmit={submitTerminalMessage}>
+                <input
+                  value={terminalInput}
+                  onChange={(event) => setTerminalInput(event.target.value)}
+                  placeholder="System note..."
+                />
+              </form>
             </div>
-
-            <form className="terminal-input" onSubmit={submitTerminalMessage}>
-              <textarea
-                value={terminalInput}
-                onChange={(event) => setTerminalInput(event.target.value)}
-                rows={4}
-                placeholder="Write prompt context, outreach objective, schema question, or next execution instruction..."
-              />
-              <button type="submit">Add Thread Note</button>
-            </form>
 
             <button className="copy-context-button" type="button" onClick={copyContextPayload}>
-              {contextCopied ? 'Context Payload Copied' : 'Copy Context Payload to Clipboard'}
+              {contextCopied ? 'PAYLOAD READY' : 'COPY CONTEXT PAYLOAD'}
             </button>
           </section>
         </aside>
@@ -1015,7 +1040,7 @@ function MissionControlApp() {
           >
             <div className="mc-section-head">
               <div>
-                <p className="mc-admin-kicker">Quick-copy scripts</p>
+                <p className="mc-admin-kicker">Contact Profile</p>
                 <h2 id="script-modal-title">{selectedContact.name}</h2>
                 <p>{selectedContact.company}</p>
               </div>
@@ -1027,28 +1052,6 @@ function MissionControlApp() {
               <a href={`tel:${selectedContact.phone}`}>Call</a>
               <a href={`mailto:${selectedContact.email}`}>Email</a>
               <a href={selectedContact.socialUrl} target="_blank" rel="noreferrer">Social</a>
-            </div>
-            {selectedContactAssets.length > 0 && (
-              <div className="linked-assets">
-                <p>Linked assets</p>
-                {selectedContactAssets.map((asset) => (
-                  <span key={asset.uuid}>{asset.address}</span>
-                ))}
-              </div>
-            )}
-            <div className="script-list">
-              {OUTREACH_TEMPLATES.map((template) => (
-                <article key={template.id}>
-                  <div>
-                    <strong>{template.title}</strong>
-                    <span>{template.target}</span>
-                  </div>
-                  <p>{template.body}</p>
-                  <button className="mc-mini-action" type="button" onClick={() => copyTemplate(template)}>
-                    {copiedTemplateId === template.id ? 'Copied' : 'Copy Script'}
-                  </button>
-                </article>
-              ))}
             </div>
           </section>
         </div>
