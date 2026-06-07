@@ -1008,6 +1008,9 @@ function goTo(i) {
 
 function nav(d) {
   goTo(cur + d);
+  if (window.parent && window.parent !== window) {
+    window.setTimeout(() => window.parent.postMessage({ type: 'rsarbos:dossier-nav' }, '*'), 90);
+  }
 }
 
 function updateLabel() {

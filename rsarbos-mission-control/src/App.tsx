@@ -189,6 +189,27 @@ function PublicWebsite() {
   const [logoLeftClicks, setLogoLeftClicks] = useState(0)
   const audienceBannerItems = ['BUILT FOR:', ...AUDIENCE_BANNER_ITEMS, 'BUILT FOR:', ...AUDIENCE_BANNER_ITEMS]
 
+  useEffect(() => {
+    function keepDossierPreviewReachable(event: MessageEvent) {
+      if (event.data?.type !== 'rsarbos:dossier-nav') return
+
+      window.setTimeout(() => {
+        const frame = document.querySelector<HTMLElement>('.mobile-dossier-frame')
+        const nav = document.querySelector<HTMLElement>('.public-nav')
+        if (!frame || !nav) return
+
+        const navOffset = nav.getBoundingClientRect().height + 18
+        const frameTop = frame.getBoundingClientRect().top
+        if (frameTop < navOffset) {
+          window.scrollBy({ top: frameTop - navOffset, behavior: 'smooth' })
+        }
+      }, 80)
+    }
+
+    window.addEventListener('message', keepDossierPreviewReachable)
+    return () => window.removeEventListener('message', keepDossierPreviewReachable)
+  }, [])
+
   function handleLogoClick(event: React.MouseEvent<HTMLAnchorElement>) {
     event.preventDefault()
     setIsMenuOpen(false)
@@ -301,7 +322,7 @@ function PublicWebsite() {
               </div>
               <div className="mobile-dossier-frame" aria-label="Mobile preview of RSARBOS investment dossier">
                 <div className="phone-speaker" aria-hidden="true"></div>
-                <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy"></iframe>
+                <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy" tabIndex={-1}></iframe>
               </div>
             </div>
           </div>
