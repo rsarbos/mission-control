@@ -106,9 +106,9 @@ function PublicWebsite() {
           <div className="hero-content">
             <div className="hero-chip"><span></span>Building the New Era of Real Estate Tech</div>
             <h1>
-              <span className="hero-title-line">FROM PROPERTY LINK</span>
-              <br />
-              <span className="red-glow">TO DECISION-READY DOSSIER.</span>
+              <span className="hero-title-line">TURNING COMPLEX DATA</span>
+              <span className="hero-title-line">INTO CONCLUSIONS</span>
+              <span className="hero-title-line red-glow">100% AUDITABLE.</span>
             </h1>
             <div className="source-flow" aria-label="Supported property link sources">
               <span>Zillow</span>
@@ -119,7 +119,7 @@ function PublicWebsite() {
               <strong>RSARBOS Dossier</strong>
             </div>
             <p className="hero-subtitle">
-              A decision-ready underwriting dossier anyone can read — built to make the numbers, risks, and next move obvious.
+              Clear property verdicts backed by traceable numbers, risks, and next steps.
             </p>
             <div className="hero-actions centered">
               <a className="primary-action shine-action" href="#request" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
@@ -180,23 +180,20 @@ function PublicWebsite() {
           </div>
         </section>
 
-        <div className="content-wrap"><div className="section-divider"></div></div>
-
-        <section className="core-section">
+        <section className="core-section verdict-section">
           <div className="content-wrap core-grid">
             <div>
-              <p className="red-kicker"><span></span>The Underwriting Core</p>
-              <h2>HUMAN-VERIFIED NOW. AUTOMATED NEXT.</h2>
+              <p className="red-kicker"><span></span>Workflow</p>
+              <h2>HOW RSARBOS BUILDS A PROPERTY VERDICT</h2>
               <p>
-                RSARBOS is delivering analyst-led underwriting reports now while building the automated underwriting core
-                behind the platform. Each manual report validates the scoring logic, risk checks, comp standards, and decision
-                framework that will power automation.
+                Behind every RSARBOS verdict is a repeatable underwriting workflow: clean intake, rule-based review, and a
+                traceable investor conclusion.
               </p>
             </div>
             <div className="core-steps">
-              <article className="glass-panel"><span>01</span><strong>Manual Reports</strong><p>Human-reviewed property dossiers delivered today.</p></article>
-              <article className="glass-panel"><span>02</span><strong>Logic Validation</strong><p>Every report sharpens our scoring, risk, comps, and ARV framework.</p></article>
-              <article className="glass-panel"><span>03</span><strong>Automated Core</strong><p>The validated framework becomes the automated underwriting engine.</p></article>
+              <article className="glass-panel"><span>01</span><strong>Property Intake</strong><p>We organize the listing, comps, price history, condition notes, repair assumptions, rent potential, and market context into one clean underwriting picture.</p></article>
+              <article className="glass-panel"><span>02</span><strong>Underwriting Logic</strong><p>We review the opportunity through consistent financial rules that separate real upside from presentation noise.</p></article>
+              <article className="glass-panel"><span>03</span><strong>Investor Verdict</strong><p>We deliver a clear buy / pass / watch recommendation with the reasoning behind it, so investors can act with confidence.</p></article>
             </div>
           </div>
         </section>
