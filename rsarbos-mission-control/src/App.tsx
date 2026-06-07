@@ -213,6 +213,7 @@ function PublicWebsite() {
           </a>
           <div className="desktop-menu">
             <a className="nav-cta" href="#request">REQUEST REPORT</a>
+            <a className="nav-sample" href="#sample">VIEW SAMPLE DOSSIER</a>
             <a className="nav-contact" href="/contact">CONTACT</a>
           </div>
           <button className="mobile-menu-button" type="button" aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((open) => !open)}>
@@ -224,6 +225,7 @@ function PublicWebsite() {
         {isMenuOpen && (
           <div className="mobile-menu">
             <a href="#request" onClick={() => setIsMenuOpen(false)}>Request Report</a>
+            <a href="#sample" onClick={() => setIsMenuOpen(false)}>View Sample Dossier</a>
             <a href="/contact">Contact</a>
           </div>
         )}
@@ -251,7 +253,7 @@ function PublicWebsite() {
             </p>
             <div className="hero-actions centered">
               <a className="primary-action shine-action" href="#request" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
-              <a className="secondary-action glass-action" href="/contact" onClick={() => trackEvent('hero_cta_click', { cta: 'contact' })}>CONTACT</a>
+              <a className="secondary-action glass-action" href="#sample" onClick={() => trackEvent('hero_cta_click', { cta: 'view_sample_dossier' })}>VIEW SAMPLE DOSSIER</a>
             </div>
           </div>
           <div className="hero-lines" aria-hidden="true">
@@ -291,9 +293,16 @@ function PublicWebsite() {
                 <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
               </article>
             </div>
-            <div className="mobile-dossier-frame" aria-label="Mobile preview of RSARBOS investment dossier">
-              <div className="phone-speaker" aria-hidden="true"></div>
-              <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy"></iframe>
+            <div className="sample-preview-column">
+              <div className="sample-preview-copy">
+                <p className="red-kicker"><span></span>Example Report</p>
+                <h2>SAMPLE DOSSIER</h2>
+                <p>See the exact decision format before you request underwriting.</p>
+              </div>
+              <div className="mobile-dossier-frame" aria-label="Mobile preview of RSARBOS investment dossier">
+                <div className="phone-speaker" aria-hidden="true"></div>
+                <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy"></iframe>
+              </div>
             </div>
           </div>
         </section>
@@ -341,8 +350,7 @@ function PublicWebsite() {
               <a href="/privacy">Privacy</a>
               <a href="/refund-policy">Refunds</a>
               <a href="/contact">Contact</a>
-              <span>SYSTEM: ONLINE</span>
-              <span className="online-dot">■</span>
+              <span className="footer-status-pill"><span className="online-dot">■</span>SYSTEM: ONLINE</span>
             </div>
           </div>
         </div>

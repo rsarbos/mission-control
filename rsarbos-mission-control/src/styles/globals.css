@@ -1880,11 +1880,18 @@ code {
   box-shadow: 0 0 18px rgba(30, 88, 255, 0.35);
 }
 
-.desktop-menu .nav-contact {
+.desktop-menu .nav-contact,
+.desktop-menu .nav-sample {
   color: white;
   border: 1px solid rgba(199, 204, 214, 0.2);
   border-radius: 4px;
   padding: 11px 16px;
+}
+
+.desktop-menu .nav-sample {
+  color: var(--rsarbos-red);
+  border-color: rgba(255, 59, 56, 0.38);
+  background: rgba(255, 59, 56, 0.08);
 }
 
 .mobile-menu-button {
@@ -2579,6 +2586,22 @@ code {
   align-items: center;
 }
 
+.sample-preview-column {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+}
+
+.sample-preview-copy {
+  width: min(520px, 100%);
+  justify-self: stretch;
+}
+
+.sample-preview-copy p:not(.red-kicker) {
+  color: var(--rsarbos-silver);
+  line-height: 1.7;
+}
+
 .pricing-column {
   max-width: 520px;
 }
@@ -3056,9 +3079,22 @@ code {
   color: white;
 }
 
+.footer-status-pill {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 59, 56, 0.38);
+  border-radius: 999px;
+  background: rgba(255, 59, 56, 0.1);
+  color: white;
+  font-weight: 900;
+  box-shadow: 0 0 20px rgba(255, 59, 56, 0.12);
+}
+
 .online-dot {
-  color: var(--rsarbos-blue);
-  margin-left: 14px;
+  color: var(--rsarbos-red);
 }
 
 @keyframes pulse-dot {
@@ -3128,6 +3164,18 @@ code {
 
   .pricing-column {
     max-width: 100%;
+  }
+
+  .sample-preview-column {
+    order: -1;
+  }
+
+  .sample-preview-copy {
+    text-align: center;
+  }
+
+  .sample-preview-copy .red-kicker {
+    justify-content: center;
   }
 
   .pricing-card {
@@ -3211,7 +3259,4 @@ code {
     gap: 12px 16px;
   }
 
-  .online-dot {
-    margin-left: 0;
-  }
 }
