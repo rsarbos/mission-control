@@ -2834,6 +2834,7 @@ code {
   display: grid;
   place-items: center;
   padding: 24px;
+  font-family: var(--google-sans-stack);
   background:
     linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
@@ -2848,6 +2849,15 @@ code {
   padding: 34px;
   border-radius: 10px;
   text-align: center;
+}
+
+.payment-result-panel h1,
+.payment-result-panel h2,
+.payment-result-panel h3,
+.payment-result-panel .red-kicker,
+.payment-result-panel .primary-action {
+  font-family: var(--google-sans-stack);
+  letter-spacing: 0;
 }
 
 .payment-result-panel h1 {
