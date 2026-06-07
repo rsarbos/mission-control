@@ -1,44 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { TABS } from './data/mission-control-data'
-import { FOUNDER_TASKS, FounderTask } from './data/founder-tasks'
-import { AXIOM_AGENTS } from './data/axiom-agents'
-import { SYSTEM_STATE } from './data/system-state'
-import { DEPARTMENTS } from './data/departments'
-
-import Header from './components/Header'
-import Tabs from './components/Tabs'
-import TaskBoard from './components/TaskBoard'
-import CommandPane from './components/CommandPane'
-import SystemRuntime from './components/SystemRuntime'
-import DepartmentGrid from './components/DepartmentGrid'
-import OperationsSnapshot from './components/OperationsSnapshot'
-import OrgMap from './components/OrgMap'
 import ManualReportForm from './components/ManualReportForm'
 import rsarbosLogo from './assets/logo.png'
 import { trackEvent } from './utils/analytics'
-
-const WEBSITE_READINESS_ITEMS = [
-  {
-    label: 'Intake routing',
-    value: SYSTEM_STATE.emails.uwRequests,
-    status: 'Ready for staging submit',
-  },
-  {
-    label: 'Support routing',
-    value: SYSTEM_STATE.emails.support,
-    status: 'Ownership check pending',
-  },
-  {
-    label: 'Payment confirmation',
-    value: 'Manual settlement ledger',
-    status: 'Dry run pending',
-  },
-  {
-    label: 'Funnel tracking',
-    value: 'start / submit / confirmation',
-    status: 'Events specified',
-  },
-]
 
 const MISSION_CONTROL_PASSWORD = import.meta.env.VITE_MISSION_CONTROL_PASSWORD || 'rsarbos-founder'
 const DOSSIER_PREVIEW_URL = '/dossier/RSARBOS_Investment_Dossier_1314_Shawn_Dr.html'
@@ -55,6 +18,171 @@ const AUDIENCE_BANNER_ITEMS = [
   'BUYER REPS',
   'LENDERS',
 ] as const
+
+type ChannelTag = 'YouTube Creator' | 'BiggerPockets' | 'FB Wholesaler' | 'InvestorLift' | 'Privy'
+
+type OutreachContact = {
+  uuid: string
+  name: string
+  company: string
+  channelTag: ChannelTag
+  phone: string
+  email: string
+  socialHandle: string
+  socialUrl: string
+}
+
+type VerdictStatus = 'WORTH_PURSUING' | 'WALKAWAY' | 'REVIEW_REQUIRED'
+
+type UnderwrittenAsset = {
+  uuid: string
+  address: string
+  sourcedByContactUuid: string
+  listPrice: number
+  yearBuilt: number
+  squareFeet: number
+  maximumAllowableOffer: number
+  rentcastDiscrepancyFlag: string
+  verdictStatus: VerdictStatus
+  compileStatus: string
+  paymentStatus: 'PAID' | 'PENDING' | 'UNPAID'
+  assetRiskRegister: string[]
+}
+
+type OutreachTemplate = {
+  id: string
+  title: string
+  target: string
+  body: string
+}
+
+type DailyChecklistItem = {
+  id: string
+  label: string
+}
+
+type AdminTab = 'pipeline' | 'content'
+
+type ContextMode = 'ghost' | 'codex'
+
+type TerminalMessage = {
+  id: string
+  timestamp: string
+  mode: ContextMode
+  text: string
+}
+
+const VALIDATION_TARGET = 3
+
+const OUTREACH_CONTACTS: OutreachContact[] = [
+  {
+    uuid: 'contact-yt-acq-001',
+    name: 'Acquisition Lead',
+    company: 'YouTube Fund Operator',
+    channelTag: 'YouTube Creator',
+    phone: '+15550101001',
+    email: 'acquisitions@example.com',
+    socialHandle: '@fundoperator',
+    socialUrl: 'https://www.youtube.com/',
+  },
+  {
+    uuid: 'contact-bp-analyst-002',
+    name: 'First-Time Investor',
+    company: 'BiggerPockets Lead Analysis',
+    channelTag: 'BiggerPockets',
+    phone: '+15550101002',
+    email: 'bp.investor@example.com',
+    socialHandle: 'BP profile',
+    socialUrl: 'https://www.biggerpockets.com/',
+  },
+  {
+    uuid: 'contact-wholesale-003',
+    name: 'High-Volume Wholesaler',
+    company: 'InvestorLift / Privy Network',
+    channelTag: 'InvestorLift',
+    phone: '+15550101003',
+    email: 'deals@example.com',
+    socialHandle: '@dealflowdesk',
+    socialUrl: 'https://www.investorlift.com/',
+  },
+]
+
+const OUTREACH_TEMPLATES: OutreachTemplate[] = [
+  {
+    id: 'deal-filter',
+    title: 'Deal Filter Angle',
+    target: 'YouTube funds / acquisition leads',
+    body:
+      'I built a compact underwriting dossier that pressure-tests the rent story, comps, MAO, and walkaway risks before your team spends time on the deal. Send me one property link and I will return a decision-ready verdict your acquisition team can audit.',
+  },
+  {
+    id: 'first-timer',
+    title: 'Nervous First-Timer Safeguard',
+    target: 'BiggerPockets lead analysis forums',
+    body:
+      'Before you submit an offer, I can turn the listing into a plain-English underwriting verdict: what works, what breaks, what rent assumptions are risky, and what questions to ask before money moves.',
+  },
+  {
+    id: 'wholesaler',
+    title: 'Lazy High-Volume Wholesaler Pipeline',
+    target: 'InvestorLift / Privy communities',
+    body:
+      'If your buyer list is asking for cleaner numbers, send the property link and I will package the rent reality, risk register, MAO, and verdict into a shareable dossier. It gives serious buyers a faster reason to reply.',
+  },
+]
+
+const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
+  {
+    uuid: 'asset-1314-shawn-dr',
+    address: '1314 Shawn Dr #1, San Jose, CA 95118',
+    sourcedByContactUuid: 'contact-wholesale-003',
+    listPrice: 500000,
+    yearBuilt: 1970,
+    squareFeet: 810,
+    maximumAllowableOffer: 455000,
+    rentcastDiscrepancyFlag: '$4,410 headline rent vs $2,900 closest 2BD/1BA comp',
+    verdictStatus: 'REVIEW_REQUIRED',
+    compileStatus: 'Manual dossier compiled - rent thesis needs verification',
+    paymentStatus: 'PAID',
+    assetRiskRegister: [
+      'HOA fee materially affects monthly cash flow.',
+      'RentCast attributes require manual 2BD/1BA comp validation.',
+      '1970 systems inspection required before offer confidence.',
+    ],
+  },
+  {
+    uuid: 'asset-seed-002',
+    address: 'Inbound property link pending',
+    sourcedByContactUuid: 'contact-yt-acq-001',
+    listPrice: 0,
+    yearBuilt: 0,
+    squareFeet: 0,
+    maximumAllowableOffer: 0,
+    rentcastDiscrepancyFlag: 'Awaiting listing and rent source comparison',
+    verdictStatus: 'REVIEW_REQUIRED',
+    compileStatus: 'Intake slot open',
+    paymentStatus: 'PENDING',
+    assetRiskRegister: ['Asset data not hydrated.', 'Comp set not assigned.', 'Risk register awaiting first pass.'],
+  },
+]
+
+const VIDEO_TEMPLATE: DailyChecklistItem[] = [
+  { id: 'video-hook', label: '0:00-0:30 | The Hook (Contrast listing price vs. RentCast discrepancy)' },
+  { id: 'video-discovery', label: '0:30-2:00 | The Discovery (Screen recording Redfin days-on-market filter)' },
+  { id: 'video-engine-input', label: '2:00-4:00 | The Engine Input (Populate deterministic data fields)' },
+  { id: 'video-dossier-deep-dive', label: '4:00-6:30 | The Dossier Deep-Dive (Highlight Risk Register & Walkaway Triggers)' },
+  { id: 'video-execution-verdict', label: '6:30-9:30 | The Execution Verdict & Conversion CTA' },
+]
+
+const DAILY_CHECKLIST: DailyChecklistItem[] = [
+  { id: 'record-screen-walkthrough', label: 'Record Screen Walkthrough' },
+  { id: 'export-final-pdf', label: 'Export Validated PDF Dossier' },
+  { id: 'distribute-wholesaler-network', label: 'Distribute to Active Partner List' },
+  { id: 'post-daily-video', label: 'Push Daily Video Clip' },
+]
+
+const GHOST_HELPERS = ['Outreach scripts', 'Value proposition frameworks', 'Closing scripts']
+const CODEX_HELPERS = ['Strict JSON intake schemas', 'Neon Postgres table mapping', 'NATS transport event contracts']
 
 function PublicWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -471,210 +599,439 @@ function MissionControlGate() {
 }
 
 function MissionControlApp() {
-  const [activeTab, setActiveTab] = useState<string>(() => localStorage.getItem('mc_activeTab') || TABS[0].id)
-  const [model, setModel] = useState<string>(() => localStorage.getItem('mc_model') || SYSTEM_STATE.modelAdapter || 'Codex')
-  const [selectedAgent, setSelectedAgent] = useState<string>(() => localStorage.getItem('mc_axiom_agent') || 'AXIOM-GLOBAL')
-  const [tasks, setTasks] = useState<FounderTask[]>(() => {
+  const [activeAdminTab, setActiveAdminTab] = useState<AdminTab>('pipeline')
+  const [contextMode, setContextMode] = useState<ContextMode>('ghost')
+  const [selectedContact, setSelectedContact] = useState<OutreachContact | null>(null)
+  const [selectedAssetUuid, setSelectedAssetUuid] = useState<string>(UNDERWRITTEN_ASSETS[0]?.uuid || '')
+  const [copiedTemplateId, setCopiedTemplateId] = useState<string>('')
+  const [selectedHelper, setSelectedHelper] = useState<string>(GHOST_HELPERS[0])
+  const [terminalInput, setTerminalInput] = useState('')
+  const [contextCopied, setContextCopied] = useState(false)
+  const [terminalMessages, setTerminalMessages] = useState<TerminalMessage[]>([
+    {
+      id: 'boot',
+      timestamp: formatUtcTimestamp(),
+      mode: 'ghost',
+      text: 'Context terminal ready. Select persona, asset row, and helper pack before copying payload.',
+    },
+  ])
+  const [completedChecklist, setCompletedChecklist] = useState<Record<string, boolean>>(() => {
     try {
-      const raw = localStorage.getItem('mc_founder_tasks')
-      return raw ? JSON.parse(raw) : FOUNDER_TASKS
+      const raw = localStorage.getItem('mc_daily_content_checklist')
+      return raw ? JSON.parse(raw) : {}
     } catch {
-      return FOUNDER_TASKS
+      return {}
     }
   })
-  const [commandHistory, setCommandHistory] = useState<Array<{ cmd: string; response: string; timestamp: number }>>(() => {
+
+  useEffect(() => {
+    localStorage.setItem('mc_daily_content_checklist', JSON.stringify(completedChecklist))
+  }, [completedChecklist])
+
+  const paidDossierCount = UNDERWRITTEN_ASSETS.filter((asset) => asset.paymentStatus === 'PAID').length
+  const bridgeProgress = Math.min((paidDossierCount / VALIDATION_TARGET) * 100, 100)
+  const selectedContactAssets = selectedContact
+    ? UNDERWRITTEN_ASSETS.filter((asset) => asset.sourcedByContactUuid === selectedContact.uuid)
+    : []
+  const selectedAsset = UNDERWRITTEN_ASSETS.find((asset) => asset.uuid === selectedAssetUuid) || UNDERWRITTEN_ASSETS[0]
+  const selectedAssetContact = selectedAsset
+    ? OUTREACH_CONTACTS.find((contact) => contact.uuid === selectedAsset.sourcedByContactUuid)
+    : undefined
+  const contextHelpers = contextMode === 'ghost' ? GHOST_HELPERS : CODEX_HELPERS
+  const contextBadge = contextMode === 'ghost' ? '[MODE: OPERATIONAL STRATEGY]' : '[MODE: SYSTEM INFRASTRUCTURE]'
+
+  function toggleChecklistItem(id: string) {
+    setCompletedChecklist((prev) => ({ ...prev, [id]: !prev[id] }))
+  }
+
+  function setMode(mode: ContextMode) {
+    setContextMode(mode)
+    setSelectedHelper(mode === 'ghost' ? GHOST_HELPERS[0] : CODEX_HELPERS[0])
+  }
+
+  async function copyTemplate(template: OutreachTemplate) {
+    const payload = selectedContact
+      ? `${selectedContact.name} / ${selectedContact.company}\n\n${template.body}`
+      : template.body
+
     try {
-      const raw = localStorage.getItem('mc_command_history')
-      return raw ? JSON.parse(raw) : []
+      await navigator.clipboard.writeText(payload)
+      setCopiedTemplateId(template.id)
     } catch {
-      return []
+      setCopiedTemplateId('')
     }
-  })
-
-  useEffect(() => {
-    localStorage.setItem('mc_activeTab', activeTab)
-  }, [activeTab])
-
-  useEffect(() => {
-    localStorage.setItem('mc_model', model)
-  }, [model])
-
-  useEffect(() => {
-    localStorage.setItem('mc_axiom_agent', selectedAgent)
-  }, [selectedAgent])
-
-  useEffect(() => {
-    localStorage.setItem('mc_founder_tasks', JSON.stringify(tasks))
-  }, [tasks])
-
-  useEffect(() => {
-    localStorage.setItem('mc_command_history', JSON.stringify(commandHistory))
-  }, [commandHistory])
-
-  function toggleTask(id: string) {
-    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, status: t.status === 'done' ? 'open' : 'done' } : t)))
   }
 
-  function handleCommand(raw: string) {
-    const command = raw.trim()
-    const lc = command.toLowerCase()
-    let response = ''
+  function submitTerminalMessage(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const text = terminalInput.trim()
+    if (!text) return
 
-    if (lc === 'review tasks') {
-      response = TABS.map((t) => `${t.title}: ${t.nextRecommendedTask}`).join('\n')
-    } else if (lc === 'next task') {
-      const tab = TABS.find((t) => t.id === activeTab)
-      response = tab ? `${tab.title}: ${tab.nextRecommendedTask}` : 'No active tab selected.'
-    } else if (lc === 'founder tasks') {
-      const tabTasks = tasks.filter((t) => t.tab === activeTab)
-      response = tabTasks.length > 0 ? tabTasks.map((t) => `- ${t.title} (${t.status})`).join('\n') : 'No founder tasks found for this tab.'
-    } else if (lc === 'run audit') {
-      const completedCount = tasks.filter((t) => t.status === 'done').length
-      response = `Audit: ${completedCount}/${tasks.length} tasks complete. Command history contains ${commandHistory.length} entries.`
-    } else if (lc === 'summarize state') {
-      const tab = TABS.find((t) => t.id === activeTab)
-      response = tab
-        ? `${tab.title} — ${tab.currentState}. Next: ${tab.nextRecommendedTask}`
-        : 'No active tab state available.'
-    } else if (lc.startsWith('switch agent')) {
-      const agent = command.split(' ').slice(2).join(' ')
-      if (agent.toUpperCase().startsWith('AXIOM-')) {
-        setSelectedAgent(agent.toUpperCase())
-        response = `AXIOM agent set to ${agent.toUpperCase()}`
-      } else {
-        setModel(agent)
-        response = `Model set to ${agent}`
-      }
-    } else if (lc.startsWith('create file')) {
-      const path = command.split(' ').slice(2).join(' ')
-      response = `Mock file created: ${path || '(no path provided)'}`
-    } else if (lc.startsWith('update state')) {
-      response = 'Mock state update recorded.'
-    } else {
-      response = `Unknown command: ${command}. Use review tasks, next task, founder tasks, run audit, summarize state, switch agent <name>, create file <path>, update state <key>=<value>.`
-    }
-
-    setCommandHistory((prev) => [...prev, { cmd: command, response, timestamp: Date.now() }])
-    return response
+    setTerminalMessages((prev) => [
+      ...prev,
+      {
+        id: `${Date.now()}`,
+        timestamp: formatUtcTimestamp(),
+        mode: contextMode,
+        text,
+      },
+    ])
+    setTerminalInput('')
   }
 
-  const operationsDepartments = DEPARTMENTS.filter((dept) => ['operations', 'finance', 'support', 'legal'].includes(dept.id))
-  const currentTab = TABS.find((t) => t.id === activeTab)
+  async function copyContextPayload() {
+    const payload = [
+      'RSARBOS MISSION CONTROL CONTEXT PAYLOAD',
+      `mode=${contextMode.toUpperCase()}`,
+      `mode_badge=${contextBadge}`,
+      `helper_pack=${selectedHelper}`,
+      `validation_progress=${paidDossierCount}/${VALIDATION_TARGET} paid dossiers`,
+      selectedAsset ? `asset_uuid=${selectedAsset.uuid}` : 'asset_uuid=none',
+      selectedAsset ? `property_address=${selectedAsset.address}` : 'property_address=none',
+      selectedAsset ? `verdict_status=${selectedAsset.verdictStatus}` : 'verdict_status=none',
+      selectedAsset ? `rental_thesis_delta=${selectedAsset.rentcastDiscrepancyFlag}` : 'rental_thesis_delta=none',
+      selectedAsset ? `mao=${selectedAsset.maximumAllowableOffer}` : 'mao=none',
+      selectedAssetContact ? `source_contact_uuid=${selectedAssetContact.uuid}` : 'source_contact_uuid=none',
+      selectedAssetContact ? `source_contact=${selectedAssetContact.name} / ${selectedAssetContact.company}` : 'source_contact=none',
+      `latest_prompt=${terminalInput || terminalMessages[terminalMessages.length - 1]?.text || 'none'}`,
+      'phase_boundary=Revenue execution only. Core backend paused at Phase 2AH.',
+    ].join('\n')
+
+    await navigator.clipboard.writeText(payload)
+    setContextCopied(true)
+    window.setTimeout(() => setContextCopied(false), 1800)
+  }
 
   return (
-    <div className="mc-shell">
-      <Header
-        model={model}
-        selectedAgent={selectedAgent}
-        onModelChange={setModel}
-        onCommand={handleCommand}
-        system={SYSTEM_STATE}
-      />
-      <Tabs tabs={TABS} active={activeTab} onChange={setActiveTab} />
-      <main className="mc-main">
-        <div className="main-column">
-          <section className="card overview-card">
-            <div className="overview-header">
-              <div>
-                <p className="eyebrow">Mission overview</p>
-                <h2>{currentTab?.title}</h2>
-                <p className="section-subtitle">Active operations for {currentTab?.title}</p>
-              </div>
-              <div className="overview-pill">STAGE: {currentTab?.currentState}</div>
-            </div>
-            <div className="overview-grid">
-              <div className="status-panel">
-                <p className="small-label">What is the mission?</p>
-                <strong>{SYSTEM_STATE.mission}</strong>
-              </div>
-              <div className="status-panel">
-                <p className="small-label">What is the bottleneck?</p>
-                <strong>{SYSTEM_STATE.constraint}</strong>
-              </div>
-              <div className="status-panel">
-                <p className="small-label">What should happen next?</p>
-                <strong>{currentTab?.nextRecommendedTask}</strong>
-              </div>
-              {currentTab?.metrics &&
-                Object.entries(currentTab.metrics).map(([key, value]) => (
-                  <div className="status-panel" key={key}>
-                    <p className="small-label">{key.replace(/([A-Z])/g, ' $1').trim().toUpperCase()}</p>
-                    <strong>
-                      {typeof value === 'number' && key.includes('revenue') ? `$${value}` : value}
-                      {typeof value === 'number' && key.includes('readiness') ? `${value}%` : ''}
-                    </strong>
-                  </div>
-                ))}
-            </div>
-          </section>
+    <div className="mc-admin-shell">
+      <header className="mc-admin-header">
+        <a className="mc-admin-logo" href="/">
+          <img src={rsarbosLogo} alt="RSARBOS" />
+        </a>
+        <div>
+          <p className="mc-admin-kicker">Phase 4 Validation Bridge</p>
+          <h1>RSARBOS Mission Control</h1>
+          <p>Internal revenue execution dashboard for the first three manual customer acquisition runs.</p>
+        </div>
+        <div className="mc-admin-status">
+          <span className="mc-live-dot" aria-hidden="true"></span>
+          SYSTEM ONLINE
+        </div>
+      </header>
 
-          <div className="card section-card">
-            <h3>Founder's task board</h3>
-            <TaskBoard tasks={tasks.filter((t) => t.tab === activeTab)} onToggle={toggleTask} />
+      <main className="mc-admin-grid">
+        <section className="mc-ops-zone">
+          <div className="mc-admin-tabs" role="tablist" aria-label="Mission Control modules">
+            <button type="button" className={activeAdminTab === 'pipeline' ? 'active' : ''} onClick={() => setActiveAdminTab('pipeline')}>
+              Validation Bridge
+            </button>
+            <button type="button" className={activeAdminTab === 'content' ? 'active' : ''} onClick={() => setActiveAdminTab('content')}>
+              Content Desk
+            </button>
           </div>
 
-          {activeTab === 'operations' && <OperationsSnapshot departments={operationsDepartments} />}
-
-          {activeTab === 'website' && (
-            <section className="website-readiness">
-              <div className="section-heading">
-                <div>
-                  <p className="eyebrow">Website Readiness</p>
-                  <h3>Staging verification checklist</h3>
-                </div>
-                <span className="readiness-score">{SYSTEM_STATE.readiness}</span>
-              </div>
-              <div className="readiness-checklist">
-                {WEBSITE_READINESS_ITEMS.map((item) => (
-                  <article className="readiness-check" key={item.label}>
-                    <div>
-                      <p className="small-label">{item.label}</p>
-                      <strong>{item.value}</strong>
-                    </div>
-                    <span>{item.status}</span>
-                  </article>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {activeTab === 'axiom' && (
+          {activeAdminTab === 'pipeline' && (
             <>
-              <OrgMap />
-              <DepartmentGrid departments={DEPARTMENTS} />
+              <section className="mc-admin-card bridge-card">
+                <div className="bridge-marquee">SYSTEM STATUS: REVENUE EXECUTION MODE -- IMMUTABLE ENGINE PAUSED AT PHASE 2AH</div>
+                <div className="bridge-metrics">
+                  <article>
+                    <p>Validation Bridge Progress</p>
+                    <strong>Current: {paidDossierCount} / Target: {VALIDATION_TARGET} Paid Dossiers</strong>
+                    <div className="bridge-meter" aria-label={`Validation bridge progress ${paidDossierCount} of ${VALIDATION_TARGET}`}>
+                      <span style={{ width: `${bridgeProgress}%` }}></span>
+                    </div>
+                  </article>
+                  <article>
+                    <p>Mode</p>
+                    <strong>Revenue Execution</strong>
+                    <span className="status-tag status-green">ACTIVE PIPELINE</span>
+                  </article>
+                  <article>
+                    <p>Boundary</p>
+                    <strong>Backend held at Phase 2AH</strong>
+                    <span className="status-tag status-red">NO CORE MUTATION</span>
+                  </article>
+                </div>
+              </section>
+
+              <section className="mc-admin-card contacts-card">
+                <div className="mc-section-head">
+                  <div>
+                    <p className="mc-admin-kicker">Relational Database A</p>
+                    <h2>Contacts Directory</h2>
+                  </div>
+                  <span>Native action links enabled</span>
+                </div>
+                <div className="mc-table-wrap">
+                  <table className="mc-table">
+                    <thead>
+                      <tr>
+                        <th>Contact Name</th>
+                        <th>Organization / Firm</th>
+                        <th>Source Tag</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Social</th>
+                        <th>Scripts</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {OUTREACH_CONTACTS.map((contact) => (
+                        <tr key={contact.uuid}>
+                          <td>
+                            <strong>{contact.name}</strong>
+                            <span>{contact.uuid}</span>
+                          </td>
+                          <td>{contact.company}</td>
+                          <td><span className="channel-tag">{contact.channelTag}</span></td>
+                          <td><a href={`tel:${contact.phone}`}>{contact.phone}</a></td>
+                          <td><a href={`mailto:${contact.email}`}>{contact.email}</a></td>
+                          <td><a href={contact.socialUrl} target="_blank" rel="noreferrer">{contact.socialHandle}</a></td>
+                          <td>
+                            <button className="mc-mini-action" type="button" onClick={() => setSelectedContact(contact)}>
+                              Open
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className="mc-admin-card assets-card">
+                <div className="mc-section-head">
+                  <div>
+                    <p className="mc-admin-kicker">Relational Database B</p>
+                    <h2>Active Asset Ledger</h2>
+                  </div>
+                  <span>Assets map back to contact UUIDs</span>
+                </div>
+                <div className="mc-table-wrap">
+                  <table className="mc-table asset-table">
+                    <thead>
+                      <tr>
+                        <th>Property Address</th>
+                        <th>Sourced From</th>
+                        <th>List Price</th>
+                        <th>Rental Thesis Delta</th>
+                        <th>Verdict Tag</th>
+                        <th>Dossier Compile Check</th>
+                        <th>Schema Fields</th>
+                        <th>Risk Register</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {UNDERWRITTEN_ASSETS.map((asset) => {
+                        const contact = OUTREACH_CONTACTS.find((item) => item.uuid === asset.sourcedByContactUuid)
+                        return (
+                          <tr
+                            key={asset.uuid}
+                            className={selectedAssetUuid === asset.uuid ? 'selected-row' : ''}
+                            onClick={() => setSelectedAssetUuid(asset.uuid)}
+                          >
+                            <td>
+                              <strong>{asset.address}</strong>
+                              <span>{asset.uuid}</span>
+                            </td>
+                            <td>
+                              <span>{asset.sourcedByContactUuid}</span>
+                              <strong>{contact?.name || 'Unmapped contact'}</strong>
+                            </td>
+                            <td>{asset.listPrice > 0 ? `$${asset.listPrice.toLocaleString()}` : 'Pending'}</td>
+                            <td>{asset.rentcastDiscrepancyFlag}</td>
+                            <td><VerdictBadge status={asset.verdictStatus} /></td>
+                            <td>{asset.compileStatus}</td>
+                            <td>
+                              <div className="schema-stack">
+                                <span>Year Built: {asset.yearBuilt || 'TBD'}</span>
+                                <span>Sq Ft: {asset.squareFeet || 'TBD'}</span>
+                                <span>MAO: {asset.maximumAllowableOffer ? `$${asset.maximumAllowableOffer.toLocaleString()}` : 'TBD'}</span>
+                              </div>
+                            </td>
+                            <td>
+                              <textarea
+                                value={asset.assetRiskRegister.join('\n')}
+                                aria-label={`${asset.address} asset risk register`}
+                                readOnly
+                              />
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
             </>
           )}
 
-          {activeTab === 'dataroom' && (
-            <section className="card section-card">
-              <h3>Investor Data Room</h3>
-              <p className="muted">This section is under construction. It will contain investor-ready documents, financial projections, and key metrics.</p>
-              <p className="muted">Current state: {currentTab?.currentState}</p>
-              <p className="muted">Next step: {currentTab?.nextRecommendedTask}</p>
+          {activeAdminTab === 'content' && (
+            <section className="mc-admin-card content-card">
+              <div className="mc-section-head">
+                <div>
+                  <p className="mc-admin-kicker">Quick-Launch Content Asset Desk</p>
+                  <h2>HOT DEAL IN 10 MIN</h2>
+                </div>
+                <span>Daily waitlist fuel</span>
+              </div>
+              <div className="content-desk-grid">
+                <div className="daily-checklist">
+                  {VIDEO_TEMPLATE.map((item) => (
+                    <label key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={Boolean(completedChecklist[item.id])}
+                        onChange={() => toggleChecklistItem(item.id)}
+                      />
+                      <span>{item.label}</span>
+                    </label>
+                  ))}
+                </div>
+                <div className="daily-checklist">
+                  {DAILY_CHECKLIST.map((item) => (
+                    <label key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={Boolean(completedChecklist[item.id])}
+                        onChange={() => toggleChecklistItem(item.id)}
+                      />
+                      <span>{item.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
             </section>
           )}
-        </div>
-        <aside className="side-column">
-          <div className="card axiom-agent-card">
-            <p className="eyebrow">Active AXIOM Agent</p>
-            <h3>{selectedAgent}</h3>
-            <p className="muted">Command layer for mission orchestration and departmental coordination.</p>
-          </div>
-          <CommandPane
-            model={model}
-            selectedAgent={selectedAgent}
-            activeTab={activeTab}
-            tasks={tasks}
-            onModelChange={setModel}
-            onSelectedAgentChange={setSelectedAgent}
-            onCommand={handleCommand}
-            history={commandHistory}
-          />
-          <SystemRuntime />
+        </section>
+
+        <aside className={`mc-context-zone ${contextMode}`}>
+          <section className="mc-context-card">
+            <div className="mc-context-head">
+              <div>
+                <p className="mc-admin-kicker">Integrated Context Command Box</p>
+                <h2>Context Terminal</h2>
+              </div>
+              <span>{contextBadge}</span>
+            </div>
+
+            <div className="context-toggle" role="tablist" aria-label="Execution persona">
+              <button type="button" className={contextMode === 'ghost' ? 'active' : ''} onClick={() => setMode('ghost')}>
+                GHOST / AXIOM
+              </button>
+              <button type="button" className={contextMode === 'codex' ? 'active' : ''} onClick={() => setMode('codex')}>
+                CODEX
+              </button>
+            </div>
+
+            <label className="context-helper">
+              Workspace Helper
+              <select value={selectedHelper} onChange={(event) => setSelectedHelper(event.target.value)}>
+                {contextHelpers.map((helper) => (
+                  <option key={helper} value={helper}>{helper}</option>
+                ))}
+              </select>
+            </label>
+
+            <div className="context-selected-row">
+              <p>Active database row</p>
+              <strong>{selectedAsset?.address || 'No asset selected'}</strong>
+              <span>{selectedAssetContact?.name || 'No source contact'} / {selectedAsset?.verdictStatus || 'NO_STATUS'}</span>
+            </div>
+
+            <div className="terminal-thread" aria-label="Context command message thread">
+              {terminalMessages.map((message) => (
+                <article key={message.id}>
+                  <span>[{message.timestamp} UTC] {message.mode.toUpperCase()}</span>
+                  <p>{message.text}</p>
+                </article>
+              ))}
+            </div>
+
+            <form className="terminal-input" onSubmit={submitTerminalMessage}>
+              <textarea
+                value={terminalInput}
+                onChange={(event) => setTerminalInput(event.target.value)}
+                rows={4}
+                placeholder="Write prompt context, outreach objective, schema question, or next execution instruction..."
+              />
+              <button type="submit">Add Thread Note</button>
+            </form>
+
+            <button className="copy-context-button" type="button" onClick={copyContextPayload}>
+              {contextCopied ? 'Context Payload Copied' : 'Copy Context Payload to Clipboard'}
+            </button>
+          </section>
         </aside>
       </main>
+
+      {selectedContact && (
+        <div className="script-modal-backdrop" role="presentation" onMouseDown={() => setSelectedContact(null)}>
+          <section
+            className="script-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="script-modal-title"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className="mc-section-head">
+              <div>
+                <p className="mc-admin-kicker">Quick-copy scripts</p>
+                <h2 id="script-modal-title">{selectedContact.name}</h2>
+                <p>{selectedContact.company}</p>
+              </div>
+              <button className="mc-mini-action" type="button" onClick={() => setSelectedContact(null)}>
+                Close
+              </button>
+            </div>
+            <div className="contact-action-row">
+              <a href={`tel:${selectedContact.phone}`}>Call</a>
+              <a href={`mailto:${selectedContact.email}`}>Email</a>
+              <a href={selectedContact.socialUrl} target="_blank" rel="noreferrer">Social</a>
+            </div>
+            {selectedContactAssets.length > 0 && (
+              <div className="linked-assets">
+                <p>Linked assets</p>
+                {selectedContactAssets.map((asset) => (
+                  <span key={asset.uuid}>{asset.address}</span>
+                ))}
+              </div>
+            )}
+            <div className="script-list">
+              {OUTREACH_TEMPLATES.map((template) => (
+                <article key={template.id}>
+                  <div>
+                    <strong>{template.title}</strong>
+                    <span>{template.target}</span>
+                  </div>
+                  <p>{template.body}</p>
+                  <button className="mc-mini-action" type="button" onClick={() => copyTemplate(template)}>
+                    {copiedTemplateId === template.id ? 'Copied' : 'Copy Script'}
+                  </button>
+                </article>
+              ))}
+            </div>
+          </section>
+        </div>
+      )}
     </div>
   )
+}
+
+function VerdictBadge({ status }: { status: VerdictStatus }) {
+  const label = status.replace(/_/g, ' ')
+  const className = status === 'WORTH_PURSUING'
+    ? 'status-tag status-green'
+    : status === 'WALKAWAY'
+      ? 'status-tag status-red'
+      : 'status-tag status-amber'
+
+  return <span className={className}>{label}</span>
+}
+
+function formatUtcTimestamp() {
+  return new Date().toISOString().slice(11, 19)
 }
 
 export default function App() {
