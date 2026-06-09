@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ManualReportForm from './components/ManualReportForm'
+import SampleDossierPage from './components/SampleDossierPage'
 import rsarbosLogo from './assets/logo.png'
 import { trackEvent } from './utils/analytics'
 
@@ -1113,6 +1114,10 @@ export default function App() {
 
   if (path === '/contact') {
     return <ContactPage />
+  }
+
+  if (path === '/sample-dossier-1314shawndr') {
+    return <SampleDossierPage />
   }
 
   return <PublicWebsite />
