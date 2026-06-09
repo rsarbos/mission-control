@@ -2,6 +2,8 @@
 
 Capture these assets before marketing.
 
+These shots are also mirrored in Mission Control under `MARKETING DESK` so capture status can be tracked during launch prep.
+
 ## Website Screenshots
 
 - Hero: `From Link To Investor-Ready Decision`

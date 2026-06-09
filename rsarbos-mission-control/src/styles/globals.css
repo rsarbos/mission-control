@@ -1219,12 +1219,19 @@ code {
 .mc-admin-tabs,
 .context-toggle {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   overflow: hidden;
   border: 1px solid #1e1e24;
   border-radius: 8px;
   background: #1e1e24;
+}
+
+.mc-admin-tabs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.context-toggle {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .mc-admin-tabs button,
@@ -1440,6 +1447,74 @@ code {
   display: grid;
   grid-template-columns: 1.25fr 0.85fr;
   gap: 12px;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.analytics-grid article,
+.analytics-events div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #1e1e24;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.analytics-grid p {
+  margin: 0 0 8px;
+  color: #71717a;
+  font: 800 0.68rem 'SFMono-Regular', Consolas, Monaco, monospace;
+  text-transform: uppercase;
+}
+
+.analytics-grid strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #f8fafc;
+  overflow-wrap: anywhere;
+}
+
+.analytics-grid span,
+.analytics-events span {
+  color: #a1a1aa;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.analytics-events {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.analytics-events strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #93c5fd;
+  font: 900 0.76rem 'SFMono-Regular', Consolas, Monaco, monospace;
+  overflow-wrap: anywhere;
+}
+
+.shot-list-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.outreach-priority-table {
+  min-width: 1220px;
+}
+
+.outreach-priority-table td {
+  max-width: 260px;
+}
+
+.outreach-priority-table .mindset-cell {
+  color: #bfdbfe;
+  font-weight: 700;
 }
 
 .daily-checklist {
@@ -1699,7 +1774,10 @@ code {
 
   .mc-admin-grid,
   .bridge-metrics,
-  .content-desk-grid {
+  .content-desk-grid,
+  .analytics-grid,
+  .analytics-events,
+  .shot-list-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2580,6 +2658,17 @@ code {
   content: '✓';
   color: var(--rsarbos-red);
   margin-right: 9px;
+}
+
+.service-disclaimer {
+  margin: -10px 0 22px !important;
+  padding: 11px 12px;
+  border: 1px solid rgba(199, 204, 214, 0.14);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(199, 204, 214, 0.78) !important;
+  font-size: 0.78rem !important;
+  line-height: 1.45 !important;
 }
 
 .light-action {

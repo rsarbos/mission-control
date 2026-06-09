@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ManualReportForm from './components/ManualReportForm'
 import SampleDossierPage from './components/SampleDossierPage'
 import rsarbosLogo from './assets/logo.png'
-import { trackEvent } from './utils/analytics'
+import { getAnalyticsSnapshot, trackEvent, trackPageView } from './utils/analytics'
 
 const MISSION_CONTROL_PASSWORD = import.meta.env.VITE_MISSION_CONTROL_PASSWORD || 'rsarbos-founder'
 const DOSSIER_PREVIEW_URL = '/dossier/RSARBOS_Investment_Dossier_1314_Shawn_Dr.html'
@@ -65,7 +65,7 @@ type DailyChecklistItem = {
   label: string
 }
 
-type AdminTab = 'pipeline' | 'content'
+type AdminTab = 'pipeline' | 'content' | 'marketing'
 
 type ContextMode = 'ghost' | 'codex'
 
@@ -74,6 +74,16 @@ type TerminalMessage = {
   timestamp: string
   mode: ContextMode
   text: string
+}
+
+type OutreachPriority = {
+  rank: number
+  segment: string
+  exampleTargets: string
+  friction: string
+  firstMove: string
+  argumentPriority: string
+  mentalMode: string
 }
 
 const VALIDATION_TARGET = 3
@@ -210,6 +220,78 @@ const DAILY_CHECKLIST: DailyChecklistItem[] = [
   { id: 'distribute-wholesaler-network', label: 'Distribute to Active Partner List' },
   { id: 'post-daily-video', label: 'Push Daily Video Clip' },
 ]
+
+const SOCIAL_ASSET_SHOTS: DailyChecklistItem[] = [
+  { id: 'shot-hero', label: 'Hero: Turning complex data into conclusions 100% auditable' },
+  { id: 'shot-source-ticker', label: 'Source ticker: Zillow / Redfin / Realtor.com / Homes.com / MLS / RSARBOS Dossier' },
+  { id: 'shot-mobile-preview', label: 'Mobile dossier preview with red glow' },
+  { id: 'shot-pricing', label: 'Pricing card next to sample dossier preview' },
+  { id: 'shot-request-mobile', label: 'Request form above the fold on mobile' },
+  { id: 'shot-cover', label: 'Report cover page with property images' },
+  { id: 'shot-exec', label: 'Executive Decision page' },
+  { id: 'shot-risk', label: 'Strategy + Risk page' },
+  { id: 'shot-calculator', label: 'Cash-Flow Calculator page' },
+  { id: 'shot-sources', label: 'Source Appendix page' },
+]
+
+const OUTREACH_PRIORITY: OutreachPriority[] = [
+  {
+    rank: 1,
+    segment: 'Warm investor/operator contacts',
+    exampleTargets: 'People who already know you, local operators, small buyer lists',
+    friction: 'Lowest',
+    firstMove: 'Send one dossier link and ask for a practical critique, not a sale.',
+    argumentPriority: 'They already understand deal pain; lead with saved time and cleaner decision confidence.',
+    mentalMode: 'They are busy, not skeptical. I am giving them a shortcut they wish they already had.',
+  },
+  {
+    rank: 2,
+    segment: 'Wholesalers with stale or hard-to-explain deals',
+    exampleTargets: 'InvestorLift sellers, local dispo desks, high-volume wholesalers',
+    friction: 'Low',
+    firstMove: 'Use the rent-gap hook on one listed deal and show how the dossier can rescue buyer trust.',
+    argumentPriority: 'Their pain is buyer hesitation; a dossier gives them proof, differentiation, and a cleaner blast.',
+    mentalMode: 'They need anything that makes buyers reply faster. RSARBOS is a conversion weapon, not homework.',
+  },
+  {
+    rank: 3,
+    segment: 'New investors and BiggerPockets-style buyers',
+    exampleTargets: 'BP Pro members, first-time investors, local meetup members',
+    friction: 'Low-medium',
+    firstMove: 'Frame the report as a final confidence check before they wire money or write an offer.',
+    argumentPriority: 'Their pain is fear of overpaying; lead with walkaway triggers and cash-flow stress tests.',
+    mentalMode: 'They do not need more content. They need permission to either act or walk away.',
+  },
+  {
+    rank: 4,
+    segment: 'Investor-friendly agents',
+    exampleTargets: 'Buyer reps, listing agents with investor clients, local RE agents',
+    friction: 'Medium',
+    firstMove: 'Show how a sample dossier can help their client understand risk without the agent pretending to underwrite.',
+    argumentPriority: 'Their pain is client trust and faster decisions; lead with decision support and professionalism.',
+    mentalMode: 'They want to look sharper without taking liability. RSARBOS makes them look prepared.',
+  },
+  {
+    rank: 5,
+    segment: 'Creators and mentors',
+    exampleTargets: 'Pace Morby, Brandon Turner, YouTube real estate educators',
+    friction: 'High',
+    firstMove: 'Send a striking discrepancy as content fuel, not a vendor pitch.',
+    argumentPriority: 'Their pain is fresh proof and teachable moments; lead with a red-pill rent or risk gap.',
+    mentalMode: 'They need sharp examples for their audience. I am handing them a story with receipts.',
+  },
+  {
+    rank: 6,
+    segment: 'Institutional underwriters',
+    exampleTargets: 'Rob Beardsley, fund analysts, multifamily operators',
+    friction: 'Highest',
+    firstMove: 'Lead with auditability and risk-register structure, not speed or hype.',
+    argumentPriority: 'Their pain is model trust; lead with traceability, assumptions, and source conflicts.',
+    mentalMode: 'They will not be impressed by claims. They respect disciplined evidence and clean assumptions.',
+  },
+]
+
+const CROP_FORMATS = ['Square 1080x1080', 'Portrait 1080x1350', 'Story/Reel 1080x1920', 'LinkedIn 1200x627']
 
 const GHOST_HELPERS = ['Outreach scripts', 'Value proposition frameworks', 'Closing scripts']
 const CODEX_HELPERS = ['Strict JSON intake schemas', 'Neon Postgres table mapping', 'NATS transport event contracts']
@@ -362,6 +444,9 @@ function PublicWebsite() {
                 <li>Delivered within 24 hours of payment</li>
                 <li>Secure private delivery link</li>
               </ul>
+              <p className="service-disclaimer">
+                Decision support only. Not legal, tax, lending, inspection, appraisal, or financial advice.
+              </p>
               <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
             </article>
           </div>
@@ -482,7 +567,7 @@ function LegalPage({ type }: { type: 'terms' | 'privacy' | 'refund' }) {
       sections: [
         ['Information collected', 'RSARBOS collects submitted contact details, property details, links, notes, payment status, and operational metadata needed to complete underwriting requests.'],
         ['How information is used', 'Information is used to process payment, prepare the report, contact the customer, recover abandoned checkouts, and improve underwriting workflows.'],
-        ['Service providers', 'RSARBOS may use providers such as Stripe, Neon, Resend, hosting providers, and analytics tools to operate the service.'],
+        ['Service providers', 'RSARBOS may use providers such as Stripe, Neon, Resend, Plausible Analytics, hosting providers, and analytics tools to operate the service.'],
         ['Data requests', 'Customers may contact RSARBOS to request corrections or deletion where legally and operationally possible.'],
       ],
     },
@@ -675,6 +760,7 @@ function MissionControlApp() {
   const [selectedHelper, setSelectedHelper] = useState<string>(GHOST_HELPERS[0])
   const [terminalInput, setTerminalInput] = useState('')
   const [contextCopied, setContextCopied] = useState(false)
+  const [analyticsSnapshot, setAnalyticsSnapshot] = useState(() => getAnalyticsSnapshot())
   const [terminalMessages, setTerminalMessages] = useState<TerminalMessage[]>([
     {
       id: 'boot',
@@ -695,6 +781,10 @@ function MissionControlApp() {
   useEffect(() => {
     localStorage.setItem('mc_daily_content_checklist', JSON.stringify(completedChecklist))
   }, [completedChecklist])
+
+  useEffect(() => {
+    setAnalyticsSnapshot(getAnalyticsSnapshot())
+  }, [activeAdminTab])
 
   const paidDossierCount = UNDERWRITTEN_ASSETS.filter((asset) => asset.paymentStatus === 'PAID').length
   const bridgeProgress = Math.min((paidDossierCount / VALIDATION_TARGET) * 100, 100)
@@ -794,6 +884,9 @@ function MissionControlApp() {
             </button>
             <button type="button" className={activeAdminTab === 'content' ? 'active' : ''} onClick={() => setActiveAdminTab('content')}>
               CONTENT DESK
+            </button>
+            <button type="button" className={activeAdminTab === 'marketing' ? 'active' : ''} onClick={() => setActiveAdminTab('marketing')}>
+              MARKETING DESK
             </button>
           </div>
 
@@ -957,6 +1050,109 @@ function MissionControlApp() {
               </div>
             </section>
           )}
+
+          {activeAdminTab === 'marketing' && (
+            <>
+              <section className="mc-admin-card marketing-card">
+                <div className="mc-section-head">
+                  <div>
+                    <p className="mc-admin-kicker">Launch Analytics</p>
+                    <h2>Open Source Analytics Status</h2>
+                  </div>
+                  <span>{analyticsSnapshot.configured ? 'PROVIDER CONFIGURED' : 'ENV CONFIG NEEDED'}</span>
+                </div>
+                <div className="analytics-grid">
+                  <article>
+                    <p>Provider</p>
+                    <strong>{analyticsSnapshot.provider}</strong>
+                    <span>Chosen for a public marketing site: lightweight, open-source, goal-based, and low-friction.</span>
+                  </article>
+                  <article>
+                    <p>Domain</p>
+                    <strong>{analyticsSnapshot.domain}</strong>
+                    <span>Set `VITE_PLAUSIBLE_DOMAIN=rsarbos.com` in Vercel to enable provider delivery.</span>
+                  </article>
+                  <article>
+                    <p>Local Captured Events</p>
+                    <strong>{analyticsSnapshot.localEvents.length}</strong>
+                    <span>{analyticsSnapshot.dashboardUrl || 'Dashboard link appears after domain env is set.'}</span>
+                  </article>
+                </div>
+                <div className="analytics-events">
+                  {analyticsSnapshot.localEvents.slice(0, 8).map((event, index) => (
+                    <div key={`${event.event}-${event.timestamp || index}`}>
+                      <strong>{event.event}</strong>
+                      <span>{event.timestamp || 'no timestamp'}</span>
+                    </div>
+                  ))}
+                  {analyticsSnapshot.localEvents.length === 0 && (
+                    <div>
+                      <strong>No local events yet</strong>
+                      <span>Visit the public site and click CTAs, then return to Mission Control.</span>
+                    </div>
+                  )}
+                </div>
+              </section>
+
+              <section className="mc-admin-card marketing-card">
+                <div className="mc-section-head">
+                  <div>
+                    <p className="mc-admin-kicker">Social Asset Shot List</p>
+                    <h2>Capture Queue</h2>
+                  </div>
+                  <span>{CROP_FORMATS.join(' / ')}</span>
+                </div>
+                <div className="daily-checklist shot-list-grid">
+                  {SOCIAL_ASSET_SHOTS.map((item) => (
+                    <label key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={Boolean(completedChecklist[item.id])}
+                        onChange={() => toggleChecklistItem(item.id)}
+                      />
+                      <span>{item.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </section>
+
+              <section className="mc-admin-card marketing-card">
+                <div className="mc-section-head">
+                  <div>
+                    <p className="mc-admin-kicker">Outreach Priority</p>
+                    <h2>Lowest Friction First</h2>
+                  </div>
+                  <span>Lead with proof, not platform language.</span>
+                </div>
+                <div className="mc-table-wrap">
+                  <table className="mc-table outreach-priority-table">
+                    <thead>
+                      <tr>
+                        <th>Order</th>
+                        <th>Segment</th>
+                        <th>Targets</th>
+                        <th>First Move</th>
+                        <th>Argument</th>
+                        <th>Mental Mode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {OUTREACH_PRIORITY.map((item) => (
+                        <tr key={item.rank}>
+                          <td><strong>#{item.rank}</strong><span>{item.friction}</span></td>
+                          <td><strong>{item.segment}</strong></td>
+                          <td>{item.exampleTargets}</td>
+                          <td>{item.firstMove}</td>
+                          <td>{item.argumentPriority}</td>
+                          <td className="mindset-cell">{item.mentalMode}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </>
+          )}
         </section>
 
         <aside className={`mc-context-zone ${contextMode}`}>
@@ -1087,6 +1283,10 @@ export default function App() {
     window.addEventListener('popstate', updatePath)
     return () => window.removeEventListener('popstate', updatePath)
   }, [])
+
+  useEffect(() => {
+    trackPageView(path)
+  }, [path])
 
   if (path === '/mission-control') {
     return <MissionControlGate />

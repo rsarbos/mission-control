@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import rsarbosLogo from '../assets/logo.png'
+const dossierLogo = '/dossier/logo_main.svg'
 
 type Metric = {
   label: string
@@ -267,7 +267,7 @@ function SectionHeader({ title, page }: { title: string; page: string }) {
   return (
     <div className="sample-page-header">
       <div className="sample-page-brand">
-        <img src={rsarbosLogo} alt="RSARBOS" />
+        <img src={dossierLogo} alt="RSARBOS" />
         <span>RSARBOS Investment Dossier</span>
       </div>
       <span>{title}</span>
@@ -377,9 +377,9 @@ function SampleDossierPage() {
       <main className="sample-dossier-deck">
         <section className="sample-page sample-cover" ref={(node) => { sectionRefs.current[0] = node }}>
           <div className="sample-cover-media">
-            <img className="sample-cover-main" src="/dossier/property-front.png" alt="1314 Shawn Dr property front" />
+            <img className="sample-cover-main" src="/dossier/shawn22.png" alt="1314 Shawn Dr property front" />
             <div>
-              <img src="/dossier/property-street.png" alt="1314 Shawn Dr street view" />
+              <img src="/dossier/shawn2.png" alt="1314 Shawn Dr street view" />
               <img src="/dossier/property-map.png" alt="1314 Shawn Dr map view" />
             </div>
             <div className="sample-cover-copy">
