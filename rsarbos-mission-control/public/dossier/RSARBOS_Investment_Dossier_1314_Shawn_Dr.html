@@ -9,9 +9,12 @@
 @page :first { margin: 0; }
 
 :root {
-  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  --serif: Georgia, "Times New Roman", serif;
-  --mono: "SFMono-Regular", Consolas, Monaco, monospace;
+  --google-sans-display: "Google Sans Display", "Google Sans", "Product Sans", Roboto, Arial, sans-serif;
+  --google-sans-text: "Google Sans Text", "Google Sans", "Product Sans", Roboto, Arial, sans-serif;
+  --google-sans-mono: "Google Sans Mono", "Google Sans Text", "Google Sans", Roboto, Arial, sans-serif;
+  --sans: var(--google-sans-text);
+  --serif: var(--google-sans-display);
+  --mono: var(--google-sans-mono);
   --ink: #1a1a18;
   --muted: #5b5a54;
   --soft: #8a897f;
@@ -42,7 +45,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; background: #d8d4cc; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--sans); color: var(--ink); background: #d8d4cc; -webkit-print-color-adjust: exact; print-color-adjust: exact; line-height: 1.45; }
+body { font-family: var(--sans); font-weight: 400; color: var(--ink); background: #d8d4cc; -webkit-print-color-adjust: exact; print-color-adjust: exact; line-height: 1.45; }
 
 .toolbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
@@ -77,7 +80,7 @@ body { font-family: var(--sans); color: var(--ink); background: #d8d4cc; -webkit
 .logo-wrap { display: flex; align-items: center; gap: 7px; min-width: 0; }
 .logo-wrap img { height: 14px; width: auto; filter: brightness(0) invert(1); opacity: .9; }
 .brand { font: 600 7px var(--mono); letter-spacing: .1em; text-transform: uppercase; opacity: .62; white-space: nowrap; }
-.h-title { font: 600 11px var(--serif); white-space: nowrap; }
+.h-title { font: 800 11px var(--serif); letter-spacing: 0; white-space: nowrap; }
 .pnum { font: 600 8px var(--mono); opacity: .58; white-space: nowrap; }
 
 .body { padding: var(--pad); flex: 1; display: flex; flex-direction: column; gap: 11px; }
@@ -94,11 +97,11 @@ body { font-family: var(--sans); color: var(--ink); background: #d8d4cc; -webkit
 }
 .kicker.w { color: rgba(255,255,255,.65); }
 .section-title {
-  font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.1;
-  letter-spacing: -.02em; color: var(--navy); border-bottom: 2px solid var(--navy);
+  font-family: var(--serif); font-weight: 850; font-size: 22px; line-height: 1.1;
+  letter-spacing: 0; color: var(--navy); border-bottom: 2px solid var(--navy);
   padding-bottom: 8px; margin-bottom: 3px;
 }
-.copy { font-size: 11.5px; line-height: 1.55; color: var(--muted); }
+.copy { font-size: 11.5px; font-weight: 400; line-height: 1.55; color: var(--muted); }
 .copy b, .copy strong { color: var(--ink); font-weight: 700; }
 .micro {
   font: 800 9px var(--mono); letter-spacing: .08em; text-transform: uppercase;
@@ -201,7 +204,7 @@ body { font-family: var(--sans); color: var(--ink); background: #d8d4cc; -webkit
   position: absolute; left: var(--pad); right: var(--pad); bottom: 24px;
   color: #fff; z-index: 2;
 }
-.hero-title { font-family: var(--serif); font-size: 38px; font-weight: 400; letter-spacing: -.03em; line-height: 1.05; margin: 6px 0; }
+.hero-title { font-family: var(--serif); font-size: 38px; font-weight: 900; letter-spacing: 0; line-height: 1.05; margin: 6px 0; }
 .hero-sub { font: 500 12px var(--mono); opacity: .78; }
 .hero-badge {
   display: inline-block; background: rgba(255,255,255,.15); backdrop-filter: blur(4px);
@@ -430,7 +433,7 @@ body { font-family: var(--sans); color: var(--ink); background: #d8d4cc; -webkit
 
   <div class="card navy" style="padding:18px">
     <div class="kicker w" style="margin-bottom:8px">Executive Summary</div>
-    <div style="font-family:var(--serif);font-size:23px;line-height:1.14;margin-bottom:8px">A disciplined entry point into San Jose with a rental thesis that demands verification.</div>
+    <div style="font-family:var(--serif);font-size:23px;font-weight:850;letter-spacing:0;line-height:1.14;margin-bottom:8px">A disciplined entry point into San Jose with a rental thesis that demands verification.</div>
     <div style="font-size:12px;line-height:1.55;color:rgba(255,255,255,.78)">At $500K, this 2BD/1BA condo offers one of the lowest-ticket entry points in 95118. The RentCast estimate of $4,410/mo creates an attractive headline, but the deal only works if rent, HOA rules, and renovation constraints verify. This dossier provides the data, the calculator, and the risk register to make that decision in under 15 minutes.</div>
   </div>
 
@@ -975,7 +978,7 @@ body { font-family: var(--sans); color: var(--ink); background: #d8d4cc; -webkit
 
     <div class="card navy">
       <div class="kicker w" style="margin-bottom:9px">Recommended next move</div>
-      <div style="font-family:var(--serif);font-size:21px;line-height:1.14;margin-bottom:9px">Verify the HOA and rent math before recommending an offer.</div>
+      <div style="font-family:var(--serif);font-size:21px;font-weight:850;letter-spacing:0;line-height:1.14;margin-bottom:9px">Verify the HOA and rent math before recommending an offer.</div>
       <div style="font-size:11.5px;line-height:1.52;color:rgba(255,255,255,.78)">
         <div style="margin-bottom:8px"><b>Step 1:</b> Request HOA financials, reserve study, and CC&Rs. Confirm no pending special assessment and rental caps do not block your strategy.</div>
         <div style="margin-bottom:8px"><b>Step 2:</b> Verify rent with 3+ true 2BD/1BA condo comps in 95118. Do not rely on SFR comps or RentCast headline alone.</div>
