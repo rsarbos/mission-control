@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-const dossierLogo = '/dossier/logo_main.svg'
+const dossierLogo = '/dossier/logo.png'
 
 type Metric = {
   label: string
