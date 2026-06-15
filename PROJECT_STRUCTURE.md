@@ -44,6 +44,7 @@ This document outlines the current folder and file structure of the Mission Cont
 │   │   │   ├───DepartmentGrid.tsx
 │   │   │   ├───Header.tsx
 │   │   │   ├───OperationsSnapshot.tsx
+│   │   │   ├───MissionControlRevenueOS.tsx
 │   │   │   ├───OrgMap.tsx
 │   │   │   ├───SystemRuntime.tsx
 │   │   │   ├───Tabs.tsx
@@ -52,6 +53,8 @@ This document outlines the current folder and file structure of the Mission Cont
 │   │   │   ├───axiom-agents.ts
 │   │   │   ├───departments.ts
 │   │   │   ├───founder-tasks.ts
+│   │   │   ├───mission-control-domain.test.ts
+│   │   │   ├───mission-control-domain.ts
 │   │   │   ├───mission-control-data.ts
 │   │   │   └───system-state.ts
 │   │   ├───dist/... (ignored)
@@ -64,6 +67,8 @@ This document outlines the current folder and file structure of the Mission Cont
 │   ├───package.json
 │   ├───tsconfig.json
 │   └───vite.config.ts
+├───AGENTS_REQUIRED_READING.md
 ├───MISSION_CONTROL_HANDOFF.md
+├───MISSION_CONTROL_IMPLEMENTATION_ASSESSMENT.md
 └───package-lock.json
 ```

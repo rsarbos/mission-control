@@ -6,6 +6,12 @@ See the root constitution: /axiom/AXIOM_CONSTITUTION.md
 
 Domain constitutions live under `ops/` and inherit from the AXIOM Constitution.
 
+For all future coding agents, begin with the canonical reading sequence in:
+
+`AGENTS_REQUIRED_READING.md`
+
+That document defines the current Mission Control/Core boundary, the revenue-first execution phase, the manual-to-Core convergence doctrine, and AXIOM's practical stewardship role.
+
 Next steps:
 - Review and adapt domain `CONSTITUTION.md` files.
 - Create `STATE.md` and `TASKS.md` for each domain.
