@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ManualReportForm from './components/ManualReportForm'
+import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
 import rsarbosLogo from './assets/logo.png'
 import { getAnalyticsSnapshot, trackEvent, trackPageView } from './utils/analytics'
@@ -139,6 +140,16 @@ const OUTREACH_CONTACTS: OutreachContact[] = [
     socialHandle: '@dispokings',
     socialUrl: 'https://www.investorlift.com/',
   },
+  {
+    uuid: 'contact-houston-dispo-009',
+    name: 'Houston Dispo Pro',
+    company: 'Lone Star Wholesale',
+    channelTag: 'InvestorLift',
+    phone: '+15550301009',
+    email: 'houston.deals@example.com',
+    socialHandle: '@houstonwholesale',
+    socialUrl: 'https://www.investorlift.com/',
+  },
 ]
 
 const OUTREACH_TEMPLATES: OutreachTemplate[] = [
@@ -150,22 +161,43 @@ const OUTREACH_TEMPLATES: OutreachTemplate[] = [
       `The listing for ${asset.address} claims $${asset.headlineRent.toLocaleString()} in rent. My report found the actual comp-ceiling is $${asset.actualCompRent.toLocaleString()}. I packaged the full risk-register and ARV thesis here: https://rsarbos.com${asset.dossierUrl}. No strings, just wanted to show you the spread before your team spends time on it.`,
   },
   {
+    id: 'stale-deal-rescue',
+    title: 'Stale Deal Rescue',
+    target: 'Wholesalers with 10+ DOM',
+    generateBody: (asset) => 
+      `I noticed your deal at ${asset.address} has been on InvestorLift for ${asset.yearBuilt} days. In this market, that usually means a 'Trust Gap' on the foundation or ARV. I underwrote the 'Truth' spread here: https://rsarbos.com${asset.dossierUrl}. Might help you move it to a buyer who is on the fence.`,
+  },
+  {
     id: 'risk-first',
     title: 'Risk Register Angle',
     target: 'Institutional / Skeptical Buyers',
     generateBody: (asset) => 
       `Underwrote ${asset.address} and found a specific risk ([${asset.assetRiskRegister[0]}]) that doesn't show up on Zillow. Full dossier with comps and walkaway triggers here: https://rsarbos.com${asset.dossierUrl}. Worth a look before you run numbers.`,
   },
-  {
-    id: 'creative-subto',
-    title: 'SubTo Entry Fee Stress-Test',
-    target: 'Pace Morby / SubTo Community',
-    generateBody: (asset) => 
-      `Saw the SubTo deal at ${asset.address}. Entry fee looks high when you stress-test the rent reality ($${asset.headlineRent.toLocaleString()} vs $${asset.actualCompRent.toLocaleString()}). Here's the decision-ready dossier: https://rsarbos.com${asset.dossierUrl}`,
-  },
 ]
 
 const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
+  {
+    uuid: 'asset-houston-77045',
+    address: 'Houston, TX 77045 (InvestorLift ID: HOU-77045)',
+    sourcedByContactUuid: 'contact-houston-dispo-009',
+    listPrice: 138000,
+    headlineRent: 1800,
+    actualCompRent: 1650,
+    yearBuilt: 11, // Using yearBuilt as DOM for this specific UI hack
+    squareFeet: 1400,
+    maximumAllowableOffer: 125000,
+    rentcastDiscrepancyFlag: '$1,800 pro-forma vs $1,650 Section 8 ceiling',
+    verdictStatus: 'WORTH_PURSUING',
+    compileStatus: 'Dossier Ready - Stale Deal Rescue Hook active',
+    paymentStatus: 'PAID',
+    assetRiskRegister: [
+      'Foundation shift risk common in 77045 clay soil.',
+      'Wholesaler ARV ($280k) assumes premium finish; RSARBOS supports $255k.',
+      'Previous buyer fallout noted in listing history.',
+    ],
+    dossierUrl: '/sample-dossier-1314shawndr', // Temporarily using sample until Houston is built
+  },
   {
     uuid: 'asset-1314-shawn-dr',
     address: '1314 Shawn Dr #1, San Jose, CA 95118',
@@ -187,24 +219,48 @@ const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
     ],
     dossierUrl: DOSSIER_PREVIEW_URL,
   },
-  {
-    uuid: 'asset-seed-002',
-    address: 'Inbound property link pending',
-    sourcedByContactUuid: 'contact-turner-005',
-    listPrice: 0,
-    headlineRent: 0,
-    actualCompRent: 0,
-    yearBuilt: 0,
-    squareFeet: 0,
-    maximumAllowableOffer: 0,
-    rentcastDiscrepancyFlag: 'Awaiting listing and rent source comparison',
-    verdictStatus: 'REVIEW_REQUIRED',
-    compileStatus: 'Intake slot open',
-    paymentStatus: 'PENDING',
-    assetRiskRegister: ['Asset data not hydrated.', 'Comp set not assigned.', 'Risk register awaiting first pass.'],
-    dossierUrl: '#',
-  },
 ]
+
+function DossierCarousel() {
+  const [index, setIndex] = useState(0)
+  const paidAssets = UNDERWRITTEN_ASSETS.filter(a => a.paymentStatus === 'PAID')
+
+  const next = () => setIndex((i) => (i + 1) % paidAssets.length)
+  const prev = () => setIndex((i) => (i - 1 + paidAssets.length) % paidAssets.length)
+
+  const active = paidAssets[index]
+
+  return (
+    <section className="mc-admin-card dossier-carousel">
+      <div className="mc-section-head">
+        <div>
+          <p className="mc-admin-kicker">Visual Evidence</p>
+          <h2>Dossier Showcase</h2>
+        </div>
+        <div className="carousel-nav">
+          <button type="button" className="mc-mini-action" onClick={prev}>←</button>
+          <span>{index + 1} / {paidAssets.length}</span>
+          <button type="button" className="mc-mini-action" onClick={next}>→</button>
+        </div>
+      </div>
+      <div className="carousel-content glass-panel">
+        <div className="carousel-preview">
+           <div style={{ marginBottom: '12px' }}>
+             <VerdictBadge status={active.verdictStatus} />
+           </div>
+           <h3>{active.address}</h3>
+           <p className="red-text" style={{ fontSize: '1.1rem', fontWeight: 800 }}>
+             Rent Gap: -${active.headlineRent - active.actualCompRent}/mo
+           </p>
+           <div className="risk-pill-list" style={{ margin: '16px 0' }}>
+             {active.assetRiskRegister.map((r, i) => <span key={i} className="risk-pill">{r}</span>)}
+           </div>
+           <a href={active.dossierUrl} target="_blank" rel="noreferrer" className="primary-action red-action">OPEN FULL DOSSIER</a>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 const VIDEO_TEMPLATE: DailyChecklistItem[] = [
   { id: 'video-hook', label: '0:00-0:30 | The Hook (Contrast listing price vs. RentCast discrepancy)' },
@@ -346,6 +402,7 @@ function PublicWebsite() {
             <img src={rsarbosLogo} alt="RSARBOS" />
           </a>
           <div className="desktop-menu">
+            <a className="nav-about" href="/about-us">ABOUT US</a>
             <a className="nav-cta" href="#request">REQUEST REPORT</a>
             <a className="nav-sample" href="#sample">VIEW SAMPLE DOSSIER</a>
             <a className="nav-contact" href="/contact">CONTACT</a>
@@ -358,6 +415,7 @@ function PublicWebsite() {
         </div>
         {isMenuOpen && (
           <div className="mobile-menu">
+            <a href="/about-us">About Us</a>
             <a href="#request" onClick={() => setIsMenuOpen(false)}>Request Report</a>
             <a href="#sample" onClick={() => setIsMenuOpen(false)}>View Sample Dossier</a>
             <a href="/contact">Contact</a>
@@ -461,8 +519,76 @@ function PublicWebsite() {
             <ManualReportForm />
           </div>
         </section>
+      </main>
 
-        <section className="core-section verdict-section">
+      <footer className="public-footer">
+        <div className="content-wrap">
+          <div className="footer-top">
+            <a className="logo-wordmark footer-logo" href="#home" onClick={handleLogoClick} onContextMenu={handleLogoContextMenu}><img src={rsarbosLogo} alt="RSARBOS" /></a>
+            <p>BUILDING THE INTELLIGENCE LAYER FOR THE NEXT ECONOMY.</p>
+          </div>
+          <div className="footer-bottom">
+            <p>© 2026 RSARBOS Next-Gen Business Technology. All rights reserved.</p>
+            <div className="footer-links">
+              <a href="/about-us">About Us</a>
+              <a href="/terms">Terms</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/refund-policy">Refunds</a>
+              <a href="/contact">Contact</a>
+              <span className="footer-status-pill"><span className="online-dot">■</span>SYSTEM: ONLINE</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+function AboutUsPage() {
+  return (
+    <div className="public-site about-page">
+      <div className="ambient-glow" aria-hidden="true"></div>
+      <nav className="public-nav" aria-label="About navigation">
+        <div className="nav-inner">
+          <a className="logo-wordmark" href="/">
+            <img src={rsarbosLogo} alt="RSARBOS" />
+          </a>
+          <div className="desktop-menu">
+            <a className="nav-sample" href="/#sample">VIEW SAMPLE DOSSIER</a>
+            <a className="nav-cta" href="/#request">REQUEST REPORT</a>
+            <a className="nav-contact" href="/contact">CONTACT</a>
+          </div>
+        </div>
+      </nav>
+
+      <main className="about-main">
+        <section className="about-hero">
+          <div className="content-wrap about-hero-grid">
+            <div className="about-hero-copy">
+              <p className="red-kicker"><span></span>About RSARBOS</p>
+              <h1>Building the intelligence layer for real estate decisions.</h1>
+              <p>
+                RSARBOS is starting with manual underwriting reports because the market needs clear, auditable property
+                verdicts now. Each paid report helps validate the workflow, sharpen the data model, and fund the engine
+                being developed behind the scenes.
+              </p>
+              <div className="hero-actions">
+                <a className="primary-action shine-action" href="/#request">REQUEST UNDERWRITING</a>
+                <a className="secondary-action glass-action" href="/#sample">VIEW SAMPLE DOSSIER</a>
+              </div>
+            </div>
+            <div className="about-proof-panel glass-panel">
+              <p>Current Plan</p>
+              <strong>Revenue first. Proof first. Capital with leverage.</strong>
+              <span>
+                Manual dossiers create customer proof, investor conversations, and a disciplined path toward seed capital
+                without pretending the full platform is already automated.
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section className="core-section about-section">
           <div className="content-wrap core-grid">
             <div>
               <p className="red-kicker"><span></span>Workflow</p>
@@ -480,17 +606,65 @@ function PublicWebsite() {
           </div>
         </section>
 
+        <section className="about-section about-plan-section">
+          <div className="content-wrap about-plan-grid">
+            <article className="about-plan-card glass-panel">
+              <span>01</span>
+              <h2>Customer Validation</h2>
+              <p>
+                The launch product is a $100 manual underwriting dossier for investors, flippers, agents, wholesalers, and
+                acquisition teams that need a clear decision before they spend time or capital on a property.
+              </p>
+            </article>
+            <article className="about-plan-card glass-panel">
+              <span>02</span>
+              <h2>Investor Signal</h2>
+              <p>
+                Paid reports, sample dossiers, turnaround data, and repeatable deal narratives become the proof package for
+                capital partners and early investors evaluating the company.
+              </p>
+            </article>
+            <article className="about-plan-card glass-panel">
+              <span>03</span>
+              <h2>Seed Capital Path</h2>
+              <p>
+                The near-term capital goal is seed funding that expands data access, engineering capacity, compliance
+                readiness, customer acquisition, and the internal underwriting engine.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className="about-engine-section">
+          <div className="content-wrap about-engine-grid">
+            <div>
+              <p className="red-kicker"><span></span>Engine In Development</p>
+              <h2>From manual proof to a repeatable underwriting system.</h2>
+              <p>
+                The engine is being developed around structured property intake, source conflict detection, rent and cash-flow
+                stress tests, risk registers, traceable assumptions, and report generation. The public product stays honest:
+                analysts are delivering the reports today while the platform matures.
+              </p>
+            </div>
+            <div className="engine-list glass-panel">
+              <div><strong>Data Discipline</strong><span>Normalize property links, comps, assumptions, and source conflicts.</span></div>
+              <div><strong>Decision Logic</strong><span>Separate price, rent, risk, and exit strategy into auditable verdicts.</span></div>
+              <div><strong>Capital Readiness</strong><span>Turn early delivery into proof for seed investors and strategic partners.</span></div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="public-footer">
         <div className="content-wrap">
           <div className="footer-top">
-            <a className="logo-wordmark footer-logo" href="#home" onClick={handleLogoClick} onContextMenu={handleLogoContextMenu}><img src={rsarbosLogo} alt="RSARBOS" /></a>
+            <a className="logo-wordmark footer-logo" href="/"><img src={rsarbosLogo} alt="RSARBOS" /></a>
             <p>BUILDING THE INTELLIGENCE LAYER FOR THE NEXT ECONOMY.</p>
           </div>
           <div className="footer-bottom">
             <p>© 2026 RSARBOS Next-Gen Business Technology. All rights reserved.</p>
             <div className="footer-links">
+              <a href="/">Home</a>
               <a href="/terms">Terms</a>
               <a href="/privacy">Privacy</a>
               <a href="/refund-policy">Refunds</a>
@@ -720,7 +894,7 @@ function MissionControlGate() {
   }
 
   if (isUnlocked) {
-    return <MissionControlApp />
+    return <MissionControlRevenueOS />
   }
 
   return (
@@ -909,6 +1083,8 @@ function MissionControlApp() {
                   </article>
                 </div>
               </section>
+
+              <DossierCarousel />
 
               <section className="mc-admin-card assets-card">
                 <div className="mc-section-head">
@@ -1314,6 +1490,10 @@ export default function App() {
 
   if (path === '/contact') {
     return <ContactPage />
+  }
+
+  if (path === '/about-us' || path === '/about') {
+    return <AboutUsPage />
   }
 
   if (path === '/sample-dossier-1314shawndr') {

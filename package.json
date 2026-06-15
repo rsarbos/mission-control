@@ -8,7 +8,8 @@
   "scripts": {
     "build": "npm --workspace rsarbos-mission-control run build",
     "typecheck": "npm --workspace rsarbos-mission-control run typecheck",
-    "lint": "npm run typecheck"
+    "lint": "npm run typecheck",
+    "test": "npm --workspace rsarbos-mission-control run test"
   },
   "dependencies": {
     "pg": "^8.21.0",
