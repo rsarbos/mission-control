@@ -1,0 +1,43 @@
+{
+  "name": "RSARBOS About Decision Manifest",
+  "version": "1.0.0",
+  "status": "founder-review-ready",
+  "truthBoundary": "Illustrative sample until replaced by approved property evidence and deterministic outputs.",
+  "assets": [
+    {
+      "file": "decision-manifest-poster-desktop.webp",
+      "width": 1800,
+      "height": 1400,
+      "role": "desktop hero poster",
+      "composition": "intentional hero crop"
+    },
+    {
+      "file": "decision-manifest-poster-mobile.webp",
+      "width": 1200,
+      "height": 1500,
+      "role": "mobile hero poster",
+      "composition": "independent mobile composition"
+    },
+    {
+      "file": "decision-manifest-poster-expanded.webp",
+      "width": 1800,
+      "height": 1680,
+      "role": "full trust-section poster",
+      "composition": "complete visual"
+    },
+    {
+      "file": "decision-manifest-loop.webm",
+      "width": 900,
+      "height": 700,
+      "durationSeconds": 4,
+      "role": "preferred motion fallback"
+    },
+    {
+      "file": "decision-manifest-loop.mp4",
+      "width": 900,
+      "height": 700,
+      "durationSeconds": 4,
+      "role": "compatibility motion fallback"
+    }
+  ]
+}

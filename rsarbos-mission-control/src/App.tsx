@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ManualReportForm from './components/ManualReportForm'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
+import { DecisionManifestHero } from './components/about/decision-manifest'
 import rsarbosLogo from './assets/logo.png'
 import { getAnalyticsSnapshot, trackEvent, trackPageView } from './utils/analytics'
 
@@ -565,91 +566,200 @@ function AboutUsPage() {
         <section className="about-hero">
           <div className="content-wrap about-hero-grid">
             <div className="about-hero-copy">
-              <p className="red-kicker"><span></span>About RSARBOS</p>
-              <h1>Building the intelligence layer for real estate decisions.</h1>
+              <p className="red-kicker"><span></span>ABOUT RSARBOS</p>
+              <h1>From a property link to a decision you can defend.</h1>
               <p>
-                RSARBOS is starting with manual underwriting reports because the market needs clear, auditable property
-                verdicts now. Each paid report helps validate the workflow, sharpen the data model, and fund the engine
-                being developed behind the scenes.
+                RSARBOS turns scattered listing data, comparable sales, rent assumptions, risks, and source evidence into
+                one clear, human-reviewed acquisition dossier.
+              </p>
+              <p className="about-hero-statement">
+                See what supports the opportunity, what could break it, and what still needs verification before capital
+                moves.
               </p>
               <div className="hero-actions">
-                <a className="primary-action shine-action" href="/#request">REQUEST UNDERWRITING</a>
-                <a className="secondary-action glass-action" href="/#sample">VIEW SAMPLE DOSSIER</a>
+                <a className="primary-action shine-action" href="/#sample">VIEW SAMPLE DOSSIER</a>
+                <a className="secondary-action glass-action" href="/#request">REQUEST A REPORT</a>
+              </div>
+              <p className="about-trust-note">Human-reviewed today. Structured for repeatable, governed automation.</p>
+            </div>
+            <div
+              className="about-hero-visual"
+              aria-label="Illustrative RSARBOS decision manifest showing a property case, comparable-value range, acquisition conditions, diligence checks, unresolved evidence, and preserved audit history."
+            >
+              <DecisionManifestHero />
+            </div>
+          </div>
+        </section>
+
+        <section className="about-convergence-section">
+          <div className="content-wrap about-convergence-grid">
+            <div className="about-section-copy">
+              <p className="red-kicker"><span></span>FROM FRAGMENTS TO DOSSIER</p>
+              <h2>Scattered property information becomes one decision file.</h2>
+              <p>
+                Listings, rent claims, comparable sales, repair notes, local context, and unresolved diligence are gathered
+                into a single acquisition dossier so the decision is not trapped across tabs and screenshots.
+              </p>
+            </div>
+            <div className="convergence-visual" aria-label="Fragmented property sources converging into one RSARBOS dossier">
+              <div className="source-cluster source-cluster-left" aria-hidden="true">
+                <span>Listing</span>
+                <span>Comps</span>
+                <span>Rent claim</span>
+              </div>
+              <div className="convergence-lines" aria-hidden="true">
+                <i></i>
+                <i></i>
+                <i></i>
+              </div>
+              <div className="dossier-core">
+                <strong>RSARBOS Dossier</strong>
+                <span>Evidence-backed acquisition brief</span>
+                <b>Verdict + risks + next checks</b>
+              </div>
+              <div className="source-cluster source-cluster-right" aria-hidden="true">
+                <span>Repairs</span>
+                <span>Neighborhood</span>
+                <span>Open diligence</span>
               </div>
             </div>
-            <div className="about-proof-panel glass-panel">
-              <p>Current Plan</p>
-              <strong>Revenue first. Proof first. Capital with leverage.</strong>
-              <span>
-                Manual dossiers create customer proof, investor conversations, and a disciplined path toward seed capital
-                without pretending the full platform is already automated.
-              </span>
+          </div>
+        </section>
+
+        <section className="about-method-section">
+          <div className="content-wrap about-method-grid">
+            <div className="layer-system-visual" aria-label="Five distinct RSARBOS dossier layers">
+              {[
+                ['Evidence', 'Listing facts, comps, sources, document trail'],
+                ['Assumptions', 'Rent scenarios, repair ranges, financing inputs'],
+                ['Calculations', 'Cash flow, ARV ranges, offer sensitivity'],
+                ['Risks', 'Conflicts, missing documents, walkaway triggers'],
+                ['Verdict', 'Buy, pass, watch, and what must verify next'],
+              ].map(([label, copy], index) => (
+                <article className={`layer-card layer-card-${index + 1}`} key={label}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{label}</strong>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
+            <div className="about-method-copy">
+              <p className="red-kicker"><span></span>BUILT FOR TRUST, NOT BLACK-BOX OUTPUTS</p>
+              <h2>Every verdict should show its work.</h2>
+              <p>
+                RSARBOS keeps evidence, assumptions, calculations, risks, and conclusions separate. That means you can see
+                not only the answer, but why it was reached&mdash;and what remains unresolved.
+              </p>
+              <div className="about-principles" aria-label="RSARBOS trust principles">
+                <article>
+                  <strong>Source lineage</strong>
+                  <span>Material claims remain connected to the evidence that supports them.</span>
+                </article>
+                <article>
+                  <strong>Declared assumptions</strong>
+                  <span>Unknowns and scenario inputs are disclosed instead of hidden inside the result.</span>
+                </article>
+                <article>
+                  <strong>Reproducible calculations</strong>
+                  <span>Financial outputs are designed to come from versioned formulas, not improvised AI arithmetic.</span>
+                </article>
+                <article>
+                  <strong>Visible conflicts</strong>
+                  <span>When sources disagree, the conflict stays visible until it is reviewed.</span>
+                </article>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="core-section about-section">
-          <div className="content-wrap core-grid">
+        <section className="about-workflow-section">
+          <div className="content-wrap about-workflow-grid">
+            <div className="about-section-copy">
+              <p className="red-kicker"><span></span>HUMAN-ASSISTED TODAY</p>
+              <h2>A practical workflow for investors who need a clear read now.</h2>
+              <p>
+                RSARBOS currently delivers human-reviewed reports through a structured service workflow. The customer sends
+                the property, RSARBOS reviews the evidence, and the finished dossier comes back with the decision logic
+                preserved.
+              </p>
+            </div>
+            <div className="workflow-rail" aria-label="Current RSARBOS customer workflow">
+              {[
+                ['01', 'Send property', 'Submit the listing link, context, and the question you need answered.'],
+                ['02', 'Analyst review', 'Evidence, comps, assumptions, and risk flags are organized manually.'],
+                ['03', 'Dossier delivery', 'You receive a private acquisition dossier with next checks called out.'],
+                ['04', 'Capital decision', 'Use the report to proceed, renegotiate, pause, or walk away.'],
+              ].map(([step, title, copy]) => (
+                <article key={step}>
+                  <span>{step}</span>
+                  <div>
+                    <strong>{title}</strong>
+                    <p>{copy}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="about-proof-section">
+          <div className="content-wrap">
+            <div className="about-proof-head">
+              <p className="red-kicker"><span></span>REAL DOSSIER PROOF</p>
+              <h2>The output is a dossier, not a vague summary.</h2>
+              <p>These close-up views use the existing sample dossier asset and show different decision surfaces.</p>
+            </div>
+            <div className="dossier-crop-grid" aria-label="Close-up crops from the RSARBOS sample dossier">
+              {[
+                ['Executive decision', `${DOSSIER_PREVIEW_URL}#p2`],
+                ['Rental thesis', `${DOSSIER_PREVIEW_URL}#p4`],
+                ['Cash-flow calculator', `${DOSSIER_PREVIEW_URL}#p8`],
+              ].map(([title, src]) => (
+                <article className="dossier-crop-card" key={title}>
+                  <div className="dossier-crop-frame">
+                    <iframe src={src} title={`RSARBOS sample dossier close-up: ${title}`} loading="lazy" tabIndex={-1}></iframe>
+                  </div>
+                  <strong>{title}</strong>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="about-roadmap-section">
+          <div className="content-wrap about-roadmap-grid">
+            <div className="about-section-copy">
+              <p className="red-kicker"><span></span>AVAILABLE NOW, STRUCTURED FOR WHAT COMES NEXT</p>
+              <h2>Buy the report today. Let the infrastructure mature honestly.</h2>
+              <p>
+                The public offer is the human-reviewed dossier. The infrastructure being built supports repeatability,
+                governance, and stronger automation without presenting unfinished systems as completed approvals.
+              </p>
+            </div>
+            <div className="today-next-visual" aria-label="Available today versus infrastructure being built">
+              <article>
+                <span>Available today</span>
+                <strong>Manual underwriting dossier</strong>
+                <p>Property link intake, analyst review, risk register, decision summary, and private delivery.</p>
+              </article>
+              <article>
+                <span>Being built</span>
+                <strong>Governed underwriting infrastructure</strong>
+                <p>Structured source lineage, versioned formulas, repeatable checks, and automation with human review.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="about-closing-section">
+          <div className="content-wrap about-closing-panel">
             <div>
-              <p className="red-kicker"><span></span>Workflow</p>
-              <h2>HOW RSARBOS BUILDS A PROPERTY VERDICT</h2>
-              <p>
-                Behind every RSARBOS verdict is a repeatable underwriting workflow: clean intake, rule-based review, and a
-                traceable investor conclusion.
-              </p>
+              <h2>See the dossier. Judge the work.</h2>
+              <p>Open a real sample, or send RSARBOS the property you are evaluating.</p>
             </div>
-            <div className="core-steps">
-              <article className="glass-panel"><span>01</span><strong>Property Intake</strong><p>We organize the listing, comps, price history, condition notes, repair assumptions, rent potential, and market context into one clean underwriting picture.</p></article>
-              <article className="glass-panel"><span>02</span><strong>Underwriting Logic</strong><p>We review the opportunity through consistent financial rules that separate real upside from presentation noise.</p></article>
-              <article className="glass-panel"><span>03</span><strong>Investor Verdict</strong><p>We deliver a clear buy / pass / watch recommendation with the reasoning behind it, so investors can act with confidence.</p></article>
-            </div>
-          </div>
-        </section>
-
-        <section className="about-section about-plan-section">
-          <div className="content-wrap about-plan-grid">
-            <article className="about-plan-card glass-panel">
-              <span>01</span>
-              <h2>Customer Validation</h2>
-              <p>
-                The launch product is a $100 manual underwriting dossier for investors, flippers, agents, wholesalers, and
-                acquisition teams that need a clear decision before they spend time or capital on a property.
-              </p>
-            </article>
-            <article className="about-plan-card glass-panel">
-              <span>02</span>
-              <h2>Investor Signal</h2>
-              <p>
-                Paid reports, sample dossiers, turnaround data, and repeatable deal narratives become the proof package for
-                capital partners and early investors evaluating the company.
-              </p>
-            </article>
-            <article className="about-plan-card glass-panel">
-              <span>03</span>
-              <h2>Seed Capital Path</h2>
-              <p>
-                The near-term capital goal is seed funding that expands data access, engineering capacity, compliance
-                readiness, customer acquisition, and the internal underwriting engine.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section className="about-engine-section">
-          <div className="content-wrap about-engine-grid">
-            <div>
-              <p className="red-kicker"><span></span>Engine In Development</p>
-              <h2>From manual proof to a repeatable underwriting system.</h2>
-              <p>
-                The engine is being developed around structured property intake, source conflict detection, rent and cash-flow
-                stress tests, risk registers, traceable assumptions, and report generation. The public product stays honest:
-                analysts are delivering the reports today while the platform matures.
-              </p>
-            </div>
-            <div className="engine-list glass-panel">
-              <div><strong>Data Discipline</strong><span>Normalize property links, comps, assumptions, and source conflicts.</span></div>
-              <div><strong>Decision Logic</strong><span>Separate price, rent, risk, and exit strategy into auditable verdicts.</span></div>
-              <div><strong>Capital Readiness</strong><span>Turn early delivery into proof for seed investors and strategic partners.</span></div>
+            <div className="hero-actions">
+              <a className="primary-action shine-action" href="/#sample">VIEW SAMPLE DOSSIER</a>
+              <a className="secondary-action glass-action" href="/#request">REQUEST A REPORT</a>
             </div>
           </div>
         </section>
