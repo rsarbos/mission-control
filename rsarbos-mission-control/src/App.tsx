@@ -555,8 +555,8 @@ function AboutUsPage() {
             <img src={rsarbosLogo} alt="RSARBOS" />
           </a>
           <div className="desktop-menu">
-            <a className="nav-sample" href="/#sample">VIEW SAMPLE DOSSIER</a>
-            <a className="nav-cta" href="/#request">REQUEST REPORT</a>
+            <a className="nav-sample" href="/">HOME</a>
+            <a className="nav-cta" href="#decision-artifact">DECISION ARTIFACT</a>
             <a className="nav-contact" href="/contact">CONTACT</a>
           </div>
         </div>
@@ -567,20 +567,16 @@ function AboutUsPage() {
           <div className="content-wrap about-hero-grid">
             <div className="about-hero-copy">
               <p className="red-kicker"><span></span>ABOUT RSARBOS</p>
-              <h1>From a property link to a decision you can defend.</h1>
+              <h1>From information overload to defendable decisions.</h1>
               <p>
-                RSARBOS turns scattered listing data, comparable sales, rent assumptions, risks, and source evidence into
-                one clear, human-reviewed acquisition dossier.
+                Real estate decisions are often made from fragmented information, hidden assumptions, black-box
+                calculations, and undocumented reasoning.
               </p>
               <p className="about-hero-statement">
-                See what supports the opportunity, what could break it, and what still needs verification before capital
-                moves.
+                RSARBOS exists to create decision infrastructure where every conclusion can be traced, challenged,
+                reproduced, and defended.
               </p>
-              <div className="hero-actions">
-                <a className="primary-action shine-action" href="/#sample">VIEW SAMPLE DOSSIER</a>
-                <a className="secondary-action glass-action" href="/#request">REQUEST A REPORT</a>
-              </div>
-              <p className="about-trust-note">Human-reviewed today. Structured for repeatable, governed automation.</p>
+              <p className="about-trust-note">The goal is not faster underwriting alone. The goal is underwriting that remains understandable and reviewable.</p>
             </div>
             <div
               className="about-hero-visual"
@@ -594,14 +590,19 @@ function AboutUsPage() {
         <section className="about-convergence-section">
           <div className="content-wrap about-convergence-grid">
             <div className="about-section-copy">
-              <p className="red-kicker"><span></span>FROM FRAGMENTS TO DOSSIER</p>
-              <h2>Scattered property information becomes one decision file.</h2>
+              <p className="red-kicker"><span></span>THE INDUSTRY PROBLEM</p>
+              <h2>Fragmented inputs produce fragile conviction.</h2>
               <p>
-                Listings, rent claims, comparable sales, repair notes, local context, and unresolved diligence are gathered
-                into a single acquisition dossier so the decision is not trapped across tabs and screenshots.
+                A listing says one thing. Comps imply another. Rent data moves independently. Repair assumptions live in a
+                spreadsheet. Risk notes sit in a message thread. By the time a decision is made, the reasoning is often
+                scattered across tools and memory.
+              </p>
+              <p>
+                RSARBOS is being built to preserve the chain between source material, assumptions, calculations, risk
+                analysis, and the final decision.
               </p>
             </div>
-            <div className="convergence-visual" aria-label="Fragmented property sources converging into one RSARBOS dossier">
+            <div className="convergence-visual" aria-label="Fragmented property sources connected into a traceable decision record">
               <div className="source-cluster source-cluster-left" aria-hidden="true">
                 <span>Listing</span>
                 <span>Comps</span>
@@ -613,9 +614,9 @@ function AboutUsPage() {
                 <i></i>
               </div>
               <div className="dossier-core">
-                <strong>RSARBOS Dossier</strong>
-                <span>Evidence-backed acquisition brief</span>
-                <b>Verdict + risks + next checks</b>
+                <strong>Decision Record</strong>
+                <span>Source lineage, assumptions, formulas, conflicts, and review state</span>
+                <b>Conclusion with an audit trail</b>
               </div>
               <div className="source-cluster source-cluster-right" aria-hidden="true">
                 <span>Repairs</span>
@@ -628,13 +629,15 @@ function AboutUsPage() {
 
         <section className="about-method-section">
           <div className="content-wrap about-method-grid">
-            <div className="layer-system-visual" aria-label="Five distinct RSARBOS dossier layers">
+            <div className="layer-system-visual constitutional-workflow" aria-label="RSARBOS Constitutional Workflow from sources to decision">
               {[
-                ['Evidence', 'Listing facts, comps, sources, document trail'],
-                ['Assumptions', 'Rent scenarios, repair ranges, financing inputs'],
-                ['Calculations', 'Cash flow, ARV ranges, offer sensitivity'],
-                ['Risks', 'Conflicts, missing documents, walkaway triggers'],
-                ['Verdict', 'Buy, pass, watch, and what must verify next'],
+                ['Sources', 'Listings, comps, rent data, documents, notes, and market references'],
+                ['Evidence', 'Relevant facts are extracted without losing their origin'],
+                ['Assumptions', 'Unknowns, scenarios, ranges, and judgment calls are declared'],
+                ['Calculations', 'Outputs remain tied to formulas and stated inputs'],
+                ['Risk Analysis', 'Conflicts, missing items, and breakpoints remain visible'],
+                ['Verdict', 'The conclusion states what the record supports and what it does not'],
+                ['Decision', 'The operator can proceed, pause, challenge, or reject with context'],
               ].map(([label, copy], index) => (
                 <article className={`layer-card layer-card-${index + 1}`} key={label}>
                   <span>{String(index + 1).padStart(2, '0')}</span>
@@ -644,30 +647,53 @@ function AboutUsPage() {
               ))}
             </div>
             <div className="about-method-copy">
-              <p className="red-kicker"><span></span>BUILT FOR TRUST, NOT BLACK-BOX OUTPUTS</p>
-              <h2>Every verdict should show its work.</h2>
+              <p className="red-kicker"><span></span>THE CONSTITUTIONAL WORKFLOW</p>
+              <h2>Every layer remains inspectable.</h2>
               <p>
-                RSARBOS keeps evidence, assumptions, calculations, risks, and conclusions separate. That means you can see
-                not only the answer, but why it was reached&mdash;and what remains unresolved.
+                RSARBOS separates the decision stack into visible layers: sources, evidence, assumptions, calculations,
+                risk analysis, verdict, and final decision. Each layer should be reviewable on its own and connected to
+                the layers above and below it.
               </p>
-              <div className="about-principles" aria-label="RSARBOS trust principles">
-                <article>
-                  <strong>Source lineage</strong>
-                  <span>Material claims remain connected to the evidence that supports them.</span>
-                </article>
-                <article>
-                  <strong>Declared assumptions</strong>
-                  <span>Unknowns and scenario inputs are disclosed instead of hidden inside the result.</span>
-                </article>
-                <article>
-                  <strong>Reproducible calculations</strong>
-                  <span>Financial outputs are designed to come from versioned formulas, not improvised AI arithmetic.</span>
-                </article>
-                <article>
-                  <strong>Visible conflicts</strong>
-                  <span>When sources disagree, the conflict stays visible until it is reviewed.</span>
-                </article>
-              </div>
+              <p className="about-bridge-copy">
+                The point is not to make underwriting look more complex. The point is to make the reasoning legible enough
+                to audit.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="about-verdict-section">
+          <div className="content-wrap about-verdict-grid">
+            <div className="about-section-copy">
+              <p className="red-kicker"><span></span>EVERY VERDICT SHOULD SHOW ITS WORK</p>
+              <h2>A conclusion is only useful if its origin is visible.</h2>
+              <p>
+                RSARBOS treats a verdict as the end of a trace, not the start of a sales pitch. The user should be able to
+                inspect what evidence supported the conclusion, which assumptions carried the result, where sources
+                disagreed, and which checks remain unresolved.
+              </p>
+            </div>
+            <div className="about-principles" aria-label="RSARBOS audit principles">
+              <article>
+                <strong>Auditability</strong>
+                <span>Every material conclusion should have a visible origin and review state.</span>
+              </article>
+              <article>
+                <strong>Source lineage</strong>
+                <span>Evidence remains connected to the conclusion it supports.</span>
+              </article>
+              <article>
+                <strong>Assumption disclosure</strong>
+                <span>Unknowns, estimates, and scenario inputs stay visible instead of being hidden inside the result.</span>
+              </article>
+              <article>
+                <strong>Reproducibility</strong>
+                <span>Financial outputs should be reproducible from documented formulas and assumptions.</span>
+              </article>
+              <article>
+                <strong>Decision traceability</strong>
+                <span>The path from raw input to final judgment should be inspectable after the fact.</span>
+              </article>
             </div>
           </div>
         </section>
@@ -675,91 +701,66 @@ function AboutUsPage() {
         <section className="about-workflow-section">
           <div className="content-wrap about-workflow-grid">
             <div className="about-section-copy">
-              <p className="red-kicker"><span></span>HUMAN-ASSISTED TODAY</p>
-              <h2>A practical workflow for investors who need a clear read now.</h2>
+              <p className="red-kicker"><span></span>HUMAN JUDGMENT TODAY. GOVERNED AUTOMATION TOMORROW.</p>
+              <h2>AI can accelerate the work. Governance is the differentiator.</h2>
               <p>
-                RSARBOS currently delivers human-reviewed reports through a structured service workflow. The customer sends
-                the property, RSARBOS reviews the evidence, and the finished dossier comes back with the decision logic
-                preserved.
+                RSARBOS is human-reviewed today, structured today, and built around repeatable logic today. Automation can
+                compress the time required to gather, compare, and summarize evidence, but it cannot be allowed to erase
+                the reasoning path.
+              </p>
+              <p>
+                The future system is not magic AI underwriting. It is governed AI-assisted decision infrastructure where
+                speed increases while source lineage, calculation logic, and reviewability remain intact.
               </p>
             </div>
-            <div className="workflow-rail" aria-label="Current RSARBOS customer workflow">
-              {[
-                ['01', 'Send property', 'Submit the listing link, context, and the question you need answered.'],
-                ['02', 'Analyst review', 'Evidence, comps, assumptions, and risk flags are organized manually.'],
-                ['03', 'Dossier delivery', 'You receive a private acquisition dossier with next checks called out.'],
-                ['04', 'Capital decision', 'Use the report to proceed, renegotiate, pause, or walk away.'],
-              ].map(([step, title, copy]) => (
-                <article key={step}>
-                  <span>{step}</span>
-                  <div>
-                    <strong>{title}</strong>
-                    <p>{copy}</p>
-                  </div>
-                </article>
-              ))}
+            <div className="today-next-visual governed-automation-visual" aria-label="Current RSARBOS state and future governed automation state">
+              <article>
+                <span>Today</span>
+                <strong>Human-reviewed underwriting</strong>
+                <p>Structured workflow, analyst judgment, repeatable logic, declared assumptions, and visible conflicts.</p>
+              </article>
+              <article>
+                <span>Tomorrow</span>
+                <strong>Governed automation</strong>
+                <p>Automated assistance, near-instant analysis, preserved auditability, and reviewable AI-supported decisions.</p>
+              </article>
             </div>
           </div>
         </section>
 
-        <section className="about-proof-section">
-          <div className="content-wrap">
+        <section className="about-proof-section" id="decision-artifact">
+          <div className="content-wrap about-artifact-grid">
             <div className="about-proof-head">
-              <p className="red-kicker"><span></span>REAL DOSSIER PROOF</p>
-              <h2>The output is a dossier, not a vague summary.</h2>
-              <p>These close-up views use the existing sample dossier asset and show different decision surfaces.</p>
-            </div>
-            <div className="dossier-crop-grid" aria-label="Close-up crops from the RSARBOS sample dossier">
-              {[
-                ['Executive decision', `${DOSSIER_PREVIEW_URL}#p2`],
-                ['Rental thesis', `${DOSSIER_PREVIEW_URL}#p4`],
-                ['Cash-flow calculator', `${DOSSIER_PREVIEW_URL}#p8`],
-              ].map(([title, src]) => (
-                <article className="dossier-crop-card" key={title}>
-                  <div className="dossier-crop-frame">
-                    <iframe src={src} title={`RSARBOS sample dossier close-up: ${title}`} loading="lazy" tabIndex={-1}></iframe>
-                  </div>
-                  <strong>{title}</strong>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="about-roadmap-section">
-          <div className="content-wrap about-roadmap-grid">
-            <div className="about-section-copy">
-              <p className="red-kicker"><span></span>AVAILABLE NOW, STRUCTURED FOR WHAT COMES NEXT</p>
-              <h2>Buy the report today. Let the infrastructure mature honestly.</h2>
+              <p className="red-kicker"><span></span>A DECISION ARTIFACT</p>
+              <h2>The philosophy becomes tangible in the dossier.</h2>
               <p>
-                The public offer is the human-reviewed dossier. The infrastructure being built supports repeatability,
-                governance, and stronger automation without presenting unfinished systems as completed approvals.
+                The dossier is one current expression of the system: a structured artifact that preserves evidence,
+                assumptions, risk logic, and a reviewable verdict in one place.
               </p>
             </div>
-            <div className="today-next-visual" aria-label="Available today versus infrastructure being built">
-              <article>
-                <span>Available today</span>
-                <strong>Manual underwriting dossier</strong>
-                <p>Property link intake, analyst review, risk register, decision summary, and private delivery.</p>
-              </article>
-              <article>
-                <span>Being built</span>
-                <strong>Governed underwriting infrastructure</strong>
-                <p>Structured source lineage, versioned formulas, repeatable checks, and automation with human review.</p>
-              </article>
-            </div>
+            <article className="dossier-crop-card decision-artifact-card">
+              <div className="dossier-crop-frame">
+                <iframe src={`${DOSSIER_PREVIEW_URL}#p2`} title="RSARBOS sample dossier decision artifact" loading="lazy" tabIndex={-1}></iframe>
+              </div>
+              <strong>Sample decision artifact</strong>
+            </article>
           </div>
         </section>
 
         <section className="about-closing-section">
           <div className="content-wrap about-closing-panel">
             <div>
-              <h2>See the dossier. Judge the work.</h2>
-              <p>Open a real sample, or send RSARBOS the property you are evaluating.</p>
-            </div>
-            <div className="hero-actions">
-              <a className="primary-action shine-action" href="/#sample">VIEW SAMPLE DOSSIER</a>
-              <a className="secondary-action glass-action" href="/#request">REQUEST A REPORT</a>
+              <p className="red-kicker"><span></span>BUILDING DECISION INFRASTRUCTURE FOR REAL ESTATE</p>
+              <h2>RSARBOS exists to make underwriting transparent, reproducible, and defendable.</h2>
+              <div className="about-principles" aria-label="RSARBOS trust principles">
+                <article>
+                  <strong>Company thesis</strong>
+                  <span>
+                    Real estate capital should not move on opaque reasoning. Every conclusion should be traceable enough
+                    to challenge, reproduce, and defend.
+                  </span>
+                </article>
+              </div>
             </div>
           </div>
         </section>
