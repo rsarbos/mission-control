@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Orbitron:wght@400..900&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Roboto:wght@400;500;700&display=swap');
 
 :root {
   --rsarbos-navy: #0A0F1C;
@@ -37,7 +37,7 @@ html {
 }
 
 body {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-family: var(--google-sans-stack);
   background: radial-gradient(circle at top left, rgba(30, 91, 255, 0.14), transparent 25%),
     radial-gradient(circle at bottom right, rgba(255, 59, 56, 0.12), transparent 20%),
     var(--rsarbos-navy);
@@ -45,7 +45,8 @@ body {
 }
 
 h1, h2, h3, .eyebrow {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--google-sans-stack);
+  letter-spacing: 0;
 }
 
 button,
@@ -796,9 +797,9 @@ button {
 
 .site-mark {
   color: #F8FAFC;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--google-sans-stack);
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-decoration: none;
 }
 
@@ -927,7 +928,7 @@ button {
 
 .hero-evidence span {
   color: var(--rsarbos-blue);
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--google-sans-stack);
   font-size: 0.76rem;
   font-weight: 800;
 }
@@ -1129,7 +1130,7 @@ code {
 .mc-admin-kicker,
 .mc-table th,
 .status-tag {
-  font-family: 'SFMono-Regular', Consolas, Monaco, ui-monospace, monospace;
+  font-family: var(--google-sans-stack);
   letter-spacing: 0;
 }
 
@@ -3894,9 +3895,17 @@ code {
   gap: 10px;
 }
 
+.foreman-summary,
+.today-orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
 .metric-tile,
 .learning-grid article,
 .action-list article,
+.today-order-card,
 .guardrail-box,
 .honest-empty,
 .stage-row,
@@ -3922,6 +3931,21 @@ code {
   font-size: 1rem;
 }
 
+.bottleneck-panel {
+  border-color: rgba(255, 59, 56, 0.24);
+  background:
+    linear-gradient(135deg, rgba(255, 59, 56, 0.11), transparent 34%),
+    rgba(13, 17, 23, 0.82);
+}
+
+.bottleneck-panel > p {
+  max-width: 900px;
+  margin: 0;
+  color: var(--rsarbos-silver);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
 .honest-empty,
 .guardrail-box {
   padding: 14px;
@@ -3940,6 +3964,310 @@ code {
   display: grid;
   gap: 6px;
   padding: 14px;
+}
+
+.today-order-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 16px;
+}
+
+.order-card-head {
+  display: grid;
+  gap: 5px;
+}
+
+.order-card-head span,
+.order-progress span,
+.labor-task small {
+  color: var(--rsarbos-muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.order-card-head span {
+  text-transform: uppercase;
+}
+
+.order-card-head strong {
+  color: #fff;
+  font-size: 1.04rem;
+}
+
+.today-order-card p {
+  margin: 0;
+  color: var(--rsarbos-silver);
+  line-height: 1.5;
+}
+
+.labor-task-list {
+  display: grid;
+  gap: 8px;
+}
+
+.labor-task {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 4px 10px;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid rgba(199, 204, 214, 0.1);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.labor-task input {
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  accent-color: var(--rsarbos-blue);
+}
+
+.labor-task span {
+  color: #f8fafc;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.labor-task small {
+  grid-column: 2;
+  line-height: 1.4;
+}
+
+.labor-task.complete {
+  border-color: rgba(34, 197, 94, 0.22);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.labor-task.complete span {
+  color: #d9ffe9;
+}
+
+.order-progress {
+  display: grid;
+  gap: 7px;
+}
+
+.order-progress progress {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.order-progress progress::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.order-progress progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--rsarbos-blue), #65a0ff);
+}
+
+.order-progress progress::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--rsarbos-blue), #65a0ff);
+}
+
+.compact-metrics {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ai-copilot-panel {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(15, 18, 25, 0.7);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.ai-copilot-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.ai-copilot-head h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.08rem;
+}
+
+.ai-connection {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 6px 9px;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  border-radius: 999px;
+  color: #d9ffe9;
+  background: rgba(16, 185, 129, 0.08);
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.ai-connection span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.ai-connection.offline {
+  color: #fecaca;
+  border-color: rgba(255, 59, 56, 0.34);
+  background: rgba(255, 59, 56, 0.1);
+}
+
+.ai-connection.offline span {
+  background: var(--rsarbos-red);
+  box-shadow: 0 0 8px var(--rsarbos-red);
+}
+
+.ai-stage-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ai-stage-tabs button {
+  min-height: 34px;
+  border: 1px solid rgba(199, 204, 214, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--rsarbos-muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.ai-stage-tabs button.active {
+  color: #fff;
+  border-color: rgba(30, 91, 255, 0.45);
+  background: rgba(30, 91, 255, 0.16);
+}
+
+.ai-notes-field {
+  display: grid;
+  gap: 8px;
+  color: var(--rsarbos-muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.ai-notes-field textarea {
+  width: 100%;
+  min-height: 116px;
+  resize: vertical;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.22);
+  color: #f8fafc;
+  padding: 12px;
+  line-height: 1.45;
+}
+
+.ai-fact-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ai-fact-strip span {
+  min-width: 0;
+  padding: 7px 8px;
+  border: 1px solid rgba(199, 204, 214, 0.09);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--rsarbos-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.ai-generate-button {
+  min-height: 42px;
+  border: 1px solid rgba(16, 185, 129, 0.38);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.24), rgba(30, 91, 255, 0.16));
+  color: #fff;
+  font-weight: 900;
+}
+
+.ai-generate-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.ai-terminal-alert {
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid rgba(255, 59, 56, 0.26);
+  border-radius: 10px;
+  background: rgba(255, 59, 56, 0.09);
+}
+
+.ai-terminal-alert span {
+  color: #fecaca;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.ai-terminal-alert code {
+  color: #ffd9d7;
+  font-family: 'SFMono-Regular', Consolas, Monaco, ui-monospace, monospace;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.ai-prospect-slots {
+  display: grid;
+  gap: 8px;
+}
+
+.ai-prospect-slots article {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ai-prospect-slots article span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 26px;
+  border-radius: 8px;
+  color: #a7f3d0;
+  background: rgba(16, 185, 129, 0.1);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.ai-prospect-slots article p {
+  margin: 0;
+  color: var(--rsarbos-silver);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.ai-copilot-footnote {
+  margin: 0;
+  color: rgba(199, 204, 214, 0.62);
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 .ops-form,
@@ -5225,6 +5553,8 @@ code {
 
   .revenue-os-header,
   .revenue-grid,
+  .foreman-summary,
+  .today-orders-grid,
   .ops-form,
   .filter-row,
   .economics-card,
@@ -5245,6 +5575,10 @@ code {
   .revenue-tabs button {
     min-height: 48px;
     padding: 10px;
+  }
+
+  .compact-metrics {
+    grid-template-columns: 1fr;
   }
 
   .pricing-column {

@@ -34,11 +34,25 @@ import {
   summarizeMissionControl,
   today,
 } from '../data/mission-control-domain'
+import AiPipelineCoPilot from './AiPipelineCoPilot'
 import rsarbosLogo from '../assets/logo.png'
 
 const STORE_KEY = 'rsarbos_mission_control_revenue_os_v1'
 
 type RevenueTab = 'command' | 'outreach' | 'orders' | 'evidence' | 'learning' | 'axiom'
+
+type LaborTask = {
+  label: string
+  complete: boolean
+  detail: string
+}
+
+type TodayOrder = {
+  title: string
+  objective: string
+  tasks: LaborTask[]
+  tab: RevenueTab
+}
 
 const EMPTY_PROSPECT: Prospect = {
   id: '',
@@ -168,6 +182,17 @@ export default function MissionControlRevenueOS() {
   const selectedOrder = store.orders.find((order) => order.id === selectedOrderId) || store.orders[0]
   const segmentSummary = groupConversion([...BUYER_SEGMENTS], store.prospects, store.orders, (prospect) => prospect.buyerSegment)
   const channelSummary = groupConversion([...CHANNELS], store.prospects, store.orders, (prospect) => prospect.sourceChannel)
+  const foreman = useMemo(() => buildForemanOrders(store), [store])
+  const coPilotContext = useMemo(() => ({
+    totalProspects: summary.totalProspects,
+    replies: summary.replies,
+    paymentPending: summary.paymentPending,
+    paidOrders: summary.paidOrders,
+    dossiersInFulfillment: summary.dossiersInFulfillment,
+    deliveredDossiers: summary.deliveredDossiers,
+    primaryOrder: foreman.primaryOrder,
+    bottleneck: foreman.bottleneck.title,
+  }), [foreman.bottleneck.title, foreman.primaryOrder, summary])
 
   function saveProspect(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -362,8 +387,8 @@ export default function MissionControlRevenueOS() {
         <a className="mc-admin-logo" href="/"><img src={rsarbosLogo} alt="RSARBOS" /></a>
         <div>
           <p className="mc-admin-kicker">Revenue-First Manual Underwriting Phase</p>
-          <h1>Mission Control</h1>
-          <p>Founder operating surface for outreach, paid dossier fulfillment, commercial learning, and Core-ready evidence custody.</p>
+          <h1>Today's Orders</h1>
+          <p>Foreman surface for manual labor: outreach, conversion, underwriting, and delivery work required to move one dossier closer to delivered.</p>
         </div>
         <div className="truth-state">
           <strong>{summary.paidOrders === 0 ? 'No paid sale recorded' : `${summary.paidOrders} paid order${summary.paidOrders === 1 ? '' : 's'}`}</strong>
@@ -388,42 +413,51 @@ export default function MissionControlRevenueOS() {
 
       {activeTab === 'command' && (
         <main className="revenue-grid">
+          <section className="ops-panel span-2 bottleneck-panel">
+            <PanelHead kicker="Current bottleneck" title={foreman.bottleneck.title} />
+            <p>{foreman.bottleneck.directive}</p>
+            <div className="foreman-summary">
+              <Metric label="Open labor tasks" value={`${foreman.openTasks} / ${foreman.totalTasks}`} />
+              <Metric label="Primary order" value={foreman.primaryOrder} />
+              <Metric label="Paid truth state" value={summary.paidOrders === 0 ? 'No paid sale recorded' : `${summary.paidOrders} paid`} />
+            </div>
+          </section>
           <section className="ops-panel span-2">
-            <PanelHead kicker="Revenue Command Center" title="What needs attention now" />
-            <div className="metric-grid">
-              <Metric label="Total prospects" value={summary.totalProspects} />
-              <Metric label="Contacted" value={summary.contactedProspects} />
+            <PanelHead kicker="Today's orders" title="Lay the next bricks" />
+            <div className="today-orders-grid">
+              {foreman.orders.map((order, index) => (
+                <TodayOrderCard key={order.title} order={order} index={index} onOpen={() => setActiveTab(order.tab)} />
+              ))}
+            </div>
+          </section>
+          <section className="ops-panel">
+            <PanelHead kicker="Manual queue" title="Immediate work generated from current state" />
+            <ActionList
+              items={[
+                [`${store.prospects.filter((p) => p.stage === 'Ready to Contact' || p.stage === 'Identified').length} outreach targets need first action`, 'Send messages or add better targets in Outreach.'],
+                [`${store.prospects.filter((p) => p.stage === 'Follow-Up Due').length} follow-ups are due`, 'Record the next interaction and objection.'],
+                [`${store.prospects.filter((p) => p.stage === 'Replied').length} replies need qualification`, 'Separate curiosity from buying intent.'],
+                [`${store.orders.filter((o) => o.paymentStatus === 'Pending Payment' || o.paymentStatus === 'Checkout Created').length} prospects need payment movement`, 'Recover checkout manually without marking Paid early.'],
+                [`${store.orders.filter((o) => o.paymentStatus === 'Paid' && !o.actualDeliveryDate).length} paid dossiers need labor`, 'Work the next incomplete fulfillment stage.'],
+              ]}
+            />
+          </section>
+          <AiPipelineCoPilot context={coPilotContext} />
+          <section className="ops-panel">
+            <PanelHead kicker="Operating evidence" title="Numbers stay secondary" />
+            <div className="metric-grid compact-metrics">
+              <Metric label="Prospects" value={summary.totalProspects} />
               <Metric label="Replies" value={summary.replies} />
-              <Metric label="Qualified" value={summary.qualifiedOpportunities} />
               <Metric label="Payment pending" value={summary.paymentPending} />
-              <Metric label="Paid orders" value={summary.paidOrders} />
               <Metric label="In fulfillment" value={summary.dossiersInFulfillment} />
               <Metric label="Delivered" value={summary.deliveredDossiers} />
-              <Metric label="Repeat customers" value={summary.repeatCustomers} />
               <Metric label="Revenue collected" value={money(summary.revenueCollected)} />
-              <Metric label="Outstanding revenue" value={money(summary.outstandingRevenue)} />
-              <Metric label="Avg sales cycle" value={summary.averageSalesCycleDays === null ? 'No evidence yet' : `${summary.averageSalesCycleDays.toFixed(1)} days`} />
-              <Metric label="Avg turnaround" value={summary.averageTurnaroundDays === null ? 'No evidence yet' : `${summary.averageTurnaroundDays.toFixed(1)} days`} />
-              <Metric label="Avg fulfillment cost" value={money(summary.averageFulfillmentCost)} />
-              <Metric label="Gross contribution" value={money(summary.averageGrossContribution)} />
             </div>
             {summary.paidOrders === 0 && (
               <div className="honest-empty">
-                No paid sale is recorded in Mission Control yet. Start by adding prospects, logging outreach, creating an intake, and moving payment from Pending Payment to Paid only after confirmation.
+                No paid sale is recorded in Mission Control yet. Move payment from Pending Payment to Paid only after confirmation.
               </div>
             )}
-          </section>
-          <section className="ops-panel">
-            <PanelHead kicker="Daily workflow" title="Founder queue" />
-            <ActionList
-              items={[
-                [`${store.prospects.filter((p) => p.stage === 'Ready to Contact' || p.stage === 'Identified').length} prospects to contact`, 'Add or work the outreach list.'],
-                [`${store.prospects.filter((p) => p.stage === 'Follow-Up Due').length} follow-ups due`, 'Record the next interaction and objection.'],
-                [`${store.prospects.filter((p) => p.stage === 'Replied').length} replies to qualify`, 'Separate curiosity from qualified buying intent.'],
-                [`${store.prospects.filter((p) => p.stage === 'Payment Pending').length} waiting on payment`, 'Recover checkout manually; do not delete pending payment records.'],
-                [`${store.orders.filter((o) => o.paymentStatus === 'Paid' && !o.actualDeliveryDate).length} paid dossier builds active`, 'Move fulfillment stages and attach evidence.'],
-              ]}
-            />
           </section>
           <SummaryTable title="Conversion by segment" rows={segmentSummary} />
           <SummaryTable title="Conversion by channel" rows={channelSummary} />
@@ -733,6 +767,33 @@ function ActionList({ items }: { items: [string, string][] }) {
   return <div className="action-list">{items.map(([title, copy]) => <article key={title}><strong>{title}</strong><span>{copy}</span></article>)}</div>
 }
 
+function TodayOrderCard({ order, index, onOpen }: { order: TodayOrder; index: number; onOpen: () => void }) {
+  const completed = order.tasks.filter((task) => task.complete).length
+  return (
+    <article className="today-order-card">
+      <div className="order-card-head">
+        <span>Order {index + 1}</span>
+        <strong>{order.title}</strong>
+      </div>
+      <p>{order.objective}</p>
+      <div className="labor-task-list">
+        {order.tasks.map((task) => (
+          <label key={task.label} className={task.complete ? 'labor-task complete' : 'labor-task'}>
+            <input type="checkbox" checked={task.complete} readOnly aria-label={task.label} />
+            <span>{task.label}</span>
+            <small>{task.detail}</small>
+          </label>
+        ))}
+      </div>
+      <div className="order-progress">
+        <span>{completed}/{order.tasks.length} complete</span>
+        <progress value={completed} max={order.tasks.length} aria-label={`${order.title} progress`} />
+      </div>
+      <button type="button" className="mc-mini-action" onClick={onOpen}>Open work area</button>
+    </article>
+  )
+}
+
 function SummaryTable({ title, rows }: { title: string; rows: ReturnType<typeof groupConversion> }) {
   return (
     <section className="ops-panel">
@@ -813,6 +874,192 @@ function messageSignal(store: MissionControlStore) {
   const prospect = store.prospects.find((item) => item.id === paidOrder?.prospectId)
   const variant = store.messageVariants.find((item) => item.id === prospect?.messageVariantId)
   return variant?.name || 'No Evidence Yet'
+}
+
+function buildForemanOrders(store: MissionControlStore) {
+  const contactedProspects = store.prospects.filter((prospect) => prospect.firstContactDate || prospect.stage !== 'Identified')
+  const agentConversations = contactedProspects.filter((prospect) => prospect.buyerSegment === 'Real Estate Agents')
+  const investorConversations = contactedProspects.filter((prospect) => !['Real Estate Agents', 'Lenders', 'Other'].includes(prospect.buyerSegment))
+  const propertyTargets = store.prospects.filter((prospect) => prospect.propertyLink.trim())
+  const hasFacebookPost = store.campaigns.some((campaign) => campaign.channel === 'Facebook Group')
+  const hasLawrenceFollowUp = store.prospects.some((prospect) => prospect.contactName.toLowerCase().includes('lawrence') && !['Identified', 'Ready to Contact', 'Follow-Up Due'].includes(prospect.stage))
+  const sampleSent = store.prospects.some((prospect) => prospect.stage === 'Proposal or Sample Sent' || prospect.notes.toLowerCase().includes('sample dossier'))
+  const biggerPocketsReply = store.prospects.some((prospect) => prospect.sourceChannel === 'BiggerPockets' && ['Replied', 'Qualified', 'Proposal or Sample Sent', 'Payment Pending', 'Won'].includes(prospect.stage))
+  const pricedProspects = store.prospects.filter((prospect) => typeof prospect.quotedPrice === 'number' && prospect.quotedPrice > 0)
+  const unpaidLeads = store.orders.filter((order) => order.paymentStatus === 'Checkout Created' || order.paymentStatus === 'Pending Payment')
+  const paidOpenOrders = store.orders.filter((order) => order.paymentStatus === 'Paid' && !order.actualDeliveryDate)
+  const completedStages = paidOpenOrders.flatMap((order) => order.workflow.filter((stage) => stage.completedAt).map((stage) => stage.stage))
+  const evidenceForPaidOrders = store.evidenceItems.filter((item) => paidOpenOrders.some((order) => order.id === item.orderId))
+  const verifiedEvidence = evidenceForPaidOrders.filter((item) => ['Verified', 'Partially Verified'].includes(item.verificationStatus))
+  const buildsForPaidOrders = store.dossierBuilds.filter((build) => paidOpenOrders.some((order) => order.id === build.orderId))
+  const approvalsForPaidBuilds = store.approvals.filter((approval) => buildsForPaidOrders.some((build) => build.id === approval.buildId))
+  const deliverableReadyBuilds = buildsForPaidOrders.filter((build) => canDeliverBuild(store, build.id) && build.deliveryStatus !== 'Delivered')
+  const deliveries = store.deliveries.filter((delivery) => store.orders.some((order) => order.id === delivery.orderId))
+  const feedbackRequested = store.clientFeedback.some((feedback) => feedback.testimonialPermission || feedback.referralPotential || feedback.satisfaction)
+
+  const orders: TodayOrder[] = [
+    {
+      title: 'Revenue Generation',
+      objective: 'Get conversations.',
+      tab: 'outreach',
+      tasks: [
+        {
+          label: 'Send 5 agent DMs',
+          complete: agentConversations.length >= 5,
+          detail: `${agentConversations.length}/5 agent conversations logged`,
+        },
+        {
+          label: 'Send 5 investor DMs',
+          complete: investorConversations.length >= 5,
+          detail: `${investorConversations.length}/5 investor conversations logged`,
+        },
+        {
+          label: 'Post 1 FB group post',
+          complete: hasFacebookPost,
+          detail: hasFacebookPost ? 'Facebook campaign recorded' : 'No Facebook Group campaign recorded',
+        },
+        {
+          label: 'Follow up with Lawrence',
+          complete: hasLawrenceFollowUp,
+          detail: hasLawrenceFollowUp ? 'Lawrence moved past follow-up' : 'No completed Lawrence follow-up recorded',
+        },
+        {
+          label: 'Contact 2 new listings',
+          complete: propertyTargets.length >= 2,
+          detail: `${propertyTargets.length}/2 property-linked prospects recorded`,
+        },
+      ],
+    },
+    {
+      title: 'Sales Conversion',
+      objective: 'Move prospects toward payment.',
+      tab: 'outreach',
+      tasks: [
+        {
+          label: 'Send Shawn sample dossier',
+          complete: sampleSent,
+          detail: sampleSent ? 'Sample/proposal state recorded' : 'No sample dossier send recorded',
+        },
+        {
+          label: 'Reply to investor from BP',
+          complete: biggerPocketsReply,
+          detail: biggerPocketsReply ? 'BiggerPockets reply is active' : 'No active BP reply recorded',
+        },
+        {
+          label: 'Clarify pricing for prospect',
+          complete: pricedProspects.length > 0,
+          detail: `${pricedProspects.length} prospect quote${pricedProspects.length === 1 ? '' : 's'} recorded`,
+        },
+        {
+          label: 'Follow up unpaid lead',
+          complete: unpaidLeads.length === 0 && store.orders.length > 0,
+          detail: unpaidLeads.length ? `${unpaidLeads.length} unpaid lead${unpaidLeads.length === 1 ? '' : 's'} still open` : 'No unpaid lead currently open',
+        },
+      ],
+    },
+    {
+      title: 'Underwriting',
+      objective: 'Finish paid work.',
+      tab: 'orders',
+      tasks: [
+        {
+          label: 'Gather rent comps',
+          complete: verifiedEvidence.some((item) => item.dossierModules.includes('Rental Thesis') || item.associatedFields.toLowerCase().includes('rent')),
+          detail: `${verifiedEvidence.length} verified/partial evidence item${verifiedEvidence.length === 1 ? '' : 's'} on paid work`,
+        },
+        {
+          label: 'Complete ARV review',
+          complete: completedStages.includes('Analysis in Progress') || verifiedEvidence.some((item) => item.dossierModules.includes('ARV')),
+          detail: completedStages.includes('Analysis in Progress') ? 'Analysis stage completed' : 'ARV evidence/stage still open',
+        },
+        {
+          label: 'Write executive summary',
+          complete: buildsForPaidOrders.some((build) => build.status === 'In Review' || build.status === 'Approved' || build.status === 'Delivered'),
+          detail: `${buildsForPaidOrders.length} build${buildsForPaidOrders.length === 1 ? '' : 's'} created for paid work`,
+        },
+        {
+          label: 'QA dossier',
+          complete: approvalsForPaidBuilds.some(isApprovalComplete),
+          detail: `${approvalsForPaidBuilds.filter(isApprovalComplete).length}/${approvalsForPaidBuilds.length || 1} approval checklist complete`,
+        },
+      ],
+    },
+    {
+      title: 'Delivery',
+      objective: 'Deliver finished reports.',
+      tab: 'evidence',
+      tasks: [
+        {
+          label: 'Export PDF',
+          complete: buildsForPaidOrders.some((build) => build.renderedArtifactRef.trim()),
+          detail: buildsForPaidOrders.some((build) => build.renderedArtifactRef.trim()) ? 'Rendered artifact reference attached' : 'No rendered artifact attached',
+        },
+        {
+          label: 'Upload deliverable',
+          complete: deliverableReadyBuilds.length > 0,
+          detail: deliverableReadyBuilds.length ? `${deliverableReadyBuilds.length} approved build${deliverableReadyBuilds.length === 1 ? '' : 's'} ready` : 'No approved undelivered build ready',
+        },
+        {
+          label: 'Send email',
+          complete: deliveries.length > 0,
+          detail: `${deliveries.length} delivery record${deliveries.length === 1 ? '' : 's'} logged`,
+        },
+        {
+          label: 'Request testimonial',
+          complete: feedbackRequested,
+          detail: feedbackRequested ? 'Feedback/testimonial signal recorded' : 'No feedback request recorded',
+        },
+      ],
+    },
+  ]
+
+  const openTasks = orders.reduce((total, order) => total + order.tasks.filter((task) => !task.complete).length, 0)
+  const totalTasks = orders.reduce((total, order) => total + order.tasks.length, 0)
+  const primary = orders.find((order) => order.tasks.some((task) => !task.complete)) || orders[0]
+
+  return {
+    orders,
+    openTasks,
+    totalTasks,
+    primaryOrder: primary.title,
+    bottleneck: currentBottleneck(store, paidOpenOrders, unpaidLeads),
+  }
+}
+
+function currentBottleneck(store: MissionControlStore, paidOpenOrders: Order[], unpaidLeads: Order[]) {
+  if (paidOpenOrders.length >= 2) {
+    return {
+      title: `${paidOpenOrders.length} paid dossiers waiting for underwriting`,
+      directive: 'Suspend prospecting until the delivery queue is cleared enough to protect paid work.',
+    }
+  }
+
+  if (paidOpenOrders.length === 1) {
+    return {
+      title: 'One paid dossier needs fulfillment',
+      directive: 'Work underwriting and release tasks before adding more top-of-funnel load.',
+    }
+  }
+
+  if (unpaidLeads.length > 0) {
+    return {
+      title: `${unpaidLeads.length} unpaid lead${unpaidLeads.length === 1 ? '' : 's'} waiting on payment`,
+      directive: 'Move prospects toward payment confirmation. Do not mark anything Paid until payment is confirmed.',
+    }
+  }
+
+  const activeConversations = store.prospects.filter((prospect) => ['Replied', 'Qualified', 'Proposal or Sample Sent', 'Payment Pending', 'Won'].includes(prospect.stage))
+  if (!activeConversations.length) {
+    return {
+      title: 'No active conversations',
+      directive: 'All labor should focus on outreach until there are replies, qualified prospects, or payment conversations.',
+    }
+  }
+
+  return {
+    title: 'Conversations exist, but no paid work is blocking delivery',
+    directive: 'Convert the warmest prospect into payment or sample-review next action.',
+  }
 }
 
 function sectionFrequency(sections: DossierSection[]) {
