@@ -15,10 +15,10 @@ Mission Control is the operator surface for RSARBOS during the revenue-first, hu
    - `axiom/AXIOM_CONSTITUTION.md`
    - `axiom/NORTH_STAR.md`
    - `axiom/BRAND_BOOK.md`
-   - `REPORT_OPERATIONS.md`
-   - `STRIPE_UNDERWRITING_FLOW.md`
-   - `DATA_SOURCE_REVIEW.md`
-   - `MISSION_CONTROL_IMPLEMENTATION_ASSESSMENT.md`
+   - `docs/operations/REPORT_OPERATIONS.md`
+   - `docs/operations/STRIPE_UNDERWRITING_FLOW.md`
+   - `docs/website/DATA_SOURCE_REVIEW.md`
+   - `docs/mission-control/MISSION_CONTROL_IMPLEMENTATION_ASSESSMENT.md`
 
 ## Repository Boundary
 

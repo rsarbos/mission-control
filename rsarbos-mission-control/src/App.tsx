@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ManualReportForm from './components/ManualReportForm'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
+import EditorialSystemPrototype from './components/prototypes/editorial-system'
 import { DecisionManifestHero } from './components/about/decision-manifest'
 import rsarbosLogo from './assets/logo.png'
 import { getAnalyticsSnapshot, trackEvent, trackPageView } from './utils/analytics'
@@ -22,7 +23,7 @@ const AUDIENCE_BANNER_ITEMS = [
   'LENDERS',
 ] as const
 
-type ChannelTag = 'YouTube Creator' | 'BiggerPockets' | 'LinkedIn' | 'InvestorLift' | 'Privy'
+type ChannelTag = 'Broker Owner' | 'Agent Team' | 'Builder Broker' | 'Developer' | 'Community Operator'
 
 type OutreachContact = {
   uuid: string
@@ -33,6 +34,9 @@ type OutreachContact = {
   email: string
   socialHandle: string
   socialUrl: string
+  fitReason: string
+  outreachMethods: string[]
+  personalizedMessage: string
 }
 
 type VerdictStatus = 'WORTH_PURSUING' | 'WALKAWAY' | 'REVIEW_REQUIRED'
@@ -92,64 +96,99 @@ const VALIDATION_TARGET = 3
 
 const OUTREACH_CONTACTS: OutreachContact[] = [
   {
-    uuid: 'contact-pace-subto-004',
-    name: 'Pace Morby (SubTo)',
-    company: 'Creative Finance Community',
-    channelTag: 'YouTube Creator',
-    phone: '+15550201004',
-    email: 'acquisitions@subto.com',
-    socialHandle: '@pacemorby',
-    socialUrl: 'https://www.instagram.com/pacemorby/',
+    uuid: 'contact-aayeesha-essue-000',
+    name: 'Aayeesha Essue',
+    company: 'The Agency',
+    channelTag: 'Agent Team',
+    phone: '+14243717312',
+    email: 'aessue@theagencyre.com',
+    socialHandle: 'The Agency profile',
+    socialUrl: 'https://www.theagencyre.com/agent/aayeesha-essue',
+    fitReason: 'Her public profile emphasizes trust, clarity, thoughtful execution, hospitality, and reducing client stress; RSARBOS fits as a buyer-hesitation tool for her active listing conversations.',
+    outreachMethods: [
+      'WhatsApp or text first: lowest friction and easiest to attach the dossier link.',
+      'Direct phone call second: use only after the dossier link is sent, so the call has context.',
+      'Email third: best for a slightly more polished note she can forward to a partner.',
+    ],
+    personalizedMessage: 'Saw the property you are actively promoting through The Agency. This is a buyer-hesitation tool, not a pitch deck: a compact RSARBOS dossier format that gives prospects one place to inspect rent logic, ARV assumptions, repair/risk flags, and the clean yes/no decision path. It may be useful for you and your partners when a serious buyer likes the property but pauses because the numbers or risks still feel fuzzy.',
   },
   {
-    uuid: 'contact-turner-005',
-    name: 'Brandon Turner',
-    company: 'A Better Life / Open Door Capital',
-    channelTag: 'YouTube Creator',
-    phone: '+15550201005',
-    email: 'deals@abetterlife.com',
-    socialHandle: '@beardybrandon',
-    socialUrl: 'https://www.biggerpockets.com/users/brandonatbp',
+    uuid: 'contact-sansone-agency-001',
+    name: 'Chris Sansone',
+    company: 'The Agency Sugar Land',
+    channelTag: 'Agent Team',
+    phone: '',
+    email: '',
+    socialHandle: 'Houston Chronicle profile',
+    socialUrl: 'https://www.houstonchronicle.com/business/real-estate/article/the-agency-sugar-land-houston-21284529.php',
+    fitReason: 'Houston-area broker with high transaction experience; a risk-and-dossier product helps luxury and move-up clients make faster decisions.',
+    outreachMethods: ['Email with sample dossier', 'LinkedIn/profile follow-up', 'Direct office intro'],
+    personalizedMessage: 'This dossier format can help a client move from hesitation to a clean yes/no decision by showing rent logic, ARV assumptions, and visible risk flags in one reviewable artifact.',
   },
   {
-    uuid: 'contact-beardsley-006',
-    name: 'Rob Beardsley',
-    company: 'Lone Star Capital',
-    channelTag: 'LinkedIn',
-    phone: '+15550201006',
-    email: 'rob@lscre.com',
-    socialHandle: 'rob-beardsley',
-    socialUrl: 'https://www.linkedin.com/in/rob-beardsley/',
+    uuid: 'contact-lizz-sansone-002',
+    name: 'Lizz Sansone',
+    company: 'The Agency Sugar Land',
+    channelTag: 'Agent Team',
+    phone: '',
+    email: '',
+    socialHandle: 'Houston Chronicle profile',
+    socialUrl: 'https://www.houstonchronicle.com/business/real-estate/article/the-agency-sugar-land-houston-21284529.php',
+    fitReason: 'Local team lead in a new Houston-market office; RSARBOS can become a client clarity artifact for listings across price tiers.',
+    outreachMethods: ['Email with sample dossier', 'Profile follow-up', 'Partner-forwardable note'],
+    personalizedMessage: 'This can work as a client clarity artifact for listings where the buyer likes the home but needs the numbers, assumptions, and risk notes organized before committing.',
   },
   {
-    uuid: 'contact-bp-power-007',
-    name: 'BP Power Member',
-    company: 'Deal Analysis Forum',
-    channelTag: 'BiggerPockets',
-    phone: '+15550201007',
-    email: 'investor.pro@example.com',
-    socialHandle: 'Pro User',
-    socialUrl: 'https://www.biggerpockets.com/forums/52',
+    uuid: 'contact-chance-brown-003',
+    name: 'Chance Brown',
+    company: 'CB&A Realtors',
+    channelTag: 'Broker Owner',
+    phone: '',
+    email: '',
+    socialHandle: 'Houston Chronicle profile',
+    socialUrl: 'https://www.houstonchronicle.com/business/article/cba-realtors-top-workplace-houston-21075597.php',
+    fitReason: 'Agent-first brokerage operator; a repeatable underwriting artifact can be positioned as support for agents serving investor buyers.',
+    outreachMethods: ['Broker-owner email', 'Office/profile follow-up', 'Agent enablement angle'],
+    personalizedMessage: 'This is an agent-support artifact: a repeatable dossier that helps investor-facing agents answer buyer hesitation around rent, repairs, ARV, and risk without pretending to be the underwriter.',
   },
   {
-    uuid: 'contact-lift-wholesale-008',
-    name: 'InvestorLift Platinum',
-    company: 'Dispo Desk',
-    channelTag: 'InvestorLift',
-    phone: '+15550201008',
-    email: 'dispo.king@example.com',
-    socialHandle: '@dispokings',
-    socialUrl: 'https://www.investorlift.com/',
+    uuid: 'contact-ben-caballero-004',
+    name: 'Ben Caballero',
+    company: 'HomesUSA.com',
+    channelTag: 'Builder Broker',
+    phone: '',
+    email: '',
+    socialHandle: 'Public profile',
+    socialUrl: 'https://en.wikipedia.org/wiki/Ben_Caballero',
+    fitReason: 'High-volume Texas listing broker for production builders; RSARBOS can frame buyer confidence, comp support, and listing-trust artifacts.',
+    outreachMethods: ['Website/profile contact route', 'Builder confidence angle', 'Email if direct route is verified'],
+    personalizedMessage: 'For high-volume builder inventory, this dossier format can give buyers and agents a cleaner way to review comps, rent assumptions, and risk notes without slowing the listing workflow.',
   },
   {
-    uuid: 'contact-houston-dispo-009',
-    name: 'Houston Dispo Pro',
-    company: 'Lone Star Wholesale',
-    channelTag: 'InvestorLift',
-    phone: '+15550301009',
-    email: 'houston.deals@example.com',
-    socialHandle: '@houstonwholesale',
-    socialUrl: 'https://www.investorlift.com/',
+    uuid: 'contact-ayesha-shelton-005',
+    name: 'Ayesha Shelton',
+    company: 'Park Street Homes',
+    channelTag: 'Developer',
+    phone: '',
+    email: '',
+    socialHandle: 'Public profile',
+    socialUrl: 'https://en.wikipedia.org/wiki/Ayesha_Shelton',
+    fitReason: 'Houston real estate professional and developer; RSARBOS fits affordable-luxury buyer education, evidence, and acquisition confidence.',
+    outreachMethods: ['Public profile route', 'Community buyer education angle', 'Partner-forwardable note'],
+    personalizedMessage: 'This dossier format can support buyer education by turning risk, assumptions, and source notes into something a household can understand before making a serious housing decision.',
+  },
+  {
+    uuid: 'contact-kevan-shelton-006',
+    name: 'Kevan Shelton',
+    company: 'Park Street Homes',
+    channelTag: 'Community Operator',
+    phone: '',
+    email: '',
+    socialHandle: 'Public profile',
+    socialUrl: 'https://en.wikipedia.org/wiki/Kevan_Shelton',
+    fitReason: 'Houston real estate operator with community homeownership work; a clear risk register can support buyer education and trust.',
+    outreachMethods: ['Public profile route', 'Operator trust angle', 'Partner-forwardable note'],
+    personalizedMessage: 'This is a trust-and-clarity artifact for buyers: one place to see what supports the deal, what is still uncertain, and what should trigger a pause before moving forward.',
   },
 ]
 
@@ -166,7 +205,7 @@ const OUTREACH_TEMPLATES: OutreachTemplate[] = [
     title: 'Stale Deal Rescue',
     target: 'Wholesalers with 10+ DOM',
     generateBody: (asset) => 
-      `I noticed your deal at ${asset.address} has been on InvestorLift for ${asset.yearBuilt} days. In this market, that usually means a 'Trust Gap' on the foundation or ARV. I underwrote the 'Truth' spread here: https://rsarbos.com${asset.dossierUrl}. Might help you move it to a buyer who is on the fence.`,
+      `I noticed ${asset.address} has been sitting for ${asset.yearBuilt} days. In this market, that usually means a trust gap around the rent, repairs, or ARV. I underwrote the risk spread here: https://rsarbos.com${asset.dossierUrl}. Might help a client move from hesitation to a cleaner yes/no decision.`,
   },
   {
     id: 'risk-first',
@@ -181,7 +220,7 @@ const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
   {
     uuid: 'asset-houston-77045',
     address: 'Houston, TX 77045 (InvestorLift ID: HOU-77045)',
-    sourcedByContactUuid: 'contact-houston-dispo-009',
+    sourcedByContactUuid: 'contact-chance-brown-003',
     listPrice: 138000,
     headlineRent: 1800,
     actualCompRent: 1650,
@@ -202,7 +241,7 @@ const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
   {
     uuid: 'asset-1314-shawn-dr',
     address: '1314 Shawn Dr #1, San Jose, CA 95118',
-    sourcedByContactUuid: 'contact-lift-wholesale-008',
+    sourcedByContactUuid: 'contact-aayeesha-essue-000',
     listPrice: 500000,
     headlineRent: 4410,
     actualCompRent: 2900,
@@ -1271,6 +1310,9 @@ function MissionControlApp() {
                         <th>Name</th>
                         <th>Firm</th>
                         <th>Channel</th>
+                        <th>Why Fit</th>
+                        <th>Outreach</th>
+                        <th>Message</th>
                         <th>Social</th>
                         <th>Action</th>
                       </tr>
@@ -1281,14 +1323,22 @@ function MissionControlApp() {
                           <td><strong>{contact.name}</strong></td>
                           <td>{contact.company}</td>
                           <td><span className="channel-tag">{contact.channelTag}</span></td>
+                          <td>{contact.fitReason}</td>
+                          <td>{contact.outreachMethods.slice(0, 3).join(' / ')}</td>
+                          <td>{contact.personalizedMessage}</td>
                           <td><a href={contact.socialUrl} target="_blank" rel="noreferrer">{contact.socialHandle}</a></td>
                           <td>
                             <div className="action-button-group">
                               <button className="mc-mini-action" type="button" onClick={() => setSelectedContact(contact)}>
                                 Profile
                               </button>
-                              <a href={`mailto:${contact.email}?subject=Underwriting Discrepancy: ${selectedAsset?.address}`} className="mc-mini-action red-action">
-                                Email
+                              <a
+                                href={contact.email ? `mailto:${contact.email}?subject=Underwriting Discrepancy: ${selectedAsset?.address}` : contact.socialUrl}
+                                target={contact.email ? undefined : '_blank'}
+                                rel={contact.email ? undefined : 'noreferrer'}
+                                className="mc-mini-action red-action"
+                              >
+                                {contact.email ? 'Email' : 'Open'}
                               </a>
                             </div>
                           </td>
@@ -1462,8 +1512,13 @@ function MissionControlApp() {
               <div className="war-room-actions">
                 <a href={selectedAsset.dossierUrl} target="_blank" rel="noreferrer" className="dossier-preview-link">VIEW DOSSIER</a>
                 {selectedAssetContact && (
-                   <a href={`mailto:${selectedAssetContact.email}?subject=Rent Reality: ${selectedAsset.address}`} className="primary-action red-action">
-                     TRIGGER OUTREACH
+                   <a
+                     href={selectedAssetContact.email ? `mailto:${selectedAssetContact.email}?subject=Rent Reality: ${selectedAsset.address}` : selectedAssetContact.socialUrl}
+                     target={selectedAssetContact.email ? undefined : '_blank'}
+                     rel={selectedAssetContact.email ? undefined : 'noreferrer'}
+                     className="primary-action red-action"
+                   >
+                     {selectedAssetContact.email ? 'TRIGGER OUTREACH' : 'OPEN PROFILE'}
                    </a>
                 )}
               </div>
@@ -1533,10 +1588,17 @@ function MissionControlApp() {
               </button>
             </div>
             <div className="contact-action-row">
-              <a href={`tel:${selectedContact.phone}`}>Call</a>
-              <a href={`mailto:${selectedContact.email}`}>Email</a>
+              {selectedContact.phone && <a href={`tel:${selectedContact.phone}`}>Call</a>}
+              {selectedContact.email && <a href={`mailto:${selectedContact.email}`}>Email</a>}
               <a href={selectedContact.socialUrl} target="_blank" rel="noreferrer">Social</a>
             </div>
+            <p>{selectedContact.fitReason}</p>
+            <div className="schema-stack">
+              {selectedContact.outreachMethods.map((method) => (
+                <span key={method}>{method}</span>
+              ))}
+            </div>
+            <p>{selectedContact.personalizedMessage}</p>
           </section>
         </div>
       )}
@@ -1605,6 +1667,10 @@ export default function App() {
 
   if (path === '/about-us' || path === '/about') {
     return <AboutUsPage />
+  }
+
+  if (path === '/prototype/editorial-system') {
+    return <EditorialSystemPrototype />
   }
 
   if (path === '/sample-dossier-1314shawndr') {

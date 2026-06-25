@@ -45,11 +45,11 @@ Legend:
   - Step 1: read `/terms`, `/privacy`, and `/refund-policy`.
   - Step 2: confirm refund timing, manual-service language, privacy handling, and no-advice disclaimers.
   - Step 3: replace starter language with approved final language before paid traffic.
-  - Internal check 2026-06-09: no-advice language is present in `/terms`; the pricing card has a visible decision-support-only disclaimer; the dossier template says the report is not a substitute for inspection, appraisal, or professional advice; `REPORT_OPERATIONS.md` says reports must be verified with inspection, appraisal, lending, tax, and legal professionals.
+  - Internal check 2026-06-09: no-advice language is present in `/terms`; the pricing card has a visible decision-support-only disclaimer; the dossier template says the report is not a substitute for inspection, appraisal, or professional advice; `docs/operations/REPORT_OPERATIONS.md` says reports must be verified with inspection, appraisal, lending, tax, and legal professionals.
   - Remaining action: legal/owner approval is still required because these are starter policies, not counsel-approved terms.
 
 - [ ] Confirm use of third-party data sources and attribution requirements.
-  - Step 1: open `DATA_SOURCE_REVIEW.md`.
+  - Step 1: open `docs/website/DATA_SOURCE_REVIEW.md`.
   - Step 2: fill the attribution and usage notes for every source used in reports.
   - Step 3: remove or replace any source that cannot be used in public samples.
   - Step 4: keep source references in the report appendix for private paid reports.
@@ -89,13 +89,13 @@ Legend:
   - Step 4: approve whether launch starts with one sample or three.
 
 - [ ] Prepare screenshots/social assets.
-  - Step 1: open `SOCIAL_ASSET_SHOT_LIST.md`.
+  - Step 1: open `docs/revenue/SOCIAL_ASSET_SHOT_LIST.md`.
   - Step 2: capture each listed website and report screenshot.
   - Step 3: export square, portrait, story, and LinkedIn landscape crops.
   - Current status 2026-06-09: shot list is also visible in Mission Control -> Marketing Desk.
 
 - [x] Fill in first outreach list with prioritized starter segments.
-  - Step 1: open `OUTREACH_LIST_TEMPLATE.md`.
+  - Step 1: open `docs/revenue/OUTREACH_LIST_TEMPLATE.md`.
   - Step 2: add 25-50 names across investors, flippers, agents, wholesalers, and acquisition teams.
   - Step 3: fill contact, channel, reason they fit, and follow-up date.
   - Step 4: prioritize warm contacts before cold outreach.
@@ -104,11 +104,11 @@ Legend:
 - [ ] Decide first marketing channel.
   - Step 1: choose one primary channel for launch day: warm DMs, LinkedIn post, local investor groups, or direct agent outreach.
   - Step 2: post or send there first before spreading attention across other channels.
-  - Step 3: track replies in `OUTREACH_LIST_TEMPLATE.md`.
+  - Step 3: track replies in `docs/revenue/OUTREACH_LIST_TEMPLATE.md`.
 
 - [ ] Run one full internal dry run from form to delivered report.
   - Step 1: submit a test property through the site.
   - Step 2: complete payment.
   - Step 3: verify the DB row is `paid` and the internal email arrived.
   - Step 4: generate the report manually.
-  - Step 5: send the private delivery link using the saved response in `REPORT_OPERATIONS.md`.
+  - Step 5: send the private delivery link using the saved response in `docs/operations/REPORT_OPERATIONS.md`.

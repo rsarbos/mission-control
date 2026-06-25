@@ -4132,28 +4132,6 @@ code {
   box-shadow: 0 0 8px var(--rsarbos-red);
 }
 
-.ai-stage-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
-}
-
-.ai-stage-tabs button {
-  min-height: 34px;
-  border: 1px solid rgba(199, 204, 214, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--rsarbos-muted);
-  font-size: 0.72rem;
-  font-weight: 900;
-}
-
-.ai-stage-tabs button.active {
-  color: #fff;
-  border-color: rgba(30, 91, 255, 0.45);
-  background: rgba(30, 91, 255, 0.16);
-}
-
 .ai-notes-field {
   display: grid;
   gap: 8px;
@@ -4193,9 +4171,9 @@ code {
 
 .ai-generate-button {
   min-height: 42px;
-  border: 1px solid rgba(16, 185, 129, 0.38);
+  border: 1px solid rgba(30, 91, 255, 0.42);
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.24), rgba(30, 91, 255, 0.16));
+  background: linear-gradient(135deg, rgba(30, 91, 255, 0.26), rgba(16, 185, 129, 0.14));
   color: #fff;
   font-weight: 900;
 }
@@ -4228,35 +4206,19 @@ code {
   white-space: pre-wrap;
 }
 
-.ai-prospect-slots {
+.ai-response-stream {
   display: grid;
   gap: 8px;
 }
 
-.ai-prospect-slots article {
-  display: grid;
-  grid-template-columns: 30px minmax(0, 1fr);
-  gap: 10px;
-  align-items: start;
-  padding: 10px;
+.ai-response-stream article {
+  padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.04);
 }
 
-.ai-prospect-slots article span {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 26px;
-  border-radius: 8px;
-  color: #a7f3d0;
-  background: rgba(16, 185, 129, 0.1);
-  font-size: 0.72rem;
-  font-weight: 900;
-}
-
-.ai-prospect-slots article p {
+.ai-response-stream article p {
   margin: 0;
   color: var(--rsarbos-silver);
   font-size: 0.82rem;

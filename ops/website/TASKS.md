@@ -14,4 +14,4 @@
 
 ## Done
 - CONSTITUTION.md added
-- WEBSITE_READINESS populated
+- `ops/website/WEBSITE_READINESS.md` populated

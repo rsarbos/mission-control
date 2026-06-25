@@ -59,10 +59,11 @@ Humans remain the final authority.
 
 Before making changes, every engineer or AI agent must read:
 
-1. AXIOM-OPERATIONS.md
-2. STATE.md
-3. BRAND_BOOK.md
-4. NORTH_STAR.md
+1. `AGENTS_REQUIRED_READING.md`
+2. `axiom/AXIOM_CONSTITUTION.md`
+3. `axiom/NORTH_STAR.md`
+4. `axiom/BRAND_BOOK.md`
+5. The relevant domain files under `ops/*/CONSTITUTION.md`, `ops/*/STATE.md`, and `ops/*/TASKS.md`
 
 These documents are the constitutional source of truth.
 
@@ -122,17 +123,16 @@ The objective is to validate workflows, generate revenue, and refine decision sy
 
 ```txt
 /
-├── AXIOM-OPERATIONS.md
-├── STATE.md
-├── BRAND_BOOK.md
-├── NORTH_STAR.md
-├── README.md
-│
-├── app/
-├── src/
-├── public/
+├── AGENTS_REQUIRED_READING.md
+├── api/
+├── axiom/
 ├── docs/
-└── ...
+├── ops/
+├── prompt-packages/
+├── references/
+├── rsarbos-mission-control/
+├── package.json
+└── vercel.json
 ```
 
 ---

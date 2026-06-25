@@ -129,13 +129,146 @@ const EMPTY_ORDER: Order = {
   workflow: createInitialWorkflow(),
 }
 
+function starterProspects(): Prospect[] {
+  const followUpDate = today()
+
+  return [
+    {
+      ...EMPTY_PROSPECT,
+      id: 'prospect-aayeesha-essue-agency',
+      contactName: 'Aayeesha Essue',
+      buyerSegment: 'Real Estate Agents',
+      role: 'Agent',
+      company: 'The Agency',
+      email: 'aessue@theagencyre.com',
+      phone: '+14243717312',
+      socialProfile: 'https://www.theagencyre.com/agent/aayeesha-essue',
+      market: 'California',
+      sourceChannel: 'Website',
+      stage: 'Ready to Contact',
+      nextFollowUpDate: followUpDate,
+      quotedPrice: 100,
+      notes: 'Public profile emphasizes trust, clarity, thoughtful execution, hospitality, and reducing client stress. Top outreach methods: WhatsApp/text first, direct phone call second, email third. Message angle: use the RSARBOS dossier as a buyer-hesitation tool for the property she is actively promoting, not as a sales pitch.',
+    },
+    {
+      ...EMPTY_PROSPECT,
+      id: 'prospect-chris-sansone-agency',
+      contactName: 'Chris Sansone',
+      buyerSegment: 'Real Estate Agents',
+      role: 'Broker / Houston team lead',
+      company: 'The Agency Sugar Land',
+      socialProfile: 'https://www.houstonchronicle.com/business/real-estate/article/the-agency-sugar-land-houston-21284529.php',
+      market: 'Houston / Sugar Land',
+      sourceChannel: 'Website',
+      stage: 'Ready to Contact',
+      nextFollowUpDate: followUpDate,
+      quotedPrice: 100,
+      notes: 'Public source: Houston Chronicle profile on The Agency Sugar Land launch. Fit: high-transaction Houston operator; RSARBOS can help clients inspect rent, repair, ARV, and risk before deciding.',
+    },
+    {
+      ...EMPTY_PROSPECT,
+      id: 'prospect-lizz-sansone-agency',
+      contactName: 'Lizz Sansone',
+      buyerSegment: 'Real Estate Agents',
+      role: 'Houston team lead',
+      company: 'The Agency Sugar Land',
+      socialProfile: 'https://www.houstonchronicle.com/business/real-estate/article/the-agency-sugar-land-houston-21284529.php',
+      market: 'Houston / Sugar Land',
+      sourceChannel: 'Website',
+      stage: 'Ready to Contact',
+      nextFollowUpDate: followUpDate,
+      quotedPrice: 100,
+      notes: 'Public source: Houston Chronicle profile on The Agency Sugar Land launch. Fit: new local office serving multiple price tiers; a sample dossier can become a client clarity artifact.',
+    },
+    {
+      ...EMPTY_PROSPECT,
+      id: 'prospect-chance-brown-cba',
+      contactName: 'Chance Brown',
+      buyerSegment: 'Real Estate Agents',
+      role: 'Broker / owner',
+      company: 'CB&A Realtors',
+      socialProfile: 'https://www.houstonchronicle.com/business/article/cba-realtors-top-workplace-houston-21075597.php',
+      market: 'Houston',
+      sourceChannel: 'Website',
+      stage: 'Ready to Contact',
+      nextFollowUpDate: followUpDate,
+      quotedPrice: 100,
+      notes: 'Public source: Houston Chronicle workplace profile. Fit: agent-first brokerage; RSARBOS can be positioned as support for agents who want stronger investor-buyer decision packets.',
+    },
+    {
+      ...EMPTY_PROSPECT,
+      id: 'prospect-ben-caballero-homesusa',
+      contactName: 'Ben Caballero',
+      buyerSegment: 'Real Estate Agents',
+      role: 'Broker / founder',
+      company: 'HomesUSA.com',
+      socialProfile: 'https://en.wikipedia.org/wiki/Ben_Caballero',
+      market: 'Texas production builder markets',
+      sourceChannel: 'Website',
+      stage: 'Ready to Contact',
+      nextFollowUpDate: followUpDate,
+      quotedPrice: 100,
+      notes: 'Public source: Ben Caballero profile. Fit: high-volume Texas listing broker for builders; RSARBOS can frame buyer confidence, comp support, and listing-trust artifacts.',
+    },
+    {
+      ...EMPTY_PROSPECT,
+      id: 'prospect-ayesha-shelton-park-street',
+      contactName: 'Ayesha Shelton',
+      buyerSegment: 'Developers',
+      role: 'Co-founder / real estate professional',
+      company: 'Park Street Homes',
+      socialProfile: 'https://en.wikipedia.org/wiki/Ayesha_Shelton',
+      market: 'Houston',
+      sourceChannel: 'Website',
+      stage: 'Ready to Contact',
+      nextFollowUpDate: followUpDate,
+      quotedPrice: 100,
+      notes: 'Public source: Ayesha Shelton profile. Fit: Houston developer and community homeownership operator; RSARBOS can support buyer education and transparent decision records.',
+    },
+    {
+      ...EMPTY_PROSPECT,
+      id: 'prospect-kevan-shelton-park-street',
+      contactName: 'Kevan Shelton',
+      buyerSegment: 'Developers',
+      role: 'CEO / co-founder',
+      company: 'Park Street Homes',
+      socialProfile: 'https://en.wikipedia.org/wiki/Kevan_Shelton',
+      market: 'Houston',
+      sourceChannel: 'Website',
+      stage: 'Ready to Contact',
+      nextFollowUpDate: followUpDate,
+      quotedPrice: 100,
+      notes: 'Public source: Kevan Shelton profile. Fit: real estate operator with homeownership initiatives; risk registers and source custody can help buyers understand tradeoffs.',
+    },
+  ]
+}
+
+function initialStore(): MissionControlStore {
+  return {
+    ...EMPTY_STORE,
+    prospects: starterProspects(),
+  }
+}
+
+function withStarterProspects(store: MissionControlStore): MissionControlStore {
+  const existingIds = new Set(store.prospects.map((prospect) => prospect.id))
+  const missingProspects = starterProspects().filter((prospect) => !existingIds.has(prospect.id))
+
+  if (!missingProspects.length) return store
+
+  return {
+    ...store,
+    prospects: [...store.prospects, ...missingProspects],
+  }
+}
+
 function readStore(): MissionControlStore {
   try {
     const raw = localStorage.getItem(STORE_KEY)
-    if (!raw) return EMPTY_STORE
-    return { ...EMPTY_STORE, ...JSON.parse(raw) }
+    if (!raw) return initialStore()
+    return withStarterProspects({ ...EMPTY_STORE, ...JSON.parse(raw) })
   } catch {
-    return EMPTY_STORE
+    return initialStore()
   }
 }
 

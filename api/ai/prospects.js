@@ -1,12 +1,23 @@
-const LITERT_URL = process.env.LITERT_GENERATE_CONTENT_URL || 'http://127.0.0.1:9379/v1beta/models/gemma3-1b-gpu-custom:streamGenerateContent'
+const DEFAULT_LOCAL_LITERT_URL = 'http://127.0.0.1:9379/v1beta/models/gemma3-1b-gpu-custom:streamGenerateContent'
+function normalizeConfiguredUrl(value) {
+  const trimmed = (value || '').trim()
+  if ((trimmed.startsWith('"') && trimmed.endsWith('"')) || (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
+    return trimmed.slice(1, -1).trim()
+  }
+  return trimmed
+}
+
+const CONFIGURED_LITERT_URL = normalizeConfiguredUrl(process.env.LITERT_GENERATE_CONTENT_URL)
+const LITERT_URL = CONFIGURED_LITERT_URL || DEFAULT_LOCAL_LITERT_URL
 const LITERT_MODEL = 'gemma3-1b-gpu-custom'
+const LITERT_STREAM_PATH = '/v1beta/models/gemma3-1b-gpu-custom:streamGenerateContent'
 
 const RSARBOS_SYSTEM_CONTEXT = `
 RSARBOS sells human-reviewed real estate underwriting dossiers.
 Mission Control is revenue-first: find prospects, start conversations, convert payment, fulfill paid dossiers, deliver reports.
 Do not invent revenue, evidence, payment, or financial truth.
-Find targets aligned with institutional acquisition mechanics: agents, wholesalers, lenders, acquisition teams, operators needing rent thesis checks, ARV review, risk registers, source custody, and faster capital-confidence.
-Return exactly 5 concise numbered prospects.
+Keep help grounded in institutional acquisition mechanics: agents, wholesalers, lenders, acquisition teams, operators needing rent thesis checks, ARV review, risk registers, source custody, and faster capital-confidence.
+Answer the operator's request directly. Be concise unless the operator asks for depth.
 `.trim()
 
 function getBody(req) {
@@ -34,9 +45,7 @@ function cleanContext(value) {
 }
 
 function buildMessages(body) {
-  const stage = cleanString(body.stage, 'Revenue Generation').slice(0, 80)
-  const notes = cleanString(body.notes, '')
-  const placeholder = cleanString(body.placeholder, '')
+  const prompt = cleanString(body.prompt || body.notes, '')
   const context = cleanContext(body.context)
 
   return [
@@ -44,15 +53,13 @@ function buildMessages(body) {
       role: 'system',
       content: `${RSARBOS_SYSTEM_CONTEXT}
 
-Current pipeline stage: ${stage}
-Stage placeholder: ${placeholder || 'No placeholder provided'}
 Current Mission Control context: ${JSON.stringify(context)}
 
-Act as an elite acquisition analyst. Output exactly 5 numbered lines. Each line format: Target - why now - first manual action.`,
+Act as a practical Mission Control operator assistant. Help with prospecting, outreach, conversion, fulfillment planning, delivery, evidence handling, and commercial learning. If the request would require facts not provided, state the missing inputs instead of inventing them.`,
     },
     {
       role: 'user',
-      content: notes || 'No operator notes were supplied. Generate targets using only the current pipeline stage and Mission Control context.',
+      content: prompt || 'Suggest the highest-leverage next manual action using the current Mission Control context.',
     },
   ]
 }
@@ -75,7 +82,7 @@ ${userMessage?.content || 'Generate 5 RSARBOS-aligned prospect targets.'}`.trim(
     ],
     generationConfig: {
       temperature: typeof body.temperature === 'number' ? body.temperature : 0.3,
-      maxOutputTokens: 260,
+      maxOutputTokens: 650,
     },
   }
 }
@@ -128,9 +135,38 @@ function normalizeGeminiResponse(data) {
 }
 
 module.exports = async function handler(req, res) {
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      configured: Boolean(CONFIGURED_LITERT_URL),
+      targetPathOk: CONFIGURED_LITERT_URL ? CONFIGURED_LITERT_URL.endsWith(LITERT_STREAM_PATH) : false,
+      productionReachableRequirement: process.env.VERCEL ? 'LITERT_GENERATE_CONTENT_URL must be an HTTPS endpoint reachable from Vercel.' : 'Local fallback uses 127.0.0.1:9379.',
+    })
+  }
+
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST')
+    res.setHeader('Allow', 'GET, POST')
     return res.status(405).json({ error: 'Method not allowed' })
+  }
+
+  if (process.env.VERCEL && !CONFIGURED_LITERT_URL) {
+    return res.status(503).json({
+      error: 'AI inference URL is not configured',
+      details: 'Set LITERT_GENERATE_CONTENT_URL in Vercel to a reachable HTTPS streamGenerateContent endpoint, then redeploy.',
+    })
+  }
+
+  if (process.env.VERCEL && !CONFIGURED_LITERT_URL.startsWith('https://')) {
+    return res.status(503).json({
+      error: 'AI inference URL is not reachable from Vercel',
+      details: 'LITERT_GENERATE_CONTENT_URL must be a public HTTPS endpoint, not localhost, a blank quoted string, or another private URL.',
+    })
+  }
+
+  if (CONFIGURED_LITERT_URL && !CONFIGURED_LITERT_URL.endsWith(LITERT_STREAM_PATH)) {
+    return res.status(503).json({
+      error: 'AI inference URL does not target the Gemma stream endpoint',
+      details: `LITERT_GENERATE_CONTENT_URL must end with ${LITERT_STREAM_PATH}.`,
+    })
   }
 
   try {
@@ -156,7 +192,9 @@ module.exports = async function handler(req, res) {
       console.error('litert inference failed', response.status, errorText.slice(0, 500))
       return res.status(response.status).json({
         error: `Inference server returned status ${response.status}`,
-        details: 'Check that litert is active on 127.0.0.1:9379 and exposes the Gemini generateContent API.',
+        details: CONFIGURED_LITERT_URL
+          ? 'Check that LITERT_GENERATE_CONTENT_URL points to a reachable streamGenerateContent endpoint.'
+          : 'Check that litert is active on 127.0.0.1:9379 and exposes the Gemini generateContent API.',
       })
     }
 
@@ -170,8 +208,12 @@ module.exports = async function handler(req, res) {
     const offline = error && (offlineCodes.has(error.code) || error.name === 'AbortError' || offlineCodes.has(error.cause?.code))
     console.error('ai-prospects proxy failed', error)
     return res.status(offline ? 503 : 500).json({
-      error: 'Failed to communicate with local litert daemon',
-      details: 'Check PID 370151 / port 9379 and verify the local runner is serving /v1beta/models/gemma3-1b-gpu-custom:streamGenerateContent.',
+      error: CONFIGURED_LITERT_URL
+        ? 'Failed to communicate with configured inference endpoint'
+        : 'Failed to communicate with local litert daemon',
+      details: CONFIGURED_LITERT_URL
+        ? 'Check that LITERT_GENERATE_CONTENT_URL is reachable from Vercel and serves /v1beta/models/gemma3-1b-gpu-custom:streamGenerateContent.'
+        : 'Check that litert is listening on port 9379 and serving /v1beta/models/gemma3-1b-gpu-custom:streamGenerateContent.',
     })
   }
 }

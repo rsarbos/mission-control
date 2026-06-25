@@ -1,10 +1,5 @@
 import React, { useMemo, useState } from 'react'
 
-type CoPilotStage = {
-  name: string
-  placeholder: string
-}
-
 type CoPilotContext = {
   totalProspects: number
   replies: number
@@ -16,41 +11,20 @@ type CoPilotContext = {
   bottleneck: string
 }
 
-const COPILOT_STAGES: CoPilotStage[] = [
-  {
-    name: 'Stage 1: Revenue Generation',
-    placeholder: 'Target acquisition criteria...',
-  },
-  {
-    name: 'Stage 2: Get Conversations',
-    placeholder: 'Inbound response hooks or active threads...',
-  },
-  {
-    name: 'Stage 3: First Ask / Sent by HDMS',
-    placeholder: 'Asset parameters or institutional data...',
-  },
-]
-
-function extractProspects(content: string) {
+function splitResponse(content: string) {
   const lines = content
     .split('\n')
     .map((line) => line.trim())
     .filter(Boolean)
 
-  if (!lines.length) return []
-
-  const numbered = lines.filter((line) => /^(\d+[\).:-]|\-\s+)/.test(line))
-  return (numbered.length ? numbered : lines).slice(0, 5)
+  return lines.length ? lines : []
 }
 
 export default function AiPipelineCoPilot({ context }: { context: CoPilotContext }) {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [notesByStage, setNotesByStage] = useState<Record<string, string>>({})
-  const [prospects, setProspects] = useState<string[]>([])
+  const [prompt, setPrompt] = useState('')
+  const [responseLines, setResponseLines] = useState<string[]>([])
   const [status, setStatus] = useState<'idle' | 'loading' | 'online' | 'offline'>('idle')
   const [terminalAlert, setTerminalAlert] = useState('')
-  const activeStage = COPILOT_STAGES[activeIndex]
-  const notes = notesByStage[activeStage.name] || ''
 
   const pipelineFacts = useMemo(() => [
     `${context.totalProspects} prospects`,
@@ -59,19 +33,17 @@ export default function AiPipelineCoPilot({ context }: { context: CoPilotContext
     `${context.dossiersInFulfillment} in fulfillment`,
   ], [context])
 
-  async function generateProspects() {
+  async function askGemma() {
     setStatus('loading')
     setTerminalAlert('')
-    setProspects([])
+    setResponseLines([])
 
     try {
       const response = await fetch('/api/ai/prospects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          stage: activeStage.name,
-          placeholder: activeStage.placeholder,
-          notes,
+          prompt,
           context,
           temperature: 0.3,
         }),
@@ -83,16 +55,16 @@ export default function AiPipelineCoPilot({ context }: { context: CoPilotContext
       }
 
       const content = data.choices?.[0]?.message?.content
-      const nextProspects = typeof content === 'string' ? extractProspects(content) : []
-      setProspects(nextProspects.length ? nextProspects : ['No parseable targets returned by the local model.'])
+      const nextLines = typeof content === 'string' ? splitResponse(content) : []
+      setResponseLines(nextLines.length ? nextLines : ['Gemma returned an empty response.'])
       setStatus('online')
     } catch (error) {
       setStatus('offline')
       setTerminalAlert(error instanceof Error ? error.message : 'Local proxy bridge structural error.')
-      setProspects([
-        'Local proxy bridge structural error.',
-        'Ensure dashboard backend catches /api/ai/prospects.',
-        'Verify litert is active on PID 370151 / port 9379.',
+      setResponseLines([
+        'AI inference endpoint is unavailable.',
+        'Local dev requires litert on port 9379.',
+        'Production requires LITERT_GENERATE_CONTENT_URL to point at a reachable HTTPS endpoint.',
       ])
     }
   }
@@ -102,7 +74,7 @@ export default function AiPipelineCoPilot({ context }: { context: CoPilotContext
       <div className="ai-copilot-head">
         <div>
           <p className="mc-admin-kicker">AI Pipeline Co-Pilot</p>
-          <h2>Prospect sidecar</h2>
+          <h2>Gemma dialog</h2>
         </div>
         <div className={`ai-connection ${status === 'offline' ? 'offline' : ''}`}>
           <span aria-hidden="true"></span>
@@ -110,26 +82,13 @@ export default function AiPipelineCoPilot({ context }: { context: CoPilotContext
         </div>
       </div>
 
-      <div className="ai-stage-tabs" role="tablist" aria-label="AI pipeline stages">
-        {COPILOT_STAGES.map((stage, index) => (
-          <button
-            key={stage.name}
-            type="button"
-            className={activeIndex === index ? 'active' : ''}
-            onClick={() => setActiveIndex(index)}
-          >
-            {stage.name.replace('Stage ', 'S')}
-          </button>
-        ))}
-      </div>
-
       <label className="ai-notes-field">
-        <span>{activeStage.name}</span>
+        <span>Ask Gemma</span>
         <textarea
-          value={notes}
-          placeholder={activeStage.placeholder}
-          onChange={(event) => setNotesByStage({ ...notesByStage, [activeStage.name]: event.target.value })}
-          rows={5}
+          value={prompt}
+          placeholder="Tell Gemma what you want: find buyers, draft an outreach angle, plan the next fulfillment step, summarize the bottleneck..."
+          onChange={(event) => setPrompt(event.target.value)}
+          rows={7}
         />
       </label>
 
@@ -137,8 +96,8 @@ export default function AiPipelineCoPilot({ context }: { context: CoPilotContext
         {pipelineFacts.map((fact) => <span key={fact}>{fact}</span>)}
       </div>
 
-      <button type="button" className="ai-generate-button" onClick={generateProspects} disabled={status === 'loading'}>
-        {status === 'loading' ? 'Generating...' : '⚡ Generate Top 5 Prospects'}
+      <button type="button" className="ai-generate-button" onClick={askGemma} disabled={status === 'loading'}>
+        {status === 'loading' ? 'Thinking...' : 'Ask Gemma'}
       </button>
 
       {terminalAlert && (
@@ -148,11 +107,10 @@ export default function AiPipelineCoPilot({ context }: { context: CoPilotContext
         </div>
       )}
 
-      <div className="ai-prospect-slots">
-        {(prospects.length ? prospects : Array.from({ length: 5 }, (_, index) => `Prospect slot ${index + 1} waiting for local inference.`)).map((prospect, index) => (
-          <article key={`${index}-${prospect}`}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <p>{prospect}</p>
+      <div className="ai-response-stream">
+        {(responseLines.length ? responseLines : ['Gemma is waiting for an operator prompt.']).map((line, index) => (
+          <article key={`${index}-${line}`}>
+            <p>{line}</p>
           </article>
         ))}
       </div>
