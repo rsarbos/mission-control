@@ -101,7 +101,7 @@ const server = http.createServer((req, res) => {
   })
 })
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`RSARBOS Hermes Webhook Receiver listening on port ${PORT}`)
   console.log(`Tasks file: ${TASKS_FILE}`)
   console.log(`Webhook secret configured: ${HERMES_WEBHOOK_SECRET ? 'Yes' : 'No (disabled)'}`)
