@@ -3,6 +3,7 @@ import ManualReportForm from './components/ManualReportForm'
 import DossierRequestForm from './components/DossierRequestForm'
 import DossierDashboard from './components/DossierDashboard'
 import DossierSuccessPage from './components/DossierSuccessPage'
+import ProofCarousel from './components/ProofCarousel'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
 import EditorialSystemPrototype from './components/prototypes/editorial-system'
@@ -484,7 +485,8 @@ function PublicWebsite() {
               <strong>RSARBOS Dossier</strong>
             </div>
             <p className="hero-subtitle">
-              Clear property verdicts backed by traceable numbers, risks, and next steps.
+              Turn any property address into a clear verdict — gap math, risk flags, and
+              next steps agents use to win listings. Free 15-minute dossier in minutes.
             </p>
             <div className="hero-actions centered">
               <a className="primary-action shine-action" href="#free-dossier" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
@@ -508,6 +510,8 @@ function PublicWebsite() {
             ))}
           </div>
         </section>
+
+        <ProofCarousel />
 
         <section className="sample-section" id="sample">
           <div className="content-wrap sample-preview-column">
