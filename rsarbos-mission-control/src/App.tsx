@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import ManualReportForm from './components/ManualReportForm'
 import DossierRequestForm from './components/DossierRequestForm'
 import DossierDashboard from './components/DossierDashboard'
+import OwnerDashboard from './components/OwnerDashboard'
 import DossierSuccessPage from './components/DossierSuccessPage'
 import ProofCarousel from './components/ProofCarousel'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
@@ -555,21 +555,6 @@ function PublicWebsite() {
                 </p>
                 <a className="primary-action glass-action" href="#free-dossier">REQUEST FREE DOSSIER</a>
               </article>
-              <article className="pricing-card glass-panel">
-                <div className="pricing-rule"></div>
-                <h3>MANUAL UNDERWRITING</h3>
-                <p className="price">$100 <span>/ report</span></p>
-                <ul>
-                  <li>Complete Final Underwriting Dossier</li>
-                  <li>Deal Confidence Summary</li>
-                  <li>Delivered within 24 hours of payment</li>
-                  <li>Secure private delivery link</li>
-                </ul>
-                <p className="service-disclaimer">
-                  Decision support only. Not legal, tax, lending, inspection, appraisal, or financial advice.
-                </p>
-                <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
-              </article>
               <article className="pricing-card glass-panel upgrade-card">
                 <div className="pricing-rule upgrade-rule"></div>
                 <h3>FULL INVESTOR DOSSIER</h3>
@@ -598,21 +583,6 @@ function PublicWebsite() {
               <p>Submit any property address. RSARBOS analyzes cap rates, HOA drag, and local comps. Your 15-minute underwriting dossier is generated and emailed to you within minutes — no payment required.</p>
             </div>
             <DossierRequestForm />
-            <div className="section-intro centered-copy" style={{ marginTop: '32px' }}>
-              <p style={{ color: 'var(--rsarbos-muted)', fontSize: '0.88rem' }}>
-                Have a specific listing? You can also request the full $100 Manual Underwriting Report below.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="request-section" id="request">
-          <div className="form-wrap">
-            <div className="section-intro centered-copy">
-              <h2>REQUEST MANUAL UNDERWRITING</h2>
-              <p>Submit the property link and context. Your request is saved before checkout, then Stripe handles secure payment.</p>
-            </div>
-            <ManualReportForm />
           </div>
         </section>
       </main>
@@ -631,7 +601,7 @@ function PublicWebsite() {
               <a href="/privacy">Privacy</a>
               <a href="/refund-policy">Refunds</a>
               <a href="/contact">Contact</a>
-              <a href="/dossier-dashboard">Owner Dashboard</a>
+              <a href="/dossier-dashboard">OWNER DASHBOARD</a>
               <span className="footer-status-pill"><span className="online-dot">■</span>SYSTEM: ONLINE</span>
             </div>
           </div>
@@ -1727,7 +1697,7 @@ export default function App() {
   }
 
   if (path === '/dossier-dashboard') {
-    return <DossierDashboard />
+    return <OwnerDashboard />
   }
 
   if (path === '/dossier-success') {

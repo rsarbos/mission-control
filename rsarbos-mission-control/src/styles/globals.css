@@ -6328,3 +6328,85 @@ code {
   border: 1px solid rgba(30, 91, 255, 0.3);
   animation: none;
 }
+
+/* ===== Owner Dashboard ===== */
+.owner-dashboard {
+  padding-bottom: 80px;
+}
+
+.metric-tile small {
+  display: block;
+  color: var(--rsarbos-muted);
+  font-size: 0.68rem;
+  font-weight: 400;
+  marginTop: 4px;
+}
+
+.mc-context-zone {
+  display: grid;
+  gap: 14px;
+}
+
+.mc-context-zone .metric-tile {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mc-context-zone .metric-tile span {
+  color: var(--rsarbos-muted);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mc-context-zone .metric-tile strong {
+  color: #f8fafc;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Funnel visualization bars */
+.owner-dashboard .mc-admin-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Status badge colors for verdicts */
+.owner-dashboard .verdict-badge.status-green {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.34);
+  color: #10b981;
+}
+
+.owner-dashboard .verdict-badge.status-red {
+  background: rgba(255, 59, 56, 0.12);
+  border: 1px solid rgba(255, 59, 56, 0.34);
+  color: #ff3b37;
+}
+
+.owner-dashboard .verdict-badge.status-amber {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.34);
+  color: #f59e0b;
+}
+
+/* Stage select styling */
+.owner-dashboard select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.owner-dashboard select.status-amber { color: #f59e0b; border-color: rgba(245, 158, 11, 0.34); }
+.owner-dashboard select.status-blue { color: #3b82f6; border-color: rgba(59, 130, 246, 0.34); }
+.owner-dashboard select.status-green { color: #10b981; border-color: rgba(16, 185, 129, 0.34); }
+.owner-dashboard select.status-red { color: #ff3b37; border-color: rgba(255, 59, 56, 0.34); }
+.owner-dashboard select.status-purple { color: #8b5cf6; border-color: rgba(139, 92, 246, 0.34); }
