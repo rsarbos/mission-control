@@ -41,7 +41,15 @@ function verifySignature(body, signature, timestamp) {
 
 const server = http.createServer((req, res) => {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' })
+    res.writeHead(405, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ error: 'Method not allowed' }))
+    return
+  }
+
+  if (req.url !== '/hermes-webhook') {
+    res.writeHead(404, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ error: 'Not found' }))
+    return
   }
 
   const chunks = []
@@ -52,16 +60,20 @@ const server = http.createServer((req, res) => {
     const timestamp = req.headers['x-rsarbos-timestamp'] || ''
 
     if (!verifySignature(body, signature, timestamp)) {
-      console.error('❌ Invalid HMAC signature')
-      return res.status(401).json({ error: 'Invalid signature' })
+      console.error('Invalid HMAC signature')
+      res.writeHead(401, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ error: 'Invalid signature' }))
+      return
     }
 
     let payload
     try {
       payload = JSON.parse(body)
     } catch (err) {
-      console.error('❌ Invalid JSON:', err.message)
-      return res.status(400).json({ error: 'Invalid JSON' })
+      console.error('Invalid JSON:', err.message)
+      res.writeHead(400, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ error: 'Invalid JSON' }))
+      return
     }
 
     // Write to task file for the Hermes Agent to pick up
@@ -72,7 +84,7 @@ const server = http.createServer((req, res) => {
     }
     fs.appendFileSync(TASKS_FILE, JSON.stringify(taskRecord) + '\n')
 
-    console.log(`✅ Received dossier request: ${payload.property_address} (request_id: ${payload.request_id})`)
+    console.log(`Received dossier request: ${payload.property_address} (request_id: ${payload.request_id})`)
     console.log(`   Agent: ${payload.agent_name} <${payload.agent_email}>`)
     if (payload.trigger === 'full_dossier_generation') {
       console.log(`   Type: Full dossier generation (post-payment)`)
@@ -80,11 +92,12 @@ const server = http.createServer((req, res) => {
       console.log(`   Type: Free 15-min dossier`)
     }
 
-    res.status(200).json({
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({
       success: true,
       task_id: payload.request_id,
       message: 'Webhook received. Task queued for Hermes Agent processing.',
-    })
+    }))
   })
 })
 
