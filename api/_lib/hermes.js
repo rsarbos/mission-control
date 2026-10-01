@@ -28,7 +28,7 @@ async function triggerWebhook(payload) {
     .update(`${timestamp}.${bodyToSign}`)
     .digest('hex')
 
-const fetch = globalThis.fetch || require('node-fetch')
+const fetch = globalThis.fetch
 
   try {
     const response = await fetch(webhookUrl, {
