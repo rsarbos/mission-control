@@ -5750,3 +5750,223 @@ code {
   font-size: 0.72rem;
   color: #a1a1aa;
 }
+
+/* Dossier Funnel: Free Complimentary Dossier + $300 Full Upgrade */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.free-card {
+  border-color: rgba(52, 211, 143, 0.42);
+  background: linear-gradient(180deg, rgba(52, 211, 143, 0.1), rgba(52, 211, 143, 0.03));
+}
+
+.free-card .pricing-rule {
+  background: linear-gradient(90deg, #34d399, #4ade80);
+  height: 3px;
+}
+
+.upgrade-card {
+  border-color: rgba(255, 59, 56, 0.42);
+  background: linear-gradient(180deg, rgba(255, 59, 56, 0.12), rgba(255, 59, 56, 0.03));
+  position: relative;
+}
+
+.upgrade-card::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--rsarbos-red);
+  color: #fff;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.upgrade-rule {
+  background: linear-gradient(90deg, var(--rsarbos-red), #ff6b6b);
+  height: 3px;
+}
+
+.dossier-request-form {
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dossier-request-form label {
+  display: grid;
+  gap: 8px;
+  color: #f8fafc;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.dossier-request-form input,
+.dossier-request-form select,
+.dossier-request-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  padding: 13px 14px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.dossier-request-form input::placeholder,
+.dossier-request-form select::placeholder {
+  color: rgba(248, 250, 252, 0.45);
+}
+
+.dossier-request-form .option {
+  color: #0a0f1c;
+}
+
+.form-disclaimer {
+  grid-column: 1 / -1;
+  color: var(--rsarbos-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+  margin: 8px 0 0;
+}
+
+.dossier-request-form .form-error {
+  color: #ff8d85;
+  background: rgba(255, 59, 56, 0.08);
+  border: 1px solid rgba(255, 59, 56, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.86rem;
+  grid-column: 1 / -1;
+}
+
+.dossier-processing-state {
+  text-align: center;
+  padding: 42px 24px;
+}
+
+.processing-spinner {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  border: 3px solid rgba(30, 91, 255, 0.12);
+  border-top-color: var(--rsarbos-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.processing-subtext {
+  color: var(--rsarbos-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.processing-subtext.small {
+  font-size: 0.82rem;
+}
+
+.dossier-success-state {
+  text-align: center;
+  padding: 42px 24px;
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.34);
+  color: #10b981;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.success-message {
+  color: #f8fafc;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.request-id {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px 16px;
+  display: inline-block;
+  margin: 16px 0;
+}
+
+.success-subtext {
+  color: var(--rsarbos-muted);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 16px auto 0;
+}
+
+/* Owner Dashboard: ensure table fits nicely */
+.dossier-dashboard .mc-table-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dossier-dashboard .status-tag {
+  font-size: 0.68rem;
+}
+
+.dossier-dashboard .metric-tile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dossier-dashboard .metric-tile span {
+  color: #71717a;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dossier-dashboard .metric-tile strong {
+  color: #f8fafc;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+/* DossierSuccessPage hero chip */
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.34);
+  color: #10b981;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
