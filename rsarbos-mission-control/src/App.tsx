@@ -219,6 +219,19 @@ const OUTREACH_TEMPLATES: OutreachTemplate[] = [
     generateBody: (asset) => 
       `Underwrote ${asset.address} and found a specific risk ([${asset.assetRiskRegister[0]}]) that doesn't show up on Zillow. Full dossier with comps and walkaway triggers here: https://rsarbos.com${asset.dossierUrl}. Worth a look before you run numbers.`,
   },
+  {
+    id: 'whatsapp-value-gap',
+    title: 'WhatsApp Value-Gap Insight',
+    target: 'Listing Agents - WhatsApp First-Touch',
+    generateBody: (asset) =>
+      `Quick observation on ${asset.address}: listed at $${asset.listPrice.toLocaleString()},
+underwrite prices at $${asset.maximumAllowableOffer.toLocaleString()}
+(stated $${asset.headlineRent.toLocaleString()}/mo vs comp $${asset.actualCompRent.toLocaleString()}/mo).
+Gap vs asking: ${(((asset.listPrice - asset.maximumAllowableOffer) / asset.listPrice) * 100).toFixed(1)}%
+- your list price sits above income-justified value; comps + rent ceiling don't support it.
+15-min RSARBOS dossier (comps + risk register): https://rsarbos.com${asset.dossierUrl}
+P.S. Happy to run this en español si util.`,
+  },
 ]
 
 const UNDERWRITTEN_ASSETS: UnderwrittenAsset[] = [
