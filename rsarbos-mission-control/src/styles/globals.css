@@ -2375,7 +2375,11 @@ code {
 
 .audience-banner {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   border-block: 1px solid rgba(255, 255, 255, 0.24);
   background:
     linear-gradient(90deg, rgba(111, 0, 0, 0.72), rgba(255, 59, 56, 0.98), rgba(111, 0, 0, 0.72));
@@ -2386,9 +2390,12 @@ code {
   width: max-content;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   padding: 18px 16px;
-  animation: audience-marquee 32s linear infinite;
+}
+
+.audience-banner::-webkit-scrollbar {
+  display: none;
 }
 
 .audience-banner:hover .audience-banner-track {
@@ -2407,7 +2414,9 @@ code {
   background: rgba(5, 8, 16, 0.42);
   color: white;
   font-family: var(--title-font);
-  font-size: clamp(0.92rem, 1.3vw, 1.12rem);
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  font-size: clamp(0.95rem, 2.4vw, 1.12rem);
   font-weight: 900;
   letter-spacing: 0;
   box-shadow: inset 0 0 28px rgba(255, 255, 255, 0.06);
@@ -2821,8 +2830,8 @@ code {
 
 .pricing-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-  gap: 56px;
+  grid-template-columns: minmax(280px, 480px) minmax(0, 1fr);
+  gap: 40px;
   align-items: center;
 }
 
@@ -3765,7 +3774,7 @@ code {
 }
 
 .form-wrap {
-  width: min(860px, calc(100% - (var(--section-gutter) * 2)));
+  width: min(1160px, calc(100% - (var(--section-gutter) * 2)));
   margin: 0 auto;
 }
 
@@ -5754,7 +5763,8 @@ code {
 /* Dossier Funnel: Free Complimentary Dossier + $300 Full Upgrade */
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(2, min(420px, 1fr));
+  justify-content: center;
   gap: 20px;
   width: 100%;
 }
@@ -5798,7 +5808,8 @@ code {
 
 .dossier-request-form {
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 20px;
+  padding: 40px;
 }
 
 .dossier-request-form label {
@@ -5973,22 +5984,19 @@ code {
 
 /* ===== Proof Insights Carousel ===== */
 .proof-carousel-section {
-  padding: 82px 0 0;
+  padding: 48px 0 20px;
   scroll-margin-top: 96px;
 }
 
 .proof-carousel {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 28px;
+  margin-top: 20px;
 }
 
 .carousel-track {
   position: relative;
-  flex: 1;
-  min-height: 380px;
+  width: 100%;
+  min-height: 300px;
 }
 
 .proof-card {
@@ -6005,6 +6013,8 @@ code {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px rgba(255, 59, 56, 0.14), 0 0 40px rgba(0, 0, 0, 0.42);
   animation: fadeInUp 520ms ease forwards;
 }
 
@@ -6012,8 +6022,8 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 18px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .proof-property {
@@ -6051,8 +6061,8 @@ code {
 
 .proof-content {
   display: grid;
-  gap: 16px;
-  margin: 20px 0;
+  gap: 12px;
+  margin: 14px 0;
 }
 
 .proof-headline {
@@ -6071,7 +6081,7 @@ code {
 .proof-metrics {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 12px;
 }
 
 .proof-metric {
@@ -6131,11 +6141,21 @@ code {
   backdrop-filter: blur(8px);
 }
 
+.carousel-nav-prev,
+.carousel-nav-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+.carousel-nav-prev { left: 8px; }
+.carousel-nav-next { right: 8px; }
+
 .carousel-nav:hover {
   background: rgba(30, 91, 255, 0.16);
   border-color: rgba(30, 91, 255, 0.36);
   color: var(--rsarbos-blue);
-  transform: scale(1.08);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .carousel-dots {

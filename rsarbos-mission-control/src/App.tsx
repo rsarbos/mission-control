@@ -400,7 +400,7 @@ const CODEX_HELPERS = ['Strict JSON intake schemas', 'Neon Postgres table mappin
 function PublicWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [logoLeftClicks, setLogoLeftClicks] = useState(0)
-  const audienceBannerItems = ['BUILT FOR:', ...AUDIENCE_BANNER_ITEMS, 'BUILT FOR:', ...AUDIENCE_BANNER_ITEMS]
+  const audienceBannerItems = ['BUILT FOR:', ...AUDIENCE_BANNER_ITEMS]
 
   useEffect(() => {
     function keepDossierPreviewReachable(event: MessageEvent) {
