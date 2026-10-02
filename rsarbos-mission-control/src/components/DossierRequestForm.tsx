@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { trackEvent } from '../utils/analytics'
+import { MagneticButton } from './animated'
 
 const INITIAL_FORM = {
   agentName: '',
@@ -204,13 +205,13 @@ export default function DossierRequestForm() {
 
       {formError && <p className="form-error full-field">{formError}</p>}
 
-      <button
-        className="primary-action shine-action full-field"
+      <MagneticButton
+         className="primary-action shine-action full-field"
         type="submit"
         disabled={isProcessing}
       >
         {isProcessing ? 'REQUESTING DOSSIER...' : 'REQUEST COMPLIMENTARY DOSSIER (15 min)'}
-      </button>
+      </MagneticButton>
 
       <p className="form-disclaimer">
         No payment required. Your 15-minute dossier arrives in minutes. If it surfaces real

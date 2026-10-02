@@ -10,6 +10,7 @@ import EditorialSystemPrototype from './components/prototypes/editorial-system'
 import { DecisionManifestHero } from './components/about/decision-manifest'
 import rsarbosLogo from './assets/logo.png'
 import { getAnalyticsSnapshot, trackEvent, trackPageView } from './utils/analytics'
+import { AnimatedSection, AnimatedDiv, AnimatedFooter, AnimatedArticle, SpotlightCard, AnimatedPath, HeroBackdrop, GlowLink, MagneticButton } from './components/animated'
 
 const MISSION_CONTROL_PASSWORD = import.meta.env.VITE_MISSION_CONTROL_PASSWORD || 'rsarbos-founder'
 const DOSSIER_PREVIEW_URL = '/dossier/RSARBOS_Investment_Dossier_1314_Shawn_Dr.html'
@@ -469,6 +470,7 @@ function PublicWebsite() {
 
       <main>
         <section className="rs-hero" id="home">
+          <HeroBackdrop />
           <div className="hero-content">
             <div className="hero-chip"><span></span>Building the New Era of Real Estate Tech</div>
             <h1>
@@ -489,14 +491,14 @@ function PublicWebsite() {
               next steps agents use to win listings. Free 15-minute dossier in minutes.
             </p>
             <div className="hero-actions centered">
-              <a className="primary-action shine-action" href="#free-dossier" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
-              <a className="secondary-action glass-action" href="#sample" onClick={() => trackEvent('hero_cta_click', { cta: 'view_sample_dossier' })}>VIEW SAMPLE DOSSIER</a>
+              <GlowLink className="primary-action shine-action" href="#free-dossier" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</GlowLink>
+              <GlowLink className="secondary-action glass-action" href="#sample" onClick={() => trackEvent('hero_cta_click', { cta: 'view_sample_dossier' })}>VIEW SAMPLE DOSSIER</GlowLink>
             </div>
           </div>
           <div className="hero-lines" aria-hidden="true">
             <svg viewBox="0 0 1000 300" preserveAspectRatio="none">
-              <path d="M0,150 C200,50 300,250 500,150 C700,50 800,250 1000,150" />
-              <path className="red-line" d="M0,150 C250,250 350,50 500,150 C650,250 750,50 1000,150" />
+              <AnimatedPath d="M0,150 C200,50 300,250 500,150 C700,50 800,250 1000,150" />
+              <AnimatedPath d="M0,150 C250,250 350,50 500,150 C650,250 750,50 1000,150" className="red-line" />
             </svg>
           </div>
         </section>
@@ -513,7 +515,7 @@ function PublicWebsite() {
 
         <ProofCarousel />
 
-        <section className="sample-section" id="sample">
+        <AnimatedSection className="sample-section" id="sample">
           <div className="content-wrap sample-preview-column">
             <div className="sample-preview-copy centered-copy">
               <p className="red-kicker"><span></span>Example Report</p>
@@ -530,9 +532,9 @@ function PublicWebsite() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="pricing-section" id="pricing">
+        <AnimatedSection className="pricing-section" id="pricing">
           <div className="content-wrap pricing-layout">
             <div className="pricing-column">
               <p className="red-kicker"><span></span>Launch Offer</p>
@@ -540,7 +542,7 @@ function PublicWebsite() {
               <p>No hidden fees. Flat rate intelligence for actionable decisions.</p>
             </div>
             <div className="pricing-grid">
-              <article className="pricing-card glass-panel free-card">
+              <SpotlightCard className="pricing-card glass-panel free-card">
                 <div className="pricing-rule"></div>
                 <h3>COMPLIMENTARY DOSSIER</h3>
                 <p className="price">$0 <span>/ 15-min report</span></p>
@@ -553,9 +555,9 @@ function PublicWebsite() {
                 <p className="service-disclaimer">
                   No payment required. Delivered in minutes via email.
                 </p>
-                <a className="primary-action glass-action" href="#free-dossier">REQUEST FREE DOSSIER</a>
-              </article>
-              <article className="pricing-card glass-panel upgrade-card">
+                <GlowLink className="primary-action glass-action" href="#free-dossier">REQUEST FREE DOSSIER</GlowLink>
+              </SpotlightCard>
+              <SpotlightCard className="pricing-card glass-panel upgrade-card">
                 <div className="pricing-rule upgrade-rule"></div>
                 <h3>FULL INVESTOR DOSSIER</h3>
                 <p className="price">$300 <span>/ report</span></p>
@@ -570,13 +572,13 @@ function PublicWebsite() {
                 <p className="service-disclaimer">
                   Unlock after requesting your free dossier. Human-in-the-loop review included.
                 </p>
-                <a className="primary-action red-action" href="#free-dossier">START WITH FREE DOSSIER → UPGRADE</a>
-              </article>
+                <GlowLink className="primary-action red-action" href="#free-dossier">START WITH FREE DOSSIER → UPGRADE</GlowLink>
+              </SpotlightCard>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="request-section request-section-early" id="free-dossier">
+        <AnimatedSection className="request-section request-section-early" id="free-dossier">
           <div className="form-wrap">
             <div className="section-intro centered-copy">
               <h2>REQUEST COMPLIMENTARY DOSSIER</h2>
@@ -584,10 +586,10 @@ function PublicWebsite() {
             </div>
             <DossierRequestForm />
           </div>
-        </section>
+        </AnimatedSection>
       </main>
 
-      <footer className="public-footer">
+      <AnimatedFooter className="public-footer">
         <div className="content-wrap">
           <div className="footer-top">
             <a className="logo-wordmark footer-logo" href="#home" onClick={handleLogoClick} onContextMenu={handleLogoContextMenu}><img src={rsarbosLogo} alt="RSARBOS" /></a>
@@ -606,7 +608,7 @@ function PublicWebsite() {
             </div>
           </div>
         </div>
-      </footer>
+      </AnimatedFooter>
     </div>
   )
 }
@@ -653,7 +655,7 @@ function AboutUsPage() {
           </div>
         </section>
 
-        <section className="about-convergence-section">
+        <AnimatedSection className="about-convergence-section">
           <div className="content-wrap about-convergence-grid">
             <div className="about-section-copy">
               <p className="red-kicker"><span></span>THE INDUSTRY PROBLEM</p>
@@ -691,9 +693,9 @@ function AboutUsPage() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-method-section">
+        <AnimatedSection className="about-method-section">
           <div className="content-wrap about-method-grid">
             <div className="layer-system-visual constitutional-workflow" aria-label="RSARBOS Constitutional Workflow from sources to decision">
               {[
@@ -726,9 +728,9 @@ function AboutUsPage() {
               </p>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-verdict-section">
+        <AnimatedSection className="about-verdict-section">
           <div className="content-wrap about-verdict-grid">
             <div className="about-section-copy">
               <p className="red-kicker"><span></span>EVERY VERDICT SHOULD SHOW ITS WORK</p>
@@ -762,9 +764,9 @@ function AboutUsPage() {
               </article>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-workflow-section">
+        <AnimatedSection className="about-workflow-section">
           <div className="content-wrap about-workflow-grid">
             <div className="about-section-copy">
               <p className="red-kicker"><span></span>HUMAN JUDGMENT TODAY. GOVERNED AUTOMATION TOMORROW.</p>
@@ -792,9 +794,9 @@ function AboutUsPage() {
               </article>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-proof-section" id="decision-artifact">
+        <AnimatedSection className="about-proof-section" id="decision-artifact">
           <div className="content-wrap about-artifact-grid">
             <div className="about-proof-head">
               <p className="red-kicker"><span></span>A DECISION ARTIFACT</p>
@@ -811,9 +813,9 @@ function AboutUsPage() {
               <strong>Sample decision artifact</strong>
             </article>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-closing-section">
+        <AnimatedSection className="about-closing-section">
           <div className="content-wrap about-closing-panel">
             <div>
               <p className="red-kicker"><span></span>BUILDING DECISION INFRASTRUCTURE FOR REAL ESTATE</p>
@@ -829,10 +831,10 @@ function AboutUsPage() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
       </main>
 
-      <footer className="public-footer">
+      <AnimatedFooter className="public-footer">
         <div className="content-wrap">
           <div className="footer-top">
             <a className="logo-wordmark footer-logo" href="/"><img src={rsarbosLogo} alt="RSARBOS" /></a>
@@ -850,7 +852,7 @@ function AboutUsPage() {
             </div>
           </div>
         </div>
-      </footer>
+      </AnimatedFooter>
     </div>
   )
 }
@@ -862,7 +864,7 @@ function PaymentSuccessPage() {
 
   return (
     <main className="payment-result-shell">
-      <section className="payment-result-panel glass-panel">
+      <AnimatedSection className="payment-result-panel glass-panel">
         <div className="modal-icon">✓</div>
         <p className="red-kicker"><span></span>Payment Received</p>
         <h1>RSARBOS received your underwriting request.</h1>
@@ -873,7 +875,7 @@ function PaymentSuccessPage() {
         <a className="primary-action red-action" href="/">
           Return Home
         </a>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }
@@ -885,7 +887,7 @@ function PaymentCancelPage() {
 
   return (
     <main className="payment-result-shell">
-      <section className="payment-result-panel glass-panel">
+      <AnimatedSection className="payment-result-panel glass-panel">
         <p className="red-kicker"><span></span>Checkout Not Completed</p>
         <h1>Your request was saved, but payment was not completed.</h1>
         <p>
@@ -895,7 +897,7 @@ function PaymentCancelPage() {
         <a className="primary-action red-action" href="/#request">
           Return To Request Form
         </a>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }
@@ -936,7 +938,7 @@ function LegalPage({ type }: { type: 'terms' | 'privacy' | 'refund' }) {
 
   return (
     <main className="legal-shell">
-      <section className="legal-panel glass-panel">
+      <AnimatedSection className="legal-panel glass-panel">
         <p className="red-kicker"><span></span>{content.eyebrow}</p>
         <h1>{content.title}</h1>
         <p className="legal-updated">Starter policy for launch readiness. Review before public marketing.</p>
@@ -949,7 +951,7 @@ function LegalPage({ type }: { type: 'terms' | 'privacy' | 'refund' }) {
           ))}
         </div>
         <a className="primary-action red-action" href="/">Return Home</a>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }
@@ -1004,7 +1006,7 @@ function ContactPage() {
 
   return (
     <main className="contact-shell">
-      <section className="contact-panel glass-panel">
+      <AnimatedSection className="contact-panel glass-panel">
         <div className="contact-copy">
           <a className="logo-wordmark contact-logo" href="/"><img src={rsarbosLogo} alt="RSARBOS" /></a>
           <p className="red-kicker"><span></span>Contact</p>
@@ -1044,11 +1046,11 @@ function ContactPage() {
           </label>
           {status && <p className="form-success full-field">{status}</p>}
           {error && <p className="form-error full-field">{error}</p>}
-          <button className="primary-action red-action full-field" type="submit" disabled={isSending}>
+          <MagneticButton className="primary-action red-action full-field" type="submit" disabled={isSending}>
             {isSending ? 'SENDING...' : 'SEND MESSAGE'}
-          </button>
+          </MagneticButton>
         </form>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }

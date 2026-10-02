@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { trackEvent } from '../utils/analytics'
+import { SpotlightCard, GlowLink } from './animated'
 
 type Verdict = 'WORTH_PURSUING' | 'WALKAWAY' | 'REVIEW_REQUIRED'
 
@@ -165,7 +166,7 @@ export default function ProofCarousel() {
 
           <div className="carousel-track">
             {PROOF_INSIGHTS.map((item, i) => (
-              <article
+              <SpotlightCard
                 key={item.id}
                 className={`proof-card ${i === activeIndex ? 'active' : ''} ${
                   i === activeIndex ? verdictColor : ''
@@ -213,7 +214,7 @@ export default function ProofCarousel() {
                     View Listing →
                   </a>
                 </div>
-              </article>
+              </SpotlightCard>
             ))}
           </div>
 
@@ -243,13 +244,12 @@ export default function ProofCarousel() {
         </div>
 
         <div className="carousel-cta">
-          <a
-            className="primary-action shine-action"
+          <GlowLink className="primary-action shine-action"
             href="#free-dossier"
             onClick={() => trackEvent('carousel_cta_click', { source: 'proof_insights' })}
           >
             Analyze My Property
-          </a>
+          </GlowLink>
           <span className="cta-note">Free 15-minute dossier — no payment required</span>
         </div>
       </div>
