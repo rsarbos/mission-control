@@ -513,7 +513,9 @@ function PublicWebsite() {
           </div>
         </section>
 
-        <ProofCarousel />
+        <div className="landing-hidden">
+          <ProofCarousel />
+        </div>
 
         <AnimatedSection className="sample-section" id="sample">
           <div className="content-wrap sample-preview-column">
@@ -603,7 +605,7 @@ function PublicWebsite() {
               <a href="/privacy">Privacy</a>
               <a href="/refund-policy">Refunds</a>
               <a href="/contact">Contact</a>
-              <a href="/dossier-dashboard">OWNER DASHBOARD</a>
+              <a href="/dossier-dashboard" className="footer-link-secret">OWNER DASHBOARD</a>
               <span className="footer-status-pill"><span className="online-dot">■</span>SYSTEM: ONLINE</span>
             </div>
           </div>

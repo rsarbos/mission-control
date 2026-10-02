@@ -6430,3 +6430,7 @@ code {
 .owner-dashboard select.status-green { color: #10b981; border-color: rgba(16, 185, 129, 0.34); }
 .owner-dashboard select.status-red { color: #ff3b37; border-color: rgba(255, 59, 56, 0.34); }
 .owner-dashboard select.status-purple { color: #8b5cf6; border-color: rgba(139, 92, 246, 0.34); }
+
+/* ===== Landing visibility toggles (hidden, secret-revealable) ===== */
+.landing-hidden { display: none; }
+.footer-link-secret { display: none; }
