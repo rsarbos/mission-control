@@ -42,6 +42,7 @@ type OutreachContact = {
   fitReason: string
   outreachMethods: string[]
   personalizedMessage: string
+  whatsappMessage?: string
 }
 
 type VerdictStatus = 'WORTH_PURSUING' | 'WALKAWAY' | 'REVIEW_REQUIRED'
@@ -195,6 +196,146 @@ const OUTREACH_CONTACTS: OutreachContact[] = [
     outreachMethods: ['Public profile route', 'Operator trust angle', 'Partner-forwardable note'],
     personalizedMessage: 'This is a trust-and-clarity artifact for buyers: one place to see what supports the deal, what is still uncertain, and what should trigger a pause before moving forward.',
   },
+  {
+    uuid: 'contact-nguyen-001',
+    name: 'Kenneth Nguyen',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 768-0348',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Kenneth Nguyen! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-liu-002',
+    name: 'Gary Gang Liu',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 569-0363',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Gary Gang Liu! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-conte-003',
+    name: 'Leslie J Conte',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 907-2222',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Leslie J Conte! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-jeans-004',
+    name: 'Carol Jeans',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 313-0067',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Carol Jeans! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-pastorino-005',
+    name: 'Helen Pastorino',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 357-7770',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Helen Pastorino! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-wyss-006',
+    name: 'Julie Wyss',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 455-9646',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Julie Wyss! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-lynn-007',
+    name: 'Laura Lynn',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(831) 479-4894',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Laura Lynn! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-thompson-008',
+    name: 'Lisa Thompson',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 373-6656',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Lisa Thompson! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-wedemeyer-009',
+    name: 'Lucy Wedemeyer',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 891-6861',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Lucy Wedemeyer! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-highley-010',
+    name: 'Emilie Highley',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 768-2565',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Emilie Highley! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  }
 ]
 
 const OUTREACH_TEMPLATES: OutreachTemplate[] = [
@@ -1125,6 +1266,7 @@ function MissionControlApp() {
   const [selectedContact, setSelectedContact] = useState<OutreachContact | null>(null)
   const [selectedAssetUuid, setSelectedAssetUuid] = useState<string>(UNDERWRITTEN_ASSETS[0]?.uuid || '')
   const [copiedTemplateId, setCopiedTemplateId] = useState<string>('')
+  const [copiedContactId, setCopiedContactId] = useState('')
   const [selectedHelper, setSelectedHelper] = useState<string>(GHOST_HELPERS[0])
   const [terminalInput, setTerminalInput] = useState('')
   const [contextCopied, setContextCopied] = useState(false)
@@ -1185,6 +1327,13 @@ function MissionControlApp() {
     } catch {
       setCopiedTemplateId('')
     }
+  }
+
+  function copyWhatsAppContact(contact: OutreachContact) {
+    if (!contact.whatsappMessage) return
+    navigator.clipboard.writeText(contact.whatsappMessage)
+    setCopiedContactId(contact.uuid)
+    window.setTimeout(() => setCopiedContactId(''), 1800)
   }
 
   function submitTerminalMessage(event: React.FormEvent<HTMLFormElement>) {
@@ -1384,6 +1533,16 @@ function MissionControlApp() {
                               >
                                 {contact.email ? 'Email' : 'Open'}
                               </a>
+                              {contact.whatsappMessage && (
+                                <button
+                                  className="mc-mini-action"
+                                  type="button"
+                                  onClick={() => copyWhatsAppContact(contact)}
+                                  title="Copy WhatsApp message"
+                                >
+                                  WhatsApp{copiedContactId === contact.uuid ? ' ✓' : ''}
+                                </button>
+                              )}
                             </div>
                           </td>
                         </tr>
