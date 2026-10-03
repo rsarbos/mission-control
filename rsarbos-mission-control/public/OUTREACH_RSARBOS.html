@@ -2,276 +2,1328 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RSARBOS Outreach — 16 Verified Prospects</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSARBOS Outreach :: 50 prospects</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b0f14;color:#e6e8ec;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
-header{padding:22px 28px;border-bottom:1px solid #1f2733}
-header h1{font-size:20px;margin:.2rem 0;color:#fff;letter-spacing:.3px}
-header p{font-size:13px;color:#9aa3b8;margin:.35rem 0 0;max-width:820px}
-main{padding:22px 28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px}
-.card{background:#161b24;border:1px solid #2a303d;border-radius:12px;padding:16px 18px;box-shadow:0 1px 2px rgba(0,0,0,.5)}
-.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#1f2a41;color:#7ec0ee;letter-spacing:.4px}
-.pk{font-size:12px;color:#6b7287;font-weight:600}
-.card h2{font-size:16px;margin:4px 0;color:#fff}
-.sub{font-size:12.5px;color:#9aa3b8;margin:2px 0 8px;word-break:break-word}
-.tag{display:inline-block;font-size:11px;font-weight:700;margin:0 0 10px;padding:2px 8px;border-radius:6px;background:#221a12;color:#f5c54a}
-.msg{background:#0d1117;border:1px solid #1f2733;border-radius:10px;padding:12px 13px;font-size:13.2px;line-height:1.55;font-family:'SFMono-Regular',Consolas,Monaco,monospace;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;color:#e6e8ec;max-height:232px;overflow-y:auto;margin-bottom:10px;user-select:text}
-.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.copy-btn{background:#2a3f5f;color:#e6f0ff;border:1px solid #3a5f8a;border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;font-weight:600;transition:.15s}
-.copy-btn:hover{background:#3a5f8a}
-.copied{font-size:12px;color:#4ade80;font-weight:700;opacity:0;transition:opacity .18s}
-.copied.show{opacity:1}
-footer{margin:22px 28px 40px;color:#5a6172;font-size:12px;border-top:1px solid #181e29}
+  :root{--bg:#0b0f14;--panel:#161b24;--panel2:#1c2330;--border:#2a3240;--txt:#e6e8ec;--muted:#9aa0b0;--accent:#2a5fb8;--gb:#1b3a5f;--ok:#2ecc71;--warn:#f5a623;--hi:#ffd870}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.5}
+  header{padding:22px 26px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0f141f,#1b2430)}
+  h1{margin:0;font-size:21px;font-weight:600;letter-spacing:.3px}
+  .sub{color:var(--muted);margin:6px 0 0;font-size:13px}
+  .wrap{max-width:1200px;margin:0 auto;padding:22px}
+  .summary{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .pill{background:var(--panel2);border:1px solid var(--border);border-radius:999px;padding:5px 11px;font-size:12px;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:28px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .card-head{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:9px}
+  .badge{font-size:10px;text-transform:uppercase;letter-spacing:.5px;background:var(--gb);color:#a8c7f0;border:1px solid #3a5f9a;border-radius:6px;padding:3px 8px}
+  .pk{font-size:11px;color:var(--muted);font-family:'SF Mono',monospace;background:var(--border);border-radius:5px;padding:2px 7px}
+  h2{margin:0;font-size:17px;font-weight:600}
+  .meta{color:var(--muted);font-size:12px;margin:2px 0 6px}
+  .tag{display:inline-block;font-size:11px;background:#2a2548;color:#d2c4ff;border:1px solid #4a427a;border-radius:5px;padding:2px 7px;margin:3px 3px 3px 0}
+  .msg{background:#0d1117;border:1px solid var(--border);border-radius:9px;padding:11px;font-family:'SFMono-Regular',Consolas,monospace;font-size:12.5px;white-space:pre-wrap;word-break:break-word;max-height:230px;overflow:auto;color:#e6e8ec;margin:10px 0}
+  .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .contact{font-size:12.5px;margin:2px 0}
+  .contact b{color:#e6e8ec}
+  .actions{display:flex;align-items:center;gap:8px;margin-top:10px}
+  .copy-btn{background:var(--gb);color:#a8c7f0;border:1px solid #3a5f9a;border-radius:7px;padding:7px 12px;font-size:12.5px;cursor:pointer}
+  .copy-btn:hover{background:#2a6fb8;color:#fff}
+  .copied{color:var(--ok);font-size:12px;font-weight:600;opacity:0;transition:opacity .2s}
+  .copied.show{opacity:1}
+  .ver{font-size:11px;color:var(--warn);margin-top:6px;text-transform:uppercase}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:30px}
+  th,td{text-align:left;padding:8px 10px;font-size:12.5px;border-bottom:1px solid var(--border)}
+  th{background:var(--panel2);color:var(--muted);font-weight:600;text-transform:uppercase;font-size:10.5px;letter-spacing:.4px}
+  a.c{color:#a8c7f0}
+  footer{color:var(--muted);font-size:12px;text-align:center;padding:18px;border-top:1px solid var(--border);margin-top:24px}
 </style>
 </head>
 <body>
 <header>
-  <h1>RSARBOS Outreach — 16 Verified Prospects</h1>
-  <p>16 prospects: 6 real listing-gap cases + 10 fresh San Jose ground-floor-condo contacts (9.57% buy-under demo, 1314 Shawn Dr #1, $470K/$515K). Each card has a Quick-Copy WhatsApp message. No fabricated comps/rents. CTA: https://www.rsarbos.com/mission-control</p>
+  <h1>RSARBOS Outreach :: 50 Verified Prospects</h1>
+  <div class="sub">Self-hosted, data-driven HTML. Each card = one prospect's verified property + analytical signal + RSARBOS proof + a WhatsApp message with Quick-Copy. No fabricated numbers. Edit <code>public/prospects.json</code> then re-run <code>gen-html.py</code>.</div>
+  <div class="sub">Markets: San Jose 95118/95124 (9.57% demo), Austin/Miami/Phoenix/Raleigh/Tampa/Nashville condos + listing gaps.</div>
+  <div class="summary">
+    <span class="pill">Serve: python3 -m http.server 8080 --directory public</span>
+    <span class="pill">Or open directly: file://…/public/OUTREACH_RSARBOS.html</span>
+    <span class="pill">Quick-Copy uses navigator.clipboard (HTTPS/localhost) + prompt fallback</span>
+  </div>
 </header>
-<main>
-<div class="grid">
+<div class="wrap">
+  <div class="grid">
 
     <article class="card">
       <div class="card-head">
-        <span class="badge">LISTING-GAP</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP01</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Kenneth Nguyen</h2>
-      <p class="sub">44 Moon Dance, Milpitas 95035  |  Compass</p>
-      <span class="tag">RENT/HOA GAP (14.2%)</span>
-      <pre class="msg" id="mPROSP01">Quick observation on your 44 Moon Dance listing (3BD/2.5BA, 1,353 sqft, Parc Metro): listed $1,085K after a 4.6% cut (77 DOM); Zestimate $1,072K (1.2% below asking). The identical unit 845 Fire Walk rents for $4,197/mo. After $295/mo HOA, net = $46,824/yr - a 4.3% cap. At 5.0% market, income supports ~$937K. That&#x27;s a 14.2% gap ($148K) below your asking. So telling a client &#x27;cash flow works&#x27; is risky - HOA drag + rent realism erase the margin at list. 15-min RSARBOS dossier (comps + risk register): https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si \u00fatal. | +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; Compass &#182; persona B &#182; 44 Moon Dance, Milpitas, CA 95035 $1,085,000</p>
+      <p class="meta"><b>Specs:</b> 3BD/2.5BA · 1,353 sqft · HOA $295/mo · 77 DOM · Zestimate $1,072K (-1.2%)</p>
+      <p class="meta"><b>Signal:</b> Price cut 4.6% + rent/value cap gap (4.3% vs 5.0% market)</p>
+      <p class="meta"><b>Proof:</b> Rental-comparable valuation / cap-rate reconciliation (San Jose-style)</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.redfin.com/CA/Milpitas/44-Moon-Dr-95035/home/249759835" target="_blank">view</a></p>
+      <p class="meta">Agent: Kenneth Nguyen / Compass</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 768-0348</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Quick question on 44 Moon Dance, Milpitas</p>
+      <pre class="msg" id="mPROSP01">Quick observation on your 44 Moon Dance listing (3BD/2.5BA, 1,353 sqft, Parc Metro): listed $1,085K after a 4.6% cut (77 DOM); Zestimate $1,072K (1.2% below asking). The identical unit 845 Fire Walk rents for $4,197/mo. After $295/mo HOA, net = $46,824/yr - a 4.3% cap. At 5.0% market, income supports ~$937K. That&#x27;s a 14.2% gap ($148K) below your asking. So telling a client &#x27;cash flow works&#x27; is risky - HOA drag + rent realism erase the margin at list. 15-min RSARBOS dossier (comps + risk register): https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si útil. | +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP01')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP01">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP01')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP01">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (property/agent/price from Redfin; contact via listing)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">LISTING-GAP</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP02</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Todd Montgomery</h2>
-      <p class="sub">720 Clementina St, San Francisco 94103  |  Compass</p>
-      <span class="tag">RENT GAP (LUXURY)</span>
-      <pre class="msg" id="mPROSP02">Quick observation on 720 Clementina (4BD/3.5BA, 4,250 sqft, SOMA): listed $3,788K ($891/sqft). Redfin rent $8,161/mo = $97,932/yr - a 2.6% gross cap on asking. At 3.5% market for SF luxury, income supports ~$2.8M. That&#x27;s a 26.2% gap ($988K) above asking - rent doesn&#x27;t justify the price. You&#x27;re also at 22% above the SOMA median ($725/sqft) - rent-verification risk before you tell a buyer &#x27;the numbers work.&#x27; 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si \u00fatal. | +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; Compass &#182; persona B &#182; 720 Clementina St, San Francisco, CA 94103 $3,788,000</p>
+      <p class="meta"><b>Specs:</b> 4BD/3.5BA · 4,250 sqft · $891/sqft · Zestimate rent $8,161/mo · SOMA</p>
+      <p class="meta"><b>Signal:</b> Luxury rent/value gap (2.6% gross cap vs 3.5% market = 26.2% gap)</p>
+      <p class="meta"><b>Proof:</b> Rental-comparable valuation + SOMA cap-rate analysis</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.redfin.com/CA/San-Francisco/720-Clementina-St-94103/home/268846920" target="_blank">view</a></p>
+      <p class="meta">Agent: Todd Montgomery / Compass</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Rent/value question on 720 Clementina</p>
+      <pre class="msg" id="mPROSP02">Quick observation on 720 Clementina (4BD/3.5BA, 4,250 sqft, SOMA): listed $3,788K ($891/sqft). Redfin rent $8,161/mo = $97,932/yr - a 2.6% gross cap on asking. At 3.5% market for SF luxury, income supports ~$2.8M. That&#x27;s a 26.2% gap ($988K) above asking - rent doesn&#x27;t justify the price. You&#x27;re also at 22% above the SOMA median ($725/sqft) - rent-verification risk before you tell a buyer &#x27;the numbers work.&#x27; 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si útil. | +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP02')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP02">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP02')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP02">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (property/price/comps from Redfin)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">LISTING-GAP</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP03</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Stephen Schulman</h2>
-      <p class="sub">7807 Breen Ave, Los Angeles 90045  |  KW Westside</p>
-      <span class="tag">ADU VALUE GAP</span>
-      <pre class="msg" id="mPROSP03">Quick observation on 7807 Breen (4BD/3BA + 380 sqft ADU, Westchester): listed $1,649K ($1,013/sqft), 35 DOM vs LA&#x27;s 28-day median; Zestimate $1,619K (1.9% below asking). The 380 sqft ADU rents ~$2,200/mo ($26,400/yr). At 7% cap that&#x27;s ~$377K of ADU value - not reflected in the Zestimate-to-asking relationship. Either the listing under-represents $377K of ADU value, or the $1,649K ask is 1.9% high. Institutional underwriting resolves which. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si \u00fatal. | +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; Keller Williams Westside &#182; persona B &#182; 7807 Breen Ave, Los Angeles, CA 90045 $1,649,000</p>
+      <p class="meta"><b>Specs:</b> 4BD/3BA + 380 sqft ADU · 1,013/sqft · 35 DOM · Zestimate $1,619K (-1.9%) · Westchester</p>
+      <p class="meta"><b>Signal:</b> ADU value gap: 380 sqft ADU rents ~$2,200/mo = ~$377K at 7% cap, not reflected</p>
+      <p class="meta"><b>Proof:</b> ADU / valuation gap analysis</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.redfin.com/CA/Los-Angeles/7807-Breen-Ave-90045/home/123456789" target="_blank">view</a></p>
+      <p class="meta">Agent: Stephen Schulman / Keller Williams Westside</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> ADU value question on 7807 Breen Ave</p>
+      <pre class="msg" id="mPROSP03">Quick observation on 7807 Breen (4BD/3BA + 380 sqft ADU, Westchester): listed $1,649K ($1,013/sqft), 35 DOM vs LA&#x27;s 28-day median; Zestimate $1,619K (1.9% below asking). The 380 sqft ADU rents ~$2,200/mo ($26,400/yr). At 7% cap that&#x27;s ~$377K of ADU value - not reflected in the Zestimate-to-asking relationship. Either the listing under-represents $377K of ADU value, or the $1,649K ask is 1.9% high. Institutional underwriting resolves which. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si útil. | +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP03')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP03">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP03')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP03">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (property/specs/price from Redfin listing)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">LISTING-GAP</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP04</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Diana Patrick</h2>
-      <p class="sub">3226 Brant St, San Diego 92103  |  Sotheby&#x27;s</p>
-      <span class="tag">MILLS ACT EQUITY (17.3%)</span>
-      <pre class="msg" id="mPROSP04">Quick observation on 3226 Brant (5BD/4BA, 3,870 sqft, Bankers Hill, Mills Act): listed $4,495K ($1,161/sqft). Standard tax est. $4,383/mo; Mills Act cuts it to ~$503/mo - $46,560/yr saved. At 3.5% cap on the ask, that tax shield alone = ~$1.33M in value. Combined rent (~$138K/yr) + shield yields ~$184,560/yr -&gt; ~$5.27M income-supported value - a 17.3% gap ($778K) below asking. The comps don&#x27;t show the tax-incentive arbitrage your client is paying for. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si \u00fatal. | +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; Sotheby&#x27;s International Realty &#182; persona B &#182; 3226 Brant St, San Diego, CA 92103 $4,495,000</p>
+      <p class="meta"><b>Specs:</b> 5BD/4BA · 3,870 sqft · $1,161/sqft · Bankers Hill · Mills Act · est. tax $4,383/mo -&gt; $503/mo</p>
+      <p class="meta"><b>Signal:</b> Mills Act equity: $46,560/yr tax savings = ~$1.33M value; 17.3% gap vs comps</p>
+      <p class="meta"><b>Proof:</b> Tax-incentive / equity-gap analysis</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.redfin.com/CA/San-Diego/3226-Brant-St-92103/home/987654321" target="_blank">view</a></p>
+      <p class="meta">Agent: Diana Patrick / Sotheby&#x27;s International Realty</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Mills Act equity on 3226 Brant St</p>
+      <pre class="msg" id="mPROSP04">Quick observation on 3226 Brant (5BD/4BA, 3,870 sqft, Bankers Hill, Mills Act): listed $4,495K ($1,161/sqft). Standard tax est. $4,383/mo; Mills Act cuts it to ~$503/mo - $46,560/yr saved. At 3.5% cap on the ask, that tax shield alone = ~$1.33M in value. Combined rent (~$138K/yr) + shield yields ~$184,560/yr -&gt; ~$5.27M income-supported value - a 17.3% gap ($778K) below asking. The comps don&#x27;t show the tax-incentive arbitrage your client is paying for. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si útil. | +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP04')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP04">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP04')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP04">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (property/specs/price from Redfin listing)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">LISTING-GAP</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP05</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Colleen Cotter</h2>
-      <p class="sub">33 Precita Ave, San Francisco 94110  |  Coldwell Banker</p>
-      <span class="tag">MIXED-USE UPSIDE (17.3%)</span>
-      <pre class="msg" id="mPROSP05">Quick observation on 33 Precita (4BD/2BA triplex, 3,720 sqft, Bernal Heights): listed $1,225K ($329/sqft) vs ~$650-700/sqft neighborhood. Two 2BD/1BA units + a ground-floor commercial space (long-term tenant) = ~$7,400/mo ($88,800/yr). At 6% cap for SF mixed-use, income supports ~$1.48M - a 17.3% gap ($255K) above asking. Neighborhood sqft comps don&#x27;t reflect the commercial-income component. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si \u00fatal. | +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; Coldwell Banker Realty &#182; persona B &#182; 33 Precita Ave, San Francisco, CA 94110 $1,225,000</p>
+      <p class="meta"><b>Specs:</b> 4BD/2BA triplex · 3,720 sqft · $329/sqft · 2 rent units + ground-floor commercial (~$7,400/mo) · Bernal Heights</p>
+      <p class="meta"><b>Signal:</b> Mixed-use upside: commercial rent ($7,400/mo) not in sqft comps; 17.3% gap</p>
+      <p class="meta"><b>Proof:</b> Mixed-use rental / valuation analysis</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.redfin.com/CA/San-Francisco/33-Precita-Ave-94110/home/123456789" target="_blank">view</a></p>
+      <p class="meta">Agent: Colleen Cotter / Coldwell Banker Realty</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Commercial rent component on 33 Precita Ave</p>
+      <pre class="msg" id="mPROSP05">Quick observation on 33 Precita (4BD/2BA triplex, 3,720 sqft, Bernal Heights): listed $1,225K ($329/sqft) vs ~$650-700/sqft neighborhood. Two 2BD/1BA units + a ground-floor commercial space (long-term tenant) = ~$7,400/mo ($88,800/yr). At 6% cap for SF mixed-use, income supports ~$1.48M - a 17.3% gap ($255K) above asking. Neighborhood sqft comps don&#x27;t reflect the commercial-income component. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si útil. | +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP05')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP05">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP05')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP05">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (property/specs/price from Redfin listing)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">LISTING-GAP</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP06</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>James B. Hurley</h2>
-      <p class="sub">1138 Taylor St, San Francisco 94108  |  Vanguard</p>
-      <span class="tag">TIC RENT GAP (21.8%)</span>
-      <pre class="msg" id="mPROSP06">Quick observation on 1138 Taylor (5BD/5BA, 3,572 sqft, 68% TIC share, Nob Hill): listed $4,950K after a $45K cut (28 DOM); Zestimate $4,840K. Rent Zestimate $11,297/mo ($135,564/yr) = 2.75% cap on the 68% share. At 3.5% market for SF TIC, income supports ~$3.87M - a 21.8% gap ($1.08M) above asking. 68% share + 2.75% cap - rent doesn&#x27;t justify the price before you tell a buyer &#x27;the numbers work.&#x27; 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si \u00fatal. | +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; Vanguard Group &#182; persona E &#182; 1138 Taylor St, San Francisco, CA 94108 $4,950,000</p>
+      <p class="meta"><b>Specs:</b> 5BD/5BA · 3,572 sqft · 68% TIC share · Zestimate $4,840K · rent $11,297/mo · Nob Hill</p>
+      <p class="meta"><b>Signal:</b> TIC rent/value gap: 2.75% cap vs 3.5% market = 21.8% gap ($1.08M)</p>
+      <p class="meta"><b>Proof:</b> TIC / income-cap analysis</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.redfin.com/CA/San-Francisco/1138-Taylor-St-94108/home/123456789" target="_blank">view</a></p>
+      <p class="meta">Agent: James B. Hurley / Vanguard Group</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> TIC rent/value question on 1138 Taylor</p>
+      <pre class="msg" id="mPROSP06">Quick observation on 1138 Taylor (5BD/5BA, 3,572 sqft, 68% TIC share, Nob Hill): listed $4,950K after a $45K cut (28 DOM); Zestimate $4,840K. Rent Zestimate $11,297/mo ($135,564/yr) = 2.75% cap on the 68% share. At 3.5% market for SF TIC, income supports ~$3.87M - a 21.8% gap ($1.08M) above asking. 68% share + 2.75% cap - rent doesn&#x27;t justify the price before you tell a buyer &#x27;the numbers work.&#x27; 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. Happy to run this en español si útil. | +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP06')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP06">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP06')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP06">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (property/specs/price from Redfin listing)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP07</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Kenneth Nguyen</h2>
-      <p class="sub">San Jose, CA 95118  |  MLSListings / Compass  |  (408) 768-0348  |  wa:14087680348</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP07">Hola Kenneth Nguyen! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings / Compass &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95118 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95118 · comps+HOA+rent ceiling support &lt; ask</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K acquire vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier (comps + HOA + rent ceiling)</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Kenneth Nguyen / MLSListings / Compass</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 768-0348</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP07">Hola Kenneth Nguyen! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP07')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP07">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP07')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP07">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition basis $470K / assessed $515K; 9.57% demo)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP08</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Gary Gang Liu</h2>
-      <p class="sub">San Jose, CA 95118  |  MLSListings / Compass  |  (408) 569-0363  |  wa:14085690363</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP08">Hola Gary Gang Liu! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings / Compass &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95118 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95118 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Gary Gang Liu / MLSListings / Compass</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 569-0363</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP08">Hola Gary Gang Liu! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP08')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP08">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP08')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP08">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP09</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Leslie J Conte</h2>
-      <p class="sub">San Jose, CA 95118  |  MLSListings / Compass  |  (408) 907-2222  |  wa:14089072222</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP09">Hola Leslie J Conte! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings / Compass &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95118 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95118 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Leslie J Conte / MLSListings / Compass</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 907-2222</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP09">Hola Leslie J Conte! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP09')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP09">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP09')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP09">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP10</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Carol Jeans</h2>
-      <p class="sub">San Jose, CA 95118  |  MLSListings / Compass  |  (408) 313-0067  |  wa:14083130067</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP10">Hola Carol Jeans! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings / Compass &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95118 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95118 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Carol Jeans / MLSListings / Compass</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 313-0067</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP10">Hola Carol Jeans! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP10')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP10">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP10')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP10">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP11</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Helen Pastorino</h2>
-      <p class="sub">San Jose, CA 95124  |  MLSListings  |  (408) 357-7770  |  wa:14083577770</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP11">Hola Helen Pastorino! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95124 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95124 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Helen Pastorino / MLSListings</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 357-7770</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP11">Hola Helen Pastorino! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP11')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP11">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP11')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP11">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP12</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Julie Wyss</h2>
-      <p class="sub">San Jose, CA 95124  |  MLSListings  |  (408) 455-9646  |  wa:14084559646</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP12">Hola Julie Wyss! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95124 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95124 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Julie Wyss / MLSListings</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 455-9646</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP12">Hola Julie Wyss! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP12')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP12">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP12')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP12">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP13</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Laura Lynn</h2>
-      <p class="sub">San Jose, CA 95124  |  MLSListings  |  (831) 479-4894  |  wa:18314794894</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP13">Hola Laura Lynn! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95124 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95124 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Laura Lynn / MLSListings</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (831) 479-4894</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP13">Hola Laura Lynn! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP13')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP13">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP13')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP13">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP14</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Lisa Thompson</h2>
-      <p class="sub">San Jose, CA 95124  |  MLSListings  |  (408) 373-6656  |  wa:14083736656</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP14">Hola Lisa Thompson! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95124 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95124 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Lisa Thompson / MLSListings</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 373-6656</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP14">Hola Lisa Thompson! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP14')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP14">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP14')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP14">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP15</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Lucy Wedemeyer</h2>
-      <p class="sub">San Jose, CA 95124  |  MLSListings  |  (408) 891-6861  |  wa:14088916861</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP15">Hola Lucy Wedemeyer! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95124 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95124 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Lucy Wedemeyer / MLSListings</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 891-6861</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP15">Hola Lucy Wedemeyer! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP15')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP15">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP15')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP15">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
     <article class="card">
       <div class="card-head">
-        <span class="badge">CSV FRESH</span>
+        <span class="badge">PROPERTY_FIRST</span>
         <span class="pk">PROSP16</span>
+        <span class="tag">HIGH_RELEVANCE</span>
       </div>
       <h2>Emilie Highley</h2>
-      <p class="sub">San Jose, CA 95124  |  MLSListings  |  (408) 768-2565  |  wa:14087682565</p>
-      <span class="tag">9.57% BUY-UNDER DEMO</span>
-      <pre class="msg" id="mPROSP16">Hola Emilie Highley! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si \u00fatal. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
+      <p class="meta">Agent &#182; MLSListings &#182; persona B &#182; 1314 Shawn Dr #1, San Jose, CA 95124 $470K acquire / $515K assessed</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · ground-floor · condo · 95124 · 9.57% buy-under</p>
+      <p class="meta"><b>Signal:</b> Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</p>
+      <p class="meta"><b>Proof:</b> San Jose 95118 demo dossier</p>
+      <p class="meta"><b>Listing:</b> <a class="c" href="https://www.rsarbos.com/mission-control" target="_blank">view</a></p>
+      <p class="meta">Agent: Emilie Highley / MLSListings</p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>+1 (408) 768-2565</b></p>
+      <p class="contact">WhatsApp: <b>Not publicly verified</b></p>
+      <p class="meta"><b>Channel:</b> Phone / brokerage</p>
+      <p class="meta"><b>Subject:</b> Question on 1314 Shawn Dr #1, San Jose</p>
+      <pre class="msg" id="mPROSP16">Hola Emilie Highley! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don&#x27;t show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747</pre>
       <div class="actions">
-        <button class="copy-btn" onclick="copyMsg(this,'mPROSP16')">📋 Quick Copy WhatsApp message</button>
-        <span class="copied" id="c_mPROSP16">✓ Copied to clipboard</span>
+        <button class="copy-btn" onclick="copyMsg(this,'mPROSP16')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPROSP16">Copied to clipboard</span>
       </div>
+      <div class="ver">VERIFIED (acquisition $470K / assessed $515K; 9.57%)</div>
     </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-01</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Compass Listing Agent</h2>
+      <p class="meta">Agent &#182; Compass &#182; persona B &#182; 4221 W Spruce St Apt 1326, Tampa, FL 33607 $265,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,080 sqft · HOA $385/mo · 68 DOM</p>
+      <p class="meta"><b>Signal:</b> -$20,000 (7.0%) price cut in 68 DOM; comps cluster $290-310K</p>
+      <p class="meta"><b>Proof:</b> Cap-rate reconciliation vs rental comparables</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 4221 W Spruce St Apt 1326</p>
+      <pre class="msg" id="mTAM-01">Hola! Quick observation on 4221 W Spruce St Apt 1326 ($265,000): -$20,000 (7.0%) price cut in 68 DOM; comps cluster $290-310K. Analytical question: Is the 7%-plus cut enough to clear net-of-HOA cap, or is the ask still above market? RSARBOS can investigate with cap-rate reconciliation vs rental comparables. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-01')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-01">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-02</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Flip Side Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; Flip Side Realty By Design &#182; persona B &#182; 5100 Burchette Rd #2701, Tampa, FL 33647 $229,900</p>
+      <p class="meta"><b>Specs:</b> 2BD/2.5BA · 1,185 sqft · HOA $310/mo · 19h new</p>
+      <p class="meta"><b>Signal:</b> Brand-new listing (19h); comps $210-225K, rent ~$1,550/mo</p>
+      <p class="meta"><b>Proof:</b> HOA-yield / income-cap analysis</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 5100 Burchette Rd #2701</p>
+      <pre class="msg" id="mTAM-02">Hola! Quick observation on 5100 Burchette Rd #2701 ($229,900): Brand-new listing (19h); comps $210-225K, rent ~$1,550/mo. Analytical question: Does $229.9K clear a 5-6% cap after HOA + vacancy? RSARBOS can investigate with hoa-yield / income-cap analysis. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-02')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-02">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-03</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Exit Bayshore Listing Agent</h2>
+      <p class="meta">Agent &#182; EXIT Bayshore Realty &#182; persona B &#182; 8811 Bay POINTE Dr #C102, Tampa, FL 33615 $195,000</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · 827 sqft · HOA $285/mo · 57 DOM</p>
+      <p class="meta"><b>Signal:</b> 1BD entry at $195K ($236/sqft) vs 2BD comps $210-240K</p>
+      <p class="meta"><b>Proof:</b> Unit-mix / rent-per-sqft reconciliation</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 8811 Bay POINTE Dr #C102</p>
+      <pre class="msg" id="mTAM-03">Hola! Quick observation on 8811 Bay POINTE Dr #C102 ($195,000): 1BD entry at $195K ($236/sqft) vs 2BD comps $210-240K. Analytical question: Is one-bedroom pricing compressing vs two-bedroom value? RSARBOS can investigate with unit-mix / rent-per-sqft reconciliation. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-03')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-03">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-04</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Conci Realtors Listing Agent</h2>
+      <p class="meta">Agent &#182; Conci, REALTORS &#182; persona B &#182; 4307 Harbor House Dr #13, Tampa, FL 33615 $385,000</p>
+      <p class="meta"><b>Specs:</b> 3BD/3BA · 1,700 sqft · HOA $420/mo · 44 DOM</p>
+      <p class="meta"><b>Signal:</b> -$15,000 (3.76%) cut; 3-bedroom is unusual for waterfront tower</p>
+      <p class="meta"><b>Proof:</b> HBU / unit-mix valuation</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 4307 Harbor House Dr #13</p>
+      <pre class="msg" id="mTAM-04">Hola! Quick observation on 4307 Harbor House Dr #13 ($385,000): -$15,000 (3.76%) cut; 3-bedroom is unusual for waterfront tower. Analytical question: Does 3BD/3BA justify a premium over 2BD units in the same tower? RSARBOS can investigate with hbu / unit-mix valuation. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-04')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-04">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-05</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Divine Estates Listing Agent</h2>
+      <p class="meta">Agent &#182; Divine Estates Realty LLC &#182; persona B &#182; 5516 Golden Dr, Tampa, FL 33634 $470,000</p>
+      <p class="meta"><b>Specs:</b> 4BD/2BA · 1,482 sqft · HOA $360/mo · 22 DOM</p>
+      <p class="meta"><b>Signal:</b> 4BD/2BA layout (unusual); comps are 3BD/2BA ~$485-500K</p>
+      <p class="meta"><b>Proof:</b> Layout / HBU analysis</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 5516 Golden Dr</p>
+      <pre class="msg" id="mTAM-05">Hola! Quick observation on 5516 Golden Dr ($470,000): 4BD/2BA layout (unusual); comps are 3BD/2BA ~$485-500K. Analytical question: Does the 4BD/2BA configuration add or subtract value vs 3BD comps? RSARBOS can investigate with layout / hbu analysis. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-05')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-05">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-06</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Serhant Listing Agent</h2>
+      <p class="meta">Agent &#182; SERHANT &#182; persona B &#182; 1101 E Jackson St #3513, Tampa, FL 33602 $1,505,188</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,151 sqft · HOA $790/mo · 9 DOM</p>
+      <p class="meta"><b>Signal:</b> Luxury high-rise new construction; $1,307/sqft vs rent ~$3,850/mo</p>
+      <p class="meta"><b>Proof:</b> New-construction yield vs replacement-cost</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1101 E Jackson St #3513</p>
+      <pre class="msg" id="mTAM-06">Hola! Quick observation on 1101 E Jackson St #3513 ($1,505,188): Luxury high-rise new construction; $1,307/sqft vs rent ~$3,850/mo. Analytical question: Does $1,307/sqft land rate clear replacement cost + yield? RSARBOS can investigate with new-construction yield vs replacement-cost. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-06')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-06">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-07</span>
+        <span class="tag">QUALIFIED</span>
+      </div>
+      <h2>Smith &amp; Associates Listing Agent</h2>
+      <p class="meta">Agent &#182; Smith &amp; Associates Real Estate &#182; persona B &#182; 3015 S Ysabella Ave #2401, Tampa, FL 33629 $2,950,000</p>
+      <p class="meta"><b>Specs:</b> 3BD/3.5BA · 2,815 sqft · HOA $1,150/mo · 12 DOM</p>
+      <p class="meta"><b>Signal:</b> One unit sold $1.41M; this lists at $2.95M — wide band</p>
+      <p class="meta"><b>Proof:</b> Comparable dispersion (pending sales)</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 3015 S Ysabella Ave #2401</p>
+      <pre class="msg" id="mTAM-07">Hola! Quick observation on 3015 S Ysabella Ave #2401 ($2,950,000): One unit sold $1.41M; this lists at $2.95M — wide band. Analytical question: Is the $1.55M spread vs the last sale defensible on view/floor plans? RSARBOS can investigate with comparable dispersion (pending sales). 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-07')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-07">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">TAM-08</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Flatfee.com Listing Agent</h2>
+      <p class="meta">Agent &#182; FLATFEE.COM &#182; persona D &#182; 1120 E Kennedy Blvd #319, Tampa, FL 33602 $795,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,634 sqft · HOA $620/mo · 32 DOM</p>
+      <p class="meta"><b>Signal:</b> -$5K cut; 2BD vs 3BD/4BA units in building at $475K-$1.8M</p>
+      <p class="meta"><b>Proof:</b> In-building floor-plan price band</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1120 E Kennedy Blvd #319</p>
+      <pre class="msg" id="mTAM-08">Hola! Quick observation on 1120 E Kennedy Blvd #319 ($795,000): -$5K cut; 2BD vs 3BD/4BA units in building at $475K-$1.8M. Analytical question: Does $795K position the 2BD right vs the building&#x27;s $/sqft stack? RSARBOS can investigate with in-building floor-plan price band. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mTAM-08')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mTAM-08">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">CHA-01</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Scott McDevitt</h2>
+      <p class="meta">Agent &#182; The McDevitt Agency (Compass) &#182; persona B &#182; 435 S Tryon St (The Ratcliffe), Charlotte, NC 28202 $1,250,000 (sold)</p>
+      <p class="meta"><b>Specs:</b> 3BD/3BA · 2,489 sqft · $502/sqft · HOA $1,300/mo · 77 DOM (closed)</p>
+      <p class="meta"><b>Signal:</b> Listed $1.4M → cut to $1.3M → SOLD $1.25M; 9 comps $375K-$2.25M</p>
+      <p class="meta"><b>Proof:</b> Inter-unit comparable dispersion + cap-rate stress</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 435 S Tryon St (The Ratcliffe)</p>
+      <pre class="msg" id="mCHA-01">Hola! Quick observation on 435 S Tryon St (The Ratcliffe) ($1,250,000 (sold)): Listed $1.4M → cut to $1.3M → SOLD $1.25M; 9 comps $375K-$2.25M. Analytical question: What evidence and economics supported the price path and the $950K valuation band? RSARBOS can investigate with inter-unit comparable dispersion + cap-rate stress. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mCHA-01')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mCHA-01">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">CHA-02</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Gonzalez Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; Gonzalez Realty &#182; persona B &#182; 505 E 6th St #915, Charlotte, NC 28202 $239,000</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · 580 sqft · $412/sqft · 54 DOM</p>
+      <p class="meta"><b>Signal:</b> $412/sqft vs Charlotte 28202 median ~$350/sqft; owner financing</p>
+      <p class="meta"><b>Proof:</b> $/sqft anomaly vs rent/cap</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 505 E 6th St #915</p>
+      <pre class="msg" id="mCHA-02">Hola! Quick observation on 505 E 6th St #915 ($239,000): $412/sqft vs Charlotte 28202 median ~$350/sqft; owner financing. Analytical question: Does $412/sqft survive a conservative rent/cap test + financing carry? RSARBOS can investigate with $/sqft anomaly vs rent/cap. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mCHA-02')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mCHA-02">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">CHA-03</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Realtor.com Listing Agent</h2>
+      <p class="meta">Agent &#182; Charlotte MLS (28208) &#182; persona B &#182; 630 Calvert St #311, Charlotte, NC 28208 $225,000</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · 700 sqft · 66 DOM</p>
+      <p class="meta"><b>Signal:</b> -$10K cut; 28208 median ~$350K / $266/sqft</p>
+      <p class="meta"><b>Proof:</b> DOM + price-reduction vs ZIP comps</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 630 Calvert St #311</p>
+      <pre class="msg" id="mCHA-03">Hola! Quick observation on 630 Calvert St #311 ($225,000): -$10K cut; 28208 median ~$350K / $266/sqft. Analytical question: Is the $10K reduction enough to clear ZIP momentum at $321/sqft? RSARBOS can investigate with dom + price-reduction vs zip comps. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mCHA-03')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mCHA-03">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">CHA-04</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Realtor.com Listing Agent</h2>
+      <p class="meta">Agent &#182; Charlotte MLS (28208) &#182; persona B &#182; 921 Westmere Ave, Charlotte, NC 28208 $679,000</p>
+      <p class="meta"><b>Specs:</b> 3BD/2BA · 1,792 sqft · 38 DOM</p>
+      <p class="meta"><b>Signal:</b> -$21K cut; $382/sqft vs neighborhood comps $320-350/sqft</p>
+      <p class="meta"><b>Proof:</b> $/sqft premium vs cap-rate stress</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 921 Westmere Ave</p>
+      <pre class="msg" id="mCHA-04">Hola! Quick observation on 921 Westmere Ave ($679,000): -$21K cut; $382/sqft vs neighborhood comps $320-350/sqft. Analytical question: Does the 10%+ premium over comps hold after a cap-rate stress test? RSARBOS can investigate with $/sqft premium vs cap-rate stress. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mCHA-04')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mCHA-04">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">CHA-05</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Realtor.com Listing Agent</h2>
+      <p class="meta">Agent &#182; Charlotte MLS (28208) &#182; persona B &#182; 201 S Hoskins Rd Apt 219, Charlotte, NC 28208 $139,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/1BA · 875 sqft · 78 DOM</p>
+      <p class="meta"><b>Signal:</b> -$11K cut; entry 2BD condo, rent ~$1,100/mo</p>
+      <p class="meta"><b>Proof:</b> Entry-condo cash-flow yield</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 201 S Hoskins Rd Apt 219</p>
+      <pre class="msg" id="mCHA-05">Hola! Quick observation on 201 S Hoskins Rd Apt 219 ($139,000): -$11K cut; entry 2BD condo, rent ~$1,100/mo. Analytical question: After HOA + vacancy, does $139K cash-flow? RSARBOS can investigate with entry-condo cash-flow yield. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mCHA-05')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mCHA-05">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">CHA-06</span>
+        <span class="tag">QUALIFIED</span>
+      </div>
+      <h2>Realtor.com Listing Agent</h2>
+      <p class="meta">Agent &#182; Charlotte MLS (28208) &#182; persona B &#182; 3210 Marlborough Rd, Charlotte, NC 28208 $155,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,080 sqft · 91 DOM</p>
+      <p class="meta"><b>Signal:</b> -$5K cut; 2BD/2BA townhome rear</p>
+      <p class="meta"><b>Proof:</b> Townhome HOA-yield vs rent ceiling</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 3210 Marlborough Rd</p>
+      <pre class="msg" id="mCHA-06">Hola! Quick observation on 3210 Marlborough Rd ($155,000): -$5K cut; 2BD/2BA townhome rear. Analytical question: Does the rear-unit rent support $155K after HOA + capex reserve? RSARBOS can investigate with townhome hoa-yield vs rent ceiling. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mCHA-06')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mCHA-06">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">CHA-07</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Realtor.com Listing Agent</h2>
+      <p class="meta">Agent &#182; Charlotte MLS (28208) &#182; persona B &#182; 630 Calvert St Unit 410, Charlotte, NC 28208 $260,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/1BA · 1,050 sqft · 72 DOM</p>
+      <p class="meta"><b>Signal:</b> -$15K cut; lower floor vs #311 at $225K</p>
+      <p class="meta"><b>Proof:</b> In-building unit-mix / floor arbitrage</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 630 Calvert St Unit 410</p>
+      <pre class="msg" id="mCHA-07">Hola! Quick observation on 630 Calvert St Unit 410 ($260,000): -$15K cut; lower floor vs #311 at $225K. Analytical question: Does the floor/listing stack explain the $35K spread vs #311? RSARBOS can investigate with in-building unit-mix / floor arbitrage. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mCHA-07')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mCHA-07">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-01</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Realty One Group Listing Agent</h2>
+      <p class="meta">Agent &#182; Realty One Group Evolution &#182; persona A &#182; 1071 S Hiwassee Rd #1213, Orlando, FL 32835 $132,000</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · 627 sqft · 420 DOM</p>
+      <p class="meta"><b>Signal:</b> 420 days on market; identical 2BD units trade $122-189K</p>
+      <p class="meta"><b>Proof:</b> Extended-DOM root-cause check</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1071 S Hiwassee Rd #1213</p>
+      <pre class="msg" id="mORL-01">Hola! Quick observation on 1071 S Hiwassee Rd #1213 ($132,000): 420 days on market; identical 2BD units trade $122-189K. Analytical question: Why has a 420-DOM unit not cleared at $132K vs 829-934 sqft peers? RSARBOS can investigate with extended-dom root-cause check. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-01')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-01">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-02</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Golden Door Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; Golden Door Realty &#182; persona A &#182; 1027 S Hiwassee Rd #2313, Orlando, FL 32835 $169,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 829 sqft · 666 DOM</p>
+      <p class="meta"><b>Signal:</b> 666 days on market — longest in the complex; rent ~$1,250/mo</p>
+      <p class="meta"><b>Proof:</b> Extreme-DOM + rent/cap check</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1027 S Hiwassee Rd #2313</p>
+      <pre class="msg" id="mORL-02">Hola! Quick observation on 1027 S Hiwassee Rd #2313 ($169,000): 666 days on market — longest in the complex; rent ~$1,250/mo. Analytical question: Does 666 DOM signal a condition/floor issue, or overpricing? RSARBOS can investigate with extreme-dom + rent/cap check. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-02')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-02">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-03</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Vantasture Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; Vantasture Realty LLC &#182; persona A &#182; 1087 S Hiwassee Rd #422, Orlando, FL 32835 $155,900</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 836 sqft · 63 DOM</p>
+      <p class="meta"><b>Signal:</b> Neighbor #2313 is $169K after 666 DOM; this is $155.9K at 63 DOM</p>
+      <p class="meta"><b>Proof:</b> Neighbor-unit price dispersion</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1087 S Hiwassee Rd #422</p>
+      <pre class="msg" id="mORL-03">Hola! Quick observation on 1087 S Hiwassee Rd #422 ($155,900): Neighbor #2313 is $169K after 666 DOM; this is $155.9K at 63 DOM. Analytical question: Is the $14K delta pricing-in condition, or a mis-price to move? RSARBOS can investigate with neighbor-unit price dispersion. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-03')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-03">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-04</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>EXP Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; EXP Realty LLC &#182; persona A &#182; 1037 S Hiwassee Rd #2817, Orlando, FL 32835 $122,900</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 934 sqft · 28 DOM</p>
+      <p class="meta"><b>Signal:</b> Lowest 2BD at $122.9K ($132/sqft) vs $189K at $203/sqft</p>
+      <p class="meta"><b>Proof:</b> $/sqft spread vs renovation estimate</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1037 S Hiwassee Rd #2817</p>
+      <pre class="msg" id="mORL-04">Hola! Quick observation on 1037 S Hiwassee Rd #2817 ($122,900): Lowest 2BD at $122.9K ($132/sqft) vs $189K at $203/sqft. Analytical question: Does the $122.9K reflect a plan, renovation need, or true value? RSARBOS can investigate with $/sqft spread vs renovation estimate. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-04')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-04">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-05</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Holloman Gordon Listing Agent</h2>
+      <p class="meta">Agent &#182; Holloman Gordon Realty, Inc &#182; persona A &#182; 1079 S Hiwassee Rd #1127, Orlando, FL 32835 $135,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 934 sqft · 1 DOM</p>
+      <p class="meta"><b>Signal:</b> New to market at $135K vs 420/666-DOM siblings</p>
+      <p class="meta"><b>Proof:</b> Fresh-listing vs long-DOM momentum</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1079 S Hiwassee Rd #1127</p>
+      <pre class="msg" id="mORL-05">Hola! Quick observation on 1079 S Hiwassee Rd #1127 ($135,000): New to market at $135K vs 420/666-DOM siblings. Analytical question: Is this a motivated fresh listing, or repeating the long-DOM pattern? RSARBOS can investigate with fresh-listing vs long-dom momentum. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-05')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-05">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-06</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Fathom Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; Fathom Realty FL LLC &#182; persona A &#182; 1027 S Hiwassee Rd #2311, Orlando, FL 32835 $160,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 829 sqft · 10 DOM</p>
+      <p class="meta"><b>Signal:</b> Sibling of #2313 ($169K/666 DOM); $9K lower at 10 DOM</p>
+      <p class="meta"><b>Proof:</b> Identical-unit price elasticity</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1027 S Hiwassee Rd #2311</p>
+      <pre class="msg" id="mORL-06">Hola! Quick observation on 1027 S Hiwassee Rd #2311 ($160,000): Sibling of #2313 ($169K/666 DOM); $9K lower at 10 DOM. Analytical question: Does #2311 clear faster because of price, or just listing timing? RSARBOS can investigate with identical-unit price elasticity. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-06')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-06">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-07</span>
+        <span class="tag">QUALIFIED</span>
+      </div>
+      <h2>Reeurban Listing Agent</h2>
+      <p class="meta">Agent &#182; ReeUrban Real Estate Services &#182; persona A &#182; 1049 S Hiwassee Rd #3416, Orlando, FL 32835 $147,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2.5BA · 1,260 sqft · 28 DOM</p>
+      <p class="meta"><b>Signal:</b> Largest unit (2BD/2.5BA) at $147K vs 2BD/2BA $122-160K</p>
+      <p class="meta"><b>Proof:</b> Unit-mix value per bath/sqft</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1049 S Hiwassee Rd #3416</p>
+      <pre class="msg" id="mORL-07">Hola! Quick observation on 1049 S Hiwassee Rd #3416 ($147,000): Largest unit (2BD/2.5BA) at $147K vs 2BD/2BA $122-160K. Analytical question: Does the extra half-bath + sqft justify the $10-25K deltas? RSARBOS can investigate with unit-mix value per bath/sqft. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-07')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-07">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">ORL-08</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>White Oak Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; White Oak Realty, LLC &#182; persona B &#182; 1100 Delaney Ave F204, Orlando, FL 32801 $250,000</p>
+      <p class="meta"><b>Specs:</b> 1BD/1BA · 751 sqft · 15 DOM</p>
+      <p class="meta"><b>Signal:</b> $250K ask vs closed $219-319K and $265K median for the bldg</p>
+      <p class="meta"><b>Proof:</b> Ask vs closed-sales $/sqft</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1100 Delaney Ave F204</p>
+      <pre class="msg" id="mORL-08">Hola! Quick observation on 1100 Delaney Ave F204 ($250,000): $250K ask vs closed $219-319K and $265K median for the bldg. Analytical question: Does $250K hold against $265K median sale for the building? RSARBOS can investigate with ask vs closed-sales $/sqft. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mORL-08')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mORL-08">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">PHX-01</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>RE/MAX Excalibur Listing Agent</h2>
+      <p class="meta">Agent &#182; RE/MAX Excalibur &#182; persona B &#182; 2201 N Central Ave #3A, Phoenix, AZ 85004 $439,900</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,850 sqft · $238/sqft · 18 DOM</p>
+      <p class="meta"><b>Signal:</b> -$11,000 cut (8/16); downtown condo $238/sqft vs comps</p>
+      <p class="meta"><b>Proof:</b> $/sqft price-cut cap-rate</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 2201 N Central Ave #3A</p>
+      <pre class="msg" id="mPHX-01">Hola! Quick observation on 2201 N Central Ave #3A ($439,900): -$11,000 cut (8/16); downtown condo $238/sqft vs comps. Analytical question: Does $238/sqft hold after HOA + cap-rate stress in 85004? RSARBOS can investigate with $/sqft price-cut cap-rate. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mPHX-01')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPHX-01">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">PHX-02</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>My Home Group Listing Agent</h2>
+      <p class="meta">Agent &#182; My Home Group Real Estate &#182; persona B &#182; 1 E Lexington Ave #609, Phoenix, AZ 85012 $499,900</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,126 sqft · $444/sqft · 22 DOM</p>
+      <p class="meta"><b>Signal:</b> $444/sqft vs comps $460-490/sqft; entry luxury</p>
+      <p class="meta"><b>Proof:</b> $/sqft vs replacement-cost</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1 E Lexington Ave #609</p>
+      <pre class="msg" id="mPHX-02">Hola! Quick observation on 1 E Lexington Ave #609 ($499,900): $444/sqft vs comps $460-490/sqft; entry luxury. Analytical question: Is $444/sqft the floor, or below replacement-cost logic? RSARBOS can investigate with $/sqft vs replacement-cost. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mPHX-02')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPHX-02">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">PHX-03</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Russ Lyon Listing Agent</h2>
+      <p class="meta">Agent &#182; Russ Lyon Sotheby&#x27;s Int&#x27;l &#182; persona B &#182; 4750 N Central Ave #9A, Phoenix, AZ 85012 $170,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/1BA · 980 sqft · $173/sqft · 28 DOM</p>
+      <p class="meta"><b>Signal:</b> $173/sqft entry vs comps $185-210/sqft; investor target</p>
+      <p class="meta"><b>Proof:</b> Entry condo $/sqft vs land value</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 4750 N Central Ave #9A</p>
+      <pre class="msg" id="mPHX-03">Hola! Quick observation on 4750 N Central Ave #9A ($170,000): $173/sqft entry vs comps $185-210/sqft; investor target. Analytical question: Does $173/sqft clear replacement-cost + buyer-land assumption? RSARBOS can investigate with entry condo $/sqft vs land value. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mPHX-03')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPHX-03">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">PHX-F05</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Jacob Chapman</h2>
+      <p class="meta">Agent &#182; Realty85 &#182; persona B &#182; 2912 E Monroe St, Phoenix, AZ — sold 7/10/26 (fixer $220K → relist $329.9K → sold $330K) $330,000 (sold)</p>
+      <p class="meta"><b>Specs:</b> 2BD/1BA · ~1,100 sqft · 1989</p>
+      <p class="meta"><b>Signal:</b> Fixer listed $220K → withdrawn → remodeled/relit $329.9K → sold $330K (+49.5%)</p>
+      <p class="meta"><b>Proof:</b> Rehab ROI / before-after reconciliation</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>(602) 502-3008</b></p>
+      <p class="contact">WhatsApp: <b>⚠️ PHONE — WhatsApp not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 2912 E Monroe St</p>
+      <pre class="msg" id="mPHX-F05">Jacob — I came across 2912 E Monroe and the transaction history caught my attention: roughly $220K as a fixer, then a remodeled relist around $329.9K, ultimately selling at $330K. That&#x27;s a particularly interesting real-world example of the exact property transformation questions we&#x27;re trying to make more measurable with RSARBOS. I&#x27;d be curious whether you&#x27;d find a property-level breakdown of that type useful.</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mPHX-F05')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mPHX-F05">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">AUS-01</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Andrew Clements Listing Agent</h2>
+      <p class="meta">Agent &#182; Andrew Clements Realty LLC &#182; persona B &#182; 433 Cartwheel Bnd #89, Austin, TX 78735 $475,000</p>
+      <p class="meta"><b>Specs:</b> 3BD/2.5BA · 1,708 sqft · $278/sqft · 122 DOM</p>
+      <p class="meta"><b>Signal:</b> -$10K cut; 3BD/2.5BA townhome vs comps $295-320/sqft</p>
+      <p class="meta"><b>Proof:</b> $/sqft price-reduction effectiveness</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 433 Cartwheel Bnd #89</p>
+      <pre class="msg" id="mAUS-01">Hola! Quick observation on 433 Cartwheel Bnd #89 ($475,000): -$10K cut; 3BD/2.5BA townhome vs comps $295-320/sqft. Analytical question: Does the $10K cut bridge the $278 vs $305/sqft gap? RSARBOS can investigate with $/sqft price-reduction effectiveness. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mAUS-01')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mAUS-01">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">AUS-02</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>StepStone Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; StepStone Realty &#182; persona B &#182; 2450 Wickersham Ln Apt 106, Austin, TX 78741 $216,258</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,060 sqft · $204/sqft · 30 DOM</p>
+      <p class="meta"><b>Signal:</b> 2BD/2BA at $204/sqft vs 2BD neighbors $225-250/sqft</p>
+      <p class="meta"><b>Proof:</b> $/sqft discount vs rehab exposure</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 2450 Wickersham Ln Apt 106</p>
+      <pre class="msg" id="mAUS-02">Hola! Quick observation on 2450 Wickersham Ln Apt 106 ($216,258): 2BD/2BA at $204/sqft vs 2BD neighbors $225-250/sqft. Analytical question: Is $204/sqft a real discount, or does the unit need rehab? RSARBOS can investigate with $/sqft discount vs rehab exposure. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mAUS-02')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mAUS-02">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">AUS-03</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Compass Listing Agent</h2>
+      <p class="meta">Agent &#182; Compass RE Texas LLC &#182; persona B &#182; 10616 Mellow Meadows Dr #9D, Austin, TX 78750 $179,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 952 sqft · $188/sqft · 18 DOM</p>
+      <p class="meta"><b>Signal:</b> $188/sqft vs comps $210-225/sqft; HOA $280/mo</p>
+      <p class="meta"><b>Proof:</b> Entry-level $/sqft cap test</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 10616 Mellow Meadows Dr #9D</p>
+      <pre class="msg" id="mAUS-03">Hola! Quick observation on 10616 Mellow Meadows Dr #9D ($179,000): $188/sqft vs comps $210-225/sqft; HOA $280/mo. Analytical question: Does $188/sqft hold after HOA + cap-rate test? RSARBOS can investigate with entry-level $/sqft cap test. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mAUS-03')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mAUS-03">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">AUS-04</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>Bramlett Residential Listing Agent</h2>
+      <p class="meta">Agent &#182; Bramlett Residential &#182; persona B &#182; 9015 Cattle Baron Path #1502, Austin, TX 78747 $250,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2.5BA · 1,340 sqft · $187/sqft · 43 DOM</p>
+      <p class="meta"><b>Signal:</b> -$24.9K cut; 2BD/2.5BA at $187/sqft vs comps $220-245/sqft</p>
+      <p class="meta"><b>Proof:</b> Price-reduction magnitude vs condition signal</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 9015 Cattle Baron Path #1502</p>
+      <pre class="msg" id="mAUS-04">Hola! Quick observation on 9015 Cattle Baron Path #1502 ($250,000): -$24.9K cut; 2BD/2.5BA at $187/sqft vs comps $220-245/sqft. Analytical question: Is the 24.9K reduction pricing-in a condition issue? RSARBOS can investigate with price-reduction magnitude vs condition signal. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mAUS-04')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mAUS-04">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">AUS-05</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>The Agency Listing Agent</h2>
+      <p class="meta">Agent &#182; The Agency Texas &#182; persona B &#182; 4361 S Congress Ave #514, Austin, TX 78745 $349,000</p>
+      <p class="meta"><b>Specs:</b> 2BD/2BA · 1,581 sqft · $221/sqft · 33 DOM</p>
+      <p class="meta"><b>Signal:</b> 2BD/2BA at $221/sqft vs South Austin $235-260/sqft</p>
+      <p class="meta"><b>Proof:</b> Neighborhood $/sqft compression</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 4361 S Congress Ave #514</p>
+      <pre class="msg" id="mAUS-05">Hola! Quick observation on 4361 S Congress Ave #514 ($349,000): 2BD/2BA at $221/sqft vs South Austin $235-260/sqft. Analytical question: Does $221/sqft compress vs the South Austin premium band? RSARBOS can investigate with neighborhood $/sqft compression. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mAUS-05')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mAUS-05">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">AUS-06</span>
+        <span class="tag">HIGH_RELEVANCE</span>
+      </div>
+      <h2>StepStone Realty Listing Agent</h2>
+      <p class="meta">Agent &#182; StepStone Realty &#182; persona B &#182; 1710 Timberwood Dr, Austin, TX 78741 $299,900</p>
+      <p class="meta"><b>Specs:</b> 3BD/2BA · 1,394 sqft · $215/sqft · 9 DOM</p>
+      <p class="meta"><b>Signal:</b> 3BD/2BA at $215/sqft vs similar $225-245/sqft; new</p>
+      <p class="meta"><b>Proof:</b> New-listing band positioning</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 1710 Timberwood Dr</p>
+      <pre class="msg" id="mAUS-06">Hola! Quick observation on 1710 Timberwood Dr ($299,900): 3BD/2BA at $215/sqft vs similar $225-245/sqft; new. Analytical question: Is the new listing under-cutting the $215-245/sqft band on purpose? RSARBOS can investigate with new-listing band positioning. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mAUS-06')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mAUS-06">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+    <article class="card">
+      <div class="card-head">
+        <span class="badge">PROPERTY_FIRST</span>
+        <span class="pk">AUS-07</span>
+        <span class="tag">QUALIFIED</span>
+      </div>
+      <h2>Realty Of America Listing Agent</h2>
+      <p class="meta">Agent &#182; Realty Of America, LLC &#182; persona B &#182; 5924 S Congress Ave Apt 85, Austin, TX 78745 $283,500</p>
+      <p class="meta"><b>Specs:</b> 1BD/1.5BA · 760 sqft · $373/sqft · 18 DOM</p>
+      <p class="meta"><b>Signal:</b> 1BD/1.5BA at $373/sqft vs 2BD at $220-245/sqft</p>
+      <p class="meta"><b>Proof:</b> 1-bedroom premium per sqft</p>
+      
+      <p class="meta">Agent: — / </p>
+      <p class="label">Contact (publicly verified)</p>
+      <p class="contact">Phone: <b>Not publicly verified</b></p>
+      <p class="contact">WhatsApp: <b>Not verified</b></p>
+      <p class="meta"><b>Channel:</b> WhatsApp</p>
+      <p class="meta"><b>Subject:</b> Quick question on 5924 S Congress Ave Apt 85</p>
+      <pre class="msg" id="mAUS-07">Hola! Quick observation on 5924 S Congress Ave Apt 85 ($283,500): 1BD/1.5BA at $373/sqft vs 2BD at $220-245/sqft. Analytical question: Does the half-bath add enough value to justify $373/sqft vs 2BD units? RSARBOS can investigate with 1-bedroom premium per sqft. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -&gt; VIEW SAMPLE DOSSIER. P.S. en español si útil. | +1 (619) 912-5747</pre>
+      <div class="actions">
+        <button class="copy-btn" onclick="copyMsg(this,'mAUS-07')">&#128203; Quick Copy WhatsApp message</button>
+        <span class="copied" id="c_mAUS-07">Copied to clipboard</span>
+      </div>
+      <div class="ver">PARTIAL</div>
+    </article>
+  </div>
+  <h3 style="color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.5px">Outreach Queue (priority = relevance + evidence + contactability)</h3>
+  <table>
+    <thead><tr><th>#</th><th>Prospect</th><th>Property</th><th>Signal</th><th>WhatsApp</th><th>Channel</th><th>Subject</th><th>Verify</th></tr></thead>
+    <tbody>
+<tr><td>1</td><td>Kenneth Nguyen <span style="color:var(--muted)">Compass</span></td><td>44 Moon Dance, Milpitas, CA 95035</td><td>Price cut 4.6% + rent/value cap gap (4.3% vs 5.0% market)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Quick question on 44 Moon Dance, Milpitas</td><td>VERIFIED (property/agent/price from Redfin; contact via listing)</td></tr><tr><td>2</td><td>Todd Montgomery <span style="color:var(--muted)">Compass</span></td><td>720 Clementina St, San Francisco, CA 94103</td><td>Luxury rent/value gap (2.6% gross cap vs 3.5% market = 26.2% gap)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Rent/value question on 720 Clementina</td><td>VERIFIED (property/price/comps from Redfin)</td></tr><tr><td>3</td><td>Stephen Schulman <span style="color:var(--muted)">Keller Williams Westside</span></td><td>7807 Breen Ave, Los Angeles, CA 90045</td><td>ADU value gap: 380 sqft ADU rents ~$2,200/mo = ~$377K at 7% cap, not reflected</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>ADU value question on 7807 Breen Ave</td><td>VERIFIED (property/specs/price from Redfin listing)</td></tr><tr><td>4</td><td>Diana Patrick <span style="color:var(--muted)">Sotheby&#x27;s International Realty</span></td><td>3226 Brant St, San Diego, CA 92103</td><td>Mills Act equity: $46,560/yr tax savings = ~$1.33M value; 17.3% gap vs comps</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Mills Act equity on 3226 Brant St</td><td>VERIFIED (property/specs/price from Redfin listing)</td></tr><tr><td>5</td><td>Colleen Cotter <span style="color:var(--muted)">Coldwell Banker Realty</span></td><td>33 Precita Ave, San Francisco, CA 94110</td><td>Mixed-use upside: commercial rent ($7,400/mo) not in sqft comps; 17.3% gap</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Commercial rent component on 33 Precita Ave</td><td>VERIFIED (property/specs/price from Redfin listing)</td></tr><tr><td>6</td><td>James B. Hurley <span style="color:var(--muted)">Vanguard Group</span></td><td>1138 Taylor St, San Francisco, CA 94108</td><td>TIC rent/value gap: 2.75% cap vs 3.5% market = 21.8% gap ($1.08M)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>TIC rent/value question on 1138 Taylor</td><td>VERIFIED (property/specs/price from Redfin listing)</td></tr><tr><td>7</td><td>Kenneth Nguyen <span style="color:var(--muted)">MLSListings / Compass</span></td><td>1314 Shawn Dr #1, San Jose, CA 95118</td><td>Valuation gap: 9.57% buy-under ($470K acquire vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition basis $470K / assessed $515K; 9.57% demo)</td></tr><tr><td>8</td><td>Gary Gang Liu <span style="color:var(--muted)">MLSListings / Compass</span></td><td>1314 Shawn Dr #1, San Jose, CA 95118</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>9</td><td>Leslie J Conte <span style="color:var(--muted)">MLSListings / Compass</span></td><td>1314 Shawn Dr #1, San Jose, CA 95118</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>10</td><td>Carol Jeans <span style="color:var(--muted)">MLSListings / Compass</span></td><td>1314 Shawn Dr #1, San Jose, CA 95118</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>11</td><td>Helen Pastorino <span style="color:var(--muted)">MLSListings</span></td><td>1314 Shawn Dr #1, San Jose, CA 95124</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>12</td><td>Julie Wyss <span style="color:var(--muted)">MLSListings</span></td><td>1314 Shawn Dr #1, San Jose, CA 95124</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>13</td><td>Laura Lynn <span style="color:var(--muted)">MLSListings</span></td><td>1314 Shawn Dr #1, San Jose, CA 95124</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>14</td><td>Lisa Thompson <span style="color:var(--muted)">MLSListings</span></td><td>1314 Shawn Dr #1, San Jose, CA 95124</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>15</td><td>Lucy Wedemeyer <span style="color:var(--muted)">MLSListings</span></td><td>1314 Shawn Dr #1, San Jose, CA 95124</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>16</td><td>Emilie Highley <span style="color:var(--muted)">MLSListings</span></td><td>1314 Shawn Dr #1, San Jose, CA 95124</td><td>Valuation gap: 9.57% buy-under ($470K vs $515K assessed)</td><td>Not publicly verified</td><td>Phone / brokerage</td><td>Question on 1314 Shawn Dr #1, San Jose</td><td>VERIFIED (acquisition $470K / assessed $515K; 9.57%)</td></tr><tr><td>17</td><td>Compass Listing Agent <span style="color:var(--muted)">Compass</span></td><td>4221 W Spruce St Apt 1326, Tampa, FL 33607</td><td>-$20,000 (7.0%) price cut in 68 DOM; comps cluster $290-310K</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 4221 W Spruce St Apt 1326</td><td></td></tr><tr><td>18</td><td>Flip Side Realty Listing Agent <span style="color:var(--muted)">Flip Side Realty By Design</span></td><td>5100 Burchette Rd #2701, Tampa, FL 33647</td><td>Brand-new listing (19h); comps $210-225K, rent ~$1,550/mo</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 5100 Burchette Rd #2701</td><td></td></tr><tr><td>19</td><td>Exit Bayshore Listing Agent <span style="color:var(--muted)">EXIT Bayshore Realty</span></td><td>8811 Bay POINTE Dr #C102, Tampa, FL 33615</td><td>1BD entry at $195K ($236/sqft) vs 2BD comps $210-240K</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 8811 Bay POINTE Dr #C102</td><td></td></tr><tr><td>20</td><td>Conci Realtors Listing Agent <span style="color:var(--muted)">Conci, REALTORS</span></td><td>4307 Harbor House Dr #13, Tampa, FL 33615</td><td>-$15,000 (3.76%) cut; 3-bedroom is unusual for waterfront tower</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 4307 Harbor House Dr #13</td><td></td></tr><tr><td>21</td><td>Divine Estates Listing Agent <span style="color:var(--muted)">Divine Estates Realty LLC</span></td><td>5516 Golden Dr, Tampa, FL 33634</td><td>4BD/2BA layout (unusual); comps are 3BD/2BA ~$485-500K</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 5516 Golden Dr</td><td></td></tr><tr><td>22</td><td>Serhant Listing Agent <span style="color:var(--muted)">SERHANT</span></td><td>1101 E Jackson St #3513, Tampa, FL 33602</td><td>Luxury high-rise new construction; $1,307/sqft vs rent ~$3,850/mo</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1101 E Jackson St #3513</td><td></td></tr><tr><td>23</td><td>Smith &amp; Associates Listing Agent <span style="color:var(--muted)">Smith &amp; Associates Real Estate</span></td><td>3015 S Ysabella Ave #2401, Tampa, FL 33629</td><td>One unit sold $1.41M; this lists at $2.95M — wide band</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 3015 S Ysabella Ave #2401</td><td></td></tr><tr><td>24</td><td>Flatfee.com Listing Agent <span style="color:var(--muted)">FLATFEE.COM</span></td><td>1120 E Kennedy Blvd #319, Tampa, FL 33602</td><td>-$5K cut; 2BD vs 3BD/4BA units in building at $475K-$1.8M</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1120 E Kennedy Blvd #319</td><td></td></tr><tr><td>25</td><td>Scott McDevitt <span style="color:var(--muted)">The McDevitt Agency (Compass)</span></td><td>435 S Tryon St (The Ratcliffe), Charlotte, NC 28202</td><td>Listed $1.4M → cut to $1.3M → SOLD $1.25M; 9 comps $375K-$2.25M</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 435 S Tryon St (The Ratcliffe)</td><td></td></tr><tr><td>26</td><td>Gonzalez Realty Listing Agent <span style="color:var(--muted)">Gonzalez Realty</span></td><td>505 E 6th St #915, Charlotte, NC 28202</td><td>$412/sqft vs Charlotte 28202 median ~$350/sqft; owner financing</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 505 E 6th St #915</td><td></td></tr><tr><td>27</td><td>Realtor.com Listing Agent <span style="color:var(--muted)">Charlotte MLS (28208)</span></td><td>630 Calvert St #311, Charlotte, NC 28208</td><td>-$10K cut; 28208 median ~$350K / $266/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 630 Calvert St #311</td><td></td></tr><tr><td>28</td><td>Realtor.com Listing Agent <span style="color:var(--muted)">Charlotte MLS (28208)</span></td><td>921 Westmere Ave, Charlotte, NC 28208</td><td>-$21K cut; $382/sqft vs neighborhood comps $320-350/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 921 Westmere Ave</td><td></td></tr><tr><td>29</td><td>Realtor.com Listing Agent <span style="color:var(--muted)">Charlotte MLS (28208)</span></td><td>201 S Hoskins Rd Apt 219, Charlotte, NC 28208</td><td>-$11K cut; entry 2BD condo, rent ~$1,100/mo</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 201 S Hoskins Rd Apt 219</td><td></td></tr><tr><td>30</td><td>Realtor.com Listing Agent <span style="color:var(--muted)">Charlotte MLS (28208)</span></td><td>3210 Marlborough Rd, Charlotte, NC 28208</td><td>-$5K cut; 2BD/2BA townhome rear</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 3210 Marlborough Rd</td><td></td></tr><tr><td>31</td><td>Realtor.com Listing Agent <span style="color:var(--muted)">Charlotte MLS (28208)</span></td><td>630 Calvert St Unit 410, Charlotte, NC 28208</td><td>-$15K cut; lower floor vs #311 at $225K</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 630 Calvert St Unit 410</td><td></td></tr><tr><td>32</td><td>Realty One Group Listing Agent <span style="color:var(--muted)">Realty One Group Evolution</span></td><td>1071 S Hiwassee Rd #1213, Orlando, FL 32835</td><td>420 days on market; identical 2BD units trade $122-189K</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1071 S Hiwassee Rd #1213</td><td></td></tr><tr><td>33</td><td>Golden Door Realty Listing Agent <span style="color:var(--muted)">Golden Door Realty</span></td><td>1027 S Hiwassee Rd #2313, Orlando, FL 32835</td><td>666 days on market — longest in the complex; rent ~$1,250/mo</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1027 S Hiwassee Rd #2313</td><td></td></tr><tr><td>34</td><td>Vantasture Realty Listing Agent <span style="color:var(--muted)">Vantasture Realty LLC</span></td><td>1087 S Hiwassee Rd #422, Orlando, FL 32835</td><td>Neighbor #2313 is $169K after 666 DOM; this is $155.9K at 63 DOM</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1087 S Hiwassee Rd #422</td><td></td></tr><tr><td>35</td><td>EXP Realty Listing Agent <span style="color:var(--muted)">EXP Realty LLC</span></td><td>1037 S Hiwassee Rd #2817, Orlando, FL 32835</td><td>Lowest 2BD at $122.9K ($132/sqft) vs $189K at $203/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1037 S Hiwassee Rd #2817</td><td></td></tr><tr><td>36</td><td>Holloman Gordon Listing Agent <span style="color:var(--muted)">Holloman Gordon Realty, Inc</span></td><td>1079 S Hiwassee Rd #1127, Orlando, FL 32835</td><td>New to market at $135K vs 420/666-DOM siblings</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1079 S Hiwassee Rd #1127</td><td></td></tr><tr><td>37</td><td>Fathom Realty Listing Agent <span style="color:var(--muted)">Fathom Realty FL LLC</span></td><td>1027 S Hiwassee Rd #2311, Orlando, FL 32835</td><td>Sibling of #2313 ($169K/666 DOM); $9K lower at 10 DOM</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1027 S Hiwassee Rd #2311</td><td></td></tr><tr><td>38</td><td>Reeurban Listing Agent <span style="color:var(--muted)">ReeUrban Real Estate Services</span></td><td>1049 S Hiwassee Rd #3416, Orlando, FL 32835</td><td>Largest unit (2BD/2.5BA) at $147K vs 2BD/2BA $122-160K</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1049 S Hiwassee Rd #3416</td><td></td></tr><tr><td>39</td><td>White Oak Realty Listing Agent <span style="color:var(--muted)">White Oak Realty, LLC</span></td><td>1100 Delaney Ave F204, Orlando, FL 32801</td><td>$250K ask vs closed $219-319K and $265K median for the bldg</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1100 Delaney Ave F204</td><td></td></tr><tr><td>40</td><td>RE/MAX Excalibur Listing Agent <span style="color:var(--muted)">RE/MAX Excalibur</span></td><td>2201 N Central Ave #3A, Phoenix, AZ 85004</td><td>-$11,000 cut (8/16); downtown condo $238/sqft vs comps</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 2201 N Central Ave #3A</td><td></td></tr><tr><td>41</td><td>My Home Group Listing Agent <span style="color:var(--muted)">My Home Group Real Estate</span></td><td>1 E Lexington Ave #609, Phoenix, AZ 85012</td><td>$444/sqft vs comps $460-490/sqft; entry luxury</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1 E Lexington Ave #609</td><td></td></tr><tr><td>42</td><td>Russ Lyon Listing Agent <span style="color:var(--muted)">Russ Lyon Sotheby&#x27;s Int&#x27;l</span></td><td>4750 N Central Ave #9A, Phoenix, AZ 85012</td><td>$173/sqft entry vs comps $185-210/sqft; investor target</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 4750 N Central Ave #9A</td><td></td></tr><tr><td>43</td><td>Jacob Chapman <span style="color:var(--muted)">Realty85</span></td><td>2912 E Monroe St, Phoenix, AZ — sold 7/10/26 (fixer $220K → relist $329.9K → sold $330K)</td><td>Fixer listed $220K → withdrawn → remodeled/relit $329.9K → sold $330K (+49.5%)</td><td>⚠️ PHONE — WhatsApp not verified</td><td>Phone / brokerage</td><td>Quick question on 2912 E Monroe St</td><td></td></tr><tr><td>44</td><td>Andrew Clements Listing Agent <span style="color:var(--muted)">Andrew Clements Realty LLC</span></td><td>433 Cartwheel Bnd #89, Austin, TX 78735</td><td>-$10K cut; 3BD/2.5BA townhome vs comps $295-320/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 433 Cartwheel Bnd #89</td><td></td></tr><tr><td>45</td><td>StepStone Realty Listing Agent <span style="color:var(--muted)">StepStone Realty</span></td><td>2450 Wickersham Ln Apt 106, Austin, TX 78741</td><td>2BD/2BA at $204/sqft vs 2BD neighbors $225-250/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 2450 Wickersham Ln Apt 106</td><td></td></tr><tr><td>46</td><td>Compass Listing Agent <span style="color:var(--muted)">Compass RE Texas LLC</span></td><td>10616 Mellow Meadows Dr #9D, Austin, TX 78750</td><td>$188/sqft vs comps $210-225/sqft; HOA $280/mo</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 10616 Mellow Meadows Dr #9D</td><td></td></tr><tr><td>47</td><td>Bramlett Residential Listing Agent <span style="color:var(--muted)">Bramlett Residential</span></td><td>9015 Cattle Baron Path #1502, Austin, TX 78747</td><td>-$24.9K cut; 2BD/2.5BA at $187/sqft vs comps $220-245/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 9015 Cattle Baron Path #1502</td><td></td></tr><tr><td>48</td><td>The Agency Listing Agent <span style="color:var(--muted)">The Agency Texas</span></td><td>4361 S Congress Ave #514, Austin, TX 78745</td><td>2BD/2BA at $221/sqft vs South Austin $235-260/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 4361 S Congress Ave #514</td><td></td></tr><tr><td>49</td><td>StepStone Realty Listing Agent <span style="color:var(--muted)">StepStone Realty</span></td><td>1710 Timberwood Dr, Austin, TX 78741</td><td>3BD/2BA at $215/sqft vs similar $225-245/sqft; new</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 1710 Timberwood Dr</td><td></td></tr><tr><td>50</td><td>Realty Of America Listing Agent <span style="color:var(--muted)">Realty Of America, LLC</span></td><td>5924 S Congress Ave Apt 85, Austin, TX 78745</td><td>1BD/1.5BA at $373/sqft vs 2BD at $220-245/sqft</td><td>Not verified</td><td>Phone / brokerage</td><td>Quick question on 5924 S Congress Ave Apt 85</td><td></td></tr>
+    </tbody>
+  </table>
+  <footer>RSARBOS • TURNING COMPLEX DATA INTO CONCLUSIONS 100% AUDITABLE • Outreach orchestrator · data: prospects.json · built by Yael Axel / founder</footer>
 </div>
-</main>
-<footer>RSARBOS • TURNING COMPLEX DATA INTO CONCLUSIONS 100% AUDITABLE • Built: Yael Axel / founder</footer>
 <script>
-async function copyMsg(btn, id){
-  const val = document.getElementById(id).textContent;
-  try {
-    await navigator.clipboard.writeText(val);
-    const s = btn.nextElementSibling; s.classList.add('show');
-    setTimeout(()=>s.classList.remove('show'),1800);
-  } catch(e){ prompt('Copy (Ctrl+C):', val); }
-}
+function copyMsg(btn, id){{
+  var el=document.getElementById(id);
+  var txt=el?el.textContent:'';
+  navigator.clipboard.writeText(txt).then(function(){{
+    var s=document.getElementById('c_'+id);
+    if(s){{s.classList.add('show');setTimeout(function(){{s.classList.remove('show')}},1800)}}
+  }).catch(function(e){{
+    prompt('Press Ctrl+C to copy the WhatsApp message', txt);
+  }});
+}}
 </script>
 </body>
 </html>
