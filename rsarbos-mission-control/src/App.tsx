@@ -6,6 +6,7 @@ import DossierSuccessPage from './components/DossierSuccessPage'
 import ProofCarousel from './components/ProofCarousel'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
+import DossierPreview from './components/preview/DossierPreview'
 import EditorialSystemPrototype from './components/prototypes/editorial-system'
 import { DecisionManifestHero } from './components/about/decision-manifest'
 import rsarbosLogo from './assets/logo.png'
@@ -678,15 +679,7 @@ function PublicWebsite() {
               <h2>SAMPLE DOSSIER</h2>
               <p>See the exact decision format before you request underwriting.</p>
             </div>
-            <div className="a4-dossier-frame" aria-label="A4 preview of RSARBOS investment dossier">
-              <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier A4 preview" loading="lazy" tabIndex={-1}></iframe>
-            </div>
-            <div className="sample-preview-column">
-              <div className="mobile-dossier-frame" aria-label="Mobile preview of RSARBOS investment dossier">
-                <div className="phone-speaker" aria-hidden="true"></div>
-                <iframe src={DOSSIER_PREVIEW_URL} title="RSARBOS Investment Dossier mobile preview" loading="lazy" tabIndex={-1}></iframe>
-              </div>
-            </div>
+            <DossierPreview />
           </div>
         </AnimatedSection>
 

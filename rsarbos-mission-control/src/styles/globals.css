@@ -30,10 +30,13 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -42,6 +45,7 @@ body {
     radial-gradient(circle at bottom right, rgba(255, 59, 56, 0.12), transparent 20%),
     var(--rsarbos-navy);
   color: #F8FAFC;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, .eyebrow {
@@ -3153,6 +3157,165 @@ code {
   color: #657084;
   font-size: 0.72rem;
   font-weight: 800;
+}
+
+/* ===== Dossier Preview Component Styles ===== */
+
+.dossier-preview-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  overflow: visible;
+}
+
+.radial-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(34, 211, 100, 0.03) 0%, transparent 70%);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.dossier-preview-container .radial-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(34, 211, 100, 0.03) 0%, transparent 70%);
+}
+
+/* Shimmer scan overlay for the paper document */
+#shimmer-scanner {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.scan-active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent
+  );
+  transform: skewX(-15deg);
+  animation: scanline-shimmer 1.8s ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes scanline-shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(0) skewX(-15deg);
+    opacity: 1;
+  }
+  26% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Prevent scrollbar from appearing in iframe-like containers */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure smooth single-scroll behavior on the public site */
+.public-site {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.public-site main {
+  overflow: visible;
+}
+
+/* Tab navigation styling */
+.tab-btn {
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.tab-btn[aria-selected="true"] {
+  /* Active state applied via JS class manipulation */
+}
+
+/* Dossier paper styling */
+#dossier-paper {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: "liga" off, "calt" off;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Strip rent slider styling */
+#strip-rent-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(100, 116, 122, 0.3);
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#strip-rent-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #22c55e;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(34, 211, 100, 0.3);
+}
+
+#strip-rent-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #22c55e;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(34, 211, 100, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dossier-preview-container {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .sample-section .content-wrap.sample-preview-column {
+    display: block;
+  }
 }
 
 .sample-section-title {
