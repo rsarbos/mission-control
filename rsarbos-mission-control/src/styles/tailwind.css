@@ -1,0 +1,4 @@
+/* RSARBOS Tailwind layer — utilities + components only (preflight disabled in
+   tailwind.config.js so this never resets the hand-rolled globals.css styles). */
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,49 @@
+/* ===== RSARBOS Motion Layer (21st.dev-inspired, dark theme) =====
+   Hand-rolled companion to globals.css for the animated primitives.
+   Nothing here overrides existing selectors — only adds .spotlight-card,
+   .hero-orbs / .hero-orb and reduced-motion respect. */
+
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spotlight-card[data-spotlight]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(
+      circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      transparent 120px,
+      rgba(15, 20, 40, 0.55) 200px
+    );
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .spotlight-card[data-spotlight]:hover::before {
+    opacity: 1;
+  }
+}
+
+.hero-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(36px);
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb { animation: none !important; }
+}

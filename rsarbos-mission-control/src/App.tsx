@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import ManualReportForm from './components/ManualReportForm'
 import InlineDossier from './components/InlineDossier'
+import DossierRequestForm from './components/DossierRequestForm'
+import DossierDashboard from './components/DossierDashboard'
+import OwnerDashboard from './components/OwnerDashboard'
+import DossierSuccessPage from './components/DossierSuccessPage'
+import ProofCarousel from './components/ProofCarousel'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
 import EditorialSystemPrototype from './components/prototypes/editorial-system'
 import { DecisionManifestHero } from './components/about/decision-manifest'
 import rsarbosLogo from './assets/logo.png'
 import { getAnalyticsSnapshot, trackEvent, trackPageView } from './utils/analytics'
+import { AnimatedSection, AnimatedDiv, AnimatedFooter, AnimatedArticle, SpotlightCard, AnimatedPath, HeroBackdrop, GlowLink, MagneticButton } from './components/animated'
 
 const MISSION_CONTROL_PASSWORD = import.meta.env.VITE_MISSION_CONTROL_PASSWORD || 'rsarbos-founder'
 const DOSSIER_PREVIEW_URL = '/dossier/RSARBOS_Investment_Dossier_1314_Shawn_Dr.html'
@@ -38,6 +44,7 @@ type OutreachContact = {
   fitReason: string
   outreachMethods: string[]
   personalizedMessage: string
+  whatsappMessage?: string
 }
 
 type VerdictStatus = 'WORTH_PURSUING' | 'WALKAWAY' | 'REVIEW_REQUIRED'
@@ -191,6 +198,146 @@ const OUTREACH_CONTACTS: OutreachContact[] = [
     outreachMethods: ['Public profile route', 'Operator trust angle', 'Partner-forwardable note'],
     personalizedMessage: 'This is a trust-and-clarity artifact for buyers: one place to see what supports the deal, what is still uncertain, and what should trigger a pause before moving forward.',
   },
+  {
+    uuid: 'contact-nguyen-001',
+    name: 'Kenneth Nguyen',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 768-0348',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Kenneth Nguyen! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-liu-002',
+    name: 'Gary Gang Liu',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 569-0363',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Gary Gang Liu! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-conte-003',
+    name: 'Leslie J Conte',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 907-2222',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Leslie J Conte! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-jeans-004',
+    name: 'Carol Jeans',
+    company: 'MLSListings / Compass',
+    channelTag: 'Agent Team',
+    phone: '(408) 313-0067',
+    email: '',
+    socialHandle: 'MLSListings / Compass profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95118',
+    fitReason: 'San Jose 95118 agent (Cambrian Park submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95118 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Carol Jeans! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95118 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-pastorino-005',
+    name: 'Helen Pastorino',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 357-7770',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Helen Pastorino! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-wyss-006',
+    name: 'Julie Wyss',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 455-9646',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Julie Wyss! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-lynn-007',
+    name: 'Laura Lynn',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(831) 479-4894',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Laura Lynn! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-thompson-008',
+    name: 'Lisa Thompson',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 373-6656',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Lisa Thompson! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-wedemeyer-009',
+    name: 'Lucy Wedemeyer',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 891-6861',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Lucy Wedemeyer! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  },
+  {
+    uuid: 'contact-highley-010',
+    name: 'Emilie Highley',
+    company: 'MLSListings',
+    channelTag: 'Agent Team',
+    phone: '(408) 768-2565',
+    email: '',
+    socialHandle: 'MLSListings profile',
+    socialUrl: 'https://www.mlslistings.com/browse-listings/santa-clara-county/san-jose/95124',
+    fitReason: 'San Jose 95124 agent (Almaden / Blossom Hill fringe submarket) in the same zip as the 1314 Shawn Dr demo; 9.57% buy-under equity on ground-floor condos and HOA comps analysis maps directly to his SFR/condo listings.',
+    outreachMethods: ['WhatsApp first: RSARBOS 9.57% buy-under demo (1314 Shawn Dr)', 'Phone follow-up after dossier link sent', 'Email if direct route verified'],
+    personalizedMessage: 'San Jose ground-floor-condo agent in the 95124 submarket - the RSARBOS 9.57% buy-under demo on 1314 Shawn Dr #1 is a direct match for HOA + undervalued-comps conversations across his listings.',
+    whatsappMessage: "Hola Emilie Highley! Quick observation on 1314 Shawn Dr #1, San Jose 95118 (ground-floor 1BD/1BA condo): $470K acquire vs $515K assessed = 9.57% buy-under equity. RSARBOS underwrite prices above market - comps, HOA, and rent ceiling support less than list. Your San Jose, CA 95124 ground-floor condos carry the same dynamics - 9.57% is the gap the comps don't show. 15-min RSARBOS dossier: https://www.rsarbos.com/mission-control -> VIEW SAMPLE DOSSIER. P.S. en español si útil. Best, Yael Axel / RSARBOS Founder / +1 (619) 912-5747",
+  }
 ]
 
 const OUTREACH_TEMPLATES: OutreachTemplate[] = [
@@ -214,6 +361,19 @@ const OUTREACH_TEMPLATES: OutreachTemplate[] = [
     target: 'Institutional / Skeptical Buyers',
     generateBody: (asset) => 
       `Underwrote ${asset.address} and found a specific risk ([${asset.assetRiskRegister[0]}]) that doesn't show up on Zillow. Full dossier with comps and walkaway triggers here: https://rsarbos.com${asset.dossierUrl}. Worth a look before you run numbers.`,
+  },
+  {
+    id: 'whatsapp-value-gap',
+    title: 'WhatsApp Value-Gap Insight',
+    target: 'Listing Agents - WhatsApp First-Touch',
+    generateBody: (asset) =>
+      `Quick observation on ${asset.address}: listed at $${asset.listPrice.toLocaleString()},
+underwrite prices at $${asset.maximumAllowableOffer.toLocaleString()}
+(stated $${asset.headlineRent.toLocaleString()}/mo vs comp $${asset.actualCompRent.toLocaleString()}/mo).
+Gap vs asking: ${(((asset.listPrice - asset.maximumAllowableOffer) / asset.listPrice) * 100).toFixed(1)}%
+- your list price sits above income-justified value; comps + rent ceiling don't support it.
+15-min RSARBOS dossier (comps + risk register): https://rsarbos.com${asset.dossierUrl}
+P.S. Happy to run this en español si util.`,
   },
 ]
 
@@ -396,7 +556,7 @@ const CODEX_HELPERS = ['Strict JSON intake schemas', 'Neon Postgres table mappin
 function PublicWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [logoLeftClicks, setLogoLeftClicks] = useState(0)
-  const audienceBannerItems = ['BUILT FOR:', ...AUDIENCE_BANNER_ITEMS, 'BUILT FOR:', ...AUDIENCE_BANNER_ITEMS]
+  const audienceBannerItems = ['BUILT FOR:', ...AUDIENCE_BANNER_ITEMS]
 
   useEffect(() => {
     function keepDossierPreviewReachable(event: MessageEvent) {
@@ -444,7 +604,7 @@ function PublicWebsite() {
           </a>
           <div className="desktop-menu">
             <a className="nav-about" href="/about-us">ABOUT US</a>
-            <a className="nav-cta" href="#request">REQUEST REPORT</a>
+            <a className="nav-cta" href="#free-dossier">FREE DOSSIER</a>
             <a className="nav-sample" href="#sample">VIEW SAMPLE DOSSIER</a>
             <a className="nav-contact" href="/contact">CONTACT</a>
           </div>
@@ -457,7 +617,7 @@ function PublicWebsite() {
         {isMenuOpen && (
           <div className="mobile-menu">
             <a href="/about-us">About Us</a>
-            <a href="#request" onClick={() => setIsMenuOpen(false)}>Request Report</a>
+            <a href="#free-dossier" onClick={() => setIsMenuOpen(false)}>Free Dossier</a>
             <a href="#sample" onClick={() => setIsMenuOpen(false)}>View Sample Dossier</a>
             <a href="/contact">Contact</a>
           </div>
@@ -466,6 +626,7 @@ function PublicWebsite() {
 
       <main>
         <section className="rs-hero" id="home">
+          <HeroBackdrop />
           <div className="hero-content">
             <div className="hero-chip"><span></span>Building the New Era of Real Estate Tech</div>
             <h1>
@@ -482,17 +643,18 @@ function PublicWebsite() {
               <strong>RSARBOS Dossier</strong>
             </div>
             <p className="hero-subtitle">
-              Clear property verdicts backed by traceable numbers, risks, and next steps.
+              Turn any property address into a clear verdict — gap math, risk flags, and
+              next steps agents use to win listings. Free 15-minute dossier in minutes.
             </p>
             <div className="hero-actions centered">
-              <a className="primary-action shine-action" href="#request" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</a>
-              <a className="secondary-action glass-action" href="#sample" onClick={() => trackEvent('hero_cta_click', { cta: 'view_sample_dossier' })}>VIEW SAMPLE DOSSIER</a>
+              <GlowLink className="primary-action shine-action" href="#free-dossier" onClick={() => trackEvent('hero_cta_click', { cta: 'start_underwriting' })}>START UNDERWRITING</GlowLink>
+              <GlowLink className="secondary-action glass-action" href="#sample" onClick={() => trackEvent('hero_cta_click', { cta: 'view_sample_dossier' })}>VIEW SAMPLE DOSSIER</GlowLink>
             </div>
           </div>
           <div className="hero-lines" aria-hidden="true">
             <svg viewBox="0 0 1000 300" preserveAspectRatio="none">
-              <path d="M0,150 C200,50 300,250 500,150 C700,50 800,250 1000,150" />
-              <path className="red-line" d="M0,150 C250,250 350,50 500,150 C650,250 750,50 1000,150" />
+              <AnimatedPath d="M0,150 C200,50 300,250 500,150 C700,50 800,250 1000,150" />
+              <AnimatedPath d="M0,150 C250,250 350,50 500,150 C650,250 750,50 1000,150" className="red-line" />
             </svg>
           </div>
         </section>
@@ -510,44 +672,66 @@ function PublicWebsite() {
         <section id="sample" aria-label="Sample investment dossier">
           <InlineDossier />
         </section>
+        <div className="landing-hidden">
+          <ProofCarousel />
+        </div>
 
-        <section className="pricing-section" id="pricing">
+        <AnimatedSection className="pricing-section" id="pricing">
           <div className="content-wrap pricing-layout">
             <div className="pricing-column">
               <p className="red-kicker"><span></span>Launch Offer</p>
               <h2>CLEAR PRICING</h2>
               <p>No hidden fees. Flat rate intelligence for actionable decisions.</p>
             </div>
-            <article className="pricing-card glass-panel">
-              <div className="pricing-rule"></div>
-              <h3>MANUAL UNDERWRITING</h3>
-              <p className="price">$100 <span>/ report</span></p>
-              <ul>
-                <li>Complete Final Underwriting Dossier</li>
-                <li>Deal Confidence Summary</li>
-                <li>Delivered within 24 hours of payment</li>
-                <li>Secure private delivery link</li>
-              </ul>
-              <p className="service-disclaimer">
-                Decision support only. Not legal, tax, lending, inspection, appraisal, or financial advice.
-              </p>
-              <a className="primary-action red-action" href="#request">INITIATE REQUEST</a>
-            </article>
+            <div className="pricing-grid">
+              <SpotlightCard className="pricing-card glass-panel free-card">
+                <div className="pricing-rule"></div>
+                <h3>COMPLIMENTARY DOSSIER</h3>
+                <p className="price">$0 <span>/ 15-min report</span></p>
+                <ul>
+                  <li>Property verdict (Worth Pursuing / Walkaway)</li>
+                  <li>Rent vs. market comparison</li>
+                  <li>Acquisition basis gap analysis</li>
+                  <li>Quick risk flags (HOA, zoning, title)</li>
+                </ul>
+                <p className="service-disclaimer">
+                  No payment required. Delivered in minutes via email.
+                </p>
+                <GlowLink className="primary-action glass-action" href="#free-dossier">REQUEST FREE DOSSIER</GlowLink>
+              </SpotlightCard>
+              <SpotlightCard className="pricing-card glass-panel upgrade-card">
+                <div className="pricing-rule upgrade-rule"></div>
+                <h3>FULL INVESTOR DOSSIER</h3>
+                <p className="price">$300 <span>/ report</span></p>
+                <ul>
+                  <li>Everything in the free dossier, plus:</li>
+                  <li>Exhaustive rent-roll + ARV financial model</li>
+                  <li>Highest &amp; Best Use strategy breakdown</li>
+                  <li>Full 15-slide presentation deck</li>
+                  <li>Cap rate, cash-on-cash, BRRRR refi scenarios</li>
+                  <li>24-hour turnaround, secure delivery</li>
+                </ul>
+                <p className="service-disclaimer">
+                  Unlock after requesting your free dossier. Human-in-the-loop review included.
+                </p>
+                <GlowLink className="primary-action red-action" href="#free-dossier">START WITH FREE DOSSIER → UPGRADE</GlowLink>
+              </SpotlightCard>
+            </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="request-section request-section-early" id="request">
+        <AnimatedSection className="request-section request-section-early" id="free-dossier">
           <div className="form-wrap">
             <div className="section-intro centered-copy">
-              <h2>REQUEST UNDERWRITING</h2>
-              <p>Submit the property link and context. Your request is saved before checkout, then Stripe handles secure payment.</p>
+              <h2>REQUEST COMPLIMENTARY DOSSIER</h2>
+              <p>Submit any property address. RSARBOS analyzes cap rates, HOA drag, and local comps. Your 15-minute underwriting dossier is generated and emailed to you within minutes — no payment required.</p>
             </div>
-            <ManualReportForm />
+            <DossierRequestForm />
           </div>
-        </section>
+        </AnimatedSection>
       </main>
 
-      <footer className="public-footer">
+      <AnimatedFooter className="public-footer">
         <div className="content-wrap">
           <div className="footer-top">
             <a className="logo-wordmark footer-logo" href="#home" onClick={handleLogoClick} onContextMenu={handleLogoContextMenu}><img src={rsarbosLogo} alt="RSARBOS" /></a>
@@ -561,11 +745,12 @@ function PublicWebsite() {
               <a href="/privacy">Privacy</a>
               <a href="/refund-policy">Refunds</a>
               <a href="/contact">Contact</a>
+              <a href="/dossier-dashboard" className="footer-link-secret">OWNER DASHBOARD</a>
               <span className="footer-status-pill"><span className="online-dot">■</span>SYSTEM: ONLINE</span>
             </div>
           </div>
         </div>
-      </footer>
+      </AnimatedFooter>
     </div>
   )
 }
@@ -612,7 +797,7 @@ function AboutUsPage() {
           </div>
         </section>
 
-        <section className="about-convergence-section">
+        <AnimatedSection className="about-convergence-section">
           <div className="content-wrap about-convergence-grid">
             <div className="about-section-copy">
               <p className="red-kicker"><span></span>THE INDUSTRY PROBLEM</p>
@@ -650,9 +835,9 @@ function AboutUsPage() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-method-section">
+        <AnimatedSection className="about-method-section">
           <div className="content-wrap about-method-grid">
             <div className="layer-system-visual constitutional-workflow" aria-label="RSARBOS Constitutional Workflow from sources to decision">
               {[
@@ -685,9 +870,9 @@ function AboutUsPage() {
               </p>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-verdict-section">
+        <AnimatedSection className="about-verdict-section">
           <div className="content-wrap about-verdict-grid">
             <div className="about-section-copy">
               <p className="red-kicker"><span></span>EVERY VERDICT SHOULD SHOW ITS WORK</p>
@@ -721,9 +906,9 @@ function AboutUsPage() {
               </article>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-workflow-section">
+        <AnimatedSection className="about-workflow-section">
           <div className="content-wrap about-workflow-grid">
             <div className="about-section-copy">
               <p className="red-kicker"><span></span>HUMAN JUDGMENT TODAY. GOVERNED AUTOMATION TOMORROW.</p>
@@ -751,9 +936,9 @@ function AboutUsPage() {
               </article>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-proof-section" id="decision-artifact">
+        <AnimatedSection className="about-proof-section" id="decision-artifact">
           <div className="content-wrap about-artifact-grid">
             <div className="about-proof-head">
               <p className="red-kicker"><span></span>A DECISION ARTIFACT</p>
@@ -770,9 +955,9 @@ function AboutUsPage() {
               <strong>Sample decision artifact</strong>
             </article>
           </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="about-closing-section">
+        <AnimatedSection className="about-closing-section">
           <div className="content-wrap about-closing-panel">
             <div>
               <p className="red-kicker"><span></span>BUILDING DECISION INFRASTRUCTURE FOR REAL ESTATE</p>
@@ -788,10 +973,10 @@ function AboutUsPage() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
       </main>
 
-      <footer className="public-footer">
+      <AnimatedFooter className="public-footer">
         <div className="content-wrap">
           <div className="footer-top">
             <a className="logo-wordmark footer-logo" href="/"><img src={rsarbosLogo} alt="RSARBOS" /></a>
@@ -809,7 +994,7 @@ function AboutUsPage() {
             </div>
           </div>
         </div>
-      </footer>
+      </AnimatedFooter>
     </div>
   )
 }
@@ -821,7 +1006,7 @@ function PaymentSuccessPage() {
 
   return (
     <main className="payment-result-shell">
-      <section className="payment-result-panel glass-panel">
+      <AnimatedSection className="payment-result-panel glass-panel">
         <div className="modal-icon">✓</div>
         <p className="red-kicker"><span></span>Payment Received</p>
         <h1>RSARBOS received your underwriting request.</h1>
@@ -832,7 +1017,7 @@ function PaymentSuccessPage() {
         <a className="primary-action red-action" href="/">
           Return Home
         </a>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }
@@ -844,7 +1029,7 @@ function PaymentCancelPage() {
 
   return (
     <main className="payment-result-shell">
-      <section className="payment-result-panel glass-panel">
+      <AnimatedSection className="payment-result-panel glass-panel">
         <p className="red-kicker"><span></span>Checkout Not Completed</p>
         <h1>Your request was saved, but payment was not completed.</h1>
         <p>
@@ -854,7 +1039,7 @@ function PaymentCancelPage() {
         <a className="primary-action red-action" href="/#request">
           Return To Request Form
         </a>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }
@@ -895,7 +1080,7 @@ function LegalPage({ type }: { type: 'terms' | 'privacy' | 'refund' }) {
 
   return (
     <main className="legal-shell">
-      <section className="legal-panel glass-panel">
+      <AnimatedSection className="legal-panel glass-panel">
         <p className="red-kicker"><span></span>{content.eyebrow}</p>
         <h1>{content.title}</h1>
         <p className="legal-updated">Starter policy for launch readiness. Review before public marketing.</p>
@@ -908,7 +1093,7 @@ function LegalPage({ type }: { type: 'terms' | 'privacy' | 'refund' }) {
           ))}
         </div>
         <a className="primary-action red-action" href="/">Return Home</a>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }
@@ -963,7 +1148,7 @@ function ContactPage() {
 
   return (
     <main className="contact-shell">
-      <section className="contact-panel glass-panel">
+      <AnimatedSection className="contact-panel glass-panel">
         <div className="contact-copy">
           <a className="logo-wordmark contact-logo" href="/"><img src={rsarbosLogo} alt="RSARBOS" /></a>
           <p className="red-kicker"><span></span>Contact</p>
@@ -1003,11 +1188,11 @@ function ContactPage() {
           </label>
           {status && <p className="form-success full-field">{status}</p>}
           {error && <p className="form-error full-field">{error}</p>}
-          <button className="primary-action red-action full-field" type="submit" disabled={isSending}>
+          <MagneticButton className="primary-action red-action full-field" type="submit" disabled={isSending}>
             {isSending ? 'SENDING...' : 'SEND MESSAGE'}
-          </button>
+          </MagneticButton>
         </form>
-      </section>
+      </AnimatedSection>
     </main>
   )
 }
@@ -1067,6 +1252,7 @@ function MissionControlApp() {
   const [selectedContact, setSelectedContact] = useState<OutreachContact | null>(null)
   const [selectedAssetUuid, setSelectedAssetUuid] = useState<string>(UNDERWRITTEN_ASSETS[0]?.uuid || '')
   const [copiedTemplateId, setCopiedTemplateId] = useState<string>('')
+  const [copiedContactId, setCopiedContactId] = useState('')
   const [selectedHelper, setSelectedHelper] = useState<string>(GHOST_HELPERS[0])
   const [terminalInput, setTerminalInput] = useState('')
   const [contextCopied, setContextCopied] = useState(false)
@@ -1127,6 +1313,13 @@ function MissionControlApp() {
     } catch {
       setCopiedTemplateId('')
     }
+  }
+
+  function copyWhatsAppContact(contact: OutreachContact) {
+    if (!contact.whatsappMessage) return
+    navigator.clipboard.writeText(contact.whatsappMessage)
+    setCopiedContactId(contact.uuid)
+    window.setTimeout(() => setCopiedContactId(''), 1800)
   }
 
   function submitTerminalMessage(event: React.FormEvent<HTMLFormElement>) {
@@ -1326,6 +1519,16 @@ function MissionControlApp() {
                               >
                                 {contact.email ? 'Email' : 'Open'}
                               </a>
+                              {contact.whatsappMessage && (
+                                <button
+                                  className="mc-mini-action"
+                                  type="button"
+                                  onClick={() => copyWhatsAppContact(contact)}
+                                  title="Copy WhatsApp message"
+                                >
+                                  WhatsApp{copiedContactId === contact.uuid ? ' ✓' : ''}
+                                </button>
+                              )}
                             </div>
                           </td>
                         </tr>
@@ -1653,6 +1856,14 @@ export default function App() {
 
   if (path === '/about-us' || path === '/about') {
     return <AboutUsPage />
+  }
+
+  if (path === '/dossier-dashboard') {
+    return <OwnerDashboard />
+  }
+
+  if (path === '/dossier-success') {
+    return <DossierSuccessPage />
   }
 
   if (path === '/prototype/editorial-system') {
