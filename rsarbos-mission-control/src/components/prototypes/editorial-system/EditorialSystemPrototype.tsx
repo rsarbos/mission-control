@@ -120,61 +120,6 @@ const METADATA_ITEMS: MetadataItem[] = [
   { label: 'Freshness', value: 'Draft shell only' },
 ]
 
-function DecisionBanner() {
-  return (
-    <section className="esp-decision-banner" aria-label="Decision status">
-      <div>
-        <span>Decision Status</span>
-        <strong>Review Required</strong>
-      </div>
-      <p>Prototype shell only. Placeholder data is used to test hierarchy, spacing, and editorial rhythm.</p>
-    </section>
-  )
-}
-
-function ConfidenceEngine() {
-  return (
-    <div className="esp-confidence-engine" aria-label="Confidence engine placeholder">
-      <div>
-        <span>Confidence Engine</span>
-        <strong>72</strong>
-      </div>
-      <div className="esp-confidence-bars" aria-hidden="true">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-      </div>
-    </div>
-  )
-}
-
-function EvidenceChip({ label, tone = 'verification' }: { label: string; tone?: 'verification' | 'risk' }) {
-  return <span className={`esp-evidence-chip esp-${tone}`}>{label}</span>
-}
-
-function EvidenceLink({ index, label }: { index: number; label: string }) {
-  return (
-    <button className="esp-evidence-link" type="button">
-      <span>{String(index).padStart(2, '0')}</span>
-      {label}
-    </button>
-  )
-}
-
-function RiskMatrix() {
-  return (
-    <div className="esp-risk-matrix" aria-label="Risk matrix placeholder">
-      {['Source conflict', 'Repair scope', 'Rent ceiling', 'Exit liquidity'].map((label, index) => (
-        <div className="esp-risk-row" key={label}>
-          <span>{label}</span>
-          <i style={{ width: `${82 - index * 14}%` }}></i>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 function PageHeader({ section }: { section: MemoSection }) {
   return (
     <header className="esp-page-header">
@@ -185,27 +130,6 @@ function PageHeader({ section }: { section: MemoSection }) {
   )
 }
 
-function EvidenceVault() {
-  return (
-    <div className="esp-evidence-vault" aria-label="Evidence vault placeholder">
-      <EvidenceLink index={1} label="Listing record placeholder" />
-      <EvidenceLink index={2} label="Comparable sale placeholder" />
-      <EvidenceLink index={3} label="Rent source placeholder" />
-      <EvidenceLink index={4} label="Analyst note placeholder" />
-    </div>
-  )
-}
-
-function SourceModalPlaceholder() {
-  return (
-    <aside className="esp-source-modal" aria-label="Source modal placeholder">
-      <span>Source Modal</span>
-      <strong>Reserved interaction layer</strong>
-      <p>No fetching, uploads, or real source previews are implemented in Phase 1.</p>
-    </aside>
-  )
-}
-
 function DocumentFooter() {
   return (
     <footer className="esp-document-footer">
@@ -213,6 +137,260 @@ function DocumentFooter() {
       <span>Shell only</span>
     </footer>
   )
+}
+
+function CoverShowcase() {
+  return (
+    <section className="esp-showcase esp-cover-showcase" aria-label="Cover page identity">
+      <div className="esp-cover-title">
+        <span>Decision Memorandum</span>
+        <strong>Placeholder Property Identity</strong>
+      </div>
+      <dl className="esp-cover-meta">
+        <div>
+          <dt>Case ID</dt>
+          <dd>RS-0000</dd>
+        </div>
+        <div>
+          <dt>Market</dt>
+          <dd>Placeholder Metro</dd>
+        </div>
+        <div>
+          <dt>Use</dt>
+          <dd>Acquisition Review</dd>
+        </div>
+      </dl>
+    </section>
+  )
+}
+
+function ExecutiveVerdictShowcase() {
+  return (
+    <section className="esp-showcase esp-verdict-showcase" aria-label="Executive verdict composition">
+      <div className="esp-verdict-dominant">
+        <span>Verdict</span>
+        <strong>Review Required</strong>
+        <b>72% confidence</b>
+      </div>
+      <div className="esp-verdict-reasons">
+        {['Rent evidence supports a narrower range than the listing claim.', 'ARV thesis requires conservative treatment until condition is verified.', 'Liquidity appears viable, but buyer depth is not yet proven.'].map((reason) => (
+          <p key={reason}>{reason}</p>
+        ))}
+        <aside>
+          <span>Critical Condition</span>
+          <strong>Do not proceed without rent proof and condition confirmation.</strong>
+        </aside>
+      </div>
+    </section>
+  )
+}
+
+function FinancialThesisShowcase() {
+  return (
+    <section className="esp-showcase esp-financial-showcase" aria-label="Financial thesis acquisition range">
+      <div className="esp-range-scale">
+        <span className="esp-zone esp-zone-risk">Downside</span>
+        <span className="esp-zone esp-zone-fair">Fair Value Range</span>
+        <span className="esp-zone esp-zone-upside">Upside</span>
+        <i className="esp-target-marker"><b>Target</b></i>
+      </div>
+      <div className="esp-range-values">
+        <div>
+          <span>Acquisition Floor</span>
+          <strong>$000k</strong>
+        </div>
+        <div>
+          <span>Target Price</span>
+          <strong>$000k</strong>
+        </div>
+        <div>
+          <span>Fair Ceiling</span>
+          <strong>$000k</strong>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function RentalThesisShowcase() {
+  return (
+    <section className="esp-showcase esp-rental-showcase" aria-label="Rental thesis confidence split">
+      <div className="esp-rent-split">
+        <article>
+          <span>Verified Rent</span>
+          <strong>$0,000</strong>
+          <i></i>
+        </article>
+        <article>
+          <span>Optimistic Rent</span>
+          <strong>$0,000</strong>
+          <i></i>
+        </article>
+      </div>
+      <div className="esp-comp-stack">
+        {['Comp A', 'Comp B', 'Comp C', 'Comp D'].map((comp, index) => (
+          <div key={comp}>
+            <span>{comp}</span>
+            <i style={{ width: `${58 + index * 9}%` }}></i>
+            <b>${(2100 + index * 140).toLocaleString()}</b>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function ValueArvShowcase() {
+  return (
+    <section className="esp-showcase esp-arv-showcase" aria-label="ARV range model">
+      <div className="esp-arv-model">
+        {[
+          ['As-Is Value', '$000k', 'Current evidence floor'],
+          ['Conservative ARV', '$000k', 'Defensible resale case'],
+          ['Aggressive ARV', '$000k', 'Requires premium execution'],
+        ].map(([label, value, note]) => (
+          <article key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+            <p>{note}</p>
+          </article>
+        ))}
+      </div>
+      <div className="esp-improvement-path">
+        <span>Recommended Improvement Path</span>
+        <strong>Repair scope first, finish premium second, resale thesis last.</strong>
+      </div>
+    </section>
+  )
+}
+
+function RiskRegisterShowcase() {
+  return (
+    <section className="esp-showcase esp-risk-showcase" aria-label="Risk register bars">
+      <div className="esp-contradiction-count">
+        <span>Contradictions</span>
+        <strong>03</strong>
+      </div>
+      <div className="esp-risk-bars">
+        {[
+          ['HOA', 76],
+          ['Rent Proof', 88],
+          ['Condition', 64],
+          ['Liquidity', 42],
+        ].map(([label, value]) => (
+          <div key={label}>
+            <span>{label}</span>
+            <i style={{ width: `${value}%` }}></i>
+            <b>{value}</b>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function NeighborhoodShowcase() {
+  return (
+    <section className="esp-showcase esp-neighborhood-showcase" aria-label="Neighborhood contextual score grid">
+      {[
+        ['Schools', 'B-', 'Pending source review'],
+        ['Walkability', '64', 'Moderate convenience'],
+        ['Commute', '41m', 'Market-dependent'],
+        ['Safety', 'Review', 'Needs source conflict check'],
+        ['Demand', 'High', 'Buyer depth placeholder'],
+      ].map(([label, score, note]) => (
+        <article key={label}>
+          <span>{label}</span>
+          <strong>{score}</strong>
+          <p>{note}</p>
+        </article>
+      ))}
+    </section>
+  )
+}
+
+function CalculatorShowcase() {
+  return (
+    <section className="esp-showcase esp-calculator-showcase" aria-label="Scenario comparison calculator">
+      {[
+        ['Conservative', '-$000', '0.0%'],
+        ['Base', '$000', '0.0%'],
+        ['Optimistic', '$000', '0.0%'],
+      ].map(([scenario, cashFlow, coc]) => (
+        <article key={scenario}>
+          <span>{scenario}</span>
+          <strong>{cashFlow}</strong>
+          <p>Monthly cash flow</p>
+          <b>{coc} CoC</b>
+        </article>
+      ))}
+    </section>
+  )
+}
+
+function EvidenceVaultShowcase() {
+  return (
+    <section className="esp-showcase esp-vault-showcase" aria-label="Evidence category source cards">
+      {[
+        ['EV-001', 'Listing Record', 'Verified'],
+        ['EV-002', 'Rent Comparable', 'Pending'],
+        ['EV-003', 'ARV Support', 'Verified'],
+        ['EV-004', 'Source Conflict', 'Contradiction'],
+      ].map(([id, label, status]) => (
+        <button className={`esp-source-card esp-status-${status.toLowerCase()}`} type="button" key={id}>
+          <span>{id}</span>
+          <strong>{label}</strong>
+          <b>{status}</b>
+        </button>
+      ))}
+    </section>
+  )
+}
+
+function AppendixShowcase() {
+  return (
+    <section className="esp-showcase esp-appendix-showcase" aria-label="Case integrity summary">
+      {[
+        ['Version', '0.1'],
+        ['Source Count', '18'],
+        ['Traceability', 'Mapped'],
+        ['Reproducibility', 'Draft'],
+      ].map(([label, value]) => (
+        <article key={label}>
+          <span>{label}</span>
+          <strong>{value}</strong>
+        </article>
+      ))}
+      <p>Appendix shell preserves the future audit trail without introducing real source material.</p>
+    </section>
+  )
+}
+
+function SectionShowcase({ section }: { section: MemoSection }) {
+  switch (section.id) {
+    case 'cover':
+      return <CoverShowcase />
+    case 'executive-verdict':
+      return <ExecutiveVerdictShowcase />
+    case 'financial-thesis':
+      return <FinancialThesisShowcase />
+    case 'rental-thesis':
+      return <RentalThesisShowcase />
+    case 'value-arv':
+      return <ValueArvShowcase />
+    case 'risk-register':
+      return <RiskRegisterShowcase />
+    case 'neighborhood':
+      return <NeighborhoodShowcase />
+    case 'calculator':
+      return <CalculatorShowcase />
+    case 'evidence-vault':
+      return <EvidenceVaultShowcase />
+    case 'appendices':
+      return <AppendixShowcase />
+    default:
+      return null
+  }
 }
 
 function MemorandumPage({ section, index }: { section: MemoSection; index: number }) {
@@ -226,18 +404,7 @@ function MemorandumPage({ section, index }: { section: MemoSection; index: numbe
         </div>
         <p>{section.deck}</p>
       </div>
-      <div className="esp-page-system">
-        <DecisionBanner />
-        <ConfidenceEngine />
-        <div className="esp-chip-row">
-          <EvidenceChip label="Verified source" />
-          <EvidenceChip label="Open diligence" tone="risk" />
-          <EvidenceChip label="Analyst reviewed" />
-        </div>
-        <RiskMatrix />
-        <EvidenceVault />
-        <SourceModalPlaceholder />
-      </div>
+      <SectionShowcase section={section} />
       <DocumentFooter />
     </article>
   )

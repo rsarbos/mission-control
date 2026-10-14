@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSARBOS · Premium Institutional Dossier Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts Matching Premium Institutional Branding -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --rs-blue: #0066cc;
+      --rs-red: #e02424;
+      --rs-green: #00875a;
+      --rs-dark: #090a0f;
+    }
+
+    /* Subtle Scanline Animation on Tab Change */
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    .scan-active::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, transparent, rgba(0, 102, 204, 0.08), transparent);
+      animation: scanline 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* Custom Hairline Layout Lines resembling High-End Print */
+    .hairline-border {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .paper-hairline-border {
+      border: 1px solid rgba(17, 17, 17, 0.08);
+    }
+
+    /* Soft Blue Radial Pulse Background */
+    .radial-glow {
+      background: radial-gradient(circle at 50% 30%, rgba(0, 102, 204, 0.07) 0%, transparent 60%);
+    }
+
+    /* Custom Hide Scrollbar for data tables */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#090a0f] text-neutral-200 antialiased font-sans selection:bg-[#0066cc]/30 selection:text-white min-h-screen">
+
+  <!-- Container for the Preview Section -->
+  <section class="relative w-full py-16 px-4 md:px-8 radial-glow overflow-hidden">
+    <!-- Top Decorative Grid Element -->
+    <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-neutral-800 to-transparent"></div>
+    <div class="absolute top-12 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-[#0066cc]/10 to-transparent"></div>
+
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Header -->
+      <div class="text-center mb-12 relative">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-neutral-900/60 border border-neutral-800 rounded-full mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#0066cc] animate-pulse"></span>
+          <span class="font-mono text-[10px] tracking-wider uppercase text-neutral-400">Institutional Underwriting Brief Preview</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+          From listing link to <span class="text-[#0066cc]">decision-ready dossier.</span>
+        </h2>
+        <p class="text-neutral-400 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
+          A clean underwriting brief built so agents, investors, and lenders can understand the deal without digging through raw listing noise. Real-world insights, verified comparisons, and integrated metrics.
+        </p>
+      </div>
+
+      <!-- Main Preview Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+
+        <!-- Left Column: Navigation Tabs & Value Add Copy -->
+        <div class="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-8">
+
+          <div class="bg-neutral-900/45 backdrop-blur-md p-6 rounded-xl border border-neutral-800/80 shadow-2xl relative overflow-hidden">
+            <!-- Subtle glow accent -->
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-[#0066cc]/10 blur-2xl rounded-full"></div>
+
+            <h3 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-6 flex items-center gap-2">
+              <span>[</span> DOSSIER SECTION DIRECTORIES <span>]</span>
+            </h3>
+
+            <!-- Technical Navigation Links (Tabs) -->
+            <nav class="flex flex-col gap-2 relative z-10" role="tablist">
+
+              <!-- Tab 1: Cover & Core Registry -->
+              <button onclick="switchTab('registry')" id="btn-registry" class="tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-[#0066cc]/5 border-[#0066cc]/30 text-white" aria-selected="true">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs text-[#0066cc]">01</span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Asset Registry Cover</span>
+                    <span class="text-[10px] text-neutral-400">Primary parameters & identifiers</span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-[#0066cc] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+              <!-- Tab 2: Executive Verdict -->
+              <button onclick="switchTab('verdict')" id="btn-verdict" class="tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-transparent border-transparent text-neutral-400 hover:text-white hover:border-neutral-800 hover:bg-neutral-900/50" aria-selected="false">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs text-neutral-500">02</span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Executive Verdict</span>
+                    <span class="text-[10px] text-neutral-500">Acquisition viability & catalysts</span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-neutral-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+              <!-- Tab 3: Rent Thesis -->
+              <button onclick="switchTab('rent')" id="btn-rent" class="tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-transparent border-transparent text-neutral-400 hover:text-white hover:border-neutral-800 hover:bg-neutral-900/50" aria-selected="false">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs text-neutral-500">03</span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Rent Thesis & Comps</span>
+                    <span class="text-[10px] text-neutral-500">Verified lease records & comps</span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-neutral-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+              <!-- Tab 4: ARV & Value Matrix -->
+              <button onclick="switchTab('arv')" id="btn-arv" class="tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-transparent border-transparent text-neutral-400 hover:text-white hover:border-neutral-800 hover:bg-neutral-900/50" aria-selected="false">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs text-neutral-500">04</span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-semibold uppercase tracking-wider">ARV & Capital Map</span>
+                    <span class="text-[10px] text-neutral-500">Value-add paths & direct comps</span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-neutral-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+              <!-- Tab 5: Risk Register -->
+              <button onclick="switchTab('risk')" id="btn-risk" class="tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-transparent border-transparent text-neutral-400 hover:text-white hover:border-neutral-800 hover:bg-neutral-900/50" aria-selected="false">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs text-neutral-500">05</span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Risk & Strategy Register</span>
+                    <span class="text-[10px] text-neutral-500">Walkaway triggers & fit metrics</span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-neutral-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+              <!-- Tab 6: Neighborhood Intel -->
+              <button onclick="switchTab('neighborhood')" id="btn-neighborhood" class="tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-transparent border-transparent text-neutral-400 hover:text-white hover:border-neutral-800 hover:bg-neutral-900/50" aria-selected="false">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs text-neutral-500">06</span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Neighborhood Vital Signs</span>
+                    <span class="text-[10px] text-neutral-500">Walkability & school indexes</span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-neutral-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+              <!-- Tab 7: Source Appendix -->
+              <button onclick="switchTab('appendix')" id="btn-appendix" class="tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-transparent border-transparent text-neutral-400 hover:text-white hover:border-neutral-800 hover:bg-neutral-900/50" aria-selected="false">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs text-neutral-500">07</span>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Source Index & Checklist</span>
+                    <span class="text-[10px] text-neutral-500">Verification steps & registries</span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-neutral-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+            </nav>
+          </div>
+
+          <!-- Subtle "Proof of Value" callout card below tabs -->
+          <div class="bg-neutral-900/20 p-5 rounded-lg border border-neutral-800/40 text-xs text-neutral-400 leading-relaxed">
+            <div class="flex items-center gap-2 mb-2">
+              <svg class="w-4 h-4 text-[#0066cc]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="font-bold text-neutral-300 uppercase font-mono tracking-wider text-[10px]">Decision Intelligence</span>
+            </div>
+            This interactive simulator reproduces the real-world performance parameters of the 1314 Shawn Dr #1 property. The premium dossier includes dynamic spreadsheets, zoning metrics, HOA assessment reports, and legal checkpoints.
+          </div>
+
+        </div>
+
+        <!-- Right Column: Simulated Institutional A4 Binder -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+
+          <!-- Outer Premium Shield Frame -->
+          <div class="bg-neutral-900/45 p-2 rounded-2xl border border-neutral-800/60 shadow-2xl relative overflow-hidden backdrop-blur-md">
+            <!-- Sleek Glass Accent line -->
+            <div class="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0066cc]/40 to-transparent"></div>
+
+            <!-- Document Screen Wrapper -->
+            <div id="dossier-paper" class="relative overflow-hidden w-full bg-white text-neutral-900 rounded-xl px-4 py-8 md:p-10 shadow-inner flex flex-col justify-between transition-all duration-300 min-h-[750px]">
+
+              <!-- Shimmer Scan Overlay Container -->
+              <div id="shimmer-scanner" class="absolute inset-0 pointer-events-none z-50 rounded-xl overflow-hidden"></div>
+
+              <!-- Document Header (Institutional Layout) -->
+              <div class="border-b-2 border-neutral-900 pb-3 flex justify-between items-end mb-6">
+                <div class="flex flex-col">
+                  <span class="font-sans font-extrabold text-[11px] tracking-widest text-neutral-900 uppercase">RSARBOS</span>
+                  <span class="font-sans text-[8px] font-semibold text-neutral-400 uppercase tracking-widest mt-0.5">UNDERWRITING PORTFOLIO DECK</span>
+                </div>
+                <div class="text-right">
+                  <span id="doc-id-label" class="font-mono text-[9px] font-bold text-neutral-900 uppercase tracking-wider block">PAGE 00 // COVER REGISTRY</span>
+                  <span class="font-sans text-[8px] font-semibold text-neutral-400 uppercase tracking-widest mt-0.5">PORTFOLIO DECK ID: ML82047088</span>
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- PERMANENT TOP HERO VALUE HIERARCHY GRID     -->
+              <!-- ========================================== -->
+              <div class="bg-neutral-50 border border-neutral-200/80 rounded-md p-4 mb-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 h-full w-1.5 bg-[#0066cc]"></div>
+
+                <span class="font-mono text-[8px] uppercase tracking-widest text-neutral-500 font-bold block mb-2">[ CORE ASSET VALUATION MATRIX ]</span>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
+                  <div>
+                    <span class="font-sans text-[8px] text-neutral-400 font-bold uppercase tracking-wider block">ACQUISITION TARGET</span>
+                    <div class="flex items-baseline gap-1 mt-0.5">
+                      <span class="font-sans text-2xl md:text-3xl font-extrabold text-neutral-900 tracking-tight" id="core-price-display">$470,000</span>
+                    </div>
+                    <span class="text-[9px] text-neutral-500 mt-0.5 block flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[#e02424]"></span> -$30,000 June Price Drop
+                    </span>
+                  </div>
+
+                  <div class="border-l border-neutral-200 pl-4">
+                    <span class="font-sans text-[8px] text-neutral-400 font-bold uppercase tracking-wider block">ASSESSED MARKET VALUE</span>
+                    <span class="font-sans text-xl font-bold text-neutral-800 tracking-tight block mt-0.5">$515,000</span>
+                    <span class="text-[9px] text-[#00875a] font-bold block mt-0.5">9.57% Buy-Under Discount</span>
+                  </div>
+
+                  <div class="border-l border-neutral-200 pl-4">
+                    <span class="font-sans text-[8px] text-neutral-400 font-bold uppercase tracking-wider block">UNIT ACQUISITION RATE</span>
+                    <span class="font-sans text-xl font-bold text-neutral-800 tracking-tight block mt-0.5">$580 <span class="text-xs text-neutral-500 font-normal">/ SF</span></span>
+                    <span class="text-[9px] text-neutral-400 block mt-0.5">vs $938/SF ZIP Average</span>
+                  </div>
+
+                  <div class="border-l border-neutral-200 pl-4">
+                    <span class="font-sans text-[8px] text-neutral-400 font-bold uppercase tracking-wider block">HOA FIXED MOISTURE</span>
+                    <span class="font-sans text-xl font-bold text-[#e02424] tracking-tight block mt-0.5">$534 <span class="text-xs text-neutral-500 font-normal">/ mo</span></span>
+                    <span class="text-[9px] text-neutral-400 block mt-0.5">APN 569-43-077 Ground Condo</span>
+                  </div>
+                </div>
+
+                <!-- Custom visual overlay: Discount Gauge indicator -->
+                <div class="mt-3 pt-2 border-t border-neutral-200/50 flex items-center justify-between text-[10px]">
+                  <span class="text-neutral-500 font-mono">Zoning class: R-2 Low Density Condominium (Built 1970)</span>
+                  <div class="flex items-center gap-2">
+                    <span class="text-neutral-400">Underwrite Margin:</span>
+                    <div class="w-32 bg-neutral-200 h-1.5 rounded-full overflow-hidden flex">
+                      <div class="bg-[#00875a] h-full" style="width: 90.4%"></div>
+                    </div>
+                    <span class="font-mono font-bold text-[#00875a]">+9.57% Equity</span>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- ========================================== -->
+              <!-- TAB CONTENT 1: COVER REGISTRY              -->
+              <!-- ========================================== -->
+              <div id="panel-registry" class="dossier-tab-content flex-grow flex flex-col justify-between" style="display: flex;">
+                <div>
+                  <div class="mb-4">
+                    <span class="font-sans font-extrabold text-[9px] uppercase tracking-widest text-neutral-500 border-b border-neutral-900 pb-0.5">SECTION 01 · CONFIDENTIAL COVER PORTFOLIO</span>
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between mt-2 gap-2">
+                      <h4 class="text-xl md:text-2xl font-bold tracking-tight text-neutral-900">1314 Shawn Dr #1, San Jose, CA 95118</h4>
+                      <span class="font-mono text-xs font-bold text-[#0066cc]">Cambrian Park Submarket</span>
+                    </div>
+                    <p class="text-xs text-neutral-500 mt-1">
+                      Systematic assessment of 2BD / 1BA (810 sqft) ground-floor asset. Verified municipal archives record individual gas utilities and joint HOA reserves maintenance obligations.
+                    </p>
+                  </div>
+
+                  <!-- Technical Wireframe Diagram simulating the asset footprint -->
+                  <div class="border border-neutral-200 rounded p-4 bg-neutral-50/50 my-4">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-mono text-[8px] text-neutral-400 uppercase tracking-widest">[ GEOPORTAL AERIAL SCHEMATIC ]</span>
+                      <span class="text-[9px] text-neutral-500 font-mono">Scale: 1:120</span>
+                    </div>
+                    <div class="relative h-32 bg-neutral-100 border border-neutral-200 rounded flex items-center justify-center overflow-hidden">
+                      <!-- Blueprint pattern -->
+                      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 10px 10px;"></div>
+
+                      <!-- Simulated floorplan overlay -->
+                      <div class="border-2 border-dashed border-[#0066cc]/40 w-3/4 h-5/6 relative flex items-center justify-center text-neutral-400 text-[10px] font-mono">
+                        <div class="absolute top-0 left-0 w-1/2 h-full border-r border-[#0066cc]/20 flex items-center justify-center flex-col">
+                          <span>BEDROOM 1</span>
+                          <span class="text-[8px] text-neutral-400">12' x 11'</span>
+                        </div>
+                        <div class="absolute top-0 right-0 w-1/2 h-1/2 border-b border-[#0066cc]/20 flex items-center justify-center flex-col">
+                          <span>KITCHEN</span>
+                          <span class="text-[8px] text-neutral-400">10' x 8'</span>
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-1/2 h-1/2 flex items-center justify-center flex-col">
+                          <span>LIVING HALL</span>
+                          <span class="text-[8px] text-neutral-400">14' x 12'</span>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center bg-white/80 border border-neutral-300 p-2 text-center text-neutral-800 font-bold max-w-xs text-[10px] shadow">
+                          <span>GROUND FLOOR CONFIGURATION<br><span class="font-mono text-[9px] font-normal text-neutral-500">810 SF Net Living Area</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="text-xs text-neutral-600 leading-relaxed italic border-l-2 border-[#0066cc] pl-3">
+                    <strong>Memorandum Validation:</strong> Live underwriting evaluation compiled through MLS database index matching ML82047088. High confidence verification checks on county deed APN records.
+                  </p>
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- TAB CONTENT 2: EXECUTIVE VERDICT           -->
+              <!-- ========================================== -->
+              <div id="panel-verdict" class="dossier-tab-content flex-grow flex flex-col justify-between" style="display: none;">
+                <div>
+                  <div class="mb-4">
+                    <span class="font-sans font-extrabold text-[9px] uppercase tracking-widest text-neutral-500 border-b border-neutral-900 pb-0.5">SECTION 02 · HIGH CONVICTION THESIS</span>
+                    <h4 class="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 mt-2">Strategic Acquisition Verdict</h4>
+                  </div>
+
+                  <!-- High-Density Strategic Metric Block -->
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                    <div class="p-3 bg-neutral-50 border border-neutral-200/80 rounded-md">
+                      <span class="font-sans text-[8px] font-bold text-neutral-400 uppercase tracking-wider block">RECOMMENDATION</span>
+                      <span class="font-mono text-sm font-extrabold text-[#00875a] block mt-1 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-[#00875a]"></span> PURSUABLE
+                      </span>
+                      <span class="text-[9px] text-neutral-400 mt-0.5 block">Conditional on HOA cash reserves audit</span>
+                    </div>
+                    <div class="p-3 bg-neutral-50 border border-neutral-200/80 rounded-md">
+                      <span class="font-sans text-[8px] font-bold text-neutral-400 uppercase tracking-wider block">TARGET INVESTOR PROFILE</span>
+                      <span class="font-mono text-sm font-extrabold text-neutral-800 block mt-1">ENTRY ACQUISITION</span>
+                      <span class="text-[9px] text-neutral-400 mt-0.5 block">High stability asset, low capital ticket</span>
+                    </div>
+                    <div class="p-3 bg-[#e02424]/5 border border-[#e02424]/10 rounded-md">
+                      <span class="font-sans text-[8px] font-bold text-neutral-400 uppercase tracking-wider block">PRIMARY SENSITIVITY</span>
+                      <span class="font-mono text-sm font-extrabold text-[#e02424] block mt-1">HOA & RENT PROOF</span>
+                      <span class="text-[9px] text-neutral-400 mt-0.5 block">Verifying actual $2,900 condo floor</span>
+                    </div>
+                  </div>
+
+                  <!-- Pro / Con Structural Comparison Column Grid -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-b border-neutral-900/10 py-5 my-5">
+                    <div>
+                      <h5 class="text-[10px] font-black uppercase tracking-wider text-neutral-900 flex items-center gap-1.5 mb-3">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#00875a]"></span> POSITIVE CATALYSTS
+                      </h5>
+                      <ul class="space-y-2 text-[10px] text-neutral-600 leading-relaxed">
+                        <li class="flex items-start gap-1.5">
+                          <span class="font-mono text-neutral-400">•</span>
+                          <span>Lowest entry point in Cambrian Park (ZIP 95118) where median values exceed $1.55M.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                          <span class="font-mono text-neutral-400">•</span>
+                          <span>Baseline capital protection confirmed by adjacent comps in the $500K–$550K range.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                          <span class="font-mono text-neutral-400">•</span>
+                          <span>Hyper market velocity environment with median 8 Days on Market (DOM).</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="border-t md:border-t-0 md:border-l border-neutral-200 pt-4 md:pt-0 md:pl-6">
+                      <h5 class="text-[10px] font-black uppercase tracking-wider text-[#e02424] flex items-center gap-1.5 mb-3">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#e02424]"></span> CRITICAL HOLES & FRICTION
+                      </h5>
+                      <ul class="space-y-2 text-[10px] text-neutral-600 leading-relaxed">
+                        <li class="flex items-start gap-1.5">
+                          <span class="font-mono text-neutral-400">•</span>
+                          <span>Intense HOA fee of <strong>$534/mo</strong> heavily erodes pro-forma net yield.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                          <span class="font-mono text-neutral-400">•</span>
+                          <span>Potential listing attribute mismatch across syndicators (condo vs townhome class).</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                          <span class="font-mono text-neutral-400">•</span>
+                          <span>Aging 1970 physical plant systems require dedicated mechanical, plumbing & HVAC scoping.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Editorial Context -->
+                  <div class="p-3 bg-neutral-50 rounded border border-neutral-200/50">
+                    <p class="text-[10.5px] leading-relaxed text-neutral-600 italic">
+                      <strong>Verdict Summary:</strong> The $30K price drop to $470,000 creates a premium Silicon Valley entry ticket. However, transaction validation demands immediate proof of actual condo lease floors ($2,900) vs. inflated $4,410 single-family estimates.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- TAB CONTENT 3: RENT THESIS                 -->
+              <!-- ========================================== -->
+              <div id="panel-rent" class="dossier-tab-content flex-grow flex flex-col justify-between" style="display: none;">
+                <div>
+                  <div class="mb-4">
+                    <span class="font-sans font-extrabold text-[9px] uppercase tracking-widest text-neutral-500 border-b border-neutral-900 pb-0.5">SECTION 03 · LEASE PERFORMANCE MATRIX</span>
+                    <h4 class="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 mt-2">Rental Yield & Comps Analysis</h4>
+                    <p class="text-xs text-neutral-500 mt-1 max-w-xl">
+                      Cross-referenced lease records validating real performance metrics against baseline estimates.
+                    </p>
+                  </div>
+
+                  <!-- Rent Comparison Metrics with inline graphical indicators -->
+                  <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4 text-left">
+                    <div class="p-2.5 bg-neutral-50 border border-neutral-200 rounded">
+                      <span class="font-sans text-[7.5px] font-bold text-neutral-400 uppercase tracking-wider block">RENTCAST EST.</span>
+                      <span class="font-mono text-xs font-bold text-[#00875a] mt-0.5 block">$4,410/mo</span>
+                      <div class="w-full bg-neutral-200 h-1 mt-1.5 rounded-full overflow-hidden">
+                        <div class="bg-[#00875a] h-full" style="width: 88%"></div>
+                      </div>
+                    </div>
+                    <div class="p-2.5 bg-neutral-50 border border-neutral-200 rounded">
+                      <span class="font-sans text-[7.5px] font-bold text-neutral-400 uppercase tracking-wider block">STRESSED CASE</span>
+                      <span class="font-mono text-xs font-bold text-neutral-900 mt-0.5 block">$3,520/mo</span>
+                      <div class="w-full bg-neutral-200 h-1 mt-1.5 rounded-full overflow-hidden">
+                        <div class="bg-neutral-800 h-full" style="width: 70%"></div>
+                      </div>
+                    </div>
+                    <div class="p-2.5 bg-neutral-50 border border-neutral-200 rounded">
+                      <span class="font-sans text-[7.5px] font-bold text-neutral-400 uppercase tracking-wider block">CONDO FLOOR BASE</span>
+                      <span class="font-mono text-xs font-bold text-neutral-900 mt-0.5 block">$2,900/mo</span>
+                      <div class="w-full bg-neutral-200 h-1 mt-1.5 rounded-full overflow-hidden">
+                        <div class="bg-neutral-500 h-full" style="width: 58%"></div>
+                      </div>
+                    </div>
+                    <div class="p-2.5 bg-[#e02424]/5 border border-[#e02424]/10 rounded">
+                      <span class="font-sans text-[7.5px] font-bold text-neutral-400 uppercase tracking-wider block">HOA MOISTURE DRAG</span>
+                      <span class="font-mono text-xs font-bold text-[#e02424] mt-0.5 block">-$534/mo</span>
+                      <div class="w-full bg-[#e02424]/20 h-1 mt-1.5 rounded-full overflow-hidden">
+                        <div class="bg-[#e02424] h-full" style="width: 100%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Clean Institutional Table (Comps) -->
+                  <div class="overflow-x-auto no-scrollbar mb-4 border-t border-b border-neutral-900/10">
+                    <table class="w-full text-left border-collapse">
+                      <thead>
+                        <tr class="border-b border-neutral-950">
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500">Identified Location</th>
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500 text-right">Rent</th>
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500 text-right">Rate/SF</th>
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500 text-right">Dist.</th>
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500">Specs</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-neutral-200 text-[10px] text-neutral-600 font-sans">
+                        <tr>
+                          <td class="py-1.5 font-medium text-neutral-900">1343 Scossa Ave Apt 1</td>
+                          <td class="py-1.5 text-right font-mono font-bold text-neutral-900">$2,900</td>
+                          <td class="py-1.5 text-right font-mono text-neutral-500">$3.58</td>
+                          <td class="py-1.5 text-right text-neutral-500">0.09 mi</td>
+                          <td class="py-1.5 text-neutral-500 font-mono">2BD / 1BA — 810sf</td>
+                        </tr>
+                        <tr>
+                          <td class="py-1.5 font-medium text-neutral-900 font-sans">4494 Silva Ave</td>
+                          <td class="py-1.5 text-right font-mono font-bold text-neutral-900">$4,600</td>
+                          <td class="py-1.5 text-right font-mono text-neutral-500">$3.51</td>
+                          <td class="py-1.5 text-right text-neutral-500">0.15 mi</td>
+                          <td class="py-1.5 text-neutral-500 font-mono">3BD / 2BA — 1312sf</td>
+                        </tr>
+                        <tr>
+                          <td class="py-1.5 font-medium text-neutral-900 font-sans">4992 Corbin Ave</td>
+                          <td class="py-1.5 text-right font-mono font-bold text-neutral-900">$4,550</td>
+                          <td class="py-1.5 text-right font-mono text-neutral-500">$3.23</td>
+                          <td class="py-1.5 text-right text-neutral-500">0.21 mi</td>
+                          <td class="py-1.5 text-neutral-500 font-mono">4BD / 2BA — 1408sf</td>
+                        </tr>
+                        <tr>
+                          <td class="py-1.5 font-medium text-neutral-900 font-sans">1312 Kipling Ct</td>
+                          <td class="py-1.5 text-right font-mono font-bold text-neutral-900">$4,600</td>
+                          <td class="py-1.5 text-right font-mono text-neutral-500">$3.70</td>
+                          <td class="py-1.5 text-right text-neutral-500">0.22 mi</td>
+                          <td class="py-1.5 text-neutral-500 font-mono">3BD / 2BA — 1242sf</td>
+                        </tr>
+                        <tr>
+                          <td class="py-1.5 font-medium text-neutral-900 font-sans">5028 Trenary Way</td>
+                          <td class="py-1.5 text-right font-mono font-bold text-neutral-900">$4,200</td>
+                          <td class="py-1.5 text-right font-mono text-neutral-500">$3.41</td>
+                          <td class="py-1.5 text-right text-neutral-500">0.27 mi</td>
+                          <td class="py-1.5 text-neutral-500 font-mono">3BD / 2BA — 1232sf</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="flex items-start gap-2 bg-[#e02424]/5 border border-[#e02424]/10 p-2.5 rounded">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#e02424] mt-1 shrink-0"></span>
+                    <p class="text-[9px] text-[#e02424] leading-relaxed font-mono">
+                      VALUABLE DISCREPANCY: The local submarket RentCast index ($4.4K) is heavily distorted by 3BD and 4BD single-family layouts nearby. Ground-level 2BD/1BA condos lease consistently at $2,900/mo. Model must adjust down.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- TAB CONTENT 4: ARV MAP                     -->
+              <!-- ========================================== -->
+              <div id="panel-arv" class="dossier-tab-content flex-grow flex flex-col justify-between" style="display: none;">
+                <div>
+                  <div class="mb-4">
+                    <span class="font-sans font-extrabold text-[9px] uppercase tracking-widest text-neutral-500 border-b border-neutral-900 pb-0.5">SECTION 04 · VALUE MATRICES</span>
+                    <h4 class="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 mt-2">Capital Value & Comparable Assets</h4>
+                    <p class="text-xs text-neutral-500 mt-1 max-w-xl">
+                      Strategic value-add assessment trajectories from current state baseline to maximum cosmetic ARV potential.
+                    </p>
+                  </div>
+
+                  <!-- Two-Column Strategy/Comps layout -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-b border-neutral-900/10 py-4 my-4 text-[10px] leading-relaxed text-neutral-600">
+                    <div>
+                      <h5 class="text-[9px] font-black uppercase tracking-wider text-neutral-900 mb-2 flex items-center gap-1">
+                        <span class="w-1 h-1 rounded-full bg-[#0066cc]"></span> DIRECT BLOCK COMS (SHAWN DR)
+                      </h5>
+                      <div class="space-y-1.5 font-mono">
+                        <div class="flex justify-between border-b border-neutral-100 pb-1">
+                          <span>1314 Shawn Dr #2 (903 sf)</span>
+                          <span class="font-bold text-neutral-900">$585,000</span>
+                        </div>
+                        <div class="flex justify-between border-b border-neutral-100 pb-1">
+                          <span>1314 Shawn Dr #3 (903 sf)</span>
+                          <span class="font-bold text-neutral-400">$511,500</span>
+                        </div>
+                        <div class="flex justify-between border-b border-neutral-100 pb-1">
+                          <span>1314 Shawn Dr #4 (798 sf)</span>
+                          <span class="font-bold text-neutral-400">$488,100</span>
+                        </div>
+                        <div class="flex justify-between border-b border-neutral-100 pb-1">
+                          <span>1322 Shawn Dr #3 (903 sf)</span>
+                          <span class="font-bold text-neutral-900">$538,000</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="border-t md:border-t-0 md:border-l border-neutral-200 pt-3 md:pt-0 md:pl-4">
+                      <h5 class="text-[9px] font-black uppercase tracking-wider text-neutral-900 mb-2 flex items-center gap-1">
+                        <span class="w-1 h-1 rounded-full bg-[#00875a]"></span> ESTIMATED ARV STRATEGY FLOW
+                      </h5>
+                      <div class="space-y-3 font-sans text-[9px]">
+                        <div class="flex items-center justify-between">
+                          <span class="text-neutral-500 font-mono">1. Current Base Target</span>
+                          <span class="font-bold text-neutral-900">$470,000</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                          <span class="text-neutral-500 font-mono">2. Minor Cosmetic Refresh</span>
+                          <span class="font-bold text-[#00875a]">$540K - $565K</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                          <span class="text-neutral-500 font-mono">3. Medium Upgrade Path</span>
+                          <span class="font-bold text-[#0066cc]">$575K - $620K</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                          <span class="text-neutral-500 font-mono">4. Full Structural Gut</span>
+                          <span class="font-bold text-[#e02424]">$650K - $720K</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Visual Capital Map graphic representations -->
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4 text-center">
+                    <div class="p-2.5 bg-neutral-50 rounded border border-neutral-200">
+                      <span class="font-sans text-[7.5px] text-neutral-400 font-bold uppercase tracking-wider block">CURRENT LIST FLOOR</span>
+                      <span class="font-mono text-xs font-extrabold text-[#0066cc] mt-0.5 block">$470,000</span>
+                      <span class="text-[8px] text-neutral-400">After $30K reduction</span>
+                    </div>
+                    <div class="p-2.5 bg-neutral-50 rounded border border-neutral-200">
+                      <span class="font-sans text-[7.5px] text-neutral-400 font-bold uppercase tracking-wider block">OPTIMAL ARV PATH</span>
+                      <span class="font-mono text-xs font-extrabold text-[#00875a] mt-0.5 block">$555,000</span>
+                      <span class="text-[8px] text-neutral-400">Cosmetic non-board path</span>
+                    </div>
+                    <div class="p-2.5 bg-neutral-50 rounded border border-neutral-200">
+                      <span class="font-sans text-[7.5px] text-neutral-400 font-bold uppercase tracking-wider block">AVERAGE ZIP PRICE/SF</span>
+                      <span class="font-mono text-xs font-extrabold text-neutral-900 mt-0.5 block">$938/sf</span>
+                      <span class="text-[8px] text-neutral-400">Silicon Valley benchmark</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- TAB CONTENT 5: RISK REGISTER               -->
+              <!-- ========================================== -->
+              <div id="panel-risk" class="dossier-tab-content flex-grow flex flex-col justify-between" style="display: none;">
+                <div>
+                  <div class="mb-4">
+                    <span class="font-sans font-extrabold text-[9px] uppercase tracking-widest text-neutral-500 border-b border-neutral-900 pb-0.5">SECTION 05 · RISK REGISTRY</span>
+                    <h4 class="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 mt-2">Underwriting Risks & Walkaway Rules</h4>
+                    <p class="text-xs text-neutral-500 mt-1 max-w-xl">
+                      Tactical risk mapping outlining core threat matrices and the hard operational thresholds for termination.
+                    </p>
+                  </div>
+
+                  <!-- Mini Risk Index Table -->
+                  <div class="overflow-x-auto no-scrollbar mb-4 border-t border-b border-neutral-900/10">
+                    <table class="w-full text-left border-collapse">
+                      <thead>
+                        <tr class="border-b border-neutral-950">
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500">Identified Threat</th>
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500 text-center">Threat Level</th>
+                          <th class="py-2 text-[8px] font-black uppercase tracking-wider text-neutral-500">Primary Mitigation Path</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-neutral-200 text-[10px] text-neutral-600 font-sans">
+                        <tr>
+                          <td class="py-2 font-medium text-neutral-900">HOA Special Assessment & Reserves</td>
+                          <td class="py-2 text-center">
+                            <span class="font-mono text-[8px] font-bold text-[#e02424] bg-[#e02424]/5 px-1.5 py-0.5 rounded border border-[#e02424]/15">CRITICAL IMPACT</span>
+                          </td>
+                          <td class="py-2 text-neutral-500">Mandatory reserve study audit prior to escrow clearance.</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 font-medium text-neutral-900">Estimated Rent Overstatement</td>
+                          <td class="py-2 text-center">
+                            <span class="font-mono text-[8px] font-bold text-[#e02424] bg-[#e02424]/5 px-1.5 py-0.5 rounded border border-[#e02424]/15">CRITICAL IMPACT</span>
+                          </td>
+                          <td class="py-2 text-neutral-500">Scale down calculations to $2,900/mo condo floor.</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 font-medium text-neutral-900">Submarket Rate Sensitivity</td>
+                          <td class="py-2 text-center">
+                            <span class="font-mono text-[8px] font-bold text-[#0066cc] bg-[#0066cc]/5 px-1.5 py-0.5 rounded border border-[#0066cc]/15">MODERATE IMPACT</span>
+                          </td>
+                          <td class="py-2 text-neutral-500">Stress-test operations at 7.5% loan terms.</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 font-medium text-neutral-900">Pre-1978 Plumbing & System Wear</td>
+                          <td class="py-2 text-center">
+                            <span class="font-mono text-[8px] font-bold text-[#0066cc] bg-[#0066cc]/5 px-1.5 py-0.5 rounded border border-[#0066cc]/15">MODERATE IMPACT</span>
+                          </td>
+                          <td class="py-2 text-neutral-500">Deploy thermal plumbing scopes on inspection day.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Walkaway Guidelines -->
+                  <div class="p-3 bg-red-50 border border-[#e02424]/20 rounded text-[9.5px] leading-relaxed text-neutral-700">
+                    <span class="font-mono font-bold uppercase text-[#e02424] block tracking-wide mb-1 flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[#e02424]"></span> NON-NEGOTIABLE WALKAWAY TRIGGERS
+                    </span>
+                    Terminate immediately if: (1) HOA reserves score below the 60% mark; (2) Escrow documents indicate pending litigation; (3) Intended physical systems replacements require direct board consensus; or (4) Physical plant system structural damage exceeds $25,000 on inspection.
+                  </div>
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- TAB CONTENT 6: NEIGHBORHOOD INTEL         -->
+              <!-- ========================================== -->
+              <div id="panel-neighborhood" class="dossier-tab-content flex-grow flex flex-col justify-between" style="display: none;">
+                <div>
+                  <div class="mb-4">
+                    <span class="font-sans font-extrabold text-[9px] uppercase tracking-widest text-neutral-500 border-b border-neutral-900 pb-0.5">SECTION 06 · GEOGRAPHIC VITAL SIGNS</span>
+                    <h4 class="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 mt-2">Cambrian Park Submarket Metrics</h4>
+                    <p class="text-xs text-neutral-500 mt-1 max-w-xl">
+                      Detailed localized geographic variables including walkability limits, safety indices, and public school ratings.
+                    </p>
+                  </div>
+
+                  <!-- Graphic Indicators for Walkability, Crime, Schools -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 border-t border-b border-neutral-900/10 py-4 text-[10px] text-neutral-600">
+
+                    <!-- Accessibility / Mobility Indices -->
+                    <div class="space-y-4">
+                      <h5 class="text-[9px] font-black uppercase tracking-wider text-neutral-900 mb-2">Accessibility Profiles</h5>
+
+                      <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                          <span>Walkability Index</span>
+                          <span class="font-mono font-bold text-neutral-900">58% <span class="text-neutral-400 text-[8px] font-normal">/ Somewhat Walkable</span></span>
+                        </div>
+                        <div class="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
+                          <div class="bg-neutral-800 h-full" style="width: 58%"></div>
+                        </div>
+                      </div>
+
+                      <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                          <span>Transit Capability</span>
+                          <span class="font-mono font-bold text-neutral-900">28% <span class="text-neutral-400 text-[8px] font-normal">/ Minimal Options</span></span>
+                        </div>
+                        <div class="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
+                          <div class="bg-neutral-800 h-full" style="width: 28%"></div>
+                        </div>
+                      </div>
+
+                      <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                          <span>Bicycle Compatibility</span>
+                          <span class="font-mono font-bold text-neutral-900">64% <span class="text-neutral-400 text-[8px] font-normal">/ Bikeable</span></span>
+                        </div>
+                        <div class="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
+                          <div class="bg-neutral-800 h-full" style="width: 64%"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Schools Profiles -->
+                    <div class="space-y-4 border-t md:border-t-0 md:border-l border-neutral-200 pt-3 md:pt-0 md:pl-6">
+                      <h5 class="text-[9px] font-black uppercase tracking-wider text-neutral-900 mb-2">School Classifications (San Jose Unified)</h5>
+
+                      <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                          <span>Almaden Elementary</span>
+                          <span class="font-mono font-bold text-neutral-900">05 <span class="text-neutral-400 text-[8px] font-normal">/ 10 Rating</span></span>
+                        </div>
+                        <div class="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
+                          <div class="bg-neutral-500 h-full" style="width: 50%"></div>
+                        </div>
+                      </div>
+
+                      <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                          <span>John Muir Middle</span>
+                          <span class="font-mono font-bold text-neutral-900">06 <span class="text-neutral-400 text-[8px] font-normal">/ 10 Rating</span></span>
+                        </div>
+                        <div class="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
+                          <div class="bg-neutral-500 h-full" style="width: 60%"></div>
+                        </div>
+                      </div>
+
+                      <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                          <span>Pioneer High</span>
+                          <span class="font-mono font-bold text-neutral-900">08 <span class="text-neutral-400 text-[8px] font-normal">/ 10 Rating</span></span>
+                        </div>
+                        <div class="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
+                          <div class="bg-[#00875a] h-full" style="width: 80%"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Additional details -->
+                  <div class="grid grid-cols-2 gap-4 text-[9.5px] text-neutral-500 leading-relaxed">
+                    <div>
+                      <span class="font-bold text-neutral-700 uppercase block mb-0.5">LOCAL CRIME RATING</span>
+                      Violent metrics index is extremely low; property theft indexes as moderate. Typical profile for high-density Silicon Valley commuter corridors.
+                    </div>
+                    <div>
+                      <span class="font-bold text-neutral-700 uppercase block mb-0.5">APPRECIATION INDEX</span>
+                      Stable annual expansion metrics of +3.2% year-over-year point to persistent long-term capital preservation in Cambrian Park.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- TAB CONTENT 7: SOURCE APPENDIX             -->
+              <!-- ========================================== -->
+              <div id="panel-appendix" class="dossier-tab-content flex-grow flex flex-col justify-between" style="display: none;">
+                <div>
+                  <div class="mb-4">
+                    <span class="font-sans font-extrabold text-[9px] uppercase tracking-widest text-neutral-500 border-b border-neutral-900 pb-0.5">SECTION 07 · DUE DILIGENCE</span>
+                    <h4 class="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 mt-2">Diligence Appendix & Sources</h4>
+                    <p class="text-xs text-neutral-500 mt-1 max-w-xl">
+                      Fully cited municipal references, listing IDs, and foundational registries powering the underwriting report.
+                    </p>
+                  </div>
+
+                  <!-- Two Columns: Checklist and Tags -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-b border-neutral-900/10 py-4 my-4">
+
+                    <!-- Checklist -->
+                    <div>
+                      <h5 class="text-[9px] font-black uppercase tracking-wider text-neutral-900 mb-2">Pre-Closing Verifications</h5>
+                      <div class="space-y-1.5 text-[9.5px] text-neutral-600">
+                        <label class="flex items-start gap-2 cursor-pointer">
+                          <input type="checkbox" checked class="mt-0.5 rounded border-neutral-300 text-[#0066cc] focus:ring-[#0066cc]">
+                          <span>Retrieve complete HOA litigation files from listing broker.</span>
+                        </label>
+                        <label class="flex items-start gap-2 cursor-pointer">
+                          <input type="checkbox" checked class="mt-0.5 rounded border-neutral-300 text-[#0066cc] focus:ring-[#0066cc]">
+                          <span>Verify individual gas/water meter status and sub-meters.</span>
+                        </label>
+                        <label class="flex items-start gap-2 cursor-pointer">
+                          <input type="checkbox" class="mt-0.5 rounded border-neutral-300 text-[#0066cc] focus:ring-[#0066cc]">
+                          <span>Submit local condo leasing cap disclosure request.</span>
+                        </label>
+                        <label class="flex items-start gap-2 cursor-pointer">
+                          <input type="checkbox" class="mt-0.5 rounded border-neutral-300 text-[#0066cc] focus:ring-[#0066cc]">
+                          <span>Deploy physical sewer line video-scope team.</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- Tags / Citation Data -->
+                    <div class="border-t md:border-t-0 md:border-l border-neutral-200 pt-3 md:pt-0 md:pl-4">
+                      <h5 class="text-[9px] font-black uppercase tracking-wider text-neutral-900 mb-2">Core Citation Mapping</h5>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span class="font-mono text-[8px] bg-neutral-100 px-2 py-0.5 text-neutral-700 rounded border border-neutral-200">MLS REGISTRY: ML82047088</span>
+                        <span class="font-mono text-[8px] bg-neutral-100 px-2 py-0.5 text-neutral-700 rounded border border-neutral-200">RENTCAST API-CORE-V2</span>
+                        <span class="font-mono text-[8px] bg-neutral-100 px-2 py-0.5 text-neutral-700 rounded border border-neutral-200">GEOPORTAL WALKABILITY IDX</span>
+                        <span class="font-mono text-[8px] bg-[#00875a]/10 px-2 py-0.5 text-[#00875a] rounded border border-[#00875a]/10">GREATSCHOOLS DIRECT REGISTRY</span>
+                        <span class="font-mono text-[8px] bg-[#0066cc]/10 px-2 py-0.5 text-[#0066cc] rounded border border-[#0066cc]/10">MUNICIPAL DEED ARCHIVE APN 569-43-077</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <p class="text-[9px] text-neutral-400 font-mono italic leading-relaxed">
+                    * The citations mapped above represent live sources queried automatically by the RSARBOS analytical model engine to compile structural briefings instantly.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Document Footer -->
+              <div class="border-t border-neutral-200 pt-3 flex justify-between items-center mt-6">
+                <span class="font-sans text-[8px] font-semibold text-neutral-400 uppercase tracking-widest">SAN JOSE, CA · SYSTEMATIC UNDERWRITING PORTFOLIO DECK</span>
+                <span class="font-mono text-[8px] text-neutral-400">RSARBOS ACQUISITIONS DEEP-CORE VERIFIED</span>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- Dynamic Cash-Flow Underwriting Strip -->
+          <div class="bg-neutral-900/60 p-6 rounded-xl border border-neutral-800/80 shadow-xl relative overflow-hidden backdrop-blur-md">
+            <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#00875a]/30 to-transparent"></div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 pb-4 border-b border-neutral-800/60">
+              <div>
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00875a]"></span> Active Dossier Underwriting Module
+                </h4>
+                <p class="text-neutral-400 text-xs mt-0.5">Test real-world scenarios on the fly. Watch yield indicators recalculate automatically.</p>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="setPreviewRent(2900)" class="px-2.5 py-1 text-[10px] font-mono border border-[#e02424]/30 bg-[#e02424]/5 text-[#e02424] hover:bg-[#e02424]/15 rounded transition">Conservative ($2.9K)</button>
+                <button onclick="setPreviewRent(3500)" class="px-2.5 py-1 text-[10px] font-mono border border-[#0066cc]/30 bg-[#0066cc]/5 text-[#0066cc] hover:bg-[#0066cc]/15 rounded transition">Base Case ($3.5K)</button>
+                <button onclick="setPreviewRent(4410)" class="px-2.5 py-1 text-[10px] font-mono border border-[#00875a]/30 bg-[#00875a]/5 text-[#00875a] hover:bg-[#00875a]/15 rounded transition">RentCast ($4.41K)</button>
+              </div>
+            </div>
+
+            <!-- Inputs / Slider Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+
+              <!-- Rent Slider -->
+              <div class="md:col-span-4 flex flex-col gap-2">
+                <div class="flex justify-between items-baseline text-xs font-mono text-neutral-400">
+                  <span class="uppercase tracking-wider">Estimated Monthly Lease</span>
+                  <span class="text-white font-bold" id="slider-rent-label">$3,500</span>
+                </div>
+                <input type="range" id="strip-rent-slider" min="2500" max="5000" step="50" value="3500" oninput="runRecalc()" class="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#00875a]">
+              </div>
+
+              <!-- Live Yield Indicators -->
+              <div class="md:col-span-8 grid grid-cols-3 gap-2 text-center">
+                <div class="p-2 bg-neutral-950/40 rounded-lg border border-neutral-800/60">
+                  <span class="font-mono text-[8px] uppercase tracking-widest text-neutral-500 block">Total Expenses</span>
+                  <span class="font-mono text-xs md:text-sm text-neutral-300 font-bold mt-0.5 block" id="strip-exp-val">$3,727</span>
+                </div>
+                <div class="p-2 bg-neutral-950/40 rounded-lg border border-neutral-800/60">
+                  <span class="font-mono text-[8px] uppercase tracking-widest text-neutral-500 block">Net Cash Flow</span>
+                  <span class="font-mono text-xs md:text-sm text-[#e02424] font-bold mt-0.5 block" id="strip-cash-val">-$227 /mo</span>
+                </div>
+                <div class="p-2 bg-neutral-950/40 rounded-lg border border-neutral-800/60" id="strip-coc-card">
+                  <span class="font-mono text-[8px] uppercase tracking-widest text-neutral-500 block">Cash-on-Cash Yield</span>
+                  <span class="font-mono text-xs md:text-sm text-[#e02424] font-bold mt-0.5 block" id="strip-coc-val">-2.9%</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // Tab switching architecture
+    function switchTab(tabId) {
+      // 1. Hide all panels
+      const panels = document.querySelectorAll('.dossier-tab-content');
+      panels.forEach(panel => panel.style.display = 'none');
+
+      // 2. De-select all tab buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.setAttribute('aria-selected', 'false');
+        btn.className = "tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-transparent border-transparent text-neutral-400 hover:text-white hover:border-neutral-800 hover:bg-neutral-900/50";
+        // Reset subtext color
+        const label = btn.querySelector('span:last-child');
+        if (label) label.className = "text-[10px] text-neutral-500";
+        // Reset chevron color
+        const chevron = btn.querySelector('svg');
+        if (chevron) chevron.setAttribute('class', "w-4 h-4 text-neutral-600 shrink-0");
+      });
+
+      // 3. Show active panel and set button focus
+      const activePanel = document.getElementById('panel-' + tabId);
+      if (activePanel) {
+        activePanel.style.display = 'flex';
+      }
+
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.setAttribute('aria-selected', 'true');
+        activeBtn.className = "tab-btn w-full flex items-center justify-between p-3.5 rounded-lg text-left border transition-all duration-300 bg-[#0066cc]/5 border-[#0066cc]/30 text-white";
+        // Set highlighted subtext color
+        const label = activeBtn.querySelector('span:last-child');
+        if (label) label.className = "text-[10px] text-neutral-400";
+        // Set highlighted chevron color
+        const chevron = activeBtn.querySelector('svg');
+        if (chevron) chevron.setAttribute('class', "w-4 h-4 text-[#0066cc] shrink-0");
+      }
+
+      // 4. Update the inner document's dynamic sub-header label
+      const labels = {
+        'registry': 'PAGE 00 // COVER REGISTRY',
+        'verdict': 'PAGE 02 // EXECUTIVE VERDICT',
+        'rent': 'PAGE 04 // RENTAL THESIS',
+        'arv': 'PAGE 05 // ARV VALUE SCENARIOS',
+        'risk': 'PAGE 06 // RISK REGISTER',
+        'neighborhood': 'PAGE 07 // NEIGHBORHOOD INTEL',
+        'appendix': 'PAGE 09 // PRE-CLOSING APPENDIX'
+      };
+
+      const docLabel = document.getElementById('doc-id-label');
+      if (docLabel && labels[tabId]) {
+        docLabel.textContent = labels[tabId];
+      }
+
+      // 5. Trigger subtle, high-end scanline sweep animation on page change
+      const scanner = document.getElementById('shimmer-scanner');
+      if (scanner) {
+        scanner.classList.remove('scan-active');
+        void scanner.offsetWidth; // Force DOM reflow to re-trigger animation
+        scanner.classList.add('scan-active');
+      }
+    }
+
+    // Interactive Underwriting Recalculator Script
+    function runRecalc() {
+      const rentSlider = document.getElementById('strip-rent-slider');
+      const rentVal = parseFloat(rentSlider.value);
+
+      // Update label
+      document.getElementById('slider-rent-label').textContent = '$' + rentVal.toLocaleString();
+
+      // Fixed real-world parameters from the June 2026 MLS status details
+      const purchasePrice = 470000; // Updated June 2026 list price baseline
+      const downPct = 20; // 20% Down
+      const downPayment = purchasePrice * (downPct / 100); // $94K
+      const interestRate = 6.75;
+      const hoaFee = 534;
+      const taxRate = 1.15;
+      const insurance = 120;
+      const vacancyMaintPct = 10; // 10% vacancy/maintenance padding
+
+      const loanAmount = purchasePrice - downPayment; // $376K
+      const r = interestRate / 100 / 12;
+      const n = 360;
+
+      // Calculate Mortgage P&I
+      const pmt = loanAmount > 0 ? (loanAmount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 0;
+
+      // Tax, Vacancy and Operation Ex Outlays
+      const taxMonthly = (purchasePrice * (taxRate / 100)) / 12;
+      const vacancyMonthly = rentVal * (vacancyMaintPct / 100);
+      const totalOpEx = pmt + hoaFee + taxMonthly + insurance + vacancyMonthly;
+
+      // Calculate Cash-flow & CoC metrics
+      const monthlyCashFlow = rentVal - totalOpEx;
+      const annualCashFlow = monthlyCashFlow * 12;
+      const cocYield = downPayment > 0 ? (annualCashFlow / downPayment) * 100 : 0;
+
+      // Apply output changes cleanly
+      const expValEl = document.getElementById('strip-exp-val');
+      const cashValEl = document.getElementById('strip-cash-val');
+      const cocValEl = document.getElementById('strip-coc-val');
+      const cocCardEl = document.getElementById('strip-coc-card');
+
+      if (expValEl) expValEl.textContent = '$' + Math.round(totalOpEx).toLocaleString();
+
+      if (cashValEl) {
+        cashValEl.textContent = (monthlyCashFlow >= 0 ? '+$' : '-$') + Math.abs(Math.round(monthlyCashFlow)).toLocaleString() + ' /mo';
+        cashValEl.className = "font-mono text-xs md:text-sm font-bold mt-0.5 block " + (monthlyCashFlow >= 0 ? "text-[#00875a]" : "text-[#e02424]");
+      }
+
+      if (cocValEl) {
+        cocValEl.textContent = (cocYield >= 0 ? '+' : '') + cocYield.toFixed(1) + '%';
+        cocValEl.className = "font-mono text-xs md:text-sm font-bold mt-0.5 block " + (cocYield >= 0 ? "text-[#00875a]" : "text-[#e02424]");
+      }
+    }
+
+    // Shortcut quick preset triggers from the pricing strip
+    function setPreviewRent(val) {
+      const slider = document.getElementById('strip-rent-slider');
+      if (slider) {
+        slider.value = val;
+        runRecalc();
+      }
+    }
+
+    // Initialize layout and calculator on startup
+    function initializeDossier() {
+      runRecalc();
+      // Initialize premium document scanline pulse
+      const scanner = document.getElementById('shimmer-scanner');
+      if (scanner) {
+        scanner.classList.add('scan-active');
+      }
+      initializeDossier();
+    }
+  </script>
+</body>
+</html>
