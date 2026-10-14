@@ -1038,14 +1038,13 @@
     }
 
     // Initialize layout and calculator on startup
-    function initializeDossier() {
+    window.onload = function() {
       runRecalc();
       // Initialize premium document scanline pulse
       const scanner = document.getElementById('shimmer-scanner');
       if (scanner) {
         scanner.classList.add('scan-active');
       }
-      initializeDossier();
     }
   </script>
 </body>
