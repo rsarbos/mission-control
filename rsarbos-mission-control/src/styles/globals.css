@@ -2037,7 +2037,8 @@ code {
 
 .desktop-menu .nav-contact,
 .desktop-menu .nav-sample,
-.desktop-menu .nav-about {
+.desktop-menu .nav-about,
+.desktop-menu .nav-service {
   color: white;
   border: 1px solid rgba(199, 204, 214, 0.16);
   border-radius: 999px;

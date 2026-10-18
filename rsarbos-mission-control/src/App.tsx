@@ -8,6 +8,9 @@ import DossierSuccessPage from './components/DossierSuccessPage'
 import ProofCarousel from './components/ProofCarousel'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
+import ApexAssetRecoveryPage from './components/ApexAssetRecoveryPage'
+import SurplusFundsIntelligencePage from './components/SurplusFundsIntelligencePage'
+import SurplusMarketplacePage from './components/SurplusMarketplacePage'
 import EditorialSystemPrototype from './components/prototypes/editorial-system'
 import { DecisionManifestHero } from './components/about/decision-manifest'
 import rsarbosLogo from './assets/logo.png'
@@ -604,6 +607,7 @@ function PublicWebsite() {
           </a>
           <div className="desktop-menu">
             <a className="nav-about" href="/about-us">ABOUT US</a>
+            <a className="nav-service" href="/apexassetrecovery">ASSET RECOVERY</a>
             <a className="nav-cta" href="#free-dossier">FREE DOSSIER</a>
             <a className="nav-sample" href="#sample">VIEW SAMPLE DOSSIER</a>
             <a className="nav-contact" href="/contact">CONTACT</a>
@@ -617,6 +621,7 @@ function PublicWebsite() {
         {isMenuOpen && (
           <div className="mobile-menu">
             <a href="/about-us">About Us</a>
+            <a href="/apexassetrecovery">Asset Recovery</a>
             <a href="#free-dossier" onClick={() => setIsMenuOpen(false)}>Free Dossier</a>
             <a href="#sample" onClick={() => setIsMenuOpen(false)}>View Sample Dossier</a>
             <a href="/contact">Contact</a>
@@ -741,6 +746,7 @@ function PublicWebsite() {
             <p>© 2026 RSARBOS Next-Gen Business Technology. All rights reserved.</p>
             <div className="footer-links">
               <a href="/about-us">About Us</a>
+              <a href="/apexassetrecovery">Asset Recovery</a>
               <a href="/terms">Terms</a>
               <a href="/privacy">Privacy</a>
               <a href="/refund-policy">Refunds</a>
@@ -766,6 +772,7 @@ function AboutUsPage() {
           </a>
           <div className="desktop-menu">
             <a className="nav-sample" href="/">HOME</a>
+            <a className="nav-service" href="/apexassetrecovery">ASSET RECOVERY</a>
             <a className="nav-cta" href="#decision-artifact">DECISION ARTIFACT</a>
             <a className="nav-contact" href="/contact">CONTACT</a>
           </div>
@@ -1852,6 +1859,18 @@ export default function App() {
 
   if (path === '/contact') {
     return <ContactPage />
+  }
+
+  if (path === '/apexassetrecovery') {
+    return <ApexAssetRecoveryPage />
+  }
+
+  if (path === '/surplus-intelligence' || path === '/surplus') {
+    return <SurplusFundsIntelligencePage />
+  }
+
+  if (path === '/surplus-marketplace') {
+    return <SurplusMarketplacePage />
   }
 
   if (path === '/about-us' || path === '/about') {
