@@ -8,8 +8,6 @@ import DossierSuccessPage from './components/DossierSuccessPage'
 import ProofCarousel from './components/ProofCarousel'
 import MissionControlRevenueOS from './components/MissionControlRevenueOS'
 import SampleDossierPage from './components/SampleDossierPage'
-import ApexAssetRecoveryPage from './components/ApexAssetRecoveryPage'
-import SurplusFundsIntelligencePage from './components/SurplusFundsIntelligencePage'
 import SurplusMarketplacePage from './components/SurplusMarketplacePage'
 import EditorialSystemPrototype from './components/prototypes/editorial-system'
 import { DecisionManifestHero } from './components/about/decision-manifest'
@@ -1861,15 +1859,12 @@ export default function App() {
     return <ContactPage />
   }
 
-  if (path === '/apexassetrecovery') {
-    return <ApexAssetRecoveryPage />
-  }
-
-  if (path === '/surplus-intelligence' || path === '/surplus') {
-    return <SurplusFundsIntelligencePage />
-  }
-
-  if (path === '/surplus-marketplace') {
+  if (
+    path === '/apexassetrecovery'
+    || path === '/surplus-intelligence'
+    || path === '/surplus'
+    || path === '/surplus-marketplace'
+  ) {
     return <SurplusMarketplacePage />
   }
 

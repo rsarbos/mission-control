@@ -1,114 +1,72 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import rsarbosLogo from '../assets/logo.png'
 import '../styles/surplus-marketplace.css'
 
-const MARKETPLACE_ROWS = [
-  {
-    id: 'ME-7M7',
-    owner: 'Garah Johnson',
-    county: 'Bexar',
-    state: 'TX',
-    amount: '$31,280.64',
-    source: 'Skip trace active',
-    status: 'Owner match',
-    review: 'Source reviewed',
-    eligibility: 'High',
-  },
-  {
-    id: 'P30-TEER-PO2',
-    owner: 'Dead Claim — Estate of Miller',
-    county: 'Riverside',
-    state: 'CA',
-    amount: '$89,450.00',
-    source: 'Double verified',
-    status: 'Estate review',
-    review: 'Estate review needed',
-    eligibility: 'Medium',
-  },
-  {
-    id: 'QM-5C42',
-    owner: 'Commercial Strip Parcel',
-    county: 'Orange',
-    state: 'FL',
-    amount: '$542,190.20',
-    source: 'Court filing ready',
-    status: 'Claim verified',
-    review: 'Claim documentation ready',
-    eligibility: 'High',
-  },
-  {
-    id: 'P18-D49',
-    owner: 'Residential Estate of Harris',
-    county: 'Lubbock',
-    state: 'TX',
-    amount: '$114,800.00',
-    source: 'Need claimant trace',
-    status: 'Awaiting proof',
-    review: 'Claimant trace needed',
-    eligibility: 'Medium',
-  },
-  {
-    id: 'P02-5F4',
-    owner: 'Robert McVay Trust',
-    county: 'Suffolk',
-    state: 'NY',
-    amount: '$42,500.00',
-    source: 'Title verified',
-    status: 'Active inquiry',
-    review: 'Title reviewed',
-    eligibility: 'Medium',
-  },
-  {
-    id: 'A3-9T28',
-    owner: 'Automotive Recovery Routing',
-    county: 'King',
-    state: 'WA',
-    amount: '$18,700.00',
-    source: 'Webhook ingest',
-    status: 'Data minted',
-    review: 'Source review needed',
-    eligibility: 'High',
-  },
+type SurplusListing = {
+  id: string
+  title: string
+  county: string
+  state: string
+  propertyType: string
+  area: string
+  reportedSurplus: string
+  minimumSurplus: number
+  price: number
+  status: 'discovered'
+}
+
+const LISTINGS: SurplusListing[] = [
+  { id: 'PASCO-001', title: 'High-Value Individual Owner Lead', county: 'Pasco County', state: 'FL', propertyType: 'Single-family home', area: 'Port Richey', reportedSurplus: '$100,000+', minimumSurplus: 100000, price: 10940, status: 'discovered' },
+  { id: 'PASCO-002', title: 'Named Individual Owner Lead', county: 'Pasco County', state: 'FL', propertyType: 'Mobile home', area: 'Hudson', reportedSurplus: '$70,000–$80,000', minimumSurplus: 70000, price: 7060, status: 'discovered' },
+  { id: 'PASCO-003', title: 'Estate Lead — Named Representative', county: 'Pasco County', state: 'FL', propertyType: 'Single-family home', area: 'Zephyrhills', reportedSurplus: '$25,000–$30,000', minimumSurplus: 25000, price: 2890, status: 'discovered' },
+  { id: 'PASCO-004', title: 'Vacant Land — Named Owner', county: 'Pasco County', state: 'FL', propertyType: 'Vacant land', area: 'Moon Lake', reportedSurplus: '$25,000–$30,000', minimumSurplus: 25000, price: 2610, status: 'discovered' },
+  { id: 'PASCO-005', title: 'Joint Ownership Lead', county: 'Pasco County', state: 'FL', propertyType: 'Residential', area: 'New Port Richey', reportedSurplus: '$20,000–$25,000', minimumSurplus: 20000, price: 2380, status: 'discovered' },
+  { id: 'PASCO-006', title: 'Named Individual Owner Lead', county: 'Pasco County', state: 'FL', propertyType: 'Residential', area: 'Pasco County', reportedSurplus: '$15,000–$20,000', minimumSurplus: 15000, price: 1760, status: 'discovered' },
+  { id: 'PASCO-007', title: 'Named Individual Owner Lead', county: 'Pasco County', state: 'FL', propertyType: 'Residential', area: 'Hudson', reportedSurplus: '$15,000–$18,000', minimumSurplus: 15000, price: 1680, status: 'discovered' },
+  { id: 'PASCO-008', title: 'Named Individual Owner Lead', county: 'Pasco County', state: 'FL', propertyType: 'Residential', area: 'Port Richey', reportedSurplus: '$15,000–$18,000', minimumSurplus: 15000, price: 1660, status: 'discovered' },
+  { id: 'PASCO-009', title: 'Entity / Association Lead', county: 'Pasco County', state: 'FL', propertyType: 'Condominium', area: 'New Port Richey', reportedSurplus: '$12,000–$15,000', minimumSurplus: 12000, price: 1410, status: 'discovered' },
+  { id: 'PASCO-010', title: 'Named Individual Owner Lead', county: 'Pasco County', state: 'FL', propertyType: 'Vacant land', area: 'Moon Lake', reportedSurplus: '$12,000–$15,000', minimumSurplus: 12000, price: 1315, status: 'discovered' },
 ]
 
-const KEY_STATS = [
-  { label: 'Sample records', value: '06', tagline: 'demo opportunity set' },
-  { label: 'Jurisdictions', value: '05', tagline: 'sample states represented' },
-  { label: 'Review statuses', value: '06', tagline: 'record-level review notes' },
-  { label: 'Data status', value: 'Demo', tagline: 'not a live opportunity feed' },
-]
+const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+const AMOUNT_FILTERS = [
+  { value: 'all', label: 'Any reported amount', matches: () => true },
+  { value: '100000', label: '$100,000+', matches: (amount: number) => amount >= 100000 },
+  { value: '50000', label: '$50,000–$99,999', matches: (amount: number) => amount >= 50000 && amount < 100000 },
+  { value: '20000', label: '$20,000–$49,999', matches: (amount: number) => amount >= 20000 && amount < 50000 },
+  { value: '10000', label: '$10,000–$19,999', matches: (amount: number) => amount >= 10000 && amount < 20000 },
+] as const
 
 export default function SurplusMarketplacePage() {
   const [search, setSearch] = useState('')
+  const [county, setCounty] = useState('all')
+  const [state, setState] = useState('all')
+  const [amountFilter, setAmountFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('all')
-  const [jurisdictionFilter, setJurisdictionFilter] = useState('all')
-  const [priorityFilter, setPriorityFilter] = useState('all')
 
-  const filteredRows = useMemo(() => {
-    const query = search.trim().toLowerCase()
+  const query = search.trim().toLowerCase()
+  const selectedAmount = AMOUNT_FILTERS.find((filter) => filter.value === amountFilter) ?? AMOUNT_FILTERS[0]
+  const filteredListings = LISTINGS.filter((listing) => {
+    const matchesQuery = !query || [
+      listing.id,
+      listing.title,
+      listing.propertyType,
+      listing.area,
+    ].some((value) => value.toLowerCase().includes(query))
+    const matchesCounty = county === 'all' || listing.county === county
+    const matchesState = state === 'all' || listing.state === state
+    const matchesStatus = statusFilter === 'all' || listing.status === statusFilter
 
-    return MARKETPLACE_ROWS.filter((item) => {
-      const matchesSearch = !query || [
-        item.id,
-        item.owner,
-        item.county,
-        item.state,
-        item.amount,
-        item.source,
-        item.status,
-        item.review,
-      ].some((value) => value.toLowerCase().includes(query))
-      const matchesStatus = statusFilter === 'all' || item.status === statusFilter
-      const matchesJurisdiction = jurisdictionFilter === 'all' || item.state === jurisdictionFilter
-      const matchesPriority = priorityFilter === 'all' || item.eligibility.toLowerCase() === priorityFilter
-
-      return matchesSearch && matchesStatus && matchesJurisdiction && matchesPriority
-    })
-  }, [jurisdictionFilter, priorityFilter, search, statusFilter])
+    return matchesQuery
+      && matchesCounty
+      && matchesState
+      && matchesStatus
+      && selectedAmount.matches(listing.minimumSurplus)
+  })
 
   useEffect(() => {
     const previousTitle = document.title
-    document.title = 'RSARBOS | Marketplace'
+    document.title = 'RSARBOS | Surplus Funds Dossier Marketplace'
 
     return () => {
       document.title = previousTitle
@@ -116,185 +74,200 @@ export default function SurplusMarketplacePage() {
   }, [])
 
   return (
-    <div className="marketplace-subpage public-site">
+    <div className="public-site surplus-marketplace-page">
       <div className="ambient-glow" aria-hidden="true" />
 
-      <header className="marketplace-header">
-        <nav className="marketplace-nav" aria-label="Marketplace primary navigation">
-          <div className="marketplace-brand" aria-label="RSARBOS marketplace brand">
-            <img src={rsarbosLogo} alt="RSARBOS" className="marketplace-logo" />
-            <div className="marketplace-brand-copy">
-              <span className="marketplace-brand-row">RS ARBOS</span>
-              <span className="marketplace-brand-subtitle">// INTELLIGENCE</span>
-            </div>
-          </div>
-
-          <div className="marketplace-menu">
-            <a href="#opportunities">Opportunities</a>
-            <a href="#data-engine">Data Engine</a>
-            <a href="#tiered-paywall">Access tiers</a>
-            <a href="#documentation">Documentation</a>
-            <a href="#api">API &amp; Webhooks</a>
-          </div>
-
-          <div className="marketplace-actions">
-            <a href="/contact" className="marketplace-action muted">Request API access</a>
-            <a href="/contact" className="marketplace-action accent">Contact enterprise</a>
+      <header className="surplus-marketplace-header">
+        <nav className="surplus-marketplace-nav" aria-label="Primary navigation">
+          <a className="surplus-marketplace-brand" href="/" aria-label="RSARBOS home">
+            <img src={rsarbosLogo} alt="RSARBOS" />
+          </a>
+          <div className="surplus-marketplace-links">
+            <a href="#marketplace">Marketplace</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="/contact">Contact</a>
           </div>
         </nav>
       </header>
 
-      <main className="marketplace-shell">
-        <div className="marketplace-demo-notice" role="note">
-          <strong>Sample marketplace</strong>
-          <span>Illustrative records only. This is not a live or verified opportunity feed.</span>
-        </div>
-
-        <section className="marketplace-topline">
-          <div className="marketplace-pill-group">
-            <a className="marketplace-pill active" href="#opportunities">Marketplace</a>
-            <a className="marketplace-pill" href="#data-engine">Data Engine</a>
-            <a className="marketplace-pill" href="#tiered-paywall">Access tiers</a>
-            <a className="marketplace-pill" href="#documentation">Documentation</a>
-          </div>
-
-          <div className="marketplace-top-actions">
-            <a href="/contact">Request API access</a>
-            <a href="/contact" className="top-accent">Contact enterprise</a>
+      <main className="surplus-marketplace-main">
+        <section className="surplus-marketplace-hero">
+          <p className="surplus-marketplace-eyebrow">RSARBOS · SURPLUS FUNDS RESEARCH</p>
+          <h1>Surplus Funds Intelligence &amp; Dossier Marketplace</h1>
+          <p className="surplus-marketplace-lede">
+            Research-backed surplus-fund opportunities, organized into traceable dossiers for professional review.
+          </p>
+          <div className="surplus-marketplace-actions">
+            <a className="surplus-marketplace-primary" href="#marketplace">Explore Available Dossiers</a>
+            <a className="surplus-marketplace-secondary" href="#how-it-works">How It Works</a>
           </div>
         </section>
 
-        <section className="marketplace-metrics" aria-label="Key metrics">
-          {KEY_STATS.map((stat) => (
-            <article key={stat.label} className="marketplace-stat-card">
-              <span className="marketplace-stat-label">{stat.label}</span>
-              <strong>{stat.value}</strong>
-              <small>{stat.tagline}</small>
-            </article>
-          ))}
-        </section>
-
-        <section className="marketplace-filter-bar" id="data-engine" aria-label="Opportunity search and filters">
-          <div className="marketplace-filter-row">
-            <label className="marketplace-search-label" htmlFor="marketplace-search">Search sample records</label>
-            <input
-              id="marketplace-search"
-              className="marketplace-search-box"
-              type="search"
-              placeholder="Owner, record ID, state, county, or source"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-            />
+        <section
+          className="surplus-marketplace-inventory"
+          id="marketplace"
+          aria-labelledby="surplus-marketplace-heading"
+        >
+          <div className="surplus-marketplace-section-heading">
+            <div>
+              <p className="surplus-marketplace-eyebrow">PASCO COUNTY · FLORIDA</p>
+              <h2 id="surplus-marketplace-heading">Available dossier leads</h2>
+              <p className="surplus-marketplace-subheading">
+                Seller-supplied estimates and access prices. Case references, source files, and record dates were not supplied for public display.
+              </p>
+            </div>
+            <span className="surplus-marketplace-count" aria-live="polite">
+              {filteredListings.length} of {LISTINGS.length} listings
+            </span>
           </div>
-          <div className="marketplace-filter-actions">
+
+          <form className="surplus-marketplace-filters" onSubmit={(event) => event.preventDefault()}>
+            <label className="surplus-marketplace-search">
+              <span>Search listings</span>
+              <input
+                type="search"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="Record ID, property type, or area"
+              />
+            </label>
             <label>
-              <span>Status</span>
+              <span>State</span>
+              <select value={state} onChange={(event) => setState(event.target.value)}>
+                <option value="all">All states</option>
+                <option value="FL">Florida</option>
+              </select>
+            </label>
+            <label>
+              <span>County</span>
+              <select value={county} onChange={(event) => setCounty(event.target.value)}>
+                <option value="all">All counties</option>
+                <option value="Pasco County">Pasco County</option>
+              </select>
+            </label>
+            <label>
+              <span>Reported surplus</span>
+              <select value={amountFilter} onChange={(event) => setAmountFilter(event.target.value)}>
+                {AMOUNT_FILTERS.map((filter) => (
+                  <option key={filter.value} value={filter.value}>{filter.label}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>Dossier status</span>
               <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>
                 <option value="all">All statuses</option>
-                {[...new Set(MARKETPLACE_ROWS.map((item) => item.status))].map((status) => (
-                  <option key={status} value={status}>{status}</option>
-                ))}
+                <option value="discovered">Discovered · review pending</option>
               </select>
             </label>
-            <label>
-              <span>Jurisdiction</span>
-              <select value={jurisdictionFilter} onChange={(event) => setJurisdictionFilter(event.target.value)}>
-                <option value="all">All states</option>
-                {[...new Set(MARKETPLACE_ROWS.map((item) => item.state))].sort().map((state) => (
-                  <option key={state} value={state}>{state}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              <span>Priority</span>
-              <select value={priorityFilter} onChange={(event) => setPriorityFilter(event.target.value)}>
-                <option value="all">All priorities</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-              </select>
-            </label>
-          </div>
-        </section>
+          </form>
 
-        <section className="marketplace-board" id="opportunities">
-          <div className="marketplace-board-intro">
-            <p>Opportunities</p>
-            <div className="board-badges">
-              <span>Sample data</span>
-              <span>Review status shown</span>
-              <span>Not for reliance</span>
-            </div>
-          </div>
-
-          <div className="marketplace-grid">
-            {filteredRows.map((item) => (
-              <article key={item.id} className="marketplace-card">
-                <div className="marketplace-card-header">
+          {filteredListings.length > 0 ? (
+            <div className="surplus-marketplace-grid">
+            {filteredListings.map((listing) => (
+              <article className="surplus-marketplace-card" key={listing.id}>
+                <div className="surplus-marketplace-card-head">
+                  <span className="surplus-marketplace-record-id">{listing.id}</span>
+                  <span className="surplus-marketplace-status">Discovered · review pending</span>
+                </div>
+                <h3>{listing.title}</h3>
+                <dl className="surplus-marketplace-details">
                   <div>
-                    <span className="card-tag">{item.id}</span>
-                    <span className="card-state">{item.state}</span>
+                    <dt>County / State</dt>
+                    <dd>{listing.county}, {listing.state}</dd>
                   </div>
-                  <span className="card-review">{item.eligibility} priority</span>
-                </div>
-
-                <div className="marketplace-card-body">
-                  <div className="card-main-line">
-                    <h3>{item.owner}</h3>
-                    <span>{item.county}</span>
+                  <div>
+                    <dt>Area</dt>
+                    <dd>{listing.area}</dd>
                   </div>
-
-                  <div className="card-amount-block">
-                    <span className="card-label">Illustrative amount</span>
-                    <strong>{item.amount}</strong>
-                    <small>{item.source}</small>
+                  <div>
+                    <dt>Property type</dt>
+                    <dd>{listing.propertyType}</dd>
                   </div>
-
-                  <div className="card-meta-grid">
-                    <div>
-                      <span>Status</span>
-                      <strong>{item.status}</strong>
-                    </div>
-                    <div>
-                      <span>Eligibility</span>
-                      <strong>{item.eligibility}</strong>
-                    </div>
+                  <div>
+                    <dt>Reported surplus</dt>
+                    <dd className="surplus-marketplace-amount">{listing.reportedSurplus}</dd>
                   </div>
-                </div>
-
-                <div className="marketplace-card-footer">
-                  <a className="marketplace-primary" href="/contact">Request record access</a>
-                </div>
+                  <div className="surplus-marketplace-price-row">
+                    <dt>Access price</dt>
+                    <dd>{currency.format(listing.price)}</dd>
+                  </div>
+                </dl>
+                <p className="surplus-marketplace-source-note">
+                  Seller reports official Clerk-record sourcing. Source documents are not available for pre-purchase review.
+                </p>
+                <button className="surplus-marketplace-purchase" type="button" disabled>
+                  Stripe checkout setup pending
+                </button>
               </article>
             ))}
-          </div>
-          {filteredRows.length === 0 && (
-            <p className="marketplace-empty-state" role="status">No sample records match those search and filter settings.</p>
+            </div>
+          ) : (
+            <p className="surplus-marketplace-empty-results" role="status">
+              No listings match these filters. Try changing your search or selection.
+            </p>
           )}
-          <p className="marketplace-results-count" aria-live="polite">
-            Showing {filteredRows.length} of {MARKETPLACE_ROWS.length} sample records
+
+          <p className="surplus-marketplace-checkout-note" role="status">
+            Online checkout and post-payment record delivery are not configured yet. No payment can be made from this page.
+            <a href="/contact"> Contact RSARBOS about access.</a>
+          </p>
+          <p className="surplus-marketplace-disclaimer">
+            These are seller-described leads, not legal determinations of ownership, entitlement, eligibility, or recoverability.
+            Reported surplus amounts may change and must be independently confirmed with the relevant Clerk and applicable Florida procedures.
           </p>
         </section>
 
-        <section className="marketplace-info-grid" id="tiered-paywall">
-          <article>
-            <p className="marketplace-section-kicker">Access tiers</p>
-            <h2>Review the data before requesting access.</h2>
-            <p>Access terms, record availability, and any fees are confirmed directly with RSARBOS.</p>
-            <a href="/contact">Discuss access options</a>
-          </article>
-          <article id="documentation">
-            <p className="marketplace-section-kicker">Documentation</p>
-            <h2>Evidence status is not a recovery guarantee.</h2>
-            <p>Sample labels illustrate a review workflow. They do not establish ownership, eligibility, or recoverability.</p>
-          </article>
-          <article id="api">
-            <p className="marketplace-section-kicker">API &amp; webhooks</p>
-            <h2>Talk with us about data access.</h2>
-            <p>API keys and webhook availability are not provisioned through this demo.</p>
-            <a href="/contact">Contact the team</a>
-          </article>
+        <section
+          className="surplus-marketplace-how"
+          id="how-it-works"
+          aria-labelledby="surplus-marketplace-how-heading"
+        >
+          <div className="surplus-marketplace-section-heading">
+            <div>
+              <p className="surplus-marketplace-eyebrow">PROCESS</p>
+              <h2 id="surplus-marketplace-how-heading">How it works</h2>
+            </div>
+          </div>
+          <ol>
+            <li>
+              <span>01</span>
+              <div>
+                <h3>Discover an opportunity</h3>
+                <p>Review the seller-provided listing information and its stated research status.</p>
+              </div>
+            </li>
+            <li>
+              <span>02</span>
+              <div>
+                <h3>Review its source-backed dossier</h3>
+                <p>When available, examine source references, supporting records, and unresolved questions.</p>
+              </div>
+            </li>
+            <li>
+              <span>03</span>
+              <div>
+                <h3>Purchase access and continue your research</h3>
+                <p>Checkout and secure delivery will be enabled after the payment and fulfillment workflow is configured.</p>
+              </div>
+            </li>
+          </ol>
         </section>
       </main>
+
+      <footer className="public-footer surplus-marketplace-footer">
+        <div className="content-wrap">
+          <div className="footer-bottom">
+            <p>© 2026 RSARBOS Next-Gen Business Technology. All rights reserved.</p>
+            <nav aria-label="Legal">
+              <a href="/terms">Terms</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/refund-policy">Refunds</a>
+              <a href="/contact">Contact</a>
+            </nav>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
